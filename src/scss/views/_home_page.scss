@@ -1,0 +1,40 @@
+* {
+    font-family: $font-family-primary;
+}
+.homepage {
+    background-color: lightblue;
+    h1 {
+        color: $color-text-light;
+    }
+}
+
+.toy {
+    @include make-box($clr1);
+    .txt {
+        color: $color-text-default;
+    }
+    .img {
+        transition: all 0.8s ease-in-out;
+        max-width: 100px;
+        &:hover {
+            transform: rotate(90deg);
+        }
+    }
+    &-container {
+        background-color: #dbbebe;
+    }
+    &-container:hover {
+        background-color: lightcoral;
+    }
+}
+
+.card-cat {
+    .card-image {
+        @include make-box($clr5);
+        @include aspect-ratio(1, 1);
+    }
+    .cat-tag {
+        @include make-box(tomato);
+        font-size: rem(10px);
+    }
+}

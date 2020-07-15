@@ -1,0 +1,141 @@
+<template>
+  <section class="edit-toy">
+    <h1>Edit Toy</h1>
+    <form @submit.prevent="saveToy">
+      <div>
+        Name:
+        <el-input type="text" v-model="toyToSave.name" placeholder="Enter edit" />
+      </div>
+      <br />
+      <div>
+        Price
+        <el-input type="number" v-model="toyToSave.price" placeholder="Enter price" />
+      </div>
+      <br />
+      <div>
+        Type
+        <br />
+        <el-select v-model="toyToSave.type">
+          <el-option label="Funny" value="Funny"></el-option>
+          <el-option label="Educational" value="Educational"></el-option>
+        </el-select>
+      </div>
+      <br />
+      <label>
+        In Stock:
+        <input type="checkbox" v-model="toyToSave.inStock" />
+      </label>
+      <br />
+      <br />
+      <div class="block">
+        <el-date-picker
+          v-model="toyToSave.createdAt"
+          type="date"
+          placeholder="Pick a day"
+          :picker-options="pickerOptions"
+        ></el-date-picker>
+      </div>
+
+      <br />
+      <el-button @click="saveToy">Save</el-button>
+      <el-button @click="back">Cancel</el-button>
+    </form>
+  </section>
+</template>
+
+<script>
+import ToyService from "@/services/ToyService.js";
+
+export default {
+  name: "toy-edit",
+  props: {
+    toy: {
+      type: Object
+    }
+  },
+  data() {
+    return {
+      toyToSave: {},
+      pickerOptions: {
+        disabledDate(time) {
+          return time.getTime() > Date.now();
+        },
+        shortcuts: [
+          {
+            text: "Today",
+            onClick(picker) {
+              picker.$emit("pick", new Date());
+            }
+          },
+          {
+            text: "Yesterday",
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              picker.$emit("pick", date);
+            }
+          },
+          {
+            text: "A week ago",
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit("pick", date);
+            }
+          }
+        ]
+      }
+    };
+  },
+  methods: {
+    back() {
+      this.$router.push("/toy-app");
+    },
+    saveToy() {
+      if (this.toyToSave.name === "") return;
+      if (this.toyToSave.price === "") return;
+      this.$store
+        .dispatch({ type: "saveToy", toy: this.toyToSave })
+        .then(toy => {
+          console.log("Saved toy:", toy);
+          this.$router.push("/toy-app");
+        });
+    },
+    loadToy() {
+      let toyId = this.$route.params.id;
+      if (toyId) {
+        ToyService.getById(toyId).then(toy => {
+          this.toyToSave = JSON.parse(JSON.stringify(toy));
+        });
+      } else {
+        let emptyToy = this.$store.getters.emptyToy;
+        this.toyToSave = { ...emptyToy };
+      }
+    }
+  },
+  created() {
+    this.loadToy();
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+.edit-toy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 90%;
+  // border: 1px solid black;
+  margin: 0px auto;
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 7px;
+  background-color: #f5f5f5;
+  box-shadow: 0px 0px 1000px -50px black;
+}
+@media screen and (min-width: 520px) {
+  .edit-toy {
+    width: 50%;
+  }
+}
+</style>

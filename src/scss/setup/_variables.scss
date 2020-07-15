@@ -1,0 +1,25 @@
+// Colors
+$clr1: #1d3557;
+$clr2: #457b9d;
+$clr3: #a8dadc;
+$clr4: #ffffff;
+$clr5: #f07f89;
+
+// Vars
+$color-text-default: #424954;
+$color-text-light: #ebebeb;
+$color-primary: #8465d9;
+$color-danger: #e83043;
+$font-family-primary: Roboto, "Open Sans", Helvetica Neue, sans-serif;
+$font-family-secondary: Georgia, TimesNew Roman, serif;
+
+// Breakpoints
+$mobile-breakpoint: 560px;
+$narrow-breakpoint: 660px;
+$normal-breakpoint: 960px;
+
+// Interpolation:
+$puki: puki;
+.#{$puki}:after {
+    content: "#{$puki}";
+}

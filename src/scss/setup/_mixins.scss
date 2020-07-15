@@ -1,0 +1,78 @@
+/* Breakpoint mixins */
+
+@mixin for-mobile-layout {
+  @media (max-width: $mobile-breakpoint) {
+    @content;
+  }
+}
+
+@mixin for-narrow-layout {
+  @media (min-width: $mobile-breakpoint) {
+    @content;
+  }
+}
+
+@mixin for-normal-layout {
+  @media (min-width: $narrow-breakpoint) {
+    @content;
+  }
+}
+
+@mixin for-wide-layout {
+  @media (min-width: $normal-breakpoint) {
+    @content;
+  }
+}
+
+/* Media  Mixins */
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  overflow: hidden;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > * {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  > img {
+    object-fit: cover;
+  }
+}
+
+// Mixin for removing hover efects on iphone screen
+@mixin hover-supported {
+  @media not all and (pointer: coarse) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+//
+@mixin blockBtn($bgColor: gray, $color: white) {
+  display: inline-block;
+  border: 1px solid #000;
+  padding: 16px 32px;
+  background-color: $bgColor;
+  color: $color;
+}
+
+@mixin make-box($bcolor) {
+  padding: 1.4em;
+  border-radius: 0.8em;
+  border: 1px solid $bcolor;
+}
+.item-box {
+  @include make-box(gray);
+}
+.item-sale-box {
+  @include make-box(tomato);
+}

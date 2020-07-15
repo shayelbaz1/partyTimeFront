@@ -1,0 +1,134 @@
+// Font Sizes
+.fs12 {
+    font-size: rem(12px);
+}
+.fs14 {
+    font-size: rem(14px);
+}
+.fs16 {
+    font-size: rem(16px);
+}
+.fs18 {
+    font-size: rem(18px);
+}
+.fs20 {
+    font-size: rem(20px);
+}
+.fs24 {
+    font-size: rem(24px);
+}
+.fs28 {
+    font-size: rem(28px);
+}
+.fs30 {
+    font-size: rem(30px);
+}
+
+// media-helpers
+.square-ratio {
+    @include aspect-ratio(1, 1);
+}
+.video-ratio {
+    @include aspect-ratio(16, 9);
+}
+.poster-ratio {
+    @include aspect-ratio(1, 1.5);
+}
+
+/* HELPERS */
+
+.flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.flex-start {
+    align-items: flex-start;
+}
+
+.flex-end {
+    align-items: flex-end;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.width-all {
+    width: 100%;
+}
+
+.height-all {
+    height: 100%;
+}
+
+.width-content {
+    width: fit-content;
+}
+
+.column-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > *:not(:last-child) {
+        margin-bottom: 7.5px;
+    }
+}
+
+// .column-layout > *:not(:last-child) {
+//     margin-bottom: 7.5px;
+// }
+
+.hide {
+    display: none;
+}
+
+.back-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    padding: 0.5rem 0.75rem;
+    position: absolute;
+    left: 0.33rem;
+    color: #717171;
+    transition: 0.3s;
+    &:hover {
+        color: $clr1;
+        border-radius: 50%;
+        padding: 0.5rem 0.75rem;
+        background-color: rgba(2, 2, 2, 0.123);
+    }
+}

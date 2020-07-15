@@ -1,0 +1,74 @@
+<template>
+  <div class="about">
+    <h1>About page</h1>
+    <h2>Our Locations</h2>
+    <GmapMap
+      :center="center"
+      :zoom="zoom"
+      map-type-id="terrain"
+      style="width: 500px; height: 300px"
+    >
+      <GmapMarker
+        :key="index"
+        v-for="(m, index) in markers"
+        :position="m.position"
+        :clickable="true"
+        :draggable="true"
+        @click="center=m.position"
+      />
+    </GmapMap>
+    <el-button @click="setCenter('TLV')">Tel Aviv</el-button>
+    <el-button @click="setCenter('jerusalem')">Jerusalem</el-button>
+    <el-button @click="setCenter('eilat')">Eilat</el-button>
+  </div>
+</template>
+
+<script>
+import Chart from "@/components/Chart.vue";
+import chartToysYear from "../components/chart-toys-year.vue";
+import { GoogleMap } from "vue-maps";
+
+export default {
+  name: "About",
+  data() {
+    return {
+      markers: [
+        { position: { lat: 30.984673, lng: 34.941595 } },
+        { position: { lat: 31.020098, lng: 34.512982 } }
+      ],
+      center: { lat: 31.05764, lng: 35.052906 },
+      zoom: 7
+    };
+  },
+  components: {
+    Chart,
+    chartToysYear,
+    GoogleMap
+  },
+  methods: {
+    setCenter(city) {
+      if (city === "TLV") {
+        this.center = { lat: 32.109333, lng: 34.855499 };
+        this.zoom = 11;
+      }
+      if (city === "jerusalem") {
+        this.center = { lat: 31.771959, lng: 35.217018 };
+        this.zoom = 11;
+      }
+      if (city === "eilat") {
+        this.center = { lat: 29.55805, lng: 34.94821 };
+        this.zoom = 11;
+      }
+    }
+  }
+};
+</script>
+
+<style scoped>
+.vue-map-container {
+  margin: auto;
+}
+.el-button {
+  margin: 10px;
+}
+</style>

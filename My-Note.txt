@@ -1,0 +1,14 @@
+"start": "nodemon --ignore \"./data\" server.js",
+    "start": "node server.js",
+
+    "eslint:recommended",
+    
+plugin:vue/base - Just the basic rules to make the parsing work. Doesn’t lint anything yet.
+plugin:vue/essential - The above, plus rules that exist solely to prevent errors or unexpected behavior in Vue.
+plugin:vue/strongly-recommended - The above, plus rules that are generally considered best practice.
+plugin:vue/recommended - The above, plus a few often-suggested style rules.
+
+
+**Filter isInStock not Work Good
+
+mongodb+srv://<username>:<password>@cluster0.jijxr.mongodb.net/<dbname>?retryWrites=true&w=majority
