@@ -6,7 +6,7 @@ import toyEdit from "@/components/toy-edit.cmp.vue";
 import Dashboard from "@/views/Dashboard.vue";
 import ProfilePage from "@/views/ProfilePage.vue";
 import AboutPage from "@/views/AboutPage.vue";
-import LoginPage from "@/views/LoginPage.vue";
+import LoginPage from "@/views/loginSignup.vue";
 import reviewList from "@/components/review-list.vue";
 import UserPreview from "@/views/UserPreview.vue";
 import ChatPage from "@/views/ChatPage.vue";

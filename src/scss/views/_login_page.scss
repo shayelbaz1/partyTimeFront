@@ -1,0 +1,57 @@
+.login-page {
+    display: flex;
+    justify-content: center;
+    background-image: url(https://lh3.googleusercontent.com/proxy/034xZy8eh3zKAWw10ATTREprUkQTVVToC_rG-QlyYdxHTqFDYtCCNVW-bs7AIDl88tGo-2QQer6SdVoLow8nkOzzD2lsP48H3UVaZcnmMJK1d8PvLVEt48xJHi_Zzt4fmFs3ctys5a56ReVkVJ00zfH-XK8dX2XS);
+    /* color: white; */
+    background-clip: white;
+    background-color: rgb;
+    height: \\;
+    height: 100vh;
+    background-repeat: no-repeat;
+    /* width: 100vw; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    form {
+        width: 385px;
+        background-color: #c1272d;
+        padding: 48px;
+        bordder-radius: 21px;
+        border-radius: 26px;
+        margin-top: 122px;
+        
+        h2 {
+            text-decoration: underline;
+            color: white;  
+        }
+
+        input {
+            font-family: "Actor", sans-serif;
+            padding: 0.8rem;
+            background-color: #303030;
+            border-radius: 22px;
+            margin-bottom: 24px;
+            border: 0;
+            color: white;
+        }
+
+        .login-signup-buttons-container {
+            display: flex;
+            justify-content: space-evenly;  
+
+            button {
+                border: 0;
+                background-color: #303030;
+                padding: 12px;
+                border-radius: 26px;
+                cursor: pointer;
+                color: white;
+            }
+            button:hover {
+                padding: 20px;
+                transition: padding 1s;
+            }
+        }
+    }
+}
