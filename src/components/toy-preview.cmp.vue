@@ -6,6 +6,7 @@
       <div class="text item">
         <h1>Day Party</h1>
         <p>Baga, Club Habbana</p>
+        <p>12 PM | FREE</p>
       </div>
     </el-card>
   </section>
