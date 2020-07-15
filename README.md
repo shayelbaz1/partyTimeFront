@@ -1,5 +1,5 @@
 # frontend
-# partyTimeFront
+# partyTimeFront!
 
 ## Project setup
 ```
