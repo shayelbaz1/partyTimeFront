@@ -32,7 +32,12 @@ export default {
 
 <style lang="scss" scoped>
 .el-menu {
+  background-color: #c1272d;
   display: flex;
   justify-content: flex-end;
+  .el-menu-item{
+    background-color: #c1272d;
+    
+  }
 }
 </style>
