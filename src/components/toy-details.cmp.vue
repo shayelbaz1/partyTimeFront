@@ -1,7 +1,7 @@
 <template>
   <section>
     <img class="main-img" src="../assets/Capture.png" />
-    <div class="details-container flex">
+    <div class="details-container flex space-around">
       <div class="worded-container">
         <div class="event-desc-container">
           <h2>DJ Play</h2>
@@ -18,6 +18,11 @@
           <button>X</button>
         </div>
 
+        <div class="participants-details">
+          <p>3 PARTICIPATORS PICTURES GO HERE</p>
+          <p>HEART SYMBOL WITH LIKES NUMBER GOES HERE</p>
+          <p>Reviews:</p>
+        </div>
         <el-button @click="back" class="btn-back">
           <div class="content">
             <i class="fas fa-arrow-left"></i>
@@ -94,6 +99,23 @@ section {
 
 .event-desc-container {
   color: #e4e6eb;
+}
+
+.participants-details{
+  color: #ffffff;
+  font-size: 20px;;
+}
+
+.event-buttons-container {
+  button {
+    background-color: #c1272d;
+    color: #ffffff;
+    border-width: 0px;
+    font-size: 20px;
+    margin: 5px;
+    border-radius: 10px;
+    padding: 10px;
+  }
 }
 
 .main-img {
