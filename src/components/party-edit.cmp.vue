@@ -1,33 +1,25 @@
 <template>
   <div class="event-add-container">
-    <section class="edit-toy">
+    <section class="edit-party">
       <h1>Create Party</h1>
       <div class="form-container">
-        <form @submit.prevent="saveToy">
+        <form @submit.prevent="saveParty">
           <div>
-            <input
-              type="text"
-              v-model="toyToSave.name"
-              placeholder="Party Title"
-            />
+            <input type="text" v-model="partyToSave.name" placeholder="Party Title" />
           </div>
           <br />
           <div>
-            <input
-              type="text"
-              v-model="toyToSave.price"
-              placeholder="Party Location"
-            />
+            <input type="text" v-model="partyToSave.price" placeholder="Party Location" />
           </div>
           <br />
           <input
-            v-model="toyToSave.createdAt"
+            v-model="partyToSave.createdAt"
             type="date"
             placeholder="Pick a day"
             :picker-options="pickerOptions"
           />
           <input
-            v-model="toyToSave.createdAt"
+            v-model="partyToSave.createdAt"
             type="date"
             placeholder="Pick a day"
             :picker-options="pickerOptions"
@@ -37,7 +29,7 @@
           <input type="text" placeholder="Party Type" />
           <input type="number" placeholder="Entry fee 6$" />
           <div class="add-event-buttons-container">
-            <button @click="saveToy">Save</button>
+            <button @click="saveParty">Save</button>
             <button @click="back">Cancel</button>
           </div>
         </form>
@@ -47,79 +39,79 @@
 </template>
 
 <script>
-import ToyService from '@/services/ToyService.js'
+import PartyService from "@/services/PartyService.js";
 
 export default {
-  name: 'toy-edit',
+  name: "party-edit",
   props: {
-    toy: {
-      type: Object,
-    },
+    party: {
+      type: Object
+    }
   },
   data() {
     return {
-      toyToSave: {},
+      partyToSave: {},
       pickerOptions: {
         disabledDate(time) {
-          return time.getTime() > Date.now()
+          return time.getTime() > Date.now();
         },
         shortcuts: [
           {
-            text: 'Today',
+            text: "Today",
             onClick(picker) {
-              picker.$emit('pick', new Date())
-            },
+              picker.$emit("pick", new Date());
+            }
           },
           {
-            text: 'Yesterday',
+            text: "Yesterday",
             onClick(picker) {
-              const date = new Date()
-              date.setTime(date.getTime() - 3600 * 1000 * 24)
-              picker.$emit('pick', date)
-            },
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              picker.$emit("pick", date);
+            }
           },
           {
-            text: 'A week ago',
+            text: "A week ago",
             onClick(picker) {
-              const date = new Date()
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
-              picker.$emit('pick', date)
-            },
-          },
-        ],
-      },
-    }
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit("pick", date);
+            }
+          }
+        ]
+      }
+    };
   },
   methods: {
     back() {
-      this.$router.push('/toy-app')
+      this.$router.push("/party-app");
     },
-    saveToy() {
-      if (this.toyToSave.name === '') return
-      if (this.toyToSave.price === '') return
+    saveParty() {
+      if (this.partyToSave.name === "") return;
+      if (this.partyToSave.price === "") return;
       this.$store
-        .dispatch({ type: 'saveToy', toy: this.toyToSave })
-        .then((toy) => {
-          console.log('Saved toy:', toy)
-          this.$router.push('/toy-app')
-        })
+        .dispatch({ type: "saveParty", party: this.partyToSave })
+        .then(party => {
+          console.log("Saved party:", party);
+          this.$router.push("/party-app");
+        });
     },
-    loadToy() {
-      let toyId = this.$route.params.id
-      if (toyId) {
-        ToyService.getById(toyId).then((toy) => {
-          this.toyToSave = JSON.parse(JSON.stringify(toy))
-        })
+    loadParty() {
+      let partyId = this.$route.params.id;
+      if (partyId) {
+        PartyService.getById(partyId).then(party => {
+          this.partyToSave = JSON.parse(JSON.stringify(party));
+        });
       } else {
-        let emptyToy = this.$store.getters.emptyToy
-        this.toyToSave = { ...emptyToy }
+        let emptyParty = this.$store.getters.emptyParty;
+        this.partyToSave = { ...emptyParty };
       }
-    },
+    }
   },
   created() {
-    this.loadToy()
-  },
-}
+    this.loadParty();
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -127,7 +119,7 @@ export default {
   height: 100vh;
   background-color: #303030;
 }
-.edit-toy {
+.edit-party {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -180,7 +172,7 @@ button {
 // }
 
 @media screen and (min-width: 520px) {
-  .edit-toy {
+  .edit-party {
     width: 50%;
   }
 }

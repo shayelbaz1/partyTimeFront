@@ -6,7 +6,11 @@
         <div class="event-desc-container">
           <h2>DJ Play</h2>
           <h3>Saturday, May 1, Starting at 8PM</h3>
+<<<<<<< HEAD
           <h1>Get ready for a night full of dancing, partying and bottomless beer!</h1>
+=======
+          <h1>Get ready for a night full of dancing, partying and botomless beer!</h1>
+>>>>>>> 41e4ed212ac162ecaf97514b8c4f5b14ccd3552f
           <span>RSVP:</span>
         </div>
 
@@ -20,10 +24,14 @@
 
         <div class="participants-details">
           <p>3 PARTICIPATORS PICTURES GO HERE</p>
+<<<<<<< HEAD
           <div class="likes-container flex">
             <i class="fa fa-heart"></i>
             <p class="like-number">3</p>
           </div>
+=======
+          <p>HEART SYMBOL WITH LIKES NUMBER GOES HERE</p>
+>>>>>>> 41e4ed212ac162ecaf97514b8c4f5b14ccd3552f
           <p>Reviews:</p>
         </div>
         <el-button @click="back" class="btn-back">
@@ -62,6 +70,7 @@ export default {
     back() {
       this.$router.push("/party-app");
     },
+<<<<<<< HEAD
     async loadparty() {
       let partyId = this.$route.params.id;
       this.party = await partyService.getById(partyId);
@@ -69,6 +78,15 @@ export default {
   },
   created() {
     this.loadparty();
+=======
+    async loadParty() {
+      let partyId = this.$route.params.id;
+      this.party = await PartyService.getById(partyId);
+    }
+  },
+  created() {
+    this.loadParty();
+>>>>>>> 41e4ed212ac162ecaf97514b8c4f5b14ccd3552f
   }
 };
 </script>
@@ -100,6 +118,7 @@ section {
   }
 }
 
+<<<<<<< HEAD
 .fa-heart {
   color: #c1272d;
   margin-right: 5px;
@@ -108,6 +127,8 @@ section {
 .like-number {
   margin: 0;
 }
+=======
+>>>>>>> 41e4ed212ac162ecaf97514b8c4f5b14ccd3552f
 .event-desc-container {
   color: #e4e6eb;
 }
