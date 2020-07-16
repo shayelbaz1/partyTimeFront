@@ -134,7 +134,7 @@ export default {
   width: 90%;
   // border: 1px solid black;
   margin: 0px auto;
-  margin-top: 10px;
+  // margin-top: 10px;
   padding: 20px;
   border-radius: 7px;
   color: white;
