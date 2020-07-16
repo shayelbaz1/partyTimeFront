@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import ToyStore from './modules/ToyStore.js'
+import PartyStore from './modules/PartyStore.js'
 import UserStore from './modules/UserStore.js'
 import ReviewStore from './modules/ReviewStore.js'
 
@@ -12,7 +12,7 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    ToyStore,
+    PartyStore,
     UserStore,
     ReviewStore
   }

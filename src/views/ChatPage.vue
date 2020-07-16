@@ -4,17 +4,17 @@
       <img src="../assets/chat.png" />
     </button>
 
-    <div v-if="toy" v-show="isChat" class="chat">
+    <div v-if="party" v-show="isChat" class="chat">
       <div class="chat-header">
         <button class="btn close-btn" @click="isChat=!isChat">X</button>
         <h1>Chat</h1>
-        <p>{{toy.name}}</p>
+        <p>{{party.name}}</p>
         <p v-if="isTyping" class="typing">{{whoType | capitalize}} is typing...</p>
       </div>
 
       <ul>
         <li v-if="msgs.length===0">
-          Welcome to the chat of '{{toy.name}}'.
+          Welcome to the chat of '{{party.name}}'.
           What do you think?
         </li>
         <li v-else v-for="(msg, idx) in msgs" :key="idx">{{msg.from | capitalize}}: {{msg.txt}}</li>
@@ -35,7 +35,7 @@ import SocketService from "../services/SocketService.js";
 
 export default {
   name: "chat-page",
-  props: ["toy"],
+  props: ["party"],
   data() {
     return {
       msg: { from: "Me", txt: "" },
@@ -67,7 +67,7 @@ export default {
     },
     addMsg(msg) {
       this.msgs.push(msg);
-      localStorage.setItem(`msgs-${this.toy._id}`, JSON.stringify(this.msgs));
+      localStorage.setItem(`msgs-${this.party._id}`, JSON.stringify(this.msgs));
     },
     sendMsg() {
       if (this.msg.txt !== "") {
@@ -99,14 +99,14 @@ export default {
   created() {
     console.log(
       "localStorage.msgs:",
-      JSON.parse(localStorage.getItem(`msgs-${this.toy._id}`))
+      JSON.parse(localStorage.getItem(`msgs-${this.party._id}`))
     );
-    this.msgs = localStorage.getItem(`msgs-${this.toy._id}`)
-      ? JSON.parse(localStorage.getItem(`msgs-${this.toy._id}`))
+    this.msgs = localStorage.getItem(`msgs-${this.party._id}`)
+      ? JSON.parse(localStorage.getItem(`msgs-${this.party._id}`))
       : [];
     SocketService.setup();
-    if (this.toy) {
-      SocketService.emit("chat joinTopic", this.toy._id);
+    if (this.party) {
+      SocketService.emit("chat joinTopic", this.party._id);
     } else {
       SocketService.emit("chat joinTopic", this.topic);
     }

@@ -1,7 +1,8 @@
 // import {eventBus,SHOW_MSG} from '../services/eventBus.service.js'
 <template>
-  <section class="toy-preview">
-    <div class="box-card" @click="routeToDetails(toy._id)">
+  <section class="party-preview">
+    <!-- <pre>{{party}}</pre> -->
+    <div class="box-card" @click="routeToDetails(party._id)">
       <div class="img-box">
         <img class="img-backround" src="../assets/beach.jpg" />
         <img class="img-front" src="../assets/beach.jpg" />
@@ -10,20 +11,25 @@
       <div class="text-box">
         <div class="heart-box">
           <i class="fas fa-heart"></i>
-          <p>3</p>
+          <p>{{party.likes}}</p>
         </div>
 
-        <h1>Day Party</h1>
-        <p>Baga, Club Habbana</p>
-        <p>12 PM | FREE</p>
-        <p>House | Breach Party</p>
+        <div>
+          <h1>{{party.name}}</h1>
+          <p>{{party.location.name}}</p>
+        </div>
+        <p>{{party.startsAt | moment("H:MM A")}} | {{party.fee}}</p>
+        <p>{{party.startsAt | moment("DD/MM/YYYY")}}</p>
+        <div class="types flex">
+          <p v-for="(type,idx) in party.extraData.eventTypes" :key="idx">{{type}} |</p>
+        </div>
 
         <div class="btns-actions-box">
-          <el-button @click.stop="routeToEdit(toy._id)" type="text">
+          <el-button @click.stop="routeToEdit(party._id)" type="text">
             <i class="far fa-edit"></i>
           </el-button>
 
-          <el-button @click.stop="remove(toy._id)" type="text">
+          <el-button @click.stop="remove(party._id)" type="text">
             <i class="far fa-trash-alt trash"></i>
           </el-button>
         </div>
@@ -34,23 +40,35 @@
 
 <script>
 export default {
-  name: "toy-preview",
+  name: "party-preview",
   props: {
-    toy: {
+    party: {
       type: Object
+    }
+  },
+  data() {
+    return {
+      date: this.party.startsAt
+    };
+  },
+  computed: {
+    dateFormated() {
+      // let d = new Date(this.date);
+      var m = moment(this.date).format("MMMM Do YYYY, h:mm:ss a"); // July 16th 2020, 4:33:56 pm
+      return m;
     }
   },
   methods: {
     routeToEdit(id) {
-      this.$router.replace("toy-app/edit/" + id);
+      this.$router.replace("party-app/edit/" + id);
     },
     routeToDetails(id) {
       console.log("id:", id);
-      this.$router.replace("toy-app/details/" + id);
+      this.$router.replace("party-app/details/" + id);
     },
     remove(id) {
       this.$store
-        .dispatch({ type: "removeToy", id: id })
+        .dispatch({ type: "removeParty", id: id })
         .then(() => {
           // eventBus.$emit(SHOW_MSG, {txt: `Deleted`, type: 'success'})
           console.log("deleted");
@@ -65,8 +83,9 @@ export default {
 </script>
 
 <style lang="scss">
-.toy-preview {
+.party-preview {
   width: 100%;
+  color: black;
   p {
     margin: 0;
   }
@@ -125,6 +144,16 @@ export default {
       justify-content: space-between;
       padding-left: 10px;
       padding-bottom: 10px;
+      h1 {
+        margin: 0px;
+        margin-top: 20px;
+        padding: 0;
+      }
+      .types {
+        p {
+          margin-left: 5px;
+        }
+      }
       .heart-box {
         position: absolute;
         right: 0;
@@ -133,7 +162,7 @@ export default {
         margin-right: 20px;
         i {
           font-size: 2rem;
-          color: #8e0000;
+          color: #c1272d;
         }
         p {
           margin: 0;

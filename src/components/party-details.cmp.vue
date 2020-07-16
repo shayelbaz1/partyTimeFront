@@ -33,39 +33,39 @@
       <div class="map-container"></div>
     </div>
 
-    <!-- <review-list v-if="toy"></review-list>
-    <chat-page v-if="toy" :toy="toy"></chat-page>-->
+    <!-- <review-list v-if="party"></review-list>
+    <chat-page v-if="party" :party="party"></chat-page>-->
   </section>
 </template>
 >
 
 <script>
-import ToyService from "@/services/ToyService.js";
+import PartyService from "@/services/PartyService.js";
 import reviewList from "@/components/review-list.vue";
 import ChatPage from "@/views/ChatPage.vue";
 
 export default {
-  name: "toy-details",
+  name: "party-details",
   components: {
     reviewList,
     ChatPage
   },
   data() {
     return {
-      toy: null
+      party: null
     };
   },
   methods: {
     back() {
-      this.$router.push("/toy-app");
+      this.$router.push("/party-app");
     },
-    async loadToy() {
-      let toyId = this.$route.params.id;
-      this.toy = await ToyService.getById(toyId);
+    async loadParty() {
+      let partyId = this.$route.params.id;
+      this.party = await PartyService.getById(partyId);
     }
   },
   created() {
-    this.loadToy();
+    this.loadParty();
   }
 };
 </script>
@@ -101,9 +101,9 @@ section {
   color: #e4e6eb;
 }
 
-.participants-details{
+.participants-details {
   color: #ffffff;
-  font-size: 20px;;
+  font-size: 20px;
 }
 
 .event-buttons-container {

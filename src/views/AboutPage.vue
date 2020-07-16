@@ -25,7 +25,7 @@
 
 <script>
 import Chart from "@/components/Chart.vue";
-import chartToysYear from "../components/chart-toys-year.vue";
+import chartPartysYear from "../components/chart-partys-year.vue";
 import { GoogleMap } from "vue-maps";
 
 export default {
@@ -42,7 +42,7 @@ export default {
   },
   components: {
     Chart,
-    chartToysYear,
+    chartPartysYear,
     GoogleMap
   },
   methods: {

@@ -1,15 +1,15 @@
 <script>
 // CommitChart.js
 import { Bar } from "vue-chartjs";
-import ToyService from "@/services/ToyService.js";
+import PartyService from "@/services/PartyService.js";
 
 export default {
   extends: Bar,
   methods: {
-    getPricesArray(type, toys) {
+    getPricesArray(type, partys) {
       let prices = [];
-      toys.forEach(toy => {
-        if (toy.type === type) prices.push(+toy.price);
+      partys.forEach(party => {
+        if (party.type === type) prices.push(+party.price);
       });
       return prices;
     },
@@ -21,9 +21,9 @@ export default {
     },
 
     loadBar() {
-      ToyService.query().then(toys => {
-        const funnyPrices = this.getPricesArray("Funny", toys);
-        const eduPrices = this.getPricesArray("Educational", toys);
+      PartyService.query().then(partys => {
+        const funnyPrices = this.getPricesArray("Funny", partys);
+        const eduPrices = this.getPricesArray("Educational", partys);
 
         this.renderChart({
           labels: ["Funny", "Educational"],

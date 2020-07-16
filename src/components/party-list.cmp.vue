@@ -1,32 +1,31 @@
 <template>
-  <section class="toy-list">
-    <!-- <h2>Toys</h2> -->
+  <section class="party-list">
     <button @click="routeToEdit" class="add">
       <i class="fa fa-plus my-float"></i>
     </button>
     <div class="flex column-layout space-around">
-      <toy-preview v-for="toy in toys" :key="toy._id" :toy="toy"></toy-preview>
+      <party-preview v-for="party in partys" :key="party._id" :party="party"></party-preview>
     </div>
   </section>
 </template>
 
 <script>
-import toyPreview from "../components/toy-preview.cmp.vue";
+import partyPreview from "../components/party-preview.cmp.vue";
 
 export default {
-  name: "toy-list",
+  name: "party-list",
   props: {
-    toys: {
+    partys: {
       type: Array
     }
   },
   methods: {
     routeToEdit() {
-      this.$router.replace("toy-app/edit/");
+      this.$router.replace("party-app/edit/");
     }
   },
   components: {
-    toyPreview
+    partyPreview
   }
 };
 </script>

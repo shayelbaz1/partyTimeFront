@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import toyApp from "@/views/toy-app.vue";
-import toyDetails from "@/components/toy-details.cmp.vue";
-import toyEdit from "@/components/toy-edit.cmp.vue";
+import partyApp from "@/views/party-app.vue";
+import partyDetails from "@/components/party-details.cmp.vue";
+import partyEdit from "@/components/party-edit.cmp.vue";
 import Dashboard from "@/views/Dashboard.vue";
 import ProfilePage from "@/views/ProfilePage.vue";
 import AboutPage from "@/views/AboutPage.vue";
@@ -18,12 +18,12 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: toyApp
+    component: partyApp
   },
   {
-    path: "/toy-app",
-    name: "toy-app",
-    component: toyApp
+    path: "/party-app",
+    name: "party-app",
+    component: partyApp
   },
   // route for testing, this is a component
   {
@@ -32,11 +32,11 @@ const routes = [
     component: partyNav
   },
   {
-      path: '/toy-app/details/:id',
-      component: toyDetails
+      path: '/party-app/details/:id',
+      component: partyDetails
   },
   {
-      path: '/toy-app/details/user/:id',
+      path: '/party-app/details/user/:id',
       component: UserPreview
   },
   {
@@ -44,8 +44,8 @@ const routes = [
       component: UserPreview
   },
   {
-      path: '/toy-app/edit/:id?',
-      component: toyEdit
+      path: '/party-app/edit/:id?',
+      component: partyEdit
   },
   {
     path: "/dashboard",
