@@ -1,8 +1,8 @@
 .main-filter-container {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  background-color: #303030;
+  width: 258px;
+  background-color: $color-primary-gray;
   color: white;
 
   .nav-sort-container {
@@ -23,12 +23,16 @@
           color: white;
         }
       }
+      button:hover {
+          background-color: $color-primary-red;
+      }
     }
   }
   .nav-ranges-container {
     display: flex;
     flex-direction: column;
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid white;
+    padding: 6px;
 
     .ranges-lable-container {
       display: flex;
@@ -54,6 +58,16 @@
             color: white;
             border-radius: 6px; 
         }
+    }
+
+    input {
+        font-family: "Actor", sans-serif;
+        padding: 0.5rem;
+        color: white;
+        text-overflow: ellipsis;
+        border-radius: 6px;
+        border: 0;
+        background-color: black;
     }
   }
 }

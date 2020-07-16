@@ -3,9 +3,9 @@
     <div class="nav-sort-container">
       <h3>Sort By:</h3>
       <div class="sort-buttons-container">
-        <button><i class="fa fa-heart"></i></button>
-        <button><i class="fa fa-thumbs-up"></i></button>
-        <button><i class="">Distance</i></button>
+        <button title='sort by party memebers'><i class="fa fa-user"></i></button>
+        <button title="sort by party likes"><i class="fa fa-heart"></i></button>
+        <button title="sort by distance"><i class="fa fa-road"></i></button>
       </div>
     </div>
 
@@ -60,6 +60,10 @@
           <option value="">Rock</option>
           <option value="">Blues</option>
         </select>
+        Start Time:
+        <input type="date" name="" id="">
+        End Time:
+        <input type="date" name="" id="">
       </div>
     </div>
   </div>
@@ -68,13 +72,31 @@
 <script>
 export default {
   name: 'party-filter',
-  props: {
-    toy: {
-      type: Object,
-    },
-  },
   data() {
-    return {}
+    return {
+      //TODO: Two Phase filtering
+      //TODO: FIRST SORT BY, SORTBY
+      //TODO: SECOND SORT BY PARTY DETAILS
+      //TODO: THIRD SORTBY DATE
+      filterBy: {
+        sortBy: {
+          location: false,
+          members: false,
+          likes: false,
+        },
+        partyDetails: {
+          distance: 3,
+          fee: 13,
+          locality: 'Israel',
+          musicType: 'Rock',
+          partyType: 'Rave',
+        },
+        date: {
+          startTime: 3232323,
+          endTime: 565656,
+        }
+      },
+    }
   },
   methods: {},
   created() {},
