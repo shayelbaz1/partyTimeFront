@@ -1,6 +1,6 @@
 .login-page {
     display: flex;
-    background-image: url("../../assets/logincoverimg.png");
+    background-image: url("../assets/login.jpg");
     justify-content: center;
     background-clip: white;
     height: 100vh;
@@ -16,10 +16,10 @@
         border-radius: 21px;
         border-radius: 26px;
         margin-top: 122px;
-        
+
         h2 {
             text-decoration: underline;
-            color: white;  
+            color: white;
         }
 
         input {
@@ -34,7 +34,7 @@
 
         .login-signup-buttons-container {
             display: flex;
-            justify-content: space-evenly;  
+            justify-content: space-evenly;
 
             button {
                 border: 0;

@@ -10,6 +10,7 @@
         <div class="login-signup-buttons-container">
           <button>Login</button>
           <button>Signup</button>
+          <!-- <img src="../assets/login.jpg" alt srcset /> -->
         </div>
       </form>
     </div>
@@ -25,20 +26,14 @@ export default {
       loginCred: {
         username: "admin@gmail.com",
         password: "1234"
-      },
+      }
     };
   },
-  computed: {
-  },
+  computed: {},
   created() {
     // console.log("this.loggedinUser", this.loggedinUser);
   },
-  methods: {
-  },
-  watch: {
-  }
+  methods: {},
+  watch: {}
 };
 </script>
-
-<style lang="scss" scoped>
-</style>
