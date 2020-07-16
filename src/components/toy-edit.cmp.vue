@@ -3,42 +3,50 @@
     <h1>Edit Toy</h1>
     <form @submit.prevent="saveToy">
       <div>
-        Name:
-        <el-input type="text" v-model="toyToSave.name" placeholder="Enter edit" />
+        Party Title:
+        <el-input type="text" v-model="toyToSave.name" placeholder="Party Title" />
       </div>
       <br />
       <div>
-        Price
-        <el-input type="number" v-model="toyToSave.price" placeholder="Enter price" />
+        Location
+        <el-input type="text" v-model="toyToSave.price" placeholder="Party Location" />
       </div>
       <br />
-      <div>
-        Type
-        <br />
-        <el-select v-model="toyToSave.type">
-          <el-option label="Funny" value="Funny"></el-option>
-          <el-option label="Educational" value="Educational"></el-option>
-        </el-select>
-      </div>
       <br />
-      <label>
-        In Stock:
-        <input type="checkbox" v-model="toyToSave.inStock" />
-      </label>
       <br />
       <br />
       <div class="block">
-        <el-date-picker
-          v-model="toyToSave.createdAt"
-          type="date"
-          placeholder="Pick a day"
-          :picker-options="pickerOptions"
-        ></el-date-picker>
+          <h3>Starts From</h3>
+          <el-date-picker
+            v-model="toyToSave.createdAt"
+            type="date"
+            placeholder="Pick a day"
+            :picker-options="pickerOptions"
+          ></el-date-picker>
+          <h3>Ends At</h3>
+          <el-date-picker
+            v-model="toyToSave.createdAt"
+            type="date"
+            placeholder="Pick a day"
+            :picker-options="pickerOptions"
+          ></el-date-picker>
       </div>
-
-      <br />
-      <el-button @click="saveToy">Save</el-button>
-      <el-button @click="back">Cancel</el-button>
+      <h3>Music Type</h3>
+      <select name="" id="">
+        <option value="">Death Metal</option>
+        <option value="">Punk</option>
+      </select>
+      <h3>Party Type</h3>
+      <select name="" id="">
+         <option value="">Rave</option>
+         <option value="">House Party</option>
+         <option value="">Rock Party</option>
+         <option value="">Club Party</option>
+      </select>
+      <div>
+        <el-button @click="saveToy">Save</el-button>
+        <el-button @click="back">Cancel</el-button>
+      </div>
     </form>
   </section>
 </template>

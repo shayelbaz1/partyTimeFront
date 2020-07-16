@@ -31,40 +31,25 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 button.add {
   position: fixed;
   width: 60px;
   height: 60px;
   bottom: 40px;
   right: 40px;
-  background-color: #409eff;
+  background-color: #850000;
   color: #fff;
   border-radius: 50px;
   text-align: center;
-  box-shadow: 2px 2px 3px #999;
+  box-shadow: 2px 2px 3px rgb(0, 0, 0);
   padding: 0;
   margin: 0;
   border: none;
   outline: none;
-}
-button.add:active {
-  box-shadow: none;
-}
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td,
-th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
+  z-index: 1;
+  &:active {
+    box-shadow: none;
+  }
 }
 </style>
