@@ -10,6 +10,7 @@ import LoginPage from "@/views/loginSignup.vue";
 import reviewList from "@/components/review-list.vue";
 import UserPreview from "@/views/UserPreview.vue";
 import ChatPage from "@/views/ChatPage.vue";
+import partyNav from  "@/components/party-filter.vue"
 
 Vue.use(VueRouter);
 
@@ -23,6 +24,12 @@ const routes = [
     path: "/toy-app",
     name: "toy-app",
     component: toyApp
+  },
+  // route for testing, this is a component
+  {
+    path: "/party-nav",
+    name: "party-nav",
+    component: partyNav
   },
   {
       path: '/toy-app/details/:id',
