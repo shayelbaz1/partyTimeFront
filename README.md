@@ -1,4 +1,3 @@
-# frontend
 # partyTimeFront
 
 ## Project setup

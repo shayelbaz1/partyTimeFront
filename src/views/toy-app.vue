@@ -2,6 +2,7 @@
   <div class="toy-app">
     <img alt="Vue logo" src="../assets/toy.png" />
     <toy-filter></toy-filter>
+    <img style="width: 300px" src="../assets/preview.png" alt />
     <toy-list :toys="toys"></toy-list>
   </div>
 </template>
