@@ -1,0 +1,7 @@
+.el-menu {
+    display: flex;
+    justify-content: flex-end;
+    .el-menu-item{
+      background-color: $color-primary-red;
+    }
+  }

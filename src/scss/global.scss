@@ -10,8 +10,9 @@
 @import "basics/base.scss";
 
 // Components
-// @import "components/toy_list.scss";
+@import "components/_nav_bar.scss";
 
 // VIEWS
 @import "views/home_page.scss";
 @import "views/login_page.scss";
+

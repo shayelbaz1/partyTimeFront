@@ -1,7 +1,7 @@
 <template>
   <section>
     <img class="main-img" src="../assets/Capture.png" />
-    <div class="details-container">
+    <div class="details-container flex">
       <div class="worded-container">
         <div class="event-desc-container">
           <h2>DJ Play</h2>
