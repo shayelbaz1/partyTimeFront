@@ -4,22 +4,29 @@
     <div class="box-card" @click="routeToDetails(toy._id)">
       <div class="img-box">
         <img class="img-backround" src="../assets/beach.jpg" />
-        <!-- <div class="img-front-box"> -->
         <img class="img-front" src="../assets/beach.jpg" />
-        <!-- </div> -->
       </div>
 
       <div class="text-box">
-        <div>
-          <div class="heart-box">
-            <i class="fas fa-heart"></i>
-            <p>3</p>
-          </div>
-          <h1>Day Party</h1>
-          <p>Baga, Club Habbana</p>
+        <div class="heart-box">
+          <i class="fas fa-heart"></i>
+          <p>3</p>
         </div>
+
+        <h1>Day Party</h1>
+        <p>Baga, Club Habbana</p>
         <p>12 PM | FREE</p>
         <p>House | Breach Party</p>
+
+        <div class="btns-actions-box">
+          <el-button @click.stop="routeToEdit(toy._id)" type="text">
+            <i class="far fa-edit"></i>
+          </el-button>
+
+          <el-button @click.stop="remove(toy._id)" type="text">
+            <i class="far fa-trash-alt trash"></i>
+          </el-button>
+        </div>
       </div>
     </div>
   </section>
@@ -111,6 +118,7 @@ export default {
       }
     }
     .text-box {
+      position: relative;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -118,8 +126,8 @@ export default {
       padding-left: 10px;
       padding-bottom: 10px;
       .heart-box {
-        position: relative;
-        float: right;
+        position: absolute;
+        right: 0;
         text-align: center;
         margin-top: 20px;
         margin-right: 20px;
@@ -130,6 +138,34 @@ export default {
         p {
           margin: 0;
         }
+      }
+      .btns-actions-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // display: block;
+        position: absolute;
+        float: right;
+        right: 0;
+        bottom: 0;
+        // background: sandybrown;
+        margin-bottom: 20px;
+        margin-right: 22px;
+        .el-button + .el-button {
+          margin: 0;
+        }
+        i {
+          color: white;
+          transition: 0.3s;
+          font-size: 1.2rem;
+          &:hover {
+            color: #8e0000;
+          }
+        }
+        .trash {
+          padding-right: 4px;
+        }
+        // background: khaki;
       }
     }
   }

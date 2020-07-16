@@ -1,6 +1,6 @@
 <template>
   <section class="toy-list">
-    <h2>Toys</h2>
+    <!-- <h2>Toys</h2> -->
     <button @click="routeToEdit" class="add">
       <i class="fa fa-plus my-float"></i>
     </button>
