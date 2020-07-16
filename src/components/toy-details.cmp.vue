@@ -1,12 +1,14 @@
 <template>
   <section>
-    <img
-      src="https://scontent.ftlv6-1.fna.fbcdn.net/v/t1.0-9/107255262_4175881475786223_6622631941189874568_o.jpg?_nc_cat=102&_nc_sid=340051&_nc_ohc=11dSkftZ8ccAX_dGn7d&_nc_ht=scontent.ftlv6-1.fna&oh=007935eb17fff4684d2e15e1b860d229&oe=5F35758E"
+    <img class="main-img"
+      src="../assets/Capture.png"
     />
-    <div class="event-desc-container">
-      <h3>SATURDAY, JULY 18, 2020 AT 4 PM – 10 PM UTC+03</h3>
-      <h1>Find The love of your life on zoom : 18.9</h1>
-      <span>Online Event</span>
+    <div class="details-container">
+<div class="event-desc-container">
+    <h2>DJ Play</h2>
+      <h3>Saturday, May 1, Starting at 8PM</h3>
+      <h1>Get ready for a night full of dancing, partying and botomless beer!</h1>
+      <span>RSVP:</span>
     </div>
 
     <div class="event-buttons-container">
@@ -23,6 +25,8 @@
         <h2>Back</h2>
       </div>
     </el-button>
+    </div>
+    
 
     <!-- <review-list v-if="toy"></review-list>
     <chat-page v-if="toy" :toy="toy"></chat-page> -->
@@ -62,6 +66,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+section{
+  background-color: rgb(47, 47, 47);
+}
+.details-container{
+  text-align: left;
+}
+
 .btn-back {
   margin-top: 10px;
   padding: 0px 20px;
@@ -73,5 +84,13 @@ export default {
   h2 {
     margin-left: 10px;
   }
+}
+
+.event-desc-container{
+color: #e4e6eb;
+}
+
+.main-img{
+  max-height: 360px;
 }
 </style>
