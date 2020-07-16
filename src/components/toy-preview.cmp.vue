@@ -1,8 +1,14 @@
 // import {eventBus,SHOW_MSG} from '../services/eventBus.service.js'
 <template>
-  <section>
+  <section class="toy-preview">
     <div class="box-card" @click="routeToDetails(toy._id)">
-      <img :src="`https://robohash.org/${toy._id}.png`" />
+      <div class="img-box">
+        <img class="img-backround" src="../assets/beach.jpg" />
+        <!-- <div class="img-front-box"> -->
+        <img class="img-front" src="../assets/beach.jpg" />
+        <!-- </div> -->
+      </div>
+
       <div class="text-box">
         <div>
           <div class="heart-box">
@@ -52,47 +58,78 @@ export default {
 </script>
 
 <style lang="scss">
-.box-card {
-  cursor: pointer;
-  display: flex;
-  width: fit-content;
-  text-align: left;
-  margin-bottom: 10px;
-  background: #303030;
-  border: none;
-  padding: 0;
-  display: flex;
+.toy-preview {
   width: 100%;
-  color: white;
-  box-shadow: 0 0 12px -8px black;
-  border-radius: 7px;
-  &:active {
-    box-shadow: none;
+  p {
+    margin: 0;
   }
-  img {
-    width: 40%;
-    margin-bottom: 8px;
-    margin-bottom: 0;
-  }
-  .text-box {
-    width: 100%;
+  .box-card {
+    cursor: pointer;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-left: 10px;
-    .heart-box {
-      // display: inline-block;
+    width: fit-content;
+    text-align: left;
+    width: 90%;
+    margin: 0px auto;
+    margin-bottom: 10px;
+    background: #303030;
+    border: none;
+    padding: 0;
+    display: flex;
+    height: 200px;
+    color: white;
+    box-shadow: 0 0 12px -8px black;
+    border-radius: 7px;
+
+    &:active {
+      box-shadow: none;
+    }
+    .img-box {
+      background-color: rgb(0, 0, 0);
+      width: 50%;
+      min-width: 180px;
+      border-radius: 7px;
+      display: flex;
+      justify-content: center;
       position: relative;
-      float: right;
-      text-align: center;
-      margin-top: 20px;
-      margin-right: 20px;
-      i {
-        font-size: 2rem;
-        color: #8e0000;
+      .img-backround {
+        border-radius: 7px;
+        height: 100%;
+        width: 100%;
+        opacity: 0.2;
+        filter: blur(6px);
+        z-index: 1;
+        position: absolute;
       }
-      p {
-        margin: 0;
+      .img-front {
+        position: absolute;
+        // background-color: ivory;
+        // width: 100%;
+        height: 100%;
+        position: absolute;
+
+        // margin: auto;
+      }
+    }
+    .text-box {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-left: 10px;
+      padding-bottom: 10px;
+      .heart-box {
+        position: relative;
+        float: right;
+        text-align: center;
+        margin-top: 20px;
+        margin-right: 20px;
+        i {
+          font-size: 2rem;
+          color: #8e0000;
+        }
+        p {
+          margin: 0;
+        }
       }
     }
   }
