@@ -1,7 +1,10 @@
 <template>
   <div class="toy-app">
-    <img alt="Vue logo" src="../assets/toy.png" />
-    <toy-filter></toy-filter>
+    <hero-img></hero-img>
+
+    <!-- <section class="hero-box"> -->
+    <!-- </section> -->
+    <!-- <toy-filter></toy-filter> -->
     <!-- <img style="width: 300px" src="../assets/preview.png" alt /> -->
     <toy-list :toys="toys"></toy-list>
   </div>
@@ -10,13 +13,15 @@
 <script>
 import toyList from "@/components/toy-list.cmp.vue";
 import toyFilter from "@/components/toy-filter.cmp.vue";
+import heroImg from "../components/hero-img.cmp.vue";
 
 export default {
   name: "toy-app",
 
   components: {
     toyList,
-    toyFilter
+    toyFilter,
+    heroImg
   },
   computed: {
     isProcessing() {
@@ -33,8 +38,12 @@ export default {
 };
 </script>
 
-<style scoped>
-img {
-  width: 20%;
+<style lang="scss" scoped>
+.toy-app {
+  .hero-box {
+    img {
+      width: 20%;
+    }
+  }
 }
 </style>
