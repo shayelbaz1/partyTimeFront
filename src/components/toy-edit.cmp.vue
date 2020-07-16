@@ -143,7 +143,7 @@ export default {
 }
 
 input {
-  -webkit-appearance: none;
+  margin-bottom: 6px;
   background-color: #303030;
   border-radius: 10px;
   border: 1px solid #dcdfe6;
@@ -172,7 +172,12 @@ button {
   padding: 9px;
   color: white;
   border-radius: 5px;
+  cursor: pointer;
 }
+
+// button:hover {
+//   padding: 18px;
+// }
 
 @media screen and (min-width: 520px) {
   .edit-toy {
