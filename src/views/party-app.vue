@@ -1,45 +1,45 @@
 <template>
-  <div class="toy-app">
+  <div class="party-app">
     <hero-img></hero-img>
 
     <!-- <section class="hero-box"> -->
     <!-- </section> -->
-    <!-- <toy-filter></toy-filter> -->
+    <!-- <party-filter></party-filter> -->
     <!-- <img style="width: 300px" src="../assets/preview.png" alt /> -->
-    <toy-list :toys="toys"></toy-list>
+    <party-list :partys="partys"></party-list>
   </div>
 </template>
 
 <script>
-import toyList from "@/components/toy-list.cmp.vue";
-import toyFilter from "@/components/toy-filter.cmp.vue";
+import partyList from "@/components/party-list.cmp.vue";
+// import partyFilter from "@/components/party-filter.cmp.vue";
 import heroImg from "../components/hero-img.cmp.vue";
 
 export default {
-  name: "toy-app",
+  name: "party-app",
 
   components: {
-    toyList,
-    toyFilter,
+    partyList,
+    // partyFilter,
     heroImg
   },
   computed: {
     isProcessing() {
       return this.$store.getters.isProcessing;
     },
-    toys() {
-      let toys = this.$store.getters.toys;
-      return toys;
+    partys() {
+      let partys = this.$store.getters.partys;
+      return partys;
     }
   },
   created() {
-    this.$store.dispatch({ type: "loadToys" });
+    this.$store.dispatch({ type: "loadPartys" });
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.toy-app {
+.party-app {
   .hero-box {
     img {
       width: 20%;

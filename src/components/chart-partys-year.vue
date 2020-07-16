@@ -1,6 +1,6 @@
 <script>
 import { Bar } from "vue-chartjs";
-import ToyService from "@/services/ToyService.js";
+import PartyService from "@/services/PartyService.js";
 
 export default {
   extends: Bar,
@@ -10,7 +10,7 @@ export default {
         labels: [1992, 1992, 1992],
         datasets: [
           {
-            label: "Toys amount per year",
+            label: "Partys amount per year",
             backgroundColor: "#f87979",
             data: [1, 2, 3]
           }
@@ -23,10 +23,10 @@ export default {
     };
   },
   methods: {
-    getAmountPerYearObject(toys) {
+    getAmountPerYearObject(partys) {
       var counts = {};
-      let years = toys.map(toy => {
-        return new Date(toy.createdAt).getFullYear();
+      let years = partys.map(party => {
+        return new Date(party.createdAt).getFullYear();
       });
 
       years.forEach(function(x) {
@@ -37,8 +37,8 @@ export default {
     }
   },
   mounted() {
-    ToyService.query().then(toys => {
-      const counts = this.getAmountPerYearObject(toys);
+    PartyService.query().then(partys => {
+      const counts = this.getAmountPerYearObject(partys);
       this.chartdata.labels = Object.keys(counts);
       this.chartdata.data = Object.values(counts);
 
