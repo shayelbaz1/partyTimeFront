@@ -1,10 +1,21 @@
 <template>
   <section class="img-block">
     <el-carousel height="50vh">
-      <el-carousel-item v-for="item in 4" :key="item">
-        <h3 class="small">
-          <img :src="'assets/poster1.jpg'" alt srcset />
-        </h3>
+      <el-carousel-item interval="5000">
+        <img class="img-back" src="../assets/poster1.png" alt />
+        <img class="img-front" src="../assets/poster1.png" srcset />
+      </el-carousel-item>
+      <el-carousel-item interval="5000">
+        <img class="img-back" src="../assets/poster2.png" alt />
+        <img class="img-front" src="../assets/poster2.png" srcset />
+      </el-carousel-item>
+      <el-carousel-item interval="5000">
+        <img class="img-back" src="../assets/poster3.png" alt />
+        <img class="img-front" src="../assets/poster3.png" srcset />
+      </el-carousel-item>
+      <el-carousel-item interval="5000">
+        <img class="img-back" src="../assets/poster4.png" alt />
+        <img class="img-front" src="../assets/poster4.png" srcset />
       </el-carousel-item>
     </el-carousel>
   </section>
@@ -12,33 +23,28 @@
 
 
 <script>
-export default {
-  data() {
-    return {
-      // interval = 5000
-    };
-  }
-};
+export default {};
 </script>
 
 
 <style lang="scss">
 .img-block {
+  position: relative;
   margin-bottom: 10px;
-  .el-carousel__item h3 {
-    color: #475669;
-    font-size: 14px;
-    opacity: 0.75;
-    line-height: 150px;
-    margin: 0;
+  background: black;
+  .img-back {
+    position: absolute;
+    border-radius: 7px;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    opacity: 0.3;
+    filter: blur(8px);
   }
-
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
-
-  .el-carousel__item:nth-child(2n + 1) {
-    background-color: #d3dce6;
+  .img-front {
+    position: relative;
+    height: 100%;
+    border-radius: 7px;
   }
 }
 </style>
