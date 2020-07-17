@@ -3,11 +3,11 @@
   flex-direction: column;
   // width: 258px;
   width: 30%;
-  background-color: $color-card;
+  background-color: #30303000;
   color: white;
 
   .nav-sort-container {
-    border-bottom: 1px solid white;
+    // border-bottom: 1px solid white;
     padding: 12px;
 
     .sort-buttons-container {
@@ -35,7 +35,7 @@
   .nav-ranges-container {
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid white;
+    // border-bottom: 1px solid white;
     padding: 6px;
 
     .ranges-lable-container {
