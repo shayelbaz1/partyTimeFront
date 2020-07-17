@@ -1,9 +1,25 @@
 <template>
   <div class="party-app">
     <hero-img></hero-img>
+    <div class="display-btns">
+      
+      <button @click="displayBy('list')" :class="{active: currPartiesDisplay==='list'}"><i class="fas fa-list"></i>  List</button>
+      <button @click="displayBy('map')" :class="{active: currPartiesDisplay==='map'}"><i class="fas fa-map-marker-alt"></i>  Map</button>
+      <button @click="displayBy('posters')" :class="{active: currPartiesDisplay==='posters'}"><i class="fas fa-images"></i>  Posters</button>
+    </div>
     <div class="flex">
       <party-filter></party-filter>
-      <party-list :partys="partys" @addLike="addLike" @deleteParty="deleteParty"></party-list>
+      <party-list
+        v-if="currPartiesDisplay==='list'"
+        :partys="partys"
+        @addLike="addLike"
+        @deleteParty="deleteParty"
+      ></party-list>
+      <div v-if="currPartiesDisplay==='posters'" class="grid posters">
+        <div :key="party._id" v-for="party in partys">
+          <img :src="party.imgUrl" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -21,13 +37,21 @@ export default {
     partyFilter,
     heroImg
   },
+  data() {
+    return {
+      currPartiesDisplay: "list"
+    };
+  },
   methods: {
-    deleteParty(partyId){
+    displayBy(displayBy) {
+      this.currPartiesDisplay = displayBy;
+    },
+    deleteParty(partyId) {
       this.$store.dispatch({ type: "deleteParty", partyId });
     },
-    addLike(party){
+    addLike(party) {
       this.$store.dispatch({ type: "addLike", party });
-    },
+    }
   },
   computed: {
     isProcessing() {
@@ -45,6 +69,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.posters {
+  columns: 3;
+  width: 70%;
+  img {
+    width: 100%;
+  }
+}
+
+.display-btns{
+  button {
+    margin: 4px;
+        border: 0;
+        background-color: rgb(0, 0, 0);
+        padding: 10px;
+        border-radius: 6px;
+          color: white;
+
+        &.active {
+          background-color: #c1272d;
+        }
+        i {
+          color: white;
+        }
+        &:hover {
+          background-color: #c1272d;
+        }
+      }
+}
+
 .party-app {
   .hero-box {
     img {

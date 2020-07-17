@@ -30,7 +30,6 @@ export default {};
 <style lang="scss">
 .img-block {
   position: relative;
-  margin-bottom: 10px;
   background: black;
   .img-back {
     position: absolute;
