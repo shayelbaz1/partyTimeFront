@@ -72,7 +72,7 @@ export default {
     },
     routeToDetails(id) {
       console.log("id:", id);
-      this.$router.replace("party-app/details/" + id);
+      this.$router.push("party-app/details/" + id);
     },
     remove(id) {
       this.$store

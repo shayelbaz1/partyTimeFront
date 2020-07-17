@@ -22,17 +22,32 @@ function update(user) {
     return HttpService.put(`user/${user._id}`, user)
 }
 
-async function login(userCred) {
-    const user = await HttpService.post('auth/login', userCred)
+async function login(creds) {
+    //TODO: GET ALL USERS
+    //TODO: FIND SPECIFIC USER BY USERNAME AND Pssword
+    //todo: if found return user
+
+
+    const user = findUserByCreds(creds.username)
     return _handleLogin(user)
 }
-async function signup(userCred) {
-    console.log('userCred:', userCred)
-    const user = await HttpService.post('auth/signup', userCred)
+async function signup(creds) {
+    console.log(creds);
+    const user = findUserByCreds(creds.username);
+
+    if (user.length) return user;
+    if (!user.length) return await HttpService.post('user/', creds);
+
     return _handleLogin(user)
 }
+
+async function findUserByCreds(creds) {
+    const user = await HttpService.get(`user?userName=${creds}`)
+    return user
+}
+
 async function logout() {
-    await HttpService.post('auth/logout');
+    await HttpService.post('user/');
     sessionStorage.clear();
 }
 function getUsers() {

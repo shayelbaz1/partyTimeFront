@@ -1,11 +1,11 @@
 import UserService from '@/services/UserService.js'
 
-var localLoggedinUser = null;
-if (sessionStorage.user) localLoggedinUser = JSON.parse(sessionStorage.user);
+// var localLoggedinUser = null;
+// if (sessionStorage.user) localLoggedinUser = JSON.parse(sessionStorage.user);
 
 export default {
     state: {
-        loggedinUser : localLoggedinUser,
+        loggedinUser : null,
         users: [],
         currUser: {}
     },
@@ -36,13 +36,13 @@ export default {
         },
     },
     actions: {
-        async login(context, {userCred}) {
-            const user = await UserService.login(userCred);
+        async login(context, {creds}) {
+            const user = await UserService.login(creds);
             context.commit({type: 'setUser', user})
             return user;
         },
-        async signup(context, {userCred}) {
-            const user = await UserService.signup(userCred)
+        async signup(context, {creds}) {
+            const user = await UserService.signup(creds)
             context.commit({type: 'setUser', user})
             return user;
             
