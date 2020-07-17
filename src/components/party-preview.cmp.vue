@@ -59,13 +59,13 @@ export default {
     }
   },
   methods: {
-    signalDelete(partyId){
+    signalDelete(partyId) {
       // console.log(partyId);
-      this.$emit("deleteParty", partyId)
+      this.$emit("deleteParty", partyId);
     },
-    signalAddLike(party){
+    signalAddLike(party) {
       // console.log(partyId);
-      this.$emit("addLike", party)
+      this.$emit("addLike", party);
     },
     routeToEdit(id) {
       this.$router.replace("party-app/edit/" + id);
@@ -156,11 +156,6 @@ export default {
         margin: 0px;
         margin-top: 20px;
         padding: 0;
-      }
-      .types {
-        p {
-          // margin-left: 5px;
-        }
       }
       .heart-box {
         position: absolute;
