@@ -70,7 +70,6 @@
 </template>
 
 <script>
-import PartyService from '@/services/PartyService.js'
 const uploadWidget = cloudinary.createUploadWidget(
   {
     cloudName: 'partytime',
