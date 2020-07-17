@@ -1,46 +1,53 @@
 <template>
   <section style="height: 90%">
-    <img class="main-img" src="../assets/Capture.png" />
+    <img class="main-img" :src="party.imgUrl" />
     <div class="details-container flex space-around">
       <div class="worded-container">
         <div class="event-desc-container">
           <div class="event-header-detail">About the event:</div>
           <div class="event-deep-details">
-            <p>DJ Play</p>
-            <p>Saturday, May 1, Starting at 8PM</p>
-            <p>Get ready for a night full of dancing, partying and botomless beer!</p>
+            <h1>{{party.name}}</h1>
+            <p>Location: {{party.location.name}}</p>
           </div>
-        </div>
-
-        <div class="event-buttons-container">
-          <p>RSVP:</p>
-          <button>Interested</button>
-          <button>Going</button>
-          <button>Invite</button>
-          <button>copy</button>
-          <button>X</button>
-        </div>
-
-        <div class="participants-details">
-          <p>3 PARTICIPATORS PICTURES GO HERE</p>
-          <div class="likes-container flex">
-            <i class="fa fa-heart"></i>
-            <p class="like-number">3</p>
+          <p>Start {{party.startDate | moment("from")}} | {{fee}}</p>
+          <p>Date: {{party.startDate | moment("MMMM DD YYYY HH:mm A")}}</p>
+          <h1>Party Types</h1>
+          <div class="types flex">
+            <p v-for="(type,idx) in party.extraData.partyTypes" :key="idx">{{type}}</p>
           </div>
-          <p>Reviews:</p>
+          <h1>Description</h1>
+          <p>{{party.desc}}</p>
         </div>
-        <el-button @click="back" class="btn-back">
-          <div class="content">
-            <i class="fas fa-arrow-left"></i>
-            <h2>Back</h2>
-          </div>
-        </el-button>
       </div>
-      <div class="map-container"></div>
-    </div>
 
-    <!-- <review-list v-if="party"></review-list>
-    <chat-page v-if="party" :party="party"></chat-page>-->
+      <div class="event-buttons-container">
+        <p>RSVP:</p>
+        <button>Interested</button>
+        <button>Going</button>
+        <button>Invite</button>
+        <button>copy</button>
+        <button>X</button>
+      </div>
+
+      <div class="participants-details">
+        <p>3 PARTICIPATORS PICTURES GO HERE</p>
+        <div class="likes-container flex">
+          <i class="fa fa-heart"></i>
+          <p class="like-number">3</p>
+        </div>
+        <p>Reviews:</p>
+      </div>
+      <el-button @click="back" class="btn-back">
+        <div class="content">
+          <i class="fas fa-arrow-left"></i>
+          <h2>Back</h2>
+        </div>
+      </el-button>
+    </div>
+    <div class="map-container"></div>
+
+    <!-- <review-list v-if="party"></review-list> -->
+    <!-- <chat-page v-if="party" :party="party"></chat-page> -->
   </section>
 </template>
 >
@@ -61,13 +68,23 @@ export default {
       party: null
     };
   },
+  computed: {
+    fee() {
+      if (this.party.fee === "0") {
+        return "FREE";
+      } else {
+        return this.party.fee + "$";
+      }
+    }
+  },
   methods: {
     back() {
       this.$router.push("/party-app");
     },
-    async loadparty() {
+    async loadParty() {
       let partyId = this.$route.params.id;
-      this.party = await partyService.getById(partyId);
+      this.party = await PartyService.getById(partyId);
+      console.log("this.party:", this.party);
     }
   },
   created() {
