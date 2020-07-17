@@ -1,7 +1,8 @@
 .main-filter-container {
   display: flex;
   flex-direction: column;
-  width: 258px;
+  // width: 258px;
+  width: 30%;
   background-color: $color-primary-gray;
   color: white;
 
@@ -15,16 +16,19 @@
 
       button {
         border: 0;
-        background-color: black;
+        background-color: rgb(0, 0, 0);
         padding: 10px;
         border-radius: 6px;
 
+        &.active {
+          background-color: $color-primary-red;
+        }
         i {
           color: white;
         }
-      }
-      button:hover {
+        &:hover {
           background-color: $color-primary-red;
+        }
       }
     }
   }
@@ -48,26 +52,26 @@
     padding: 15px;
 
     .nav-dropdown-content {
-        display: flex;
-        flex-direction: column;
-        width: 53%;
-        
-        select {
-            padding: 6px;
-            background-color: black;
-            color: white;
-            border-radius: 6px; 
-        }
+      display: flex;
+      flex-direction: column;
+      width: 53%;
+
+      select {
+        padding: 6px;
+        background-color: black;
+        color: white;
+        border-radius: 6px;
+      }
     }
 
     input {
-        font-family: "Actor", sans-serif;
-        padding: 0.5rem;
-        color: white;
-        text-overflow: ellipsis;
-        border-radius: 6px;
-        border: 0;
-        background-color: black;
+      font-family: "Actor", sans-serif;
+      padding: 0.5rem;
+      color: white;
+      text-overflow: ellipsis;
+      border-radius: 6px;
+      border: 0;
+      background-color: black;
     }
   }
 }
@@ -101,4 +105,19 @@
   height: 25px;
   background: #c1272d;
   cursor: pointer;
+}
+
+.btn.reset {
+  border: 0;
+  background-color: rgb(0, 0, 0);
+  padding: 10px;
+  border-radius: 6px;
+  color: white;
+
+  &.active {
+    background-color: $color-primary-red;
+  }
+  &:hover {
+    background-color: $color-primary-red;
+  }
 }

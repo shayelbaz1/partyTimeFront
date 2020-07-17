@@ -3,39 +3,78 @@
     <div class="nav-sort-container">
       <h3>Sort By:</h3>
       <div class="sort-buttons-container">
-        <button title='sort by party memebers'><i class="fa fa-user"></i></button>
-        <button title="sort by party likes"><i class="fa fa-heart"></i></button>
-        <button title="sort by distance"><i class="fa fa-road"></i></button>
+        <button
+          :class="{active: filterBy.sortBy==='members'}"
+          title="Members"
+          @click="setSortBy('members')"
+        >
+          <i class="fa fa-user"></i>
+          <input
+            hidden
+            type="radio"
+            name="sort"
+            id="members"
+            value="members"
+            v-model="filterBy.sortBy"
+          />
+        </button>
+
+        <button
+          :class="{active: filterBy.sortBy==='like'}"
+          title="sort by party likes"
+          @click="setSortBy('like')"
+        >
+          <i class="fa fa-heart"></i>
+          <input hidden type="radio" name="sort" id="like" value="like" v-model="filterBy.sortBy" />
+        </button>
+
+        <button
+          :class="{active: filterBy.sortBy==='dist'}"
+          title="Distance"
+          @click="setSortBy('dist')"
+        >
+          <i class="fa fa-map-marker"></i>
+          <input hidden type="radio" name="sort" id="dist" value="dist" v-model="filterBy.sortBy" />
+        </button>
+
+        <button
+          :class="{active: filterBy.sortBy==='price'}"
+          title="Price"
+          @click="setSortBy('price')"
+        >
+          <i class="fa fa-dollar-sign"></i>
+          <input hidden type="radio" name="sort" id="price" value="price" v-model="filterBy.sortBy" />
+        </button>
       </div>
     </div>
 
     <div class="nav-ranges-container">
       <div class="ranges-lable-container">
         <h4>Distance</h4>
-        <span>Less then 14 km</span>
+        <span>Less then {{filterBy.partyDetails.distance}} km</span>
       </div>
       <div>
         <input
           type="range"
           min="1"
           max="100"
-          value="50"
           class="slider"
           id="myRange"
+          v-model="filterBy.partyDetails.distance"
         />
       </div>
       <div class="ranges-lable-container">
         <h4>Entry Fees</h4>
-        <span>Less then 1300$</span>
+        <span>Less then {{filterBy.partyDetails.fee}}$</span>
       </div>
       <div>
         <input
           type="range"
           min="1"
           max="100"
-          value="50"
           class="slider"
           id="myRange"
+          v-model="filterBy.partyDetails.fee"
         />
       </div>
     </div>
@@ -44,34 +83,35 @@
       <div class="nav-dropdown-content">
         Locality:
         <select>
-          <option value="">New York</option>
-          <option value="">Israel</option>
+          <option value>New York</option>
+          <option value>Israel</option>
         </select>
         Party Type:
         <select>
-          <option value="">Bar Party</option>
-          <option value="">Music Festival</option>
-          <option value="">Rave</option>
+          <option value>Bar Party</option>
+          <option value>Music Festival</option>
+          <option value>Rave</option>
         </select>
         Music Type:
         <select>
-          <option value="">Death Metal</option>
-          <option value="">Jazz</option>
-          <option value="">Rock</option>
-          <option value="">Blues</option>
+          <option value>Death Metal</option>
+          <option value>Jazz</option>
+          <option value>Rock</option>
+          <option value>Blues</option>
         </select>
         Start Time:
-        <input type="date" name="" id="">
+        <input type="date" name id />
         End Time:
-        <input type="date" name="" id="">
+        <input type="date" name id />
       </div>
     </div>
+    <button class="btn reset">RESET</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'party-filter',
+  name: "party-filter",
   data() {
     return {
       //TODO: Two Phase filtering
@@ -79,28 +119,27 @@ export default {
       //TODO: SECOND SORT BY PARTY DETAILS
       //TODO: THIRD SORTBY DATE
       filterBy: {
-        sortBy: {
-          location: false,
-          members: false,
-          likes: false,
-        },
+        sortBy: "members",
         partyDetails: {
-          distance: 3,
-          fee: 13,
-          locality: 'Israel',
-          musicType: 'Rock',
-          partyType: 'Rave',
+          distance: 50,
+          fee: 50,
+          locality: "Israel",
+          musicType: "Rock",
+          partyType: "Rave"
         },
         date: {
           startTime: 3232323,
-          endTime: 565656,
+          endTime: 565656
         }
-      },
+      }
+    };
+  },
+  methods: {
+    setSortBy(newSort) {
+      console.log("newSort:", newSort);
+      this.filterBy.sortBy = newSort;
     }
   },
-  methods: {},
-  created() {},
-}
+  created() {}
+};
 </script>
-
-<style lang="scss" scoped></style>

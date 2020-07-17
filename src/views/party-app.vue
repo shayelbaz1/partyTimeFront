@@ -1,18 +1,16 @@
 <template>
   <div class="party-app">
     <hero-img></hero-img>
-
-    <!-- <section class="hero-box"> -->
-    <!-- </section> -->
-    <!-- <party-filter></party-filter> -->
-    <!-- <img style="width: 300px" src="../assets/preview.png" alt /> -->
-    <party-list :partys="partys"></party-list>
+    <div class="flex">
+      <party-filter></party-filter>
+      <party-list :partys="partys"></party-list>
+    </div>
   </div>
 </template>
 
 <script>
 import partyList from "@/components/party-list.cmp.vue";
-// import partyFilter from "@/components/party-filter.cmp.vue";
+import partyFilter from "../components/party-filter.vue";
 import heroImg from "../components/hero-img.cmp.vue";
 
 export default {
@@ -20,7 +18,7 @@ export default {
 
   components: {
     partyList,
-    // partyFilter,
+    partyFilter,
     heroImg
   },
   computed: {
