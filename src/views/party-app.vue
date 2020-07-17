@@ -3,7 +3,7 @@
     <hero-img></hero-img>
     <div class="flex">
       <party-filter></party-filter>
-      <party-list :partys="partys"></party-list>
+      <party-list :partys="partys" @addLike="addLike" @deleteParty="deleteParty"></party-list>
     </div>
   </div>
 </template>
@@ -20,6 +20,14 @@ export default {
     partyList,
     partyFilter,
     heroImg
+  },
+  methods: {
+    deleteParty(partyId){
+      this.$store.dispatch({ type: "deleteParty", partyId });
+    },
+    addLike(party){
+      this.$store.dispatch({ type: "addLike", party });
+    },
   },
   computed: {
     isProcessing() {

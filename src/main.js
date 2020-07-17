@@ -9,6 +9,15 @@ import { extend } from 'vee-validate';
 import { required, email } from 'vee-validate/dist/rules';
 import { ValidationProvider } from 'vee-validate';
 import * as VueGoogleMaps from 'vue2-google-maps'
+import Cloudinary from 'cloudinary-vue';
+
+
+Vue.use(Cloudinary, {
+  configuration: {
+    cloudName: "partytime"
+  }
+});
+
  
 Vue.use(VueGoogleMaps, {
   load: {

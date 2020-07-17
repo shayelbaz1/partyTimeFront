@@ -44,8 +44,8 @@ export default {
         updateFilterBy(state,{filterBy}){
             state.filterBy = filterBy
         },
-        removeParty(state, {id}) {
-            const idx = state.partys.findIndex(curr => curr._id === id);
+        removeParty(state, {partyId}) {
+            const idx = state.partys.findIndex(curr => curr._id === partyId);
             state.partys.splice(idx, 1);
         },
         addParty(state, {party}) {
@@ -54,7 +54,7 @@ export default {
         updateParty(state,{party}){
             const idx = state.partys.findIndex(currParty => currParty._id === party._id);
             state.partys.splice(idx,1,party)
-        },
+        }
     },
     actions: {
         // LOAD
@@ -70,10 +70,11 @@ export default {
         },
 
         // DELETE
-        removeParty({commit},{id}){
-            return PartyService.remove(id)
+        deleteParty({commit},{partyId}){
+            console.log(partyId);
+            return PartyService.remove(partyId)
                 .then(()=>{
-                    commit({type:'removeParty',id:id })
+                    commit({type:'removeParty', partyId })
                     return
                 })
         },
@@ -86,6 +87,16 @@ export default {
                     commit({type:type,party})
                     return party
                 })
+        },
+
+        //ADD LIKE 
+        addLike({commit}, {party}){
+            return PartyService.addLike(party)
+                .then(party => {
+                    commit({type:"updateParty", party})
+                    return party
+                })
         }
+
     }
 };

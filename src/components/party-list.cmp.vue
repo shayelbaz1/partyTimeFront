@@ -5,7 +5,7 @@
     </button>
 
     <div class="flex column-layout">
-      <party-preview v-for="party in partys" :key="party._id" :party="party"></party-preview>
+      <party-preview @deleteParty="signalDelete" @addLike="signalAddLike" v-for="party in partys" :key="party._id" :party="party"></party-preview>
     </div>
   </section>
 </template>
@@ -21,6 +21,13 @@ export default {
     }
   },
   methods: {
+    signalDelete(partyId){
+      this.$emit("deleteParty", partyId)
+    },
+    signalAddLike(party){
+      // console.log(partyId);
+      this.$emit("addLike", party)
+    },
     routeToEdit() {
       this.$router.replace("party-app/edit/");
     }

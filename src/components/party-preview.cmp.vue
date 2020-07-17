@@ -9,7 +9,7 @@
       </div>
 
       <div class="text-box">
-        <div class="heart-box">
+        <div class="heart-box" @click.stop="signalAddLike(party)">
           <i class="fas fa-heart"></i>
           <p>{{party.likes}}</p>
         </div>
@@ -29,7 +29,7 @@
             <i class="far fa-edit"></i>
           </el-button>
 
-          <el-button @click.stop="remove(party._id)" type="text">
+          <el-button @click.stop="signalDelete(party._id)" type="text">
             <i class="far fa-trash-alt trash"></i>
           </el-button>
         </div>
@@ -59,6 +59,14 @@ export default {
     }
   },
   methods: {
+    signalDelete(partyId){
+      // console.log(partyId);
+      this.$emit("deleteParty", partyId)
+    },
+    signalAddLike(party){
+      // console.log(partyId);
+      this.$emit("addLike", party)
+    },
     routeToEdit(id) {
       this.$router.replace("party-app/edit/" + id);
     },

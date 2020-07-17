@@ -5,11 +5,19 @@
       <div class="form-container">
         <form @submit.prevent="saveParty">
           <div>
-            <input type="text" v-model="partyToSave.name" placeholder="Party Title" />
+            <input
+              type="text"
+              v-model="partyToSave.name"
+              placeholder="Party Title"
+            />
           </div>
           <br />
           <div>
-            <input type="text" v-model="partyToSave.price" placeholder="Party Location" />
+            <input
+              type="text"
+              v-model="partyToSave.price"
+              placeholder="Party Location"
+            />
           </div>
           <br />
           <input
@@ -31,6 +39,9 @@
           <div class="add-event-buttons-container">
             <button @click="saveParty">Save</button>
             <button @click="back">Cancel</button>
+            <button @click="openWidget" class="cloudinary-button">
+              Upload files
+            </button>
           </div>
         </form>
       </div>
@@ -39,79 +50,93 @@
 </template>
 
 <script>
-import PartyService from "@/services/PartyService.js";
+import PartyService from '@/services/PartyService.js'
+const uploadWidget = cloudinary.createUploadWidget(
+  {
+    cloudName: 'partytime',
+    uploadPreset: 'partyTime',
+  },
+  (error, result) => {
+    if (!error && result && result.event === 'success') {
+      console.log('Done! Here is the image info: ', result.info)
+    }
+  },
+)
 
 export default {
-  name: "party-edit",
+  name: 'party-edit',
   props: {
     party: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   data() {
     return {
       partyToSave: {},
       pickerOptions: {
         disabledDate(time) {
-          return time.getTime() > Date.now();
+          return time.getTime() > Date.now()
         },
         shortcuts: [
           {
-            text: "Today",
+            text: 'Today',
             onClick(picker) {
-              picker.$emit("pick", new Date());
-            }
+              picker.$emit('pick', new Date())
+            },
           },
           {
-            text: "Yesterday",
+            text: 'Yesterday',
             onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24);
-              picker.$emit("pick", date);
-            }
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24)
+              picker.$emit('pick', date)
+            },
           },
           {
-            text: "A week ago",
+            text: 'A week ago',
             onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit("pick", date);
-            }
-          }
-        ]
-      }
-    };
-  },
-  methods: {
-    back() {
-      this.$router.push("/party-app");
-    },
-    saveParty() {
-      if (this.partyToSave.name === "") return;
-      if (this.partyToSave.price === "") return;
-      this.$store
-        .dispatch({ type: "saveParty", party: this.partyToSave })
-        .then(party => {
-          console.log("Saved party:", party);
-          this.$router.push("/party-app");
-        });
-    },
-    loadParty() {
-      let partyId = this.$route.params.id;
-      if (partyId) {
-        PartyService.getById(partyId).then(party => {
-          this.partyToSave = JSON.parse(JSON.stringify(party));
-        });
-      } else {
-        let emptyParty = this.$store.getters.emptyParty;
-        this.partyToSave = { ...emptyParty };
-      }
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+              picker.$emit('pick', date)
+            },
+          },
+        ],
+      },
     }
   },
+  methods: {
+    openWidget() {
+      uploadWidget.open()
+    },
+    back() {
+      this.$router.push('/party-app')
+    },
+    saveParty() {
+      if (this.partyToSave.name === '') return
+      if (this.partyToSave.price === '') return
+      this.$store
+        .dispatch({ type: 'saveParty', party: this.partyToSave })
+        .then((party) => {
+          console.log('Saved party:', party)
+          this.$router.push('/party-app')
+        })
+    },
+    loadParty() {
+      let partyId = this.$route.params.id
+      if (partyId) {
+        PartyService.getById(partyId).then((party) => {
+          this.partyToSave = JSON.parse(JSON.stringify(party))
+        })
+      } else {
+        let emptyParty = this.$store.getters.emptyParty
+        this.partyToSave = { ...emptyParty }
+      }
+    },
+  },
   created() {
-    this.loadParty();
-  }
-};
+    this.loadParty()
+  },
+}
 </script>
 
 <style lang="scss" scoped>
