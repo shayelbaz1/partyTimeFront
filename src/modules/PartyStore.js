@@ -13,12 +13,45 @@ export default {
         },
         partys: [],
         emptyParty:{
-            name: '',
-            price: '',
-            type: 'Funny',
-            createdAt: Date.now(),
-            inStock: false
-        }
+            name: "",
+            desc: "Woodstock festival",
+            imgUrl: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/glow-disco-party-poster-template-2d310ac36d313dfc6fbc11b714f3859f_screen.jpg?ts=1561530801",
+            fee: "",
+            likes: 3,
+            startDate: "",
+            endDate: "",
+            durationHours: 12,
+            createdAt: 1541652422,
+            location: {
+              name: "",
+              lat: 20.55,
+              lng: 20.77
+            },
+            extraData: {
+              musicTypes: [
+                
+              ],
+              partyTypes: "",
+              createdBy: {
+                _id: "u101",
+                fullName: "Orly Amdadi",
+                imgUrl: "http://some-img"
+              },
+              members: [
+                {
+                  _id: "u101",
+                  fullName: "Orly Amdadi",
+                  imgUrl: "http://some-img"
+                },
+                {
+                  _id: "u101",
+                  fullName: "Orly Amdadi",
+                  imgUrl: "http://some-img"
+                }
+              ],
+              reviews: []
+            }
+          }
     },
     getters: {
         emptyParty(state){
