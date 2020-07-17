@@ -58,6 +58,9 @@
             <input type="text" placeholder="Party Types" v-model="partyToSave.extraData.partyTypes" />
             <input type="number" placeholder="Enter Fee" v-model="partyToSave.fee" />
           </div>
+          <br />
+          <textarea placeholder="Description" rows="4" v-model="partyToSave.desc" />
+
           <div class="add-event-buttons-container">
             <button @click="saveParty">Save</button>
             <button @click="back">Cancel</button>

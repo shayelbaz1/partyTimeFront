@@ -4,8 +4,8 @@
     <!-- <pre>{{party}}</pre> -->
     <div class="box-card" @click="routeToDetails(party._id)">
       <div class="img-box">
-        <img class="img-backround" src="../assets/beach.jpg" />
-        <img class="img-front" src="../assets/beach.jpg" />
+        <img class="img-backround" :src="party.imgUrl" />
+        <img class="img-front" :src="party.imgUrl" />
       </div>
 
       <div class="text-box">
@@ -129,9 +129,9 @@ export default {
         border-radius: 7px;
         height: 100%;
         width: 100%;
-        opacity: 0.2;
-        filter: blur(6px);
-        z-index: 1;
+        opacity: 0.7;
+        filter: blur(8px);
+        // z-index: 1;
         position: absolute;
       }
       .img-front {
