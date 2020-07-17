@@ -1,17 +1,19 @@
 <template>
-  <section>
+  <section style="height: 90%">
     <img class="main-img" src="../assets/Capture.png" />
     <div class="details-container flex space-around">
       <div class="worded-container">
         <div class="event-desc-container">
-          <h2>DJ Play</h2>
-          <h3>Saturday, May 1, Starting at 8PM</h3>
-          <h1>Get ready for a night full of dancing, partying and bottomless beer!</h1>
-          <h1>Get ready for a night full of dancing, partying and botomless beer!</h1>
-          <span>RSVP:</span>
+          <div class="event-header-detail">About the event:</div>
+          <div class="event-deep-details">
+            <p>DJ Play</p>
+            <p>Saturday, May 1, Starting at 8PM</p>
+            <p>Get ready for a night full of dancing, partying and botomless beer!</p>
+          </div>
         </div>
 
         <div class="event-buttons-container">
+          <p>RSVP:</p>
           <button>Interested</button>
           <button>Going</button>
           <button>Invite</button>
@@ -25,7 +27,6 @@
             <i class="fa fa-heart"></i>
             <p class="like-number">3</p>
           </div>
-          <p>HEART SYMBOL WITH LIKES NUMBER GOES HERE</p>
           <p>Reviews:</p>
         </div>
         <el-button @click="back" class="btn-back">
@@ -80,6 +81,7 @@ section {
   background-color: rgb(47, 47, 47);
 }
 .details-container {
+  min-height: 56%;
   text-align: left;
 }
 
@@ -92,6 +94,8 @@ section {
 .btn-back {
   margin-top: 10px;
   padding: 0px 20px;
+  position: absolute;
+  bottom: 0;
   .content {
     display: flex;
     justify-content: center;
@@ -110,16 +114,36 @@ section {
 .like-number {
   margin: 0;
 }
-.event-desc-container {
+
+.event-header-detail {
+  font-size: 25px;
+  color: #ffbb00;
+  margin-bottom: 5px;
+}
+.event-deep-details {
+  font-size: 19px;
+}
+.worded-container {
   color: #e4e6eb;
+
+  p {
+    margin: 0;
+  }
 }
 
 .participants-details {
   color: #ffffff;
-  font-size: 20px;
+  background-color: #3b3b3b;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .event-buttons-container {
+  background-color: #3b3b3b;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
   button {
     background-color: #c1272d;
     color: #ffffff;
@@ -127,11 +151,24 @@ section {
     font-size: 20px;
     margin: 5px;
     border-radius: 10px;
+    transition-duration: 0.3s;
+    &:hover {
+      transition-duration: 0.3s;
+      background-color: #ff0008;
+    }
     padding: 10px;
   }
 }
 
+.event-desc-container {
+  background-color: #3b3b3b;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
 .main-img {
   max-height: 360px;
+  margin-top: 5px;
 }
 </style>

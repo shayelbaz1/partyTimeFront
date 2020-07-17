@@ -1,6 +1,9 @@
 * {
     font-family: $font-family-primary;
-    // background-color: rgb(41, 41, 41);
+}
+html{
+    height: 100vh;
+
 }
 .homepage {
     background-color: lightblue;
@@ -38,4 +41,9 @@
         @include make-box(tomato);
         font-size: rem(10px);
     }
+}
+
+body{
+    height: 100%;
+    background-color: $color-primary-gray;
 }
