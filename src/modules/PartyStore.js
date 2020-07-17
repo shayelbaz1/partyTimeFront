@@ -14,7 +14,7 @@ export default {
         partys: [],
         emptyParty:{
             name: "",
-            desc: "Woodstock festival",
+            desc: "",
             imgUrl: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/glow-disco-party-poster-template-2d310ac36d313dfc6fbc11b714f3859f_screen.jpg?ts=1561530801",
             fee: "",
             likes: 3,
@@ -29,7 +29,6 @@ export default {
             },
             extraData: {
               musicTypes: [
-                
               ],
               partyTypes: "",
               createdBy: {
