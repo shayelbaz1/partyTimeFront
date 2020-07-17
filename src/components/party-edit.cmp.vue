@@ -13,15 +13,7 @@
             />
           </div>
           <div>
-<<<<<<< HEAD
-            <input
-              type="text"
-              v-model="partyToSave.price"
-              placeholder="Party Location"
-            />
-=======
             <input type="text" placeholder="Party Location" v-model="partyToSave.location.name" />
->>>>>>> 195cfbee19cb097d932ae6863533f147a092cad1
           </div>
           <br />
           <div class="date-box">
@@ -78,7 +70,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import PartyService from '@/services/PartyService.js'
 const uploadWidget = cloudinary.createUploadWidget(
   {
@@ -91,13 +82,11 @@ const uploadWidget = cloudinary.createUploadWidget(
     }
   },
 )
-=======
 import PartyService from "@/services/PartyService.js";
 import { Datetime } from "vue-datetime";
 import { DateTime } from "luxon";
 import "vue-datetime/dist/vue-datetime.css";
 import dateCmp from "./date.cmp.vue";
->>>>>>> 195cfbee19cb097d932ae6863533f147a092cad1
 
 export default {
   name: 'party-edit',
@@ -167,17 +156,6 @@ export default {
     back() {
       this.$router.push('/party-app')
     },
-<<<<<<< HEAD
-    saveParty() {
-      if (this.partyToSave.name === '') return
-      if (this.partyToSave.price === '') return
-      this.$store
-        .dispatch({ type: 'saveParty', party: this.partyToSave })
-        .then((party) => {
-          console.log('Saved party:', party)
-          this.$router.push('/party-app')
-        })
-=======
     async saveParty() {
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
@@ -186,19 +164,10 @@ export default {
         party: this.partyToSave
       });
       this.$router.push("/party-app");
->>>>>>> 195cfbee19cb097d932ae6863533f147a092cad1
     },
     loadParty() {
       let partyId = this.$route.params.id
       if (partyId) {
-<<<<<<< HEAD
-        PartyService.getById(partyId).then((party) => {
-          this.partyToSave = JSON.parse(JSON.stringify(party))
-        })
-      } else {
-        let emptyParty = this.$store.getters.emptyParty
-        this.partyToSave = { ...emptyParty }
-=======
         this.isEdit = true;
         PartyService.getById(partyId).then(party => {
           console.log("party:", party);
@@ -208,7 +177,6 @@ export default {
         this.isEdit = false;
         let emptyParty = this.$store.getters.emptyParty;
         this.partyToSave = { ...emptyParty };
->>>>>>> 195cfbee19cb097d932ae6863533f147a092cad1
       }
     },
   },
