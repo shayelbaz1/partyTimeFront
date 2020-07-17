@@ -82,7 +82,6 @@ const uploadWidget = cloudinary.createUploadWidget(
     }
   },
 )
-import PartyService from "@/services/PartyService.js";
 import { Datetime } from "vue-datetime";
 import { DateTime } from "luxon";
 import "vue-datetime/dist/vue-datetime.css";
