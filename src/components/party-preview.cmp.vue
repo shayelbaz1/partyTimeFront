@@ -18,10 +18,10 @@
           <h1>{{party.name}}</h1>
           <p>{{party.location.name}}</p>
         </div>
-        <p>{{party.startsAt | moment("H:MM A")}} | {{party.fee}}</p>
-        <p>{{party.startsAt | moment("DD/MM/YYYY")}}</p>
+        <p>{{party.startDate | moment("from")}} | {{fee}}</p>
+        <p>{{party.startDate | moment("DD/MM/YYYY")}}</p>
         <div class="types flex">
-          <p v-for="(type,idx) in party.extraData.eventTypes" :key="idx">{{type}} |</p>
+          <p v-for="(type,idx) in party.extraData.partyTypes" :key="idx">{{type}}</p>
         </div>
 
         <div class="btns-actions-box">
@@ -47,15 +47,15 @@ export default {
     }
   },
   data() {
-    return {
-      date: this.party.startsAt
-    };
+    return {};
   },
   computed: {
-    dateFormated() {
-      // let d = new Date(this.date);
-      var m = moment(this.date).format("MMMM Do YYYY, h:mm:ss a"); // July 16th 2020, 4:33:56 pm
-      return m;
+    fee() {
+      if (this.party.fee === "0") {
+        return "FREE";
+      } else {
+        return this.party.fee + "$";
+      }
     }
   },
   methods: {
@@ -159,7 +159,7 @@ export default {
       }
       .types {
         p {
-          margin-left: 5px;
+          // margin-left: 5px;
         }
       }
       .heart-box {
