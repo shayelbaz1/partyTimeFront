@@ -69,6 +69,7 @@
             <p class="border-title types-title">Music Types</p>
             <el-checkbox-group v-model="partyToSave.extraData.musicTypes">
               <el-checkbox-button
+                :v-if="types"
                 class="type-btn"
                 v-for="type in types.musicTypes"
                 :label="type"
@@ -81,6 +82,7 @@
             <p class="border-title types-title">Party Types</p>
             <el-checkbox-group v-model="partyToSave.extraData.partyTypes">
               <el-checkbox-button
+                :v-if="types"
                 v-for="type in types.partyTypes"
                 :label="type"
                 :key="type"
@@ -233,8 +235,10 @@ export default {
         });
       } else {
         this.isEdit = false;
-        let emptyParty = this.$store.getters.emptyParty;
-        this.partyToSave = JSON.parse(JSON.stringify(emptyParty));
+        let emptyParty = PartyService.getEmptyParty();
+        this.partyToSave = emptyParty
+        // let emptyParty = this.$store.getters.emptyParty;
+        // this.partyToSave = JSON.parse(JSON.stringify(emptyParty));
       }
     },
     loadTypes() {
