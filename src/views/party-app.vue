@@ -2,10 +2,15 @@
   <div class="party-app">
     <hero-img></hero-img>
     <div class="display-btns">
-      
-      <button @click="displayBy('list')" :class="{active: currPartiesDisplay==='list'}"><i class="fas fa-list"></i>  List</button>
-      <button @click="displayBy('map')" :class="{active: currPartiesDisplay==='map'}"><i class="fas fa-map-marker-alt"></i>  Map</button>
-      <button @click="displayBy('posters')" :class="{active: currPartiesDisplay==='posters'}"><i class="fas fa-images"></i>  Posters</button>
+      <button @click="displayBy('list')" :class="{active: currPartiesDisplay==='list'}">
+        <i class="fas fa-list"></i> List
+      </button>
+      <button @click="displayBy('map')" :class="{active: currPartiesDisplay==='map'}">
+        <i class="fas fa-map-marker-alt"></i> Map
+      </button>
+      <button @click="displayBy('posters')" :class="{active: currPartiesDisplay==='posters'}">
+        <i class="fas fa-images"></i> Posters
+      </button>
     </div>
     <div class="flex">
       <party-filter></party-filter>
@@ -77,25 +82,26 @@ export default {
   }
 }
 
-.display-btns{
+.display-btns {
   button {
     margin: 4px;
-        border: 0;
-        background-color: rgb(0, 0, 0);
-        padding: 10px;
-        border-radius: 6px;
-          color: white;
-
-        &.active {
-          background-color: #c1272d;
-        }
-        i {
-          color: white;
-        }
-        &:hover {
-          background-color: #c1272d;
-        }
-      }
+    border: 0;
+    background-color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 6px;
+    color: white;
+    transition-duration: 0.3s;
+    &.active {
+      background-color: #c1272d;
+    }
+    i {
+      color: white;
+    }
+    &:hover {
+      transition-duration: 0.3s;
+      background-color: #c1272d;
+    }
+  }
 }
 
 .party-app {

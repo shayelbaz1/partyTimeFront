@@ -67,22 +67,25 @@
 
           <div>
             <p class="border-title">Music Types</p>
-            <input
-              class="outline-box"
-              type="text"
-              placeholder="Music Types"
-              v-model="partyToSave.extraData.musicTypes"
-            />
+            <el-checkbox-group v-model="partyToSave.extraData.musicTypes">
+              <el-checkbox-button
+                class="type-btn"
+                v-for="type in types.musicTypes"
+                :label="type"
+                :key="type"
+              >{{type}}</el-checkbox-button>
+            </el-checkbox-group>
           </div>
           <br />
           <div>
             <p class="border-title">Party Types</p>
-            <input
-              class="outline-box"
-              type="text"
-              placeholder="Party Types"
-              v-model="partyToSave.extraData.partyTypes"
-            />
+            <el-checkbox-group v-model="partyToSave.extraData.partyTypes">
+              <el-checkbox-button
+                v-for="type in types.partyTypes"
+                :label="type"
+                :key="type"
+              >{{type}}</el-checkbox-button>
+            </el-checkbox-group>
           </div>
           <br />
           <div>
@@ -144,6 +147,7 @@ export default {
   },
   data() {
     return {
+      types: null,
       isEdit: true,
       startDate: "",
       endDate: "",
@@ -232,15 +236,21 @@ export default {
         let emptyParty = this.$store.getters.emptyParty;
         this.partyToSave = JSON.parse(JSON.stringify(emptyParty));
       }
+    },
+    loadTypes() {
+      PartyService.getMusicPartyTypes().then(types => {
+        this.types = types;
+      });
     }
   },
   created() {
     this.loadParty();
+    this.loadTypes();
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .event-add-container {
   // height: 100vh;
   background-color: #303030;
@@ -353,4 +363,61 @@ export default {
 .start-date {
   margin-right: 10px;
 }
+$--checkbox-background-color: #303030;
+.el-checkbox-button {
+  .el-checkbox-button__inner {
+    border: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    margin: 2px;
+    font-size: 17px;
+    background: #303030;
+    color: white;
+    transition: 0.3s;
+    &:hover {
+      transition: 0.3s;
+      background-color: #c1272d;
+    }
+  }
+}
+.el-checkbox-button:last-child {
+  .el-checkbox-button__inner:last-child {
+    border: 1px;
+    border-style: solid;
+    border-radius: 10px 10px 10px 10px;
+    margin: 2px;
+    font-size: 17px;
+    background: #303030;
+    color: white;
+    transition: 0.3s;
+    &:hover {
+      transition: 0.3s;
+      background-color: #c1272d;
+    }
+  }
+}
+.el-checkbox-button:first-child {
+  .el-checkbox-button__inner:first-child {
+    border: 1px;
+    border-style: solid;
+    border-radius: 10px 10px 10px 10px;
+    margin: 2px;
+    font-size: 17px;
+    background: #303030;
+    color: white;
+    transition: 0.3s;
+    &:hover {
+      transition: 0.3s;
+      background-color: #c1272d;
+    }
+  }
+}
+// .el-checkbox-button__original {
+//   background: $--checkbox-background-color;
+//   background-color: $--checkbox-background-color;
+//   span {
+//     background-color: #303030;
+//     background: #303030;
+//   }
+// }
 </style>

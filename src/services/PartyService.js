@@ -7,7 +7,8 @@ export default {
   save,
   getEmptyParty,
   addLike,
-  getPartyByLocation
+  getPartyByLocation,
+  getMusicPartyTypes,
 }
 
 // CRUD
@@ -23,7 +24,7 @@ function query(
 }
 
 function addLike(party) {
-  party.likes++  
+  party.likes++
   return HttpService.put(`party/${party._id}`, party)
 }
 
@@ -54,9 +55,58 @@ function getEmptyParty() {
   }
 }
 
-async function getPartyByLocation(locationName){
+async function getPartyByLocation(locationName) {
   const parties = await HttpService.get(`party?location.name_like=${locationName}`)
   return parties.map(party => {
-    return {lat:party.location.lat, lng:party.location.lng}
+    return { lat: party.location.lat, lng: party.location.lng }
   })
+}
+
+async function getMusicPartyTypes() {
+  
+  const types = {
+    musicTypes: [
+      'Acoustic',
+      'Blues',
+      'Bollywood',
+      'Classical',
+      'Country',
+      'Disco',
+      'Drum & Bass',
+      'Drum & Electrtonic',
+      'Folk',
+      'Funk',
+      'Hip Hop',
+      'House',
+      'Jazz',
+      'Latin',
+      'Metal',
+      'Pop',
+      'R&B',
+      'Reggae',
+      'Retro',
+      'Rock',
+      'Techno',
+      'Trance',
+      'World',
+    ],
+    partyTypes: [
+      'After Party',
+      'Beach Party',
+      'Clubbing',
+      'Day Party',
+      'Ecstatic Dance',
+      'Fetsival',
+      'House Party',
+      'Jamming',
+      'Karaoke',
+      'Late Night',
+      'Live Concert',
+      'Open Mic',
+      'Pool',
+      'Rave',
+      'Workshop',
+    ]
+  }
+  return types
 }
