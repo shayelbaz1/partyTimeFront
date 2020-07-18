@@ -35,7 +35,7 @@
             <div class="date-box outline-box">
               <p class="border-title date">Party Start Time</p>
               <datetime
-                input-class="date-time outline-box"
+                input-class="date-time"
                 class="start-date-time"
                 type="datetime"
                 v-model="partyToSave.startDate"
@@ -65,8 +65,8 @@
           </div>
           <br />
 
-          <div>
-            <p class="border-title">Music Types</p>
+          <div class="outline-box">
+            <p class="border-title ">Music Types</p>
             <el-checkbox-group v-model="partyToSave.extraData.musicTypes">
               <el-checkbox-button
                 class="type-btn"
@@ -77,7 +77,7 @@
             </el-checkbox-group>
           </div>
           <br />
-          <div>
+          <div class="outline-box">
             <p class="border-title">Party Types</p>
             <el-checkbox-group v-model="partyToSave.extraData.partyTypes">
               <el-checkbox-button
@@ -374,18 +374,29 @@ export default {
     flex-wrap: wrap;
   }
 }
-$--checkbox-background-color: #303030;
+.el-checkbox-button:first-child .el-checkbox-button__inner {
+  border-radius: 7px!important;
+  border-color: white!important;
+}
+.border-title{
+  font-size: 1rem;
+}
 .el-checkbox-button {
+  margin-top: 8px;
+  padding: 1px;
   .el-checkbox-button__inner {
     border: 1px;
     border-style: solid;
-    border-radius: 10px;
+    border-radius: 7px;
     margin: 2px;
-    font-size: 17px;
+    font-size: 1rem;
+    border-color: white;
     background: #303030;
     color: white;
     transition: 0.3s;
     &:hover {
+      border-color: white;
+      color: white;
       transition: 0.3s;
       background-color: #c1272d;
     }
@@ -395,32 +406,9 @@ $--checkbox-background-color: #303030;
   .el-checkbox-button__inner:last-child {
     border: 1px;
     border-style: solid;
-    border-radius: 10px 10px 10px 10px;
-    margin: 2px;
-    font-size: 17px;
-    background: #303030;
-    color: white;
-    transition: 0.3s;
-    &:hover {
-      transition: 0.3s;
-      background-color: #c1272d;
-    }
-  }
-}
-.el-checkbox-button:first-child {
-  .el-checkbox-button__inner:first-child {
-    border: 1px;
-    border-style: solid;
-    border-radius: 10px 10px 10px 10px;
-    margin: 2px;
-    font-size: 17px;
-    background: #303030;
-    color: white;
-    transition: 0.3s;
-    &:hover {
-      transition: 0.3s;
-      background-color: #c1272d;
-    }
+    border-radius: 7px 7px 7px 7px;
+    font-size: 1rem;
+    border-color: white!important;
   }
 }
 // .el-checkbox-button__original {

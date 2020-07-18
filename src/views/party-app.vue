@@ -15,17 +15,21 @@
             <i class="fas fa-images"></i> Posters
           </button>
         </div>
+
         <party-list
           v-if="currPartiesDisplay==='list'"
           :partys="partys"
           @addLike="addLike"
           @deleteParty="deleteParty"
         ></party-list>
+
         <div v-if="currPartiesDisplay==='posters'" class="grid posters">
           <div :key="party._id" v-for="party in partys">
             <img :src="party.imgUrl" />
           </div>
         </div>
+
+        <party-map v-if="currPartiesDisplay==='map'"></party-map>
       </div>
     </div>
   </div>
@@ -33,6 +37,7 @@
 
 <script>
 import partyList from "@/components/party-list.cmp.vue";
+import partyMap from "@/components/party-map.cmp.vue";
 import partyFilter from "../components/party-filter.vue";
 import heroImg from "../components/hero-img.cmp.vue";
 
@@ -41,6 +46,7 @@ export default {
 
   components: {
     partyList,
+    partyMap,
     partyFilter,
     heroImg
   },
