@@ -56,7 +56,7 @@ function getEmptyParty() {
 }
 
 async function getMusicPartyTypes() {
-  
+
   const types = {
     musicTypes: [
       'Acoustic',
@@ -106,6 +106,5 @@ async function getMusicPartyTypes() {
 
 async function getPartyByLocation() {
   const parties = await query()
-  // console.log(parties);
   return parties
 }
