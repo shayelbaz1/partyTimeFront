@@ -55,7 +55,9 @@ export default {
 }
 .vue-map-container {
   width: 100%;
-  margin: 15px auto;
+  margin: 0px auto;
+  margin-top: 0px;
+  margin-bottom: 15px;
 }
 .vue-map {
   border-radius: 7px;
