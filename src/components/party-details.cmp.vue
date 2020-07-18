@@ -3,6 +3,10 @@
     <img-blur :imgUrl="party.imgUrl"></img-blur>
 
     <div class="event-buttons-container flex">
+      <button @click="back" class="btn-back">
+        <i class="fas fa-arrow-left"></i>
+        Back
+      </button>
       <button>
         <i class="fas fa-heart"></i>
         {{party.likes}}
@@ -107,21 +111,24 @@
           </tr>
         </table>
       </div>
-      <div class="map-container">
-        <img src="../assets/map.png" alt srcset />
+
+      <div class="map-members-container flex column-layout">
+        <div class="map-container">
+          <img src="../assets/map.png" alt srcset />
+        </div>
+        <div class="members">
+          <p>Going</p>
+          <div class="members-img-container">
+            <img src="../assets/profile/profile1.jpeg" />
+            <img src="../assets/profile/profile2.jpeg" />
+            <img src="../assets/profile/profile3.jpeg" />
+            <img src="../assets/profile/profile4.jpeg" />
+            <img src="../assets/profile/profile5.jpeg" />
+            <img src="../assets/profile/profile6.jpeg" />
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="participants-details">
-      <p>3 PARTICIPATORS PICTURES GO HERE</p>
-    </div>
-
-    <!-- <el-button @click="back" class="btn-back">
-        <div class="content">
-          <i class="fas fa-arrow-left"></i>
-          <h2>Back</h2>
-        </div>
-    </el-button>-->
 
     <!-- <review-list v-if="party"></review-list> -->
     <!-- <chat-page v-if="party" :party="party"></chat-page> -->
@@ -193,6 +200,10 @@ export default {
       background-color: #c1272d;
     }
   }
+  .fa-heart {
+    color: #c1272d;
+    margin-right: 5px;
+  }
 }
 
 .details-and-map-container {
@@ -235,45 +246,43 @@ export default {
       }
     }
   }
-  .map-container {
-    width: 40%;
-    padding: 10px;
-    img {
+  .map-members-container {
+    padding: 0px 10px;
+    &.column-layout {
+      width: 40%;
+    }
+    .map-container {
+      img {
+        border-radius: 7px;
+        width: 100%;
+      }
+    }
+    .members {
+      background-color: #3b3b3b;
       border-radius: 7px;
+      color: white;
       width: 100%;
+      p {
+        margin: 0;
+        text-align: left;
+        padding-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 7px 7px 0px 0px;
+        box-shadow: 0px 0px 20px -10px rgb(5, 5, 5);
+      }
+      .members-img-container {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        padding: 5px;
+        img {
+          border-radius: 25px;
+          width: 50px;
+          margin: 5px;
+        }
+      }
     }
   }
-}
-
-.btn-back {
-  margin-top: 10px;
-  padding: 0px 20px;
-  position: absolute;
-  bottom: 0;
-  .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  h2 {
-    margin-left: 10px;
-  }
-}
-
-.fa-heart {
-  color: #c1272d;
-  margin-right: 5px;
-}
-
-.like-number {
-  margin: 0;
-}
-
-.participants-details {
-  color: #ffffff;
-  background-color: #3b3b3b;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
 }
 </style>
