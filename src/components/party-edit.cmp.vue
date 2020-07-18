@@ -65,8 +65,8 @@
           </div>
           <br />
 
-          <div class="outline-box">
-            <p class="border-title ">Music Types</p>
+          <div class="outline-box types-container">
+            <p class="border-title types-title">Music Types</p>
             <el-checkbox-group v-model="partyToSave.extraData.musicTypes">
               <el-checkbox-button
                 class="type-btn"
@@ -77,8 +77,8 @@
             </el-checkbox-group>
           </div>
           <br />
-          <div class="outline-box">
-            <p class="border-title">Party Types</p>
+          <div class="outline-box types-container">
+            <p class="border-title types-title">Party Types</p>
             <el-checkbox-group v-model="partyToSave.extraData.partyTypes">
               <el-checkbox-button
                 v-for="type in types.partyTypes"
@@ -101,9 +101,9 @@
           <div>
             <p class="border-title">Party Description</p>
             <textarea
-              class="outline-box"
+              class="outline-box text-desc"
               placeholder="Description"
-              rows="3"
+              rows="10"
               v-model="partyToSave.desc"
             />
           </div>
@@ -259,7 +259,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 90%;
+    width: 721px;
     margin: 0px auto;
     padding: 20px;
     border-radius: 7px;
@@ -375,41 +375,67 @@ export default {
   }
 }
 .el-checkbox-button:first-child .el-checkbox-button__inner {
-  border-radius: 7px!important;
-  border-color: white!important;
+  border-radius: 7px !important;
+  border-left: 0 !important;
 }
-.border-title{
+.border-title {
   font-size: 1rem;
+}
+.el-checkbox-group {
+  padding: 7px;
 }
 .el-checkbox-button {
   margin-top: 8px;
   padding: 1px;
+  box-shadow: none;
+  &.is-checked {
+    .el-checkbox-button__inner {
+      box-shadow: none !important;
+      border: 0px;
+      background-color: #c1272d !important;
+    }
+  }
   .el-checkbox-button__inner {
-    border: 1px;
+    background-color: rgb(29, 29, 29);
+    border: 0px;
     border-style: solid;
     border-radius: 7px;
     margin: 2px;
     font-size: 1rem;
-    border-color: white;
-    background: #303030;
     color: white;
     transition: 0.3s;
     &:hover {
-      border-color: white;
       color: white;
       transition: 0.3s;
+      background-color: #c1272d;
+    }
+    &.is-checked {
       background-color: #c1272d;
     }
   }
 }
 .el-checkbox-button:last-child {
   .el-checkbox-button__inner:last-child {
-    border: 1px;
+    border: 0px;
     border-style: solid;
     border-radius: 7px 7px 7px 7px;
     font-size: 1rem;
-    border-color: white!important;
   }
+}
+
+.text-desc {
+ padding: 8px 15px!important;
+
+  line-height: 25px !important;
+  font-size: 1.1rem !important;
+}
+
+.types-container {
+  margin-bottom: 20px !important;
+}
+
+.outline-box .types-title {
+  line-height: 15px;
 }
 // .el-checkbox-button__original {
 //   background: $--checkbox-background-color;
