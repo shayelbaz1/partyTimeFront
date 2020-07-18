@@ -1,4 +1,5 @@
 import HttpService from './HttpService.js'
+import GeocodeService from './GeocodeService.js'
 
 export default {
   query,
@@ -36,7 +37,11 @@ function remove(partyId) {
   return HttpService.delete(`party/${partyId}`)
 }
 
-function save(party) {
+async function save(party) {
+  const location = await GeocodeService.getLatLng(party.location.name)
+  console.log(location);
+  party.location.lat = location.lat
+  party.location.lng = location.lng
   return party._id ? _update(party) : _add(party)
 }
 
@@ -50,13 +55,47 @@ function _update(party) {
 
 function getEmptyParty() {
   return {
-    txt: '',
-    isDone: false,
+    name: '',
+    desc: '',
+    imgUrl:
+      'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/glow-disco-party-poster-template-2d310ac36d313dfc6fbc11b714f3859f_screen.jpg?ts=1561530801',
+    fee: '',
+    likes: 0,
+    startDate: '',
+    endDate: '',
+    durationHours: 0,
+    createdAt: 0,
+    location: {
+      name: '',
+      lat: 0,
+      lng: 0,
+    },
+    extraData: {
+      musicTypes: [],
+      partyTypes: [],
+      createdBy: {
+        _id: '',
+        fullName: '',
+        imgUrl: '',
+      },
+      members: [
+        {
+          _id: '',
+          fullName: '',
+          imgUrl: '',
+        },
+        {
+          _id: '',
+          fullName: '',
+          imgUrl: '',
+        },
+      ],
+      reviews: [],
+    },
   }
 }
 
 async function getMusicPartyTypes() {
-
   const types = {
     musicTypes: [
       'Acoustic',
@@ -99,7 +138,7 @@ async function getMusicPartyTypes() {
       'Pool',
       'Rave',
       'Workshop',
-    ]
+    ],
   }
   return types
 }
