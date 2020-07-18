@@ -5,7 +5,7 @@ import partyDetails from "@/components/party-details.cmp.vue";
 import partyEdit from "@/components/party-edit.cmp.vue";
 import Dashboard from "@/views/Dashboard.vue";
 import ProfilePage from "@/views/ProfilePage.vue";
-import AboutPage from "@/views/AboutPage.vue";
+import partyMap from "./components/party-map.cmp.vue";
 import LoginPage from "@/views/loginSignup.vue";
 import reviewList from "@/components/review-list.vue";
 import UserPreview from "@/views/UserPreview.vue";
@@ -58,9 +58,9 @@ const routes = [
     component: ProfilePage
   },
   {
-    path: "/about",
-    name: "About",
-    component: AboutPage
+    path: "/map",
+    name: "Map",
+    component: partyMap
   },
   {
     path: "/login",
