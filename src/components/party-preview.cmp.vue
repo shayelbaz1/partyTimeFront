@@ -19,7 +19,7 @@
           <p>{{party.location.name}}</p>
         </div>
         <p>{{party.startDate | moment("from")}} | {{fee}}</p>
-        <p>{{party.startDate | moment("DD/MM/YYYY")}}</p>
+        <p>{{party.startDate | moment("DD/MM/YYYY • HH:mm A")}}</p>
         <div class="types flex">
           <p v-for="(type,idx) in party.extraData.partyTypes" :key="idx">{{type}}</p>
         </div>
@@ -54,7 +54,7 @@ export default {
       if (this.party.fee === "0") {
         return "FREE";
       } else {
-        return this.party.fee + "$";
+        return "$" + this.party.fee;
       }
     }
   },
