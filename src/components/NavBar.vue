@@ -5,7 +5,7 @@
         <i class="fas fa-filter"></i>
       </el-menu-item>
       <el-menu-item index="1" @click="routeTo('/')">Party App</el-menu-item>
-      <!-- <el-menu-item index="2" @click="routeTo('/profile')">Profile</el-menu-item> -->
+      <el-menu-item index="2" @click="routeTo('/profile')">Profile</el-menu-item>
       <!-- <el-menu-item index="3" @click="routeTo('/dashboard')">Dashboard</el-menu-item> -->
       <!-- <el-menu-item index="4" @click="routeTo('/map')">Map</el-menu-item> -->
       <el-menu-item index="5" @click="routeTo('/login')">Login</el-menu-item>

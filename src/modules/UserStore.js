@@ -5,7 +5,7 @@ import UserService from '@/services/UserService.js'
 
 export default {
     state: {
-        loggedinUser : null,
+        loggedinUser : {username:"Guest"},
         users: [],
         currUser: {}
     },

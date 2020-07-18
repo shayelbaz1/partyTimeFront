@@ -1,6 +1,6 @@
 <template>
   <div class="party-map">
-    <GmapMap :center="center" :zoom="zoom" map-type-id="terrain" style="width: 90%; height: 300px;">
+    <GmapMap :center="center" :zoom="zoom" map-type-id="terrain" style="width: 96%; height: 300px;">
       <GmapMarker
         :key="index"
         v-for="(party, index) in partys"

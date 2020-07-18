@@ -3,8 +3,8 @@
     <h1>Reviews</h1>
     <!-- Add Review -->
     <form @submit.prevent="addReview()">
-      <el-select v-model="reviewToEdit.aboutUserId" placeholder="Choose toy">
-        <el-option v-for="toy in toys" :key="toy._id" :value="toy._id">{{toy.name}}</el-option>
+      <el-select v-model="reviewToEdit.aboutUserId" placeholder="Choose party">
+        <el-option v-for="party in partys" :key="party._id" :value="party.name">{{party.name}}</el-option>
       </el-select>
 
       <el-input type="textarea" placeholder="Your Opinion Matters..." v-model="reviewToEdit.txt"></el-input>
@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-      currToyId: this.$route.params.id,
+      currPartyId: this.$route.params.id,
       reviewToEdit: {
         txt: "",
         aboutUserId: this.$route.params.id
@@ -42,8 +42,8 @@ export default {
     users() {
       return this.$store.getters.users;
     },
-    toys() {
-      return this.$store.getters.toys;
+    partys() {
+      return this.$store.getters.partys;
     }
   },
   methods: {
@@ -54,9 +54,9 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch({ type: "loadToys" });
+    this.$store.dispatch({ type: "loadPartys" });
     this.$store.dispatch({ type: "loadUsers" });
-    this.$store.dispatch({ type: "loadReviews", id: this.currToyId });
+    this.$store.dispatch({ type: "loadReviews", id: this.currPartyId });
   }
 };
 </script>

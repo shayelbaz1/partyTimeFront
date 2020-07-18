@@ -53,7 +53,9 @@ export default {
   updated() {
     var ul = this.$el.querySelector("ul");
     ul.scrollTop = ul.scrollHeight;
-    this.msg.from = this.$store.getters.loggedinUser.username;
+    this.msg.from = this.$store.getters.loggedinUser.username
+      ? this.$store.getters.loggedinUser.username
+      : "Guest";
   },
   methods: {
     showTypeingAndUser(userName, txt) {
@@ -101,6 +103,7 @@ export default {
       "localStorage.msgs:",
       JSON.parse(localStorage.getItem(`msgs-${this.party._id}`))
     );
+
     this.msgs = localStorage.getItem(`msgs-${this.party._id}`)
       ? JSON.parse(localStorage.getItem(`msgs-${this.party._id}`))
       : [];
@@ -110,6 +113,7 @@ export default {
     } else {
       SocketService.emit("chat joinTopic", this.topic);
     }
+
     SocketService.on("show Typing", this.showTypeingAndUser);
     SocketService.on("chat addMsg", this.addMsg);
     this.msg.from = this.$store.getters.loggedinUser.username;
