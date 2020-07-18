@@ -2,6 +2,7 @@
   <div class="about">
     <h1>About page</h1>
     <h2>Our Locations</h2>
+    <input v-model="locationName" type="text" @input="getParties">
     <GmapMap
       :center="center"
       :zoom="zoom"
@@ -10,16 +11,17 @@
     >
       <GmapMarker
         :key="index"
-        v-for="(m, index) in markers"
-        :position="m.position"
+        v-for="(marker, index) in markers"
+        :position="marker"
         :clickable="true"
         :draggable="true"
-        @click="center=m.position"
+        title="hello world"
+        icon="http://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
       />
     </GmapMap>
-    <el-button @click="setCenter('TLV')">Tel Aviv</el-button>
+    <!-- <el-button @click="setCenter('TLV')">Tel Aviv</el-button>
     <el-button @click="setCenter('jerusalem')">Jerusalem</el-button>
-    <el-button @click="setCenter('eilat')">Eilat</el-button>
+    <el-button @click="setCenter('eilat')">Eilat</el-button> -->
   </div>
 </template>
 
@@ -32,10 +34,8 @@ export default {
   name: "About",
   data() {
     return {
-      markers: [
-        { position: { lat: 30.984673, lng: 34.941595 } },
-        { position: { lat: 31.020098, lng: 34.512982 } }
-      ],
+      locationName: "",
+      markers: [],
       center: { lat: 31.05764, lng: 35.052906 },
       zoom: 7
     };
@@ -46,6 +46,13 @@ export default {
     GoogleMap
   },
   methods: {
+    async getParties(){
+      const locations = await this.$store.dispatch({
+        type:"getPartyByLocation",
+        locationName: this.locationName
+      })
+      this.markers = locations
+    },
     setCenter(city) {
       if (city === "TLV") {
         this.center = { lat: 32.109333, lng: 34.855499 };

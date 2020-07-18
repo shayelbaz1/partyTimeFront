@@ -128,7 +128,15 @@ export default {
                     commit({type:"updateParty", party})
                     return party
                 })
-        }
+        },
+
+        getPartyByLocation({commit}, {locationName}){
+            return PartyService.getPartyByLocation(locationName)
+                .then(locations => {
+                    console.log(locations);
+                    return locations
+                })
+        },
 
     }
 };

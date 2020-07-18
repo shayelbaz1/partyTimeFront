@@ -6,7 +6,8 @@ export default {
   remove,
   save,
   getEmptyParty,
-  addLike
+  addLike,
+  getPartyByLocation
 }
 
 // CRUD
@@ -51,4 +52,11 @@ function getEmptyParty() {
     txt: '',
     isDone: false,
   }
+}
+
+async function getPartyByLocation(locationName){
+  const parties = await HttpService.get(`party?location.name_like=${locationName}`)
+  return parties.map(party => {
+    return {lat:party.location.lat, lng:party.location.lng}
+  })
 }
