@@ -259,7 +259,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 721px;
+    max-width: 721px;
     margin: 0px auto;
     padding: 20px;
     border-radius: 7px;
@@ -424,7 +424,7 @@ export default {
 }
 
 .text-desc {
- padding: 8px 15px!important;
+  padding: 8px 15px !important;
 
   line-height: 25px !important;
   font-size: 1.1rem !important;

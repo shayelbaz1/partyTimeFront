@@ -1,8 +1,9 @@
 <template>
   <div class="party-app">
+    <div class="hidden-screen" v-if="isShowFilter" @click="toggleFilter"></div>
     <hero-img></hero-img>
     <div class="flex">
-      <party-filter></party-filter>
+      <party-filter :class="{show: isShowFilter}"></party-filter>
       <div class="flex column-layout">
         <div class="display-btns flex">
           <button @click="displayBy('list')" :class="{active: currPartiesDisplay==='list'}">
@@ -40,6 +41,7 @@ import partyList from "@/components/party-list.cmp.vue";
 import partyMap from "@/components/party-map.cmp.vue";
 import partyFilter from "../components/party-filter.vue";
 import heroImg from "../components/hero-img.cmp.vue";
+import EventBus from "../services/EventBus";
 
 export default {
   name: "party-app",
@@ -52,7 +54,8 @@ export default {
   },
   data() {
     return {
-      currPartiesDisplay: "list"
+      currPartiesDisplay: "list",
+      isShowFilter: false
     };
   },
   methods: {
@@ -64,6 +67,9 @@ export default {
     },
     addLike(party) {
       this.$store.dispatch({ type: "addLike", party });
+    },
+    toggleFilter() {
+      this.isShowFilter = !this.isShowFilter;
     }
   },
   computed: {
@@ -77,11 +83,22 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "loadPartys" });
+    EventBus.$on("toggleFilter", this.toggleFilter);
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.hidden-screen {
+  cursor: pointer;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.356);
+}
 .posters {
   columns: 3;
   width: 100%;
