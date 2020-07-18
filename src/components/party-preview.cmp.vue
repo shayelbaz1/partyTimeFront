@@ -102,7 +102,7 @@ export default {
     display: flex;
     width: fit-content;
     text-align: left;
-    width: 90%;
+    width: 96%;
     margin: 0px auto;
     margin-bottom: 10px;
     background: #303030;
@@ -156,6 +156,16 @@ export default {
         margin-top: 20px;
         padding: 0;
       }
+      .types {
+        flex-wrap: wrap;
+        p {
+          padding: 0px 5px;
+          color: #c5c5c5;
+          &:not(:last-of-type) {
+            border-right: 1px solid #c5c5c5;
+          }
+        }
+      }
       .heart-box {
         position: absolute;
         right: 0;
@@ -197,6 +207,21 @@ export default {
           padding-right: 4px;
         }
         // background: khaki;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .box-card {
+    height: 154px !important;
+    .img-box {
+      min-width: 137px !important;
+    }
+    .text-box {
+      font-size: 0.9rem;
+      .btns-actions-box {
+        margin-bottom: 0px !important;
       }
     }
   }

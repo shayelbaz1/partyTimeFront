@@ -105,7 +105,11 @@
         <input type="date" name id />
       </div>
     </div>
-    <button class="btn reset">RESET</button>
+
+    <div class="filter-btns">
+      <button class="btn reset">RESET</button>
+      <button class="btn filter">FILTER</button>
+    </div>
   </div>
 </template>
 

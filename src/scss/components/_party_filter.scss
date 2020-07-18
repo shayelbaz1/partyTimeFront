@@ -2,8 +2,10 @@
   display: flex;
   flex-direction: column;
   // width: 258px;
+
   width: 30%;
   background-color: #30303000;
+  // background-color: #cccccc;
   color: white;
 
   .nav-sort-container {
@@ -109,17 +111,45 @@
   cursor: pointer;
 }
 
-.btn.reset {
-  border: 0;
-  background-color: rgb(0, 0, 0);
+.filter-btns {
+  display: flex;
   padding: 10px;
-  border-radius: 6px;
-  color: white;
-
-  &.active {
-    background-color: $color-primary-red;
+  .btn {
+    border: 0;
+    background-color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 6px;
+    width: 50%;
+    color: white;
+    transition: 0.3s;
+    margin: 0px 4px;
+    &:hover {
+      background-color: $color-primary-red;
+    }
+    &.active {
+      background-color: $color-primary-red;
+    }
   }
-  &:hover {
-    background-color: $color-primary-red;
+}
+
+@media screen and (max-width: 900px) {
+  .main-filter-container {
+    min-width: 300px;
+    background-color: #272727;
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 7px 0px 0px 7px;
+    box-shadow: 0 0 20px 3px black;
+    overflow: auto;
+    &.show {
+      transition: 0.3s;
+      visibility: visible;
+      opacity: 1;
+    }
   }
 }
