@@ -28,14 +28,14 @@
           <input hidden type="radio" name="sort" id="like" value="like" v-model="filterBy.sortBy" />
         </button>
 
-        <button
+        <!-- <button
           :class="{active: filterBy.sortBy==='dist'}"
           title="Distance"
           @click="setSortBy('dist')"
         >
           <i class="fa fa-map-marker"></i>
           <input hidden type="radio" name="sort" id="dist" value="dist" v-model="filterBy.sortBy" />
-        </button>
+        </button> -->
 
         <button
           :class="{active: filterBy.sortBy==='price'}"
@@ -82,26 +82,24 @@
     <div class="nav-dropdown-container">
       <div class="nav-dropdown-content">
         Locality:
-        <select>
-          <option value>New York</option>
-          <option value>Israel</option>
+        <select v-model="filterBy.partyDetails.locality">
+          <option value="New York">New York</option>
+          <option value="Israel">Israel</option>
         </select>
         Party Type:
-        <select>
-          <option value>Bar Party</option>
-          <option value>Music Festival</option>
-          <option value>Rave</option>
+        <select v-model="filterBy.partyDetails.partyType">
+          <option value="Bar Party">Bar Party</option>
+          <option value="Music Festival">Music Festival</option>
+          <option value="Rave">Rave</option>
         </select>
         Music Type:
-        <select>
-          <option value>Death Metal</option>
-          <option value>Jazz</option>
-          <option value>Rock</option>
-          <option value>Blues</option>
+        <select v-model="filterBy.partyDetails.musicType">
+          <option value="Death Metal">Death Metal</option>
+          <option value="Jazz">Jazz</option>
+          <option value="Rock">Rock</option>
+          <option value="Blues">Blues</option>
         </select>
         Start Time:
-        <input type="date" name id />
-        End Time:
         <input type="date" name id />
       </div>
     </div>
@@ -133,7 +131,6 @@ export default {
         },
         date: {
           startTime: 3232323,
-          endTime: 565656
         }
       }
     };
@@ -142,8 +139,8 @@ export default {
     setSortBy(newSort) {
       console.log("newSort:", newSort);
       this.filterBy.sortBy = newSort;
+      this.$store.commit({type: "setFilter", filterBy: this.filterBy})
     }
   },
-  created() {}
 };
 </script>
