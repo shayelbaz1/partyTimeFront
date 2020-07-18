@@ -32,7 +32,7 @@
           <br />
 
           <div class="flex date-btns-box">
-            <div class="date-box outline-box start-date">
+            <div class="date-box outline-box">
               <p class="border-title date">Party Start Time</p>
               <datetime
                 input-class="date-time outline-box"
@@ -47,7 +47,7 @@
                 placeholder="Start time"
               ></datetime>
             </div>
-
+            <div class="space-box"></div>
             <div class="date-box outline-box">
               <p class="border-title date">Party End Time</p>
               <datetime
@@ -285,6 +285,11 @@ export default {
       background-color: #c1272d;
     }
   }
+  @media screen and (max-width: 590px) {
+    button {
+      font-size: 1.1rem;
+    }
+  }
   .img-box {
     cursor: pointer;
     background-color: black;
@@ -301,7 +306,6 @@ export default {
       width: 100%;
       opacity: 0.7;
       filter: blur(8px);
-      // z-index: 1;
       position: absolute;
     }
     .img-front {
@@ -350,7 +354,14 @@ export default {
   }
 }
 
-.start-date {
-  margin-right: 10px;
+.space-box {
+  height: 15px;
+  width: 15px;
+}
+
+@media screen and (max-width: 590px) {
+  .date-btns-box {
+    flex-wrap: wrap;
+  }
 }
 </style>
