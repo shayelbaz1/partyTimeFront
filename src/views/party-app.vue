@@ -1,28 +1,30 @@
 <template>
   <div class="party-app">
     <hero-img></hero-img>
-    <div class="display-btns">
-      <button @click="displayBy('list')" :class="{active: currPartiesDisplay==='list'}">
-        <i class="fas fa-list"></i> List
-      </button>
-      <button @click="displayBy('map')" :class="{active: currPartiesDisplay==='map'}">
-        <i class="fas fa-map-marker-alt"></i> Map
-      </button>
-      <button @click="displayBy('posters')" :class="{active: currPartiesDisplay==='posters'}">
-        <i class="fas fa-images"></i> Posters
-      </button>
-    </div>
     <div class="flex">
       <party-filter></party-filter>
-      <party-list
-        v-if="currPartiesDisplay==='list'"
-        :partys="partys"
-        @addLike="addLike"
-        @deleteParty="deleteParty"
-      ></party-list>
-      <div v-if="currPartiesDisplay==='posters'" class="grid posters">
-        <div :key="party._id" v-for="party in partys">
-          <img :src="party.imgUrl" />
+      <div class="flex column-layout">
+        <div class="display-btns flex">
+          <button @click="displayBy('list')" :class="{active: currPartiesDisplay==='list'}">
+            <i class="fas fa-list"></i> List
+          </button>
+          <button @click="displayBy('map')" :class="{active: currPartiesDisplay==='map'}">
+            <i class="fas fa-map-marker-alt"></i> Map
+          </button>
+          <button @click="displayBy('posters')" :class="{active: currPartiesDisplay==='posters'}">
+            <i class="fas fa-images"></i> Posters
+          </button>
+        </div>
+        <party-list
+          v-if="currPartiesDisplay==='list'"
+          :partys="partys"
+          @addLike="addLike"
+          @deleteParty="deleteParty"
+        ></party-list>
+        <div v-if="currPartiesDisplay==='posters'" class="grid posters">
+          <div :key="party._id" v-for="party in partys">
+            <img :src="party.imgUrl" />
+          </div>
         </div>
       </div>
     </div>
@@ -76,13 +78,14 @@ export default {
 <style lang="scss" scoped>
 .posters {
   columns: 3;
-  width: 70%;
+  width: 100%;
   img {
     width: 100%;
   }
 }
 
 .display-btns {
+  width: 90%;
   button {
     margin: 4px;
     border: 0;
@@ -90,7 +93,8 @@ export default {
     padding: 10px;
     border-radius: 6px;
     color: white;
-    transition-duration: 0.3s;
+    width: 100%;
+
     &.active {
       background-color: #c1272d;
     }
@@ -98,7 +102,6 @@ export default {
       color: white;
     }
     &:hover {
-      transition-duration: 0.3s;
       background-color: #c1272d;
     }
   }

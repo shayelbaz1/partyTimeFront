@@ -1,50 +1,134 @@
 <template>
-  <section style="height: 90%">
-    <img class="main-img" :src="party.imgUrl" />
-    <div class="details-container flex space-around">
-      <div class="worded-container">
-        <div class="event-desc-container">
-          <div class="event-header-detail">About the event:</div>
-          <div class="event-deep-details">
-            <h1>{{party.name}}</h1>
-            <p>Location: {{party.location.name}}</p>
-          </div>
-          <p>Start {{party.startDate | moment("from")}} | {{fee}}</p>
-          <p>Date: {{party.startDate | moment("MMMM DD YYYY HH:mm A")}}</p>
-          <h1>Party Types</h1>
-          <div class="types flex">
-            <p v-for="(type,idx) in party.extraData.partyTypes" :key="idx">{{type}}</p>
-          </div>
-          <h1>Description</h1>
-          <p>{{party.desc}}</p>
-        </div>
-      </div>
+  <section v-if="party">
+    <img-blur :imgUrl="party.imgUrl"></img-blur>
 
-      <div class="event-buttons-container">
-        <p>RSVP:</p>
-        <button>Interested</button>
-        <button>Going</button>
-        <button>Invite</button>
-        <button>copy</button>
-        <button>X</button>
-      </div>
-
-      <div class="participants-details">
-        <p>3 PARTICIPATORS PICTURES GO HERE</p>
-        <div class="likes-container flex">
-          <i class="fa fa-heart"></i>
-          <p class="like-number">3</p>
-        </div>
-        <p>Reviews:</p>
-      </div>
-      <el-button @click="back" class="btn-back">
-        <div class="content">
-          <i class="fas fa-arrow-left"></i>
-          <h2>Back</h2>
-        </div>
-      </el-button>
+    <div class="event-buttons-container flex">
+      <button @click="back" class="btn-back">
+        <i class="fas fa-arrow-left"></i>
+        Back
+      </button>
+      <button>
+        <i class="fas fa-heart"></i>
+        {{party.likes}}
+      </button>
+      <button>
+        <i class="far fa-star"></i>
+        Interested
+      </button>
+      <button>
+        <i class="far fa-check-circle"></i>
+        Going
+      </button>
+      <button>
+        <i class="fas fa-directions"></i>
+      </button>
+      <button>
+        <i class="fas fa-share"></i>
+      </button>
     </div>
-    <div class="map-container"></div>
+
+    <div class="details-and-map-container flex">
+      <div class="table-container">
+        <table class="detail-table">
+          <tr>
+            <td class="icon">
+              <!-- <i class="fas fa-map-marker-alt"></i> -->
+            </td>
+            <td class="txt">
+              <p class="title">{{party.name}}</p>
+              <p class="desc">Title</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </td>
+            <td class="txt">
+              {{party.location.name}}
+              <p class="desc">Location</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="icon">
+              <i class="far fa-clock"></i>
+            </td>
+            <td class="txt">
+              <p>{{party.startDate | moment("from")}}</p>
+              <p class="desc">When</p>
+              <p>{{party.startDate | moment("dddd, MMM DD HH:mm A")}}</p>
+              <p class="desc">Start Time</p>
+              <p>{{party.endDate | moment("dddd, MMM DD HH:mm A")}}</p>
+              <p class="desc">End Time</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="icon">
+              <i class="fas fa-dollar-sign"></i>
+            </td>
+            <td class="txt">
+              <p>{{fee}}</p>
+              <p class="desc">Price</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="icon">
+              <i class="fas fa-tag"></i>
+            </td>
+            <td class="txt">
+              <div class="flex">
+                <p
+                  class="type"
+                  v-for="(type,idx) in party.extraData.partyTypes"
+                  :key="idx"
+                >{{type}} |</p>
+              </div>
+              <p class="desc">Party Types</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="icon">
+              <i class="fas fa-headphones-alt"></i>
+            </td>
+            <td class="txt">
+              <div class="flex">
+                <p
+                  class="type"
+                  v-for="(type,idx) in party.extraData.musicTypes"
+                  :key="idx"
+                >{{type}} |</p>
+              </div>
+              <p class="desc">Music Types</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="icon">
+              <i class="fas fa-info"></i>
+            </td>
+            <td class="txt">
+              <p>{{party.desc}}</p>
+              <p class="desc">Description</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="map-members-container flex column-layout">
+        <div class="map-container">
+          <img src="../assets/map.png" alt srcset />
+        </div>
+        <div class="members">
+          <p>Going</p>
+          <div class="members-img-container">
+            <img src="../assets/profile/profile1.jpeg" />
+            <img src="../assets/profile/profile2.jpeg" />
+            <img src="../assets/profile/profile3.jpeg" />
+            <img src="../assets/profile/profile4.jpeg" />
+            <img src="../assets/profile/profile5.jpeg" />
+            <img src="../assets/profile/profile6.jpeg" />
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- <review-list v-if="party"></review-list> -->
     <!-- <chat-page v-if="party" :party="party"></chat-page> -->
@@ -56,12 +140,14 @@
 import PartyService from "@/services/PartyService.js";
 import reviewList from "@/components/review-list.vue";
 import ChatPage from "@/views/ChatPage.vue";
+import imgBlur from "./img-blur.cmp.vue";
 
 export default {
   name: "party-details",
   components: {
     reviewList,
-    ChatPage
+    ChatPage,
+    imgBlur
   },
   data() {
     return {
@@ -92,100 +178,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-section {
-  background-color: rgb(47, 47, 47);
-}
-.details-container {
-  min-height: 56%;
-  text-align: left;
-}
-
-.map-container {
-  background-color: lightcyan;
-  height: 321px;
-  width: 400px;
-}
-
-.btn-back {
-  margin-top: 10px;
-  padding: 0px 20px;
-  position: absolute;
-  bottom: 0;
-  .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  h2 {
-    margin-left: 10px;
-  }
-}
-
-.fa-heart {
-  color: #c1272d;
-  margin-right: 5px;
-}
-
-.like-number {
-  margin: 0;
-}
-
-.event-header-detail {
-  font-size: 25px;
-  color: #ffbb00;
-  margin-bottom: 5px;
-}
-.event-deep-details {
-  font-size: 19px;
-}
-.worded-container {
-  color: #e4e6eb;
-
-  p {
-    margin: 0;
-  }
-}
-
-.participants-details {
-  color: #ffffff;
-  background-color: #3b3b3b;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.event-buttons-container {
-  background-color: #3b3b3b;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  button {
-    background-color: #c1272d;
-    color: #ffffff;
-    border-width: 0px;
-    font-size: 20px;
-    margin: 5px;
-    border-radius: 10px;
-    transition-duration: 0.3s;
-    &:hover {
-      transition-duration: 0.3s;
-      background-color: #ff0008;
-    }
-    padding: 10px;
-  }
-}
-
-.event-desc-container {
-  background-color: #3b3b3b;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.main-img {
-  max-height: 360px;
-  margin-top: 5px;
-}
-</style>

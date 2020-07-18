@@ -125,10 +125,9 @@ export default {
       display: flex;
       justify-content: center;
       position: relative;
+      height: 100%;
       .img-backround {
         border-radius: 7px;
-        height: 100%;
-        width: 100%;
         opacity: 0.7;
         filter: blur(8px);
         // z-index: 1;
@@ -138,7 +137,7 @@ export default {
         position: absolute;
         // background-color: ivory;
         // width: 100%;
-        height: 100%;
+        // height: 100%;
         position: absolute;
 
         // margin: auto;
@@ -146,10 +145,10 @@ export default {
     }
     .text-box {
       position: relative;
-      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      width: 100%;
       padding-left: 10px;
       padding-bottom: 10px;
       h1 {
