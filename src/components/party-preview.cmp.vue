@@ -169,11 +169,6 @@ export default {
         p {
           margin: 0;
         }
-        .types {
-          p {
-            margin-right: 3px;
-          }
-        }
       }
       .btns-actions-box {
         display: flex;
