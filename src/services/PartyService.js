@@ -56,14 +56,6 @@ function getEmptyParty() {
 
 async function getPartyByLocation(){
   const parties = await query()
-  console.log(parties);
-  return parties.map(party => {
-    return {
-      id:party._id,
-      name:party.name,
-      lat:party.location.lat,
-      lng:party.location.lng,
-      imgUrl: party.imgUrl
-    }
-  })
+  // console.log(parties);
+  return parties
 }
