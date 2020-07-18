@@ -54,9 +54,16 @@ function getEmptyParty() {
   }
 }
 
-async function getPartyByLocation(locationName){
-  const parties = await HttpService.get(`party?location.name_like=${locationName}`)
+async function getPartyByLocation(){
+  const parties = await query()
+  console.log(parties);
   return parties.map(party => {
-    return {lat:party.location.lat, lng:party.location.lng}
+    return {
+      id:party._id,
+      name:party.name,
+      lat:party.location.lat,
+      lng:party.location.lng,
+      imgUrl: party.imgUrl
+    }
   })
 }
