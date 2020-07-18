@@ -109,4 +109,8 @@ async function getMusicPartyTypes() {
     ]
   }
   return types
+async function getPartyByLocation(){
+  const parties = await query()
+  // console.log(parties);
+  return parties
 }

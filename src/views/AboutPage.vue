@@ -10,27 +10,22 @@
     >
       <GmapMarker
         :key="index"
-        v-for="(marker, index) in markers"
-        :position="marker"
+        v-for="(party, index) in parties"
+        :position="party.location"
         :clickable="true"
         :draggable="true"
-        @click="toggleInfoWindow(marker, index)"
+        @click="togglePreview(party)"
         title="hello world"
         icon="http://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
       />
-      <gmap-info-window
-      :position="infoWindowPos"
-      :opened="infoWinOpen"
-      :options="infoOptions"
-      @closeclick="infoWinOpen=false">
-          <div v-html="infoContent"></div>
-      </gmap-info-window>
     </GmapMap>
+    <party-preview v-if="isOpenPrev" :party="party"></party-preview> 
   </div>
 </template>
 
 <script>
 import Chart from '@/components/Chart.vue'
+import partyPreview from '../components/party-preview.cmp'
 import chartPartysYear from '../components/chart-partys-year.vue'
 import { GoogleMap } from 'vue-maps'
 
@@ -38,68 +33,30 @@ export default {
   name: 'About',
   data() {
     return {
-      infoContent: '',
-      infoWindowPos: {
-          lat: 0,
-          lng: 0
-      },
-      infoWinOpen: false,
-      currentMidx: null,
-      infoOptions: {
-          pixelOffset: {
-            width: 0,
-            height: -35
-          }
-      },
-      markers: [],
+      isOpenPrev: false,
+      parties: [],
       center: { lat: 31.05764, lng: 35.052906 },
       zoom: 7,
+      party: null
     }
   },
   components: {
     Chart,
     chartPartysYear,
     GoogleMap,
+    partyPreview
   },
   methods: {
-    goToDetails(partyId) {
-      this.$router.push(`/party-app/details/${partyId}`)
-    }, 
-    toggleInfoWindow(marker, idx) {
-        this.infoWindowPos = {lat:marker.lat, lng: marker.lng};
-        this.infoContent = this.getInfoWindowContent(marker);
-        
-        //check if its the same marker that was selected if yes toggle
-        if (this.currentMidx == idx) this.infoWinOpen = !this.infoWinOpen;
-        //if different marker set infowindow to open and reset current marker index
-        else {
-          this.infoWinOpen = true;
-          this.currentMidx = idx;
-        }
-    },
-    getInfoWindowContent(marker) {
-      return (`<div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src=${marker.imgUrl} alt="Placeholder image">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">${marker.name}</p>
-                    <button onclick="this.goToDetails(${marker.id})">Details</button>
-                  </div>
-                </div>
-              </div>
-            </div>`);
-      }   
+    togglePreview(party){
+      this.isOpenPrev = true
+      this.party = party
+    } 
   },
   async created() {
-    const locations = await this.$store.dispatch({
+    const parties = await this.$store.dispatch({
       type: 'getPartyByLocation',
     })
-    this.markers = locations
+    this.parties = parties
   },
 }
 </script>
