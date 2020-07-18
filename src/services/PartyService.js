@@ -102,15 +102,9 @@ async function getMusicPartyTypes() {
     ]
   }
   return types
-<<<<<<< HEAD
-}  
-
-async function getPartyByLocation(){
-=======
 }
 
 async function getPartyByLocation() {
->>>>>>> b8134ee3499a64e75dd576424d32077ade99e6fc
   const parties = await query()
   return parties
 }
