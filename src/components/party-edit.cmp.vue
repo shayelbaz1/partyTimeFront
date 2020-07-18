@@ -31,7 +31,7 @@
           </div>
           <br />
 
-          <div class="flex date-btns-box">
+          <div class="flex wrap date-btns-box">
             <div class="date-box outline-box">
               <p class="border-title date">Party Start Time</p>
               <datetime
@@ -236,7 +236,7 @@ export default {
       } else {
         this.isEdit = false;
         let emptyParty = PartyService.getEmptyParty();
-        this.partyToSave = emptyParty
+        this.partyToSave = emptyParty;
         // let emptyParty = this.$store.getters.emptyParty;
         // this.partyToSave = JSON.parse(JSON.stringify(emptyParty));
       }
@@ -449,4 +449,25 @@ export default {
 //     background: #303030;
 //   }
 // }
+
+@media screen and (min-width: 1000px) {
+  .edit-party {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .edit-party {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .edit-party {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .edit-party {
+    width: 100%;
+  }
+}
 </style>
