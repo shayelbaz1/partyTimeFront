@@ -130,8 +130,8 @@ export default {
                 })
         },
 
-        getPartyByLocation({commit}, {locationName}){
-            return PartyService.getPartyByLocation(locationName)
+        getPartyByLocation({commit}){
+            return PartyService.getPartyByLocation()
                 .then(locations => {
                     console.log(locations);
                     return locations
