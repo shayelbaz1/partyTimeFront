@@ -102,7 +102,8 @@ export default {
 }
 .nav-logo {
     color: #272727;
-    font-family: fantasy;
+    font-family: 'Rowdies', cursive;
+    letter-spacing: 3px;
 
     img {
       width: 39px;
