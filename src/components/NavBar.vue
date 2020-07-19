@@ -26,7 +26,7 @@
 
     <b-navbar toggleable="lg" type="dark" class="party-nav">
       <b-navbar-brand class="nav-logo" href="#">
-        <img src="../assets/site-logo.jpeg" alt="Kitten">
+        <img src="../assets/site-logo.jpeg" alt="Kitten" />
         PARTY TIME
       </b-navbar-brand>
 
@@ -93,21 +93,23 @@ export default {
   background-color: black;
 }
 .search-btn {
-    margin: 4px;
-    border: 0;
-    background-color: black;
-    padding: 6px;
-    border-radius: 6px;
-    color: white;
+  margin: 4px;
+  border: 0;
+  background-color: black;
+  padding: 6px;
+  border-radius: 6px;
+  color: white;
 }
 .nav-logo {
-    color: #272727;
-    font-family: 'Rowdies', cursive;
-    letter-spacing: 3px;
-    padding-bottom: 0px;
+  font-family: "Rowdies", cursive;
+  letter-spacing: 1px;
+  padding-bottom: 0px;
+  margin-top: 4px;
+  padding-top: 0;
 
-    img {
-      width: 39px;
-    }
+  img {
+    width: 27px;
+    padding-bottom: 4px;
+  }
 }
 </style>
