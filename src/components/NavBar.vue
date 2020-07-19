@@ -16,13 +16,13 @@
       </el-menu-item>
     <!-- <el-menu-item index="3" @click="routeTo('/dashboard')">Dashboard</el-menu-item>-->
     <!-- <el-menu-item index="4" @click="routeTo('/map')">Map</el-menu-item> -->
-    <!-- <el-menu-item index="5" @click="routeTo('/login')">Login</el-menu-item>
-      <el-menu-item index="6" @click="routeTo('/reviews')">
-        Reviews
-      </el-menu-item>
-      <el-menu-item index="7" @click="routeTo('/chat')">Chat</el-menu-item>
-    </el-menu>
-    <div class="line"></div>-->
+    <!-- <el-menu-item index="5" @click="routeTo('/login')">Login</el-menu-item> -->
+    <!-- <el-menu-item index="6" @click="routeTo('/reviews')"> -->
+    <!-- Reviews -->
+    <!-- </el-menu-item> -->
+    <!-- <el-menu-item index="7" @click="routeTo('/chat')">Chat</el-menu-item> -->
+    <!-- </el-menu> -->
+    <!-- <div class="line"></div> -->
 
     <b-navbar toggleable="lg" type="dark" variant="info">
       <b-navbar-brand href="#">NavBar</b-navbar-brand>

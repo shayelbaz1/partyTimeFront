@@ -7,7 +7,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: $clr1;
+    color: white;
     background: $color-primary-gray;
     height: 100%;
 }
@@ -35,6 +35,12 @@ a {
     text-decoration: none;
 }
 
-h1{
-    font-size: 1.5rem;
+h1,h2,h3,h4{
+    font-size: 1.17em;
+    display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
 }

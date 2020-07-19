@@ -11,6 +11,7 @@ import reviewList from "@/components/review-list.vue";
 import UserPreview from "@/views/UserPreview.vue";
 import ChatPage from "@/views/ChatPage.vue";
 import partyFilter from  "@/components/party-filter.vue"
+import welcomePage from  "@/views/WelcomePage.vue"
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,11 @@ const routes = [
     path: "/",
     name: "Home",
     component: partyApp
+  },
+  {
+    path: "/welcome",
+    name: "Welcome",
+    component: welcomePage
   },
   {
     path: "/party-app",
