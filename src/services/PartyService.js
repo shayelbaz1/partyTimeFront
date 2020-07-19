@@ -58,7 +58,7 @@ function getEmptyParty() {
     name: '',
     desc: '',
     imgUrl:
-      'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/glow-disco-party-poster-template-2d310ac36d313dfc6fbc11b714f3859f_screen.jpg?ts=1561530801',
+      'https://res.cloudinary.com/partytime/image/upload/v1595150444/partyImgs/wniyqeybu0858ckaftlr.png',
     fee: '',
     likes: 0,
     startDate: '',

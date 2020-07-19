@@ -1,7 +1,6 @@
 import PartyService from '../services/PartyService.js'
 
 export default {
-  strict: true,
   state: {
     isProcessing: false,
     filterBy: {

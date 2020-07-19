@@ -26,7 +26,7 @@
 
         <div v-if="currPartiesDisplay==='posters'" class="grid posters">
           <div :key="party._id" v-for="party in partys">
-            <img :src="party.imgUrl" />
+            <img :src="party.imgUrl" @click="moveToDetails(party._id)" />
           </div>
         </div>
 
@@ -70,6 +70,9 @@ export default {
     },
     toggleFilter() {
       this.isShowFilter = !this.isShowFilter;
+    },
+    moveToDetails(id) {
+      this.$router.push("party-app/details/" + id);
     }
   },
   computed: {
