@@ -1,7 +1,7 @@
 <template>
   <section class="welcome-page">
     <div class="parallax">
-      <h1>PARTY TIME</h1>
+      <h1>YOUR ULTIMATE NIGHTLIFE APP</h1>
     </div>
 
     <div class="body"></div>
@@ -21,14 +21,17 @@ export default {
     // justify-content: center;
     // align-items: center;
     h1 {
-      margin: 0;
       padding: 0;
+      padding: 0px 30px;
+      width: 100%;
+      margin: 0;
       position: relative;
-      top: 100px;
-      font-size: 2rem;
-      letter-spacing: 2px;
+      top: 200px;
+      font-size: 2.2rem;
+      letter-spacing: -1px;
+      font-weight: 800;
       // font-family: "Permanent Marker", cursive;
-      font-family: "Red Rose", cursive;
+      // font-family: "Red Rose", cursive;
       // font-family: "Rowdies", cursive;
     }
     background-image: url("../assets/welcome2.jpg");
