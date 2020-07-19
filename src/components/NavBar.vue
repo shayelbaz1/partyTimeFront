@@ -25,7 +25,7 @@
     <!-- <div class="line"></div> -->
 
     <b-navbar toggleable="lg" type="dark" class="party-nav">
-      <b-navbar-brand href="#">PartyTime</b-navbar-brand>
+      <b-navbar-brand class="nav-logo" href="#">PartyTime</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -87,7 +87,7 @@ export default {
   background-color: #c1272d;
 }
 .party-nav {
-  background-color: #c1272d;
+  background-color: black;
 }
 .search-btn {
     margin: 4px;
@@ -96,5 +96,10 @@ export default {
     padding: 6px;
     border-radius: 6px;
     color: white;
+}
+.nav-logo {
+    color: #272727;
+    text-decoration: underline;
+    font-family: fantasy;
 }
 </style>
