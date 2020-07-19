@@ -15,7 +15,7 @@
       </el-menu-item>
       <!-- <el-menu-item index="3" @click="routeTo('/dashboard')">Dashboard</el-menu-item> -->
       <!-- <el-menu-item index="4" @click="routeTo('/map')">Map</el-menu-item> -->
-      <el-menu-item index="5" @click="routeTo('/login')">Login</el-menu-item>
+      <!-- <el-menu-item index="5" @click="routeTo('/login')">Login</el-menu-item>
       <el-menu-item index="6" @click="routeTo('/reviews')">
         Reviews
       </el-menu-item>
@@ -30,8 +30,9 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#">Link</b-nav-item>
-          <b-nav-item href="#" disabled>Disabled</b-nav-item>
+          <b-nav-item @click="routeTo('/')">Party App</b-nav-item>
+          <b-nav-item @click="routeTo('/map')">Map</b-nav-item>
+          <b-nav-item @click="routeTo('/login')">Login</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
