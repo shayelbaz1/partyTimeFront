@@ -2,6 +2,7 @@
   <section class="welcome-page">
     <div class="parallax">
       <h1>YOUR ULTIMATE NIGHTLIFE APP</h1>
+      <input type="text" />
     </div>
 
     <div class="body"></div>
@@ -26,13 +27,11 @@ export default {
       width: 100%;
       margin: 0;
       position: relative;
-      top: 200px;
+      top: 170px;
       font-size: 2.2rem;
-      letter-spacing: -1px;
+      letter-spacing: 1px;
       font-weight: 800;
-      // font-family: "Permanent Marker", cursive;
-      // font-family: "Red Rose", cursive;
-      // font-family: "Rowdies", cursive;
+      font-family: "Lato", sans-serif;
     }
     background-image: url("../assets/welcome2.jpg");
     min-height: 100vh;
