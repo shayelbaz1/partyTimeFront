@@ -10,7 +10,10 @@ import { required, email } from 'vee-validate/dist/rules';
 import { ValidationProvider } from 'vee-validate';
 import * as VueGoogleMaps from 'vue2-google-maps'
 import Cloudinary from 'cloudinary-vue';
+import { BootstrapVue } from 'bootstrap-vue'
 
+// Install BootstrapVue
+Vue.use(BootstrapVue)
 
 Vue.use(Cloudinary, {
   configuration: {
