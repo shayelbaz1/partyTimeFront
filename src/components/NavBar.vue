@@ -27,7 +27,7 @@
     <b-navbar toggleable="lg" type="dark" class="party-nav">
       <b-navbar-brand class="nav-logo" href="#">
         <img src="../assets/site-logo.jpeg" alt="Kitten">
-        PartyTime
+        PARTY TIME
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -104,6 +104,7 @@ export default {
     color: #272727;
     font-family: 'Rowdies', cursive;
     letter-spacing: 3px;
+    padding-bottom: 0px;
 
     img {
       width: 39px;
