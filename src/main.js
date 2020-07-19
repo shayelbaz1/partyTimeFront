@@ -2,7 +2,6 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./routes";
 import store from "./store";
-import './scss/global.scss';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import { extend } from 'vee-validate';
@@ -13,6 +12,7 @@ import Cloudinary from 'cloudinary-vue';
 import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import './scss/global.scss';
 
 
 // Install BootstrapVue
