@@ -158,7 +158,6 @@ export default {
     }
   },
   created() {
-    debugger
     this.locationNames = this.getLocaionNamesArray(this.partys);
     this.partyTypes = PartyService.getMusicPartyTypes().partyTypes;
   }
