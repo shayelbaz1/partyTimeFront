@@ -170,7 +170,6 @@ export default {
     async loadParty() {
       let partyId = this.$route.params.id;
       this.party = await PartyService.getById(partyId);
-      console.log("this.party:", this.party);
     }
   },
   created() {

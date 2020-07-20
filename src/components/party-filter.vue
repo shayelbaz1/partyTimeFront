@@ -1,9 +1,8 @@
 <template>
   <section class="main-filter-container">
     <div class="nav-sort-container">
-      <div class="header">
-        <p>Sort By</p>
-        <p>Distance</p>
+      <div class="header justify-cente">
+        <p >Sort By</p>
       </div>
       <div class="sort-buttons-container">
         <button
@@ -101,7 +100,6 @@
 
     <div class="filter-btns">
       <button class="btn reset">RESET</button>
-      <button class="btn filter">FILTER</button>
     </div>
   </section>
 </template>

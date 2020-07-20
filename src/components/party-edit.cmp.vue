@@ -198,7 +198,6 @@ export default {
   },
   methods: {
     setPlace(place) {
-      console.log("place:", place);
       this.partyToSave.location.name = place.formatted_address;
       this.partyToSave.location.lat = place.geometry.location.lat();
       this.partyToSave.location.lng = place.geometry.location.lng();
@@ -221,7 +220,6 @@ export default {
       this.$router.push("/party-app");
     },
     async saveParty() {
-      console.log("this.partyToSave.name:", this.partyToSave.name);
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
       const party = await this.$store.dispatch({
@@ -235,7 +233,6 @@ export default {
       if (partyId) {
         this.isEdit = true;
         PartyService.getById(partyId).then(party => {
-          console.log("party:", party);
           this.partyToSave = JSON.parse(JSON.stringify(party));
         });
       } else {
