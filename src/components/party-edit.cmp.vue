@@ -8,7 +8,7 @@
     <section class="edit-party">
       <h1>{{pageTitle}}</h1>
       <div class="form-container">
-        <form @submit.prevent="saveParty">
+        <div>
           <!-- <pre>{{partyToSave}}</pre> -->
           <div>
             <p class="border-title">Party Title</p>
@@ -22,12 +22,12 @@
           <br />
           <div>
             <p class="border-title">Party Location</p>
-            <input
+
+            <GmapAutocomplete
+              :value="partyToSave.location.name"
               class="outline-box"
-              type="text"
-              placeholder="Party Location"
-              v-model="partyToSave.location.name"
-            />
+              @place_changed="setPlace"
+            ></GmapAutocomplete>
           </div>
           <br />
 
@@ -67,9 +67,8 @@
 
           <div class="outline-box types-container">
             <p class="border-title types-title">Music Types</p>
-            <el-checkbox-group v-model="partyToSave.extraData.musicTypes">
+            <el-checkbox-group v-if="types" v-model="partyToSave.extraData.musicTypes">
               <el-checkbox-button
-                :v-if="types"
                 class="type-btn"
                 v-for="type in types.musicTypes"
                 :label="type"
@@ -80,9 +79,8 @@
           <br />
           <div class="outline-box types-container">
             <p class="border-title types-title">Party Types</p>
-            <el-checkbox-group v-model="partyToSave.extraData.partyTypes">
+            <el-checkbox-group v-if="types" v-model="partyToSave.extraData.partyTypes">
               <el-checkbox-button
-                :v-if="types"
                 v-for="type in types.partyTypes"
                 :label="type"
                 :key="type"
@@ -120,7 +118,7 @@
               Save
             </button>
           </div>
-        </form>
+        </div>
 
         <!-- <pre>{{formatDate}}</pre> -->
         <!-- <pre>{{partyToSave}}</pre> -->
@@ -199,6 +197,12 @@ export default {
     }
   },
   methods: {
+    setPlace(place) {
+      console.log("place:", place);
+      this.partyToSave.location.name = place.formatted_address;
+      this.partyToSave.location.lat = place.geometry.location.lat();
+      this.partyToSave.location.lng = place.geometry.location.lng();
+    },
     openWidget() {
       const uploadWidget = cloudinary.createUploadWidget(
         {
@@ -217,6 +221,7 @@ export default {
       this.$router.push("/party-app");
     },
     async saveParty() {
+      console.log("this.partyToSave.name:", this.partyToSave.name);
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
       const party = await this.$store.dispatch({
@@ -244,6 +249,7 @@ export default {
     loadTypes() {
       PartyService.getMusicPartyTypes().then(types => {
         this.types = types;
+        console.log("types:", types);
       });
     }
   },
@@ -323,7 +329,6 @@ export default {
       position: absolute;
     }
     .img-front {
-      position: absolute;
       // background-color: ivory;
       // width: 100%;
       height: 100%;
@@ -382,9 +387,9 @@ export default {
   border-radius: 7px !important;
   border-left: 0 !important;
 }
-.border-title {
-  font-size: 1rem;
-}
+// .border-title {
+//   font-size: 1rem;
+// }
 .el-checkbox-group {
   padding: 7px;
 }
@@ -440,6 +445,7 @@ export default {
 
 .outline-box .types-title {
   line-height: 15px;
+  margin-left: -9px;
 }
 // .el-checkbox-button__original {
 //   background: $--checkbox-background-color;

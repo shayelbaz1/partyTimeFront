@@ -1,6 +1,7 @@
 <template>
   <div class="party-app">
     <div class="hidden-screen" v-if="isShowFilter" @click="toggleFilter"></div>
+    <!-- <welcome-header></welcome-header> -->
     <hero-img></hero-img>
     <div class="flex">
       <party-filter :class="{show: isShowFilter}"></party-filter>
@@ -42,6 +43,7 @@ import partyMap from "@/components/party-map.cmp.vue";
 import partyFilter from "../components/party-filter.vue";
 import heroImg from "../components/hero-img.cmp.vue";
 import EventBus from "../services/EventBus";
+import welcomeHeader from "../components/welcome-header.cmp.vue";
 
 export default {
   name: "party-app",
@@ -50,7 +52,8 @@ export default {
     partyList,
     partyMap,
     partyFilter,
-    heroImg
+    heroImg,
+    welcomeHeader
   },
   data() {
     return {

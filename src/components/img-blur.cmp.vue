@@ -1,5 +1,5 @@
 <template>
-  <div class="img-box">
+  <div class="img-box" @click="openInNewTab">
     <img class="img-backround" :src="imgUrl" title="Upload Image" />
     <img class="img-front" :src="imgUrl" title="Upload Image" />
   </div>
@@ -7,7 +7,13 @@
 
 <script>
 export default {
-  props: ["imgUrl"]
+  props: ["imgUrl"],
+  methods: {
+    openInNewTab() {
+      console.log("woek");
+      window.open(this.imgUrl, "_blank");
+    }
+  }
 };
 </script>
 
@@ -22,6 +28,7 @@ export default {
   display: flex;
   justify-content: center;
   position: relative;
+  // margin-top: 50px;
   .img-backround {
     border-radius: 7px;
     height: 100%;

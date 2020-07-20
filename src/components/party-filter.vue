@@ -28,14 +28,14 @@
           <input hidden type="radio" name="sort" id="like" value="like" v-model="filterBy.sortBy" />
         </button>
 
-        <!-- <button
+        <button
           :class="{active: filterBy.sortBy==='dist'}"
           title="Distance"
           @click="setSortBy('dist')"
         >
           <i class="fa fa-map-marker"></i>
           <input hidden type="radio" name="sort" id="dist" value="dist" v-model="filterBy.sortBy" />
-        </button> -->
+        </button>
 
         <button
           :class="{active: filterBy.sortBy==='price'}"
@@ -121,7 +121,7 @@ export default {
       //TODO: SECOND SORT BY PARTY DETAILS
       //TODO: THIRD SORTBY DATE
       filterBy: {
-        sortBy: "members",
+        sortBy: "dist",
         partyDetails: {
           distance: 50,
           fee: 50,
@@ -130,7 +130,7 @@ export default {
           partyType: "Rave"
         },
         date: {
-          startTime: 3232323,
+          startTime: 3232323
         }
       }
     };
@@ -139,8 +139,8 @@ export default {
     setSortBy(newSort) {
       console.log("newSort:", newSort);
       this.filterBy.sortBy = newSort;
-      this.$store.commit({type: "setFilter", filterBy: this.filterBy})
+      this.$store.commit({ type: "setFilter", filterBy: this.filterBy });
     }
-  },
+  }
 };
 </script>

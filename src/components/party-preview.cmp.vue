@@ -1,7 +1,6 @@
 // import {eventBus,SHOW_MSG} from '../services/eventBus.service.js'
 <template>
   <section class="party-preview">
-    <!-- <pre>{{party}}</pre> -->
     <div class="box-card" @click="routeToDetails(party._id)">
       <div class="img-box">
         <img class="img-backround" :src="party.imgUrl" />
@@ -134,11 +133,8 @@ export default {
         position: absolute;
       }
       .img-front {
-        position: absolute;
-        // background-color: ivory;
-        // width: 100%;
-        // height: 100%;
-        position: absolute;
+        width: 100%;
+        object-fit: contain;
 
         // margin: auto;
       }
@@ -163,6 +159,9 @@ export default {
           color: #c5c5c5;
           &:not(:last-of-type) {
             border-right: 1px solid #c5c5c5;
+            &:first-of-type {
+              padding-left: 0;
+            }
           }
         }
       }

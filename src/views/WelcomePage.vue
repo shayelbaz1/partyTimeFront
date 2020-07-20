@@ -1,49 +1,35 @@
 <template>
   <section class="welcome-page">
-    <div class="parallax">
-      <h1>YOUR ULTIMATE NIGHTLIFE APP</h1>
-      <input type="text" />
-    </div>
+    <welcome-header></welcome-header>
 
-    <div class="body"></div>
+    <div class="body">
+      <h1 class="popular-title">Most Poplar Parties</h1>
+      <party-list :partys="partys"></party-list>
+      <hr />
+      <h1 class="popular-title">Most Close To You</h1>
+      <party-list :partys="partys"></party-list>
+    </div>
   </section>
 </template>
 
 <script>
+import partyList from "../components/party-list.cmp.vue";
+import welcomeHeader from "../components/welcome-header.cmp.vue";
 export default {
-  name: "welcome-page"
+  name: "welcome-page",
+  components: {
+    partyList,
+    welcomeHeader
+  },
+  computed: {
+    partys() {
+      let partys = this.$store.getters.partys;
+      partys = partys.slice(0, 6);
+      return partys;
+    }
+  },
+  created() {
+    this.$store.dispatch({ type: "loadPartys" });
+  }
 };
 </script>
-
-<style lang="scss">
-.welcome-page {
-  .parallax {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    h1 {
-      padding: 0;
-      padding: 0px 30px;
-      width: 100%;
-      margin: 0;
-      position: relative;
-      top: 170px;
-      font-size: 2.2rem;
-      letter-spacing: 1px;
-      font-weight: 800;
-      font-family: "Lato", sans-serif;
-    }
-    background-image: url("../assets/welcome2.jpg");
-    min-height: 100vh;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .body {
-    height: 1000px;
-    // background-color: red;
-    font-size: 36px;
-  }
-}
-</style>
