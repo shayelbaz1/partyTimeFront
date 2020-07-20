@@ -75,6 +75,7 @@
       allow-create
       default-first-option
       placeholder="Filtar Locations"
+      @change="setSortBy"
     >
       <el-option v-for="(name,idx) in locationNames" :key="idx" :label="name" :value="name"></el-option>
     </el-select>
@@ -93,6 +94,7 @@
       allow-create
       default-first-option
       placeholder="Party Types"
+      @change="setSortBy"
     >
       <el-option v-for="(type,idx) in partyTypes" :key="idx" :label="type" :value="type"></el-option>
     </el-select>
@@ -132,7 +134,6 @@ export default {
   },
   methods: {
     setActiveSort(newSort) {
-      console.log("newSort:", newSort);
       this.filterBy.sortBy = newSort;
       this.$store.commit({
         type: "setFilter",
@@ -142,11 +143,11 @@ export default {
     },
     getLocaionNamesArray(oldPartys) {
       console.log("oldPartys:", oldPartys);
-      let locationNames = oldPartys.map(p => p.location.name);
-      let newSet = new Set(locationNames);
-      newSet = Array.from(newSet);
-      console.log("newSet:", newSet);
-      return newSet;
+      let locations = oldPartys.map(p => p.location.name);
+      let newSet = new Set(locations);
+      let uniqueLocations = Array.from(newSet);
+      console.log("newSet:", uniqueLocations);
+      return uniqueLocations;
     },
     setSortBy() {
       this.$store.commit({
@@ -157,6 +158,7 @@ export default {
     }
   },
   created() {
+    debugger
     this.locationNames = this.getLocaionNamesArray(this.partys);
     this.partyTypes = PartyService.getMusicPartyTypes().partyTypes;
   }
