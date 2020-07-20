@@ -10,7 +10,6 @@ export default {
   props: ["imgUrl"],
   methods: {
     openInNewTab() {
-      console.log("woek");
       window.open(this.imgUrl, "_blank");
     }
   }

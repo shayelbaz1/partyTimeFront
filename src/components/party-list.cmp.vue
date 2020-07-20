@@ -31,7 +31,6 @@ export default {
       this.$emit("deleteParty", partyId);
     },
     signalAddLike(party) {
-      // console.log(partyId);
       this.$emit("addLike", party);
     },
     routeToEdit() {

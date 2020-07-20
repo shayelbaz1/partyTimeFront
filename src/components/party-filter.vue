@@ -1,9 +1,8 @@
 <template>
   <section class="main-filter-container">
     <div class="nav-sort-container">
-      <div class="header">
-        <p>Sort By</p>
-        <p>Distance</p>
+      <div class="header justify-cente">
+        <p >Sort By</p>
       </div>
       <div class="sort-buttons-container">
         <button
@@ -99,7 +98,6 @@
 
     <div class="filter-btns">
       <button class="btn reset">RESET</button>
-      <button class="btn filter">FILTER</button>
     </div>
   </section>
 </template>
@@ -132,7 +130,6 @@ export default {
   },
   methods: {
     setActiveSort(newSort) {
-      console.log("newSort:", newSort);
       this.filterBy.sortBy = newSort;
       this.$store.commit({
         type: "setFilter",
@@ -141,11 +138,9 @@ export default {
       this.$store.dispatch("loadPartys");
     },
     getLocaionNamesArray(oldPartys) {
-      console.log("oldPartys:", oldPartys);
       let locationNames = oldPartys.map(p => p.location.name);
       let newSet = new Set(locationNames);
       newSet = Array.from(newSet);
-      console.log("newSet:", newSet);
       return newSet;
     },
     setSortBy() {
