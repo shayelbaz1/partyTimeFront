@@ -81,6 +81,7 @@
     <!-- hr  -->
     <div class="hr locality"></div>
     <!-- Types -->
+
     <div class="header types">
       <p>Party Types</p>
       <p>{{selectedTypes.length}}/{{partyTypes.length}}</p>
