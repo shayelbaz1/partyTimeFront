@@ -109,5 +109,12 @@ export default {
         return locations
       })
     },
+
+    getPartyLocations({ commit }) {
+      return PartyService.getPartyLocations().then((locations) => {
+        console.log(locations)
+        return locations
+      })
+    },
   },
 }
