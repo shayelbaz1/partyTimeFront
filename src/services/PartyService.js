@@ -16,12 +16,11 @@ export default {
 // CREATE READ UPDATE DELETE
 
 function query(filterBy) {
-  //console.log(filterBy);
+  console.log(filterBy);
+  if(filterBy.selectedTypes.length > 0 || filterBy.selectedTypes.length > 0){}
   const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}`;
-  // const query = ''
   console.log(query);
   return HttpService.get(`party/${query}`)
-  // return HttpService.get(`party/`)
 }
 
 //TODO:REFACTOR CODE

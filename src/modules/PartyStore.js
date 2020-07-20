@@ -37,7 +37,6 @@ export default {
   },
   mutations: {
     setPlace(state, {place}) {
-        console.log('place:', place)
         state.place = place
     },  
     setFilter(state, { filterBy }) {
