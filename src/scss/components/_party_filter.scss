@@ -95,6 +95,9 @@
         border: 1px solid #000000;
         background-color: $clr1;
       }
+      .el-slider__button-wrapper {
+        z-index: 0;
+      }
     }
   }
   select {
