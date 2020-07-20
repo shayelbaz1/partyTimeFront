@@ -65,10 +65,10 @@
     <!-- Locality -->
     <div class="header locality">
       <p>Locality</p>
-      <p>{{selectedLocations.length}}/{{locationNames.length}}</p>
+      <p>{{filterBy.selectedLocations.length}}/{{locationNames.length}}</p>
     </div>
     <el-select
-      v-model="selectedLocations"
+      v-model="filterBy.selectedLocations"
       multiple
       filterable
       allow-create
@@ -84,10 +84,10 @@
 
     <div class="header types">
       <p>Party Types</p>
-      <p>{{selectedTypes.length}}/{{partyTypes.length}}</p>
+      <p>{{filterBy.selectedTypes.length}}/{{partyTypes.length}}</p>
     </div>
     <el-select
-      v-model="selectedTypes"
+      v-model="filterBy.selectedTypes"
       multiple
       filterable
       allow-create
@@ -112,10 +112,10 @@ export default {
   data() {
     return {
       locationNames: [],
-      selectedLocations: [],
       partyTypes: [],
-      selectedTypes: [],
       filterBy: {
+        selectedLocations: [],
+        selectedTypes: [],
         sortBy: "dist",
         partyDetails: {
           distance: 50,
