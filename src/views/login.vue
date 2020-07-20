@@ -2,16 +2,17 @@
   <div class="login-page">
     <div>
       <form>
-        <h2>Log/Signup</h2>
+        <h2>Login</h2>
         <input type="text" v-model="creds.username" placeholder="Email" />
         <br />
         <input type="password" v-model="creds.password" placeholder="Password" />
         <br />
-        <div class="login-signup-buttons-container">
+        <div class="login-buttons-container">
           <button @click.prevent="doLogin">Login</button>
-          <button @click.prevent="doSignup">Signup</button>
-          <!-- <img src="../assets/login.jpg" alt srcset /> -->
         </div>
+<br>        <googleLogin></googleLogin>
+          <!-- <img src="../assets/login.jpg" alt srcset /> -->
+        
       </form>
     </div>
   </div>
@@ -19,20 +20,19 @@
 </template>
 
 <script>
+import googleLogin from "./gLogin.vue";
 export default {
-  name: "loginsignup-page",
+  name: "login-page",
   data() {
     return {
       creds: {
-        username: "admin@gmail.com",
-        password: "1234"
+        username: "",
+        password: ""
       }
     };
   },
   computed: {},
-  created() {
-    // console.log("this.loggedinUser", this.loggedinUser);
-  },
+  created() {},
   methods: {
     async doLogin() {
       const currUser = await this.$store.dispatch({
@@ -42,17 +42,16 @@ export default {
       if (currUser.length) this.$router.push("/");
       if (!currUser.length) return false;
     },
-    async doSignup() {
-      console.log(this.creds);
-      const currUser = await this.$store.dispatch({
-        type: "signup",
-        creds: this.creds
-      });
-      console.log(currUser);
-      if (currUser) this.$router.push("/");
-      if (!currUser) return false;
-    }
+    // onSignIn(googleUser) {
+    //   var profile = googleUser.getBasicProfile();
+    //   console.log("ID: " + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    //   console.log("Name: " + profile.getName());
+    //   console.log("Image URL: " + profile.getImageUrl());
+    //   console.log("Email: " + profile.getEmail()); // This is null if the 'email' scope is not present.
+    // }
   },
-  watch: {}
+  components: {
+    googleLogin
+  }
 };
 </script>

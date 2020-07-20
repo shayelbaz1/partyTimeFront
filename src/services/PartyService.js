@@ -15,15 +15,16 @@ export default {
 // CRUD
 // CREATE READ UPDATE DELETE
 
-function query(
-  filterBy = { txt: '', isInStock: '', order: 'asc', type: '', sort: 'name' },
-) {
-  // const query = `?txt=${filterBy.txt}&_sort=${filterBy.sort}&_order=${filterBy.order}&inStock_like=${filterBy.isInStock}&type_like=${filterBy.type}`;
+function query(filterBy) {
+  //console.log(filterBy);
+  const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}`;
   // const query = ''
-  // return HttpService.get(`party/${query}`)
-  return HttpService.get(`party/`)
+  console.log(query);
+  return HttpService.get(`party/${query}`)
+  // return HttpService.get(`party/`)
 }
 
+//TODO:REFACTOR CODE
 function addLike(party) {
   party.likes++
   return HttpService.put(`party/${party._id}`, party)
