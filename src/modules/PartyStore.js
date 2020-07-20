@@ -5,10 +5,12 @@ export default {
     place:{},
     isProcessing: false,
     filterBy: {
+      selectedLocations: [],
+      selectedTypes: [],
       sortBy: '',
       partyDetails: {
         distance: 0,
-        fee: 0,
+        fee: 100,
         locality: '',
         musicType: '',
         partyType: '',
