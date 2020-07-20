@@ -6,7 +6,7 @@
         <button
           :class="{active: filterBy.sortBy==='members'}"
           title="Members"
-          @click="setSortBy('members')"
+          @click="setActiveSort('extraData.membersCnt')"
         >
           <i class="fa fa-user"></i>
           <input
@@ -22,25 +22,25 @@
         <button
           :class="{active: filterBy.sortBy==='like'}"
           title="sort by party likes"
-          @click="setSortBy('like')"
+          @click="setActiveSort('likes')"
         >
           <i class="fa fa-heart"></i>
           <input hidden type="radio" name="sort" id="like" value="like" v-model="filterBy.sortBy" />
         </button>
 
-        <button
+        <!-- <button
           :class="{active: filterBy.sortBy==='dist'}"
           title="Distance"
           @click="setSortBy('dist')"
         >
           <i class="fa fa-map-marker"></i>
           <input hidden type="radio" name="sort" id="dist" value="dist" v-model="filterBy.sortBy" />
-        </button>
+        </button> -->
 
         <button
           :class="{active: filterBy.sortBy==='price'}"
           title="Price"
-          @click="setSortBy('price')"
+          @click="setActiveSort('fee')"
         >
           <i class="fa fa-dollar-sign"></i>
           <input hidden type="radio" name="sort" id="price" value="price" v-model="filterBy.sortBy" />
@@ -49,11 +49,11 @@
     </div>
 
     <div class="nav-ranges-container">
-      <div class="ranges-lable-container">
+      <!-- <div class="ranges-lable-container">
         <h4>Distance</h4>
         <span>Less then {{filterBy.partyDetails.distance}} km</span>
-      </div>
-      <div>
+      </div> -->
+      <!-- <div>
         <input
           type="range"
           min="1"
@@ -62,7 +62,7 @@
           id="myRange"
           v-model="filterBy.partyDetails.distance"
         />
-      </div>
+      </div> -->
       <div class="ranges-lable-container">
         <h4>Entry Fees</h4>
         <span>Less then {{filterBy.partyDetails.fee}}$</span>
@@ -75,6 +75,7 @@
           class="slider"
           id="myRange"
           v-model="filterBy.partyDetails.fee"
+          @change="setSortBy()"
         />
       </div>
     </div>
@@ -136,10 +137,16 @@ export default {
     };
   },
   methods: {
-    setSortBy(newSort) {
+    setActiveSort(newSort) {
       console.log("newSort:", newSort);
       this.filterBy.sortBy = newSort;
-      this.$store.commit({ type: "setFilter", filterBy: this.filterBy });
+      this.$store.commit({ type: "setFilter", filterBy: JSON.parse(JSON.stringify(this.filterBy)) });
+      this.$store.dispatch('loadPartys')
+    },
+    
+    setSortBy(){
+      this.$store.commit({ type: "setFilter", filterBy: JSON.parse(JSON.stringify(this.filterBy)) });
+      this.$store.dispatch('loadPartys')
     }
   }
 };

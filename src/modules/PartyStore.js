@@ -68,7 +68,7 @@ export default {
     // LOAD
     loadPartys({ commit, state }) {
       commit({ type: 'setIsProcessing', isProcessing: true })
-
+      console.log(state.filterBy);
       return PartyService.query(state.filterBy).then((partys) => {
         commit({ type: 'setPartys', partys })
         commit({ type: 'setIsProcessing', isProcessing: false })
