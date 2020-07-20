@@ -29,6 +29,7 @@ export default {};
 
 <style lang="scss">
 .img-block {
+  padding-top: 50px;
   position: relative;
   background: black;
   .img-back {

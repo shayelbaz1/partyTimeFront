@@ -27,8 +27,8 @@ Vue.use(Cloudinary, {
  
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyBfq4Xz9w6eCQZA-I0behahrQej_2nxjqU',
-    libraries: 'places',
+    key: 'AIzaSyAIRUoau4daansiuIk9xffRyjL8yJYv8SI',
+    libraries: 'places,drawing,visualization',
   }
 })
 

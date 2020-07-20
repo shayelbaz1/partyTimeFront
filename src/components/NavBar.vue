@@ -1,31 +1,7 @@
 <template>
   <section>
-    <!-- <el-menu
-      :default-active="activeIndex"
-      class="el-menu flex"
-      mode="horizontal"
-      :collapse="false"
-    >
-      <el-menu-item index="0" @click="toggleFilter" class="filter">
-        <i class="fas fa-filter"></i>
-      </el-menu-item>
-      <el-menu-item index="0" @click="routeTo('/welcome')">Welcome</el-menu-item>
-      <el-menu-item index="1" @click="routeTo('/')">Party App</el-menu-item>
-      <el-menu-item index="2" @click="routeTo('/profile')">
-        Profile
-      </el-menu-item>
-    <!-- <el-menu-item index="3" @click="routeTo('/dashboard')">Dashboard</el-menu-item>-->
-    <!-- <el-menu-item index="4" @click="routeTo('/map')">Map</el-menu-item> -->
-    <!-- <el-menu-item index="5" @click="routeTo('/login')">Login</el-menu-item> -->
-    <!-- <el-menu-item index="6" @click="routeTo('/reviews')"> -->
-    <!-- Reviews -->
-    <!-- </el-menu-item> -->
-    <!-- <el-menu-item index="7" @click="routeTo('/chat')">Chat</el-menu-item> -->
-    <!-- </el-menu> -->
-    <!-- <div class="line"></div> -->
-
     <b-navbar toggleable="lg" type="dark" class="party-nav">
-      <b-navbar-brand class="nav-logo" href="#">
+      <b-navbar-brand class="nav-logo" href="#" @click="routeTo('/welcome')">
         <img src="../assets/site-logo.jpeg" alt="Kitten" />
         PARTY TIME
       </b-navbar-brand>
@@ -33,30 +9,28 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <b-nav-item @click="routeTo('/')">Party App</b-nav-item>
+        <b-navbar-nav class="link-container">
+          <b-nav-item @click="toggleFilter" class="filter">
+            <i class="fas fa-search"></i>
+          </b-nav-item>
+          <b-nav-item @click="routeTo('/')">Explore</b-nav-item>
           <b-nav-item @click="routeTo('/map')">Map</b-nav-item>
           <b-nav-item @click="routeTo('/login')">Login</b-nav-item>
-          <b-nav-item @click="routeTo('/reviews')">Reviews</b-nav-item>
           <b-nav-item @click="routeTo('/reviews')">Reviews</b-nav-item>
           <b-nav-item @click="routeTo('/chat')">Chat</b-nav-item>
         </b-navbar-nav>
 
-        <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-form>
-            <b-form-input size="sm" class="mr-sm-2" placeholder="Enter Location"></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0 search-btn" type="submit">Search</b-button>
-          </b-nav-form>
+          <map-search></map-search>
 
-          <b-nav-item-dropdown right>
-            <!-- Using 'button-content' slot -->
+          <!-- <b-nav-item-dropdown right>
+            Using 'button-content' slot
             <template v-slot:button-content>
               <em>User</em>
             </template>
             <b-dropdown-item href="#">Profile</b-dropdown-item>
             <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-          </b-nav-item-dropdown>
+          </b-nav-item-dropdown>-->
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -65,9 +39,13 @@
 
 <script>
 import EventBus from "../services/EventBus.js";
+import mapSearch from "../components/map-search.cmp.vue";
 
 export default {
   name: "NavBar",
+  components: {
+    mapSearch
+  },
   data() {
     return {
       activeIndex: "1",
@@ -86,19 +64,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.search-box {
+  position: relative;
+  z-index: 0;
+  right: 0px;
+  margin-top: 0px;
+  button:focus {
+    outline: none;
+  }
+}
 .el-menu {
   background-color: #c1272d;
 }
 .party-nav {
-  background-color: black;
+  background-color: rgb(0, 0, 0);
+  position: fixed;
+  width: 100%;
+  z-index: 4;
+  transition: 0.3s;
+  color: black;
+  top: 0;
+}
+.nav-link {
+  color: white !important;
 }
 .search-btn {
   margin: 4px;
   border: 0;
+  // border: 1px solid white;
   background-color: black;
   padding: 6px;
   border-radius: 6px;
   color: white;
+  &:hover {
+    background-color: #c1272d;
+  }
 }
 .nav-logo {
   font-family: "Rowdies", cursive;

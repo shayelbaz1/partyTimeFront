@@ -2,6 +2,7 @@ import PartyService from '../services/PartyService.js'
 
 export default {
   state: {
+    place:{},
     isProcessing: false,
     filterBy: {
       sortBy: '',
@@ -19,6 +20,9 @@ export default {
     partys: [],
   },
   getters: {
+    place(state) {
+      return state.place
+    },
     isProcessing(state) {
       return state.isProcessing
     },
@@ -30,6 +34,10 @@ export default {
     },
   },
   mutations: {
+    setPlace(state, {place}) {
+        console.log('place:', place)
+        state.place = place
+    },  
     setFilter(state, { filterBy }) {
         state.filterBy = filterBy
     },  
