@@ -1,12 +1,13 @@
 <template>
   <section class="main-filter-container">
     <div class="nav-sort-container">
-      <div class="header justify-cente">
-        <p >Sort By</p>
+      <div class="header justify-center">
+        <p>Sort By</p>
+        <p>{{filterTitle}}</p>
       </div>
       <div class="sort-buttons-container">
         <button
-          :class="{active: filterBy.sortBy==='members'}"
+          :class="{active: filterTitle==='Members'}"
           title="Members"
           @click="setActiveSort('extraData.membersCnt')"
         >
@@ -22,7 +23,7 @@
         </button>
 
         <button
-          :class="{active: filterBy.sortBy==='like'}"
+          :class="{active: filterTitle==='Likes'}"
           title="sort by party likes"
           @click="setActiveSort('likes')"
         >
@@ -31,7 +32,7 @@
         </button>
 
         <button
-          :class="{active: filterBy.sortBy==='price'}"
+          :class="{active: filterTitle==='Price'}"
           title="Price"
           @click="setActiveSort('fee')"
         >
@@ -76,7 +77,7 @@
       placeholder="Filtar Locations"
       @change="setSortBy"
     >
-      <el-option v-for="(name,idx) in locationNames" :key="idx" :label="name" :value="name"></el-option>
+      <el-option v-for="(name,idx) in locaionNamesArray" :key="idx" :label="name" :value="name"></el-option>
     </el-select>
     <!-- hr  -->
     <div class="hr locality"></div>
@@ -108,7 +109,11 @@
 import PartyService from "../services/PartyService.js";
 export default {
   name: "party-filter",
-  props: ["partys"],
+  props: {
+    partys: {
+      type: Array
+    }
+  },
   data() {
     return {
       locationNames: [],
@@ -130,6 +135,26 @@ export default {
       }
     };
   },
+  computed: {
+    filterTitle() {
+      if (this.filterBy.sortBy === "likes") {
+        return "Likes";
+      }
+      if (this.filterBy.sortBy === "fee") {
+        return "Price";
+      }
+      if (this.filterBy.sortBy === "extraData.membersCnt") {
+        return "Members";
+      }
+    },
+    locaionNamesArray() {
+      let locations = this.partys.map(p => p.location.name);
+      let newSet = new Set(locations);
+      let uniqueLocations = Array.from(newSet);
+      this.locationNames = uniqueLocations;
+      return uniqueLocations;
+    }
+  },
   methods: {
     setActiveSort(newSort) {
       this.filterBy.sortBy = newSort;
@@ -139,14 +164,7 @@ export default {
       });
       this.$store.dispatch("loadPartys");
     },
-    getLocaionNamesArray(oldPartys) {
-      console.log("oldPartys:", oldPartys);
-      let locations = oldPartys.map(p => p.location.name);
-      let newSet = new Set(locations);
-      let uniqueLocations = Array.from(newSet);
-      console.log("newSet:", uniqueLocations);
-      return uniqueLocations;
-    },
+
     setSortBy() {
       this.$store.commit({
         type: "setFilter",
@@ -156,7 +174,6 @@ export default {
     }
   },
   created() {
-    this.locationNames = this.getLocaionNamesArray(this.partys);
     this.partyTypes = PartyService.getMusicPartyTypes().partyTypes;
   }
 };
