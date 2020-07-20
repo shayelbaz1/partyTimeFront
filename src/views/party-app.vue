@@ -4,7 +4,7 @@
     <!-- <welcome-header></welcome-header> -->
     <hero-img></hero-img>
     <div class="flex">
-      <party-filter :class="{show: isShowFilter}"></party-filter>
+      <party-filter :partys="partys" :class="{show: isShowFilter}"></party-filter>
       <div class="flex column-layout">
         <div class="display-btns flex">
           <button @click="displayBy('list')" :class="{active: currPartiesDisplay==='list'}">

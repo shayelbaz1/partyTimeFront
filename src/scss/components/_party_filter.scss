@@ -1,35 +1,51 @@
 .main-filter-container {
   display: flex;
   flex-direction: column;
-  // width: 258px;
-
   width: 30%;
-  // background-color: #30303000;
-  // background-color: #cccccc;
-  // color: white;
-  background-color: #1b1b1b;
+  background-color: #333333;
   color: #d8d8d8;
   border-radius: 0px 10px 10px 0px;
-
+  padding: 10px 20px;
+  .header {
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    p {
+      margin: 0;
+      &:first-of-type {
+        font-weight: 600;
+      }
+    }
+    &.fees {
+      margin-top: 10px;
+    }
+    &.locality {
+      margin-top: 10px;
+    }
+  }
   .nav-sort-container {
-    // border-bottom: 1px solid white;
-    padding: 12px;
+    // background-color: burlywood;
 
     .sort-buttons-container {
       display: flex;
-      justify-content: space-evenly;
-
+      justify-content: space-around;
+      margin-bottom: 15px;
       button {
+        // @include aspect-ratio(100, 100);
         border: 0;
         background-color: rgb(0, 0, 0);
-        padding: 15px;
         border-radius: 6px;
         transition-duration: 0.3s;
-        font-size: 15px;
+        height: 44px;
+        width: 44px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         &.active {
           background-color: $color-primary-red;
         }
         i {
+          font-size: 1.5rem;
           color: white;
         }
         &:hover {
@@ -39,36 +55,62 @@
       }
     }
   }
+  .hr {
+    width: 100%;
+    height: 1px;
+    background-color: #a0a0a0;
+    // margin-top: 15px;
+    // margin-bottom: 15px;
+  }
   .nav-ranges-container {
     display: flex;
     flex-direction: column;
-    // border-bottom: 1px solid white;
-    padding: 6px;
-
+    margin-top: 10px;
     .ranges-lable-container {
       display: flex;
       justify-content: space-around;
       align-items: center;
     }
+    .slidecontainer {
+      width: 100%;
+      margin-bottom: 7px;
+      .el-slider__runway {
+        background-color: black;
+        height: 10px;
+        border-radius: 7px;
+      }
+      .el-slider__bar {
+        background-color: $clr1;
+        height: 10px;
+        border-radius: 7px;
+      }
+      .el-slider__button {
+        margin-top: 4px;
+        height: 23px;
+        width: 23px;
+        border: 1px solid #000000;
+        background-color: $clr1;
+      }
+    }
+  }
+  select {
+    padding: 6px;
+    background-color: black;
+    color: white;
+    border-radius: 6px;
+    margin-bottom: 5px;
   }
 
   .nav-dropdown-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px;
+    // padding: 15px;
 
     .nav-dropdown-content {
       display: flex;
       flex-direction: column;
       width: 53%;
-
-      select {
-        padding: 6px;
-        background-color: black;
-        color: white;
-        border-radius: 6px;
-      }
     }
 
     input {
@@ -81,37 +123,6 @@
       background-color: black;
     }
   }
-}
-
-.slider {
-  -webkit-appearance: none;
-  width: 82%;
-  height: 25px;
-  background: black;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-}
-
-.slider:hover {
-  opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  background: #c1272d;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  background: #c1272d;
-  cursor: pointer;
 }
 
 .filter-btns {
