@@ -1,4 +1,4 @@
-.login-page {
+.signup-page {
     display: flex;
     background-image: url("../assets/login.jpg");
     justify-content: center;
@@ -14,13 +14,12 @@
         background-color: #97979749;
         padding: 48px;
         margin-top: 228px;
+
         h2 {
             
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             color: white;
             font-size: 1.7rem;
-            // margin: 30px;
-
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         }
 
         input {
@@ -36,7 +35,7 @@
             }
         }
 
-        .login-buttons-container {
+        .signup-buttons-container {
             display: flex;
             justify-content: space-evenly;
 

@@ -13,10 +13,13 @@ import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './scss/global.scss';
-
+import GSignInButton from 'vue-google-signin-button'
+Vue.use(GSignInButton)
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
+
+
 
 Vue.use(Cloudinary, {
   configuration: {

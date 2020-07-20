@@ -9,46 +9,29 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
-<<<<<<< HEAD
-        <b-navbar-nav align="right">
-          <b-nav-item @click="routeTo('/')">Party App</b-nav-item>
-=======
         <b-navbar-nav class="link-container">
           <b-nav-item @click="toggleFilter" class="filter">
             <i class="fas fa-search"></i>
           </b-nav-item>
           <b-nav-item @click="routeTo('/')">Explore</b-nav-item>
->>>>>>> cf6527d7d2ea67248ab88371051cb8daf8e41bb1
           <b-nav-item @click="routeTo('/map')">Map</b-nav-item>
           <b-nav-item @click="routeTo('/login')">Login</b-nav-item>
+          <b-nav-item @click="routeTo('/signup')">Signup</b-nav-item>
           <b-nav-item @click="routeTo('/reviews')">Reviews</b-nav-item>
           <b-nav-item @click="routeTo('/chat')">Chat</b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
-<<<<<<< HEAD
-          <!-- <b-nav-form>
-            <b-form-input size="sm" class="mr-sm-2" placeholder="Enter Location"></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0 search-btn" type="submit">Search</b-button>
-          </b-nav-form> -->
-
-          <!-- <b-nav-item-dropdown right>
-=======
           <map-search></map-search>
 
           <!-- <b-nav-item-dropdown right>
             Using 'button-content' slot
->>>>>>> cf6527d7d2ea67248ab88371051cb8daf8e41bb1
             <template v-slot:button-content>
               <em>User</em>
             </template>
             <b-dropdown-item href="#">Profile</b-dropdown-item>
             <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-<<<<<<< HEAD
-          </b-nav-item-dropdown> -->
-=======
           </b-nav-item-dropdown>-->
->>>>>>> cf6527d7d2ea67248ab88371051cb8daf8e41bb1
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
