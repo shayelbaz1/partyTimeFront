@@ -31,15 +31,6 @@
           <input hidden type="radio" name="sort" id="like" value="like" v-model="filterBy.sortBy" />
         </button>
 
-        <!-- <button
-          :class="{active: filterBy.sortBy==='dist'}"
-          title="Distance"
-          @click="setSortBy('dist')"
-        >
-          <i class="fa fa-map-marker"></i>
-          <input hidden type="radio" name="sort" id="dist" value="dist" v-model="filterBy.sortBy" />
-        </button>-->
-
         <button
           :class="{active: filterBy.sortBy==='price'}"
           title="Price"
@@ -67,7 +58,7 @@
         <p>Less then {{filterBy.partyDetails.fee}}$</p>
       </div>
       <div class="slidecontainer">
-        <el-slider v-model="filterBy.partyDetails.fee"></el-slider>
+        <el-slider v-model="filterBy.partyDetails.fee" @change="setSortBy"></el-slider>
       </div>
     </div>
     <div class="hr"></div>
@@ -136,7 +127,11 @@ export default {
     setActiveSort(newSort) {
       console.log("newSort:", newSort);
       this.filterBy.sortBy = newSort;
-      this.$store.commit({ type: "setFilter", filterBy: this.filterBy });
+      this.$store.commit({
+        type: "setFilter",
+        filterBy: JSON.parse(JSON.stringify(this.filterBy))
+      });
+      this.$store.dispatch("loadPartys");
     },
     getLocaionNamesArray(oldPartys) {
       console.log("oldPartys:", oldPartys);
@@ -145,11 +140,6 @@ export default {
       newSet = Array.from(newSet);
       console.log("newSet:", newSet);
       return newSet;
-      this.$store.commit({
-        type: "setFilter",
-        filterBy: JSON.parse(JSON.stringify(this.filterBy))
-      });
-      this.$store.dispatch("loadPartys");
     },
 
     setSortBy() {
