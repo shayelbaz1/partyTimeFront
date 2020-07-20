@@ -96,7 +96,7 @@ function getEmptyParty() {
   }
 }
 
-async function getMusicPartyTypes() {
+function getMusicPartyTypes() {
   const types = {
     musicTypes: [
       'Acoustic',

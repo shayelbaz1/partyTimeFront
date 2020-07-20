@@ -247,10 +247,7 @@ export default {
       }
     },
     loadTypes() {
-      PartyService.getMusicPartyTypes().then(types => {
-        this.types = types;
-        console.log("types:", types);
-      });
+      this.types = PartyService.getMusicPartyTypes();
     }
   },
   created() {

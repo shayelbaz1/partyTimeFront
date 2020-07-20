@@ -61,8 +61,9 @@
         <el-slider v-model="filterBy.partyDetails.fee" @change="setSortBy"></el-slider>
       </div>
     </div>
-    <div class="hr"></div>
 
+    <div class="hr"></div>
+    <!-- Locality -->
     <div class="header locality">
       <p>Locality</p>
       <p>{{selectedLocations.length}}/{{locationNames.length}}</p>
@@ -73,24 +74,26 @@
       filterable
       allow-create
       default-first-option
-      placeholder="Choose tags for your article"
+      placeholder="Filtar Locations"
     >
       <el-option v-for="(name,idx) in locationNames" :key="idx" :label="name" :value="name"></el-option>
     </el-select>
-    <div class="hr"></div>
-    <div class="header locality">
-      <p>Locality</p>
-      <p>{{selectedLocations.length}}/{{locationNames.length}}</p>
+    <!-- hr  -->
+    <div class="hr locality"></div>
+    <!-- Types -->
+    <div class="header types">
+      <p>Party Types</p>
+      <p>{{selectedTypes.length}}/{{partyTypes.length}}</p>
     </div>
     <el-select
-      v-model="selectedLocations"
+      v-model="selectedTypes"
       multiple
       filterable
       allow-create
       default-first-option
-      placeholder="Choose tags for your article"
+      placeholder="Party Types"
     >
-      <el-option v-for="(name,idx) in locationNames" :key="idx" :label="name" :value="name"></el-option>
+      <el-option v-for="(type,idx) in partyTypes" :key="idx" :label="type" :value="type"></el-option>
     </el-select>
 
     <div class="filter-btns">
@@ -101,13 +104,16 @@
 </template>
 
 <script>
+import PartyService from "../services/PartyService.js";
 export default {
   name: "party-filter",
   props: ["partys"],
   data() {
     return {
-      locationNames: null,
+      locationNames: [],
       selectedLocations: [],
+      partyTypes: [],
+      selectedTypes: [],
       filterBy: {
         sortBy: "dist",
         partyDetails: {
@@ -141,7 +147,6 @@ export default {
       console.log("newSet:", newSet);
       return newSet;
     },
-
     setSortBy() {
       this.$store.commit({
         type: "setFilter",
@@ -152,6 +157,7 @@ export default {
   },
   created() {
     this.locationNames = this.getLocaionNamesArray(this.partys);
+    this.partyTypes = PartyService.getMusicPartyTypes().partyTypes;
   }
 };
 </script>
