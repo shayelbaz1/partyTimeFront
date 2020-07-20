@@ -11,6 +11,8 @@
           <button @click.prevent="doSignup">Signup</button>
           <!-- <img src="../assets/login.jpg" alt srcset /> -->
         </div>
+        <br>
+        <googleLogin @doLogin="doSignup"></googleLogin>
       </form>
     </div>
   </div>
@@ -18,7 +20,9 @@
 </template>
 
 <script>
+import googleLogin from "./gLogin.vue";
 export default {
+
   name: "signup-page",
   data() {
     return {
@@ -34,16 +38,18 @@ export default {
   },
   methods: {
     async doSignup() {
-      console.log(this.creds);
+      console.log('signup, not google');
       const currUser = await this.$store.dispatch({
         type: "signup",
         creds: this.creds
       });
-      console.log(currUser);
+      console.log('signup, google');
       if (currUser) this.$router.push("/");
       if (!currUser) return false;
     }
   },
-  watch: {}
+   components: {
+    googleLogin
+  }
 };
 </script>

@@ -13,35 +13,46 @@
 export default {
   data() {
     return {
-      
-        // The Auth2 parameters, as seen on
-        // https://developers.google.com/identity/sign-in/web/reference#gapiauth2initparams.
-        // As the very least, a valid client_id must present.
+      // The Auth2 parameters, as seen on
+      // https://developers.google.com/identity/sign-in/web/reference#gapiauth2initparams.
+      // As the very least, a valid client_id must present.
       // @type {Object}
-       
+
       googleSignInParams: {
         client_id:
           "533525570890-dgaqicqmn6qajlpa1h7k8b1pjjd7fe2d.apps.googleusercontent.com"
       },
-      profile: {}
+      currRoute: this.$route.name
     };
   },
   methods: {
     onSignInSuccess(googleUser) {
       // `googleUser` is the GoogleUser object that represents the just-signed-in user.
       // See https://developers.google.com/identity/sign-in/web/reference#users
-      this.profile = googleUser.getBasicProfile(); // etc etc
-      console.log('hello', this.profile);
-    },
-    onSignIn(googleUser) {
-      console.log("hello");
-      var profile = googleUser.getBasicProfile();
-      console.log("ID: " + profile.getId()); // Do not send to your backend! Use an ID token instead.
-      console.log("Name: " + profile.getName());
-      console.log("Image URL: " + profile.getImageUrl());
-      console.log("Email: " + profile.getEmail()); // This is null if the 'email' scope is not present.
+      const profile = googleUser.getBasicProfile(); // etc etc
+      if (this.currRoute === 'Login') this.$emit("doLogin", profile);
+      if (this.currRoute === 'Signup') this.$emit("doSignup", profile);
 
+      // user cheat sheet:
+      // Au - Email
+      // Bd - Username
+      // JU - ?
+      // MK - Profile Picture
+      // nU -  Last Name
+      // nW - First Name
+
+      // this.onSignIn(this.profile);
     },
+    // onSignIn(googleUser) {
+    //   console.log("hello2");
+    //   var profile = auth2.currentUser.get().getBasicProfile();
+    //   console.log("ID: " + profile.getId());
+    //   console.log("Full Name: " + profile.getName());
+    //   console.log("Given Name: " + profile.getGivenName());
+    //   console.log("Family Name: " + profile.getFamilyName());
+    //   console.log("Image URL: " + profile.getImageUrl());
+    //   console.log("Email: " + profile.getEmail());
+    // },
 
     onSignInError(error) {
       // `error` contains any error occurred.

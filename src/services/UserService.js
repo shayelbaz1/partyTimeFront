@@ -27,7 +27,7 @@ async function login(creds) {
     //TODO: FIND SPECIFIC USER BY USERNAME AND Pssword
     //todo: if found return user
 
-
+    console.log(creds);
     const user = findUserByCreds(creds.username)
     return _handleLogin(user)
 }

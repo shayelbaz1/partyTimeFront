@@ -10,9 +10,9 @@
         <div class="login-buttons-container">
           <button @click.prevent="doLogin">Login</button>
         </div>
-<br>        <googleLogin></googleLogin>
-          <!-- <img src="../assets/login.jpg" alt srcset /> -->
-        
+        <br />
+        <googleLogin @doLogin="doLogin"></googleLogin>
+        <!-- <img src="../assets/login.jpg" alt srcset /> -->
       </form>
     </div>
   </div>
@@ -27,28 +27,40 @@ export default {
     return {
       creds: {
         username: "",
-        password: ""
+        password: "",
+        email: "",
+        imgURL: ""
       }
     };
   },
   computed: {},
-  created() {},
+  created() {
+    // const route = currentRouteName()
+    // console.log(route);
+  },
   methods: {
-    async doLogin() {
-      const currUser = await this.$store.dispatch({
-        type: "login",
-        creds: this.creds
-      });
-      if (currUser.length) this.$router.push("/");
-      if (!currUser.length) return false;
-    },
-    // onSignIn(googleUser) {
-    //   var profile = googleUser.getBasicProfile();
-    //   console.log("ID: " + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    //   console.log("Name: " + profile.getName());
-    //   console.log("Image URL: " + profile.getImageUrl());
-    //   console.log("Email: " + profile.getEmail()); // This is null if the 'email' scope is not present.
-    // }
+    async doLogin(googleCreds) {
+      if (!googleCreds) {
+        const currUser = await this.$store.dispatch({
+          type: "login",
+          creds: this.creds
+        });
+        if (currUser.length) this.$router.push("/");
+        if (!currUser.length) return false;
+
+
+      } else if (googleCreds) {
+        this.creds.username = googleCreds.Bd;
+        this.creds.email = googleCreds.Au;
+        this.creds.imgURL = googleCreds.MK;
+        const currUser = await this.$store.dispatch({
+          type: "login",
+          creds: this.creds
+        });
+        if (currUser.length) this.$router.push("/");
+        if (!currUser.length) return false;
+      }
+    }
   },
   components: {
     googleLogin
