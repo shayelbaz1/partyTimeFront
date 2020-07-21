@@ -107,6 +107,7 @@ export default {
       this.place.pos.lat = location.lat;
       this.place.pos.lng = location.lng;
       this.party = this.partyProp;
+      this.zoom = 18;
     } else {
       this.geoLocation();
       this.party = this.partys[0];

@@ -62,14 +62,14 @@
     <div class="hr"></div>
 
     <div class="nav-ranges-container">
-      <!-- <div class="header">
+      <div class="header distance">
         <p>Distance</p>
         <p>Less then {{ filterBy.partyDetails.distance }} km</p>
       </div>
       <div class="slidecontainer">
         <el-slider v-model="filterBy.partyDetails.distance"></el-slider>
       </div>
-      <div class="hr"></div>-->
+      <div class="hr"></div>
       <div class="header fees">
         <p>Entry Fees</p>
         <p>Less then {{ filterBy.partyDetails.fee }}$</p>
@@ -150,7 +150,7 @@ export default {
   },
   data() {
     return {
-      times: ["All", "Today", "Tomorrow"],
+      times: ["All", "Today", "Tomorrow", "Next 7 Days", "Old Events"],
       locationNames: [],
       partyTypes: [],
       filterBy: {
@@ -160,14 +160,14 @@ export default {
         sortBy: "startDate",
         partyDetails: {
           distance: 50,
-          fee: 50,
+          fee: 100,
           locality: "Israel",
           musicType: "Rock",
           partyType: "Rave"
-        },
-        date: {
-          startTime: 3232323
         }
+        // date: {
+        //   startTime: 3232323
+        // }
       }
     };
   },

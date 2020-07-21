@@ -5,7 +5,7 @@ export default {
     place:{},
     isProcessing: false,
     filterBy: {
-      startTime: 'Today',
+      startTime: 'All',
       selectedLocations: [],
       selectedTypes: [],
       sortBy: 'startDate',

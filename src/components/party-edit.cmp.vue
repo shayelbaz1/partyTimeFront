@@ -9,7 +9,6 @@
       <h1>{{pageTitle}}</h1>
       <div class="form-container">
         <div>
-          <!-- <pre>{{partyToSave}}</pre> -->
           <div>
             <p class="border-title">Party Title</p>
             <input
@@ -190,10 +189,6 @@ export default {
       } else {
         return "Create Party";
       }
-    },
-    formatDate() {
-      return DateTime.fromISO(this.startDate).toObject();
-      return DateTime.fromISO(this.endDate).toObject();
     }
   },
   methods: {
@@ -222,6 +217,18 @@ export default {
     async saveParty() {
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
+      // Convert To ISO String : 2020-07-21T17:15:00.000Z
+      // this.partyToSave.startDate = `ISODate(${this.partyToSave.startDate})`;
+      // this.partyToSave.endDate = `ISODate(${this.partyToSave.endDate})`;
+      this.partyToSave.startDate = new Date(
+        this.partyToSave.startDate
+      ).toISOString();
+      this.partyToSave.endDate = new Date(
+        this.partyToSave.endDate
+      ).toISOString();
+      console.log("this.partyToSave.startDate:", this.partyToSave.startDate);
+      console.log("this.partyToSave.endDate:", this.partyToSave.endDate);
+      // Save Party on DB
       const party = await this.$store.dispatch({
         type: "saveParty",
         party: this.partyToSave
