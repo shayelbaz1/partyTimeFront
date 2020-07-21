@@ -13,8 +13,8 @@
           <button @click.prevent="doSignup">Signup</button>
           <!-- <img src="../assets/login.jpg" alt srcset /> -->
         </div>
-        <br />
-        <googleLogin @doSignup="doSignup"></googleLogin>
+        <!-- <br /> -->
+        <!-- <googleLogin @doSignup="doSignup"></googleLogin> -->
       </form>
     </div>
   </div>
