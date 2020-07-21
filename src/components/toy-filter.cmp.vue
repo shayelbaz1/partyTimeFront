@@ -54,7 +54,6 @@ export default {
   },
   methods: {
     filterOn() {
-      console.log("this.filterBy.isInStock:", this.filterBy.isInStock);
       this.$store.commit({
         type: "updateFilterBy",
         filterBy: { ...this.filterBy }

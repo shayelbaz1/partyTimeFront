@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     fee() {
-      if (this.party.fee === "0") {
+      if (this.party.fee === 0) {
         return "FREE";
       } else {
         return "$" + this.party.fee;
@@ -59,18 +59,15 @@ export default {
   },
   methods: {
     signalDelete(partyId) {
-      // console.log(partyId);
       this.$emit("deleteParty", partyId);
     },
     signalAddLike(party) {
-      // console.log(partyId);
       this.$emit("addLike", party);
     },
     routeToEdit(id) {
       this.$router.replace("party-app/edit/" + id);
     },
     routeToDetails(id) {
-      console.log("id:", id);
       this.$router.push("party-app/details/" + id);
     },
     remove(id) {
@@ -127,8 +124,8 @@ export default {
       height: 100%;
       .img-backround {
         border-radius: 7px;
-        opacity: 0.7;
-        filter: blur(8px);
+        opacity: 0.3;
+        filter: blur(15px);
         // z-index: 1;
         position: absolute;
       }

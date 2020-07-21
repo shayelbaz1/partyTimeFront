@@ -32,8 +32,8 @@ export default {
     border-radius: 7px;
     height: 100%;
     width: 100%;
-    opacity: 0.7;
-    filter: blur(8px);
+    opacity: 0.3;
+    filter: blur(15px);
     position: absolute;
   }
   .img-front {

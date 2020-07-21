@@ -7,7 +7,7 @@ export default {
     filterBy: {
       selectedLocations: [],
       selectedTypes: [],
-      sortBy: '',
+      sortBy: 'startDate',
       partyDetails: {
         distance: 0,
         fee: 100,
@@ -103,12 +103,11 @@ export default {
       })
     },
 
-    getPartyByLocation({ commit }) {
-      return PartyService.getPartyByLocation().then((locations) => {
-        console.log(locations)
-        return locations
-      })
-    },
+    // async getPartyByLocation({ commit }) {
+    //   const locations =  await PartyService.getPartyByLocation()
+    //     console.log(locations)
+    //     return locations
+    // },
 
     getPartyLocations({ commit }) {
       return PartyService.getPartyLocations().then((locations) => {

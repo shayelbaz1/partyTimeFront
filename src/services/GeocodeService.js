@@ -6,7 +6,6 @@ export default {
   }
 
 async function getLatLng(address) {
-    console.log('address:', address)
     const response = await axios.get(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyAIRUoau4daansiuIk9xffRyjL8yJYv8SI`
     )
@@ -14,7 +13,6 @@ async function getLatLng(address) {
     return geocode.results[0].geometry.location
 }
 async function getCityByLatLng(pos) {
-    console.log('pos:', pos)
     const response = await axios.get(
         `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.lat},${pos.lng}&sensor=true&key=AIzaSyAIRUoau4daansiuIk9xffRyjL8yJYv8SI`
     )

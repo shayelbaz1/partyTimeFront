@@ -14,24 +14,25 @@
             <i class="fas fa-search"></i>
           </b-nav-item>
           <b-nav-item @click="routeTo('/')">Explore</b-nav-item>
-          <b-nav-item @click="routeTo('/map')">Map</b-nav-item>
+          <!-- <b-nav-item @click="routeTo('/map')">Map</b-nav-item> -->
           <b-nav-item @click="routeTo('/login')">Login</b-nav-item>
           <b-nav-item @click="routeTo('/signup')">Signup</b-nav-item>
           <b-nav-item @click="routeTo('/reviews')">Reviews</b-nav-item>
-          <b-nav-item @click="routeTo('/chat')">Chat</b-nav-item>
+          <b-nav-item @click="routeTo('/profile')">Profile</b-nav-item>
+          <!-- <b-nav-item @click="routeTo('/chat')">Chat</b-nav-item> -->
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
           <map-search></map-search>
 
-          <!-- <b-nav-item-dropdown right>
-            Using 'button-content' slot
+          <b-nav-item-dropdown right>
+            <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
               <em>User</em>
             </template>
             <b-dropdown-item href="#">Profile</b-dropdown-item>
             <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-          </b-nav-item-dropdown>-->
+          </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

@@ -44,8 +44,12 @@ export default {
     async getCityNameByLatLng(currentLocation) {
       const cityName = await GeocodeService.getCityByLatLng(currentLocation);
       this.place.name = cityName;
-      this.$el.querySelector("input.pac-target-input").value = "";
-      this.$el.querySelector("input.pac-target-input").value = this.place.name;
+      // this.$el.querySelector("input.pac-target-input").value = "";
+      if (this.place.name) {
+        this.$el.querySelector(
+          "input.pac-target-input"
+        ).value = this.place.name;
+      }
       this.$store.commit({
         type: "setPlace",
         place: JSON.parse(JSON.stringify(this.place))

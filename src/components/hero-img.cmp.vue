@@ -39,7 +39,7 @@ export default {};
     width: 100%;
     left: 0;
     opacity: 0.3;
-    filter: blur(8px);
+    filter: blur(15px);
   }
   .img-front {
     position: relative;

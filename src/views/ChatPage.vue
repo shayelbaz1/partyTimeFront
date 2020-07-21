@@ -41,7 +41,7 @@ export default {
       msg: { from: "Me", txt: "" },
       msgs: [],
       topic: "Love",
-      isChat: true,
+      isChat: false,
       isTyping: false,
       whoType: ""
     };
@@ -99,11 +99,6 @@ export default {
     }
   },
   created() {
-    console.log(
-      "localStorage.msgs:",
-      JSON.parse(localStorage.getItem(`msgs-${this.party._id}`))
-    );
-
     this.msgs = localStorage.getItem(`msgs-${this.party._id}`)
       ? JSON.parse(localStorage.getItem(`msgs-${this.party._id}`))
       : [];
@@ -146,8 +141,8 @@ export default {
   img {
     width: 30px;
     position: relative;
-    left: 0px;
-    top: 1px;
+    bottom: 4px;
+    right: 5px;
   }
 }
 .chat {
@@ -168,6 +163,7 @@ export default {
     left: -20px;
     padding-bottom: 8px;
     box-shadow: 0px 10px 7px -15px black;
+    color: black;
 
     .close-btn {
       position: absolute;
@@ -227,6 +223,7 @@ export default {
       border: none;
       border-radius: 50px;
       outline: none;
+      width: 100%;
     }
     .btn {
       background-color: white;
@@ -242,8 +239,8 @@ export default {
       img {
         width: 22px;
         position: relative;
-        left: 0px;
-        top: 1px;
+        bottom: 4px;
+        right: 6px;
       }
     }
   }
