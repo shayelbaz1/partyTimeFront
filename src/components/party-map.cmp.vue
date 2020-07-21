@@ -23,7 +23,7 @@
       map-type-id="roadmap"
       style="width: 96%; height: 300px;"
     >
-      <GmapMarker :position="place.pos" :draggable="false" title="hello world" />
+      <GmapMarker :position="place.pos" :draggable="false" title="Your Location" />
       <GmapMarker
         :key="index"
         v-for="(party, index) in partys"
@@ -47,7 +47,7 @@ export default {
   name: "party-map",
   data() {
     return {
-      partys: [],
+      // partys: [],
       zoom: 12,
       party: null,
       place: {
@@ -91,13 +91,18 @@ export default {
       this.$el.querySelector("input.pac-target-input").select();
     }
   },
+  computed: {
+    partys() {
+      return this.$store.getters.partys;
+    }
+  },
   async created() {
-    const partys = await this.$store.dispatch({
-      type: "loadPartys"
-    });
-    console.log("this.party:", this.party);
-    this.partys = partys;
-    this.party = partys[0];
+    // const partys = await this.$store.dispatch({
+    //   type: "loadPartys"
+    // });
+    // console.log("this.party:", this.party);
+    // this.partys = partys;
+    this.party = this.partys[0];
   },
   mounted() {
     this.geoLocation();

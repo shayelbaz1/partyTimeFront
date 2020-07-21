@@ -205,10 +205,11 @@ export default {
       this.$store.dispatch("loadPartys");
     },
 
-    resetFilter(){
-      this.filterBy.partyDetails.fee = 100
-      this.filterBy.selectedLocations = []
-      this.filterBy.selectedTypes = []
+    resetFilter() {
+      this.filterBy.partyDetails.fee = 100;
+      this.filterBy.selectedLocations = [];
+      this.filterBy.selectedTypes = [];
+      this.setSortBy();
     }
   },
   async created() {

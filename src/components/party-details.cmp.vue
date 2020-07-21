@@ -11,19 +11,22 @@
         <i class="fas fa-heart"></i>
         {{party.likes}}
       </button>
-      <button>
+      <!-- <button>
         <i class="far fa-star"></i>
         Interested
-      </button>
+      </button>-->
       <button>
         <i class="far fa-check-circle"></i>
+        {{party.extraData.members.length}}
         Going
       </button>
       <button>
         <i class="fas fa-directions"></i>
+        Navigate
       </button>
       <button>
         <i class="fas fa-share"></i>
+        Share
       </button>
     </div>
 
