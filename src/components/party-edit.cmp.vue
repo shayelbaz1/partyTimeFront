@@ -30,7 +30,6 @@
             ></GmapAutocomplete>
           </div>
           <br />
-
           <div class="flex wrap date-btns-box">
             <div class="date-box outline-box">
               <p class="border-title date">Party Start Time</p>
