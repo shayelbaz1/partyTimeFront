@@ -154,7 +154,7 @@ export default {
       locationNames: [],
       partyTypes: [],
       filterBy: {
-        startTime: "All",
+        startTime: "",
         selectedLocations: [],
         selectedTypes: [],
         sortBy: "startDate",
