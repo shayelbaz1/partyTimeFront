@@ -18,7 +18,8 @@
           <b-nav-item @click="routeTo('/login')">Login</b-nav-item>
           <b-nav-item @click="routeTo('/signup')">Signup</b-nav-item>
           <b-nav-item @click="routeTo('/reviews')">Reviews</b-nav-item>
-          <b-nav-item @click="routeTo('/chat')">Chat</b-nav-item>
+          <b-nav-item @click="routeTo('/profile')">Profile</b-nav-item>
+          <!-- <b-nav-item @click="routeTo('/chat')">Chat</b-nav-item> -->
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">

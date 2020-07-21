@@ -45,9 +45,9 @@ import GeocodeService from "../services/GeocodeService";
 
 export default {
   name: "party-map",
+  props: ["partyProp"],
   data() {
     return {
-      // partys: [],
       zoom: 12,
       party: null,
       place: {
@@ -67,7 +67,6 @@ export default {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        // this.center = currentLocation;
         this.place.pos = currentLocation;
         this.getCityNameByLatLng(currentLocation);
       });
@@ -75,7 +74,11 @@ export default {
     async getCityNameByLatLng(currentLocation) {
       const cityName = await GeocodeService.getCityByLatLng(currentLocation);
       this.place.name = cityName;
-      this.$el.querySelector("input.pac-target-input").value = this.place.name;
+      if (this.place.name) {
+        this.$el.querySelector(
+          "input.pac-target-input"
+        ).value = this.place.name;
+      }
     },
     togglePreview(party) {
       this.isOpenPrev = true;
@@ -87,7 +90,6 @@ export default {
       this.place.pos.lng = place.geometry.location.lng();
     },
     selectTxt() {
-      // this.$el.querySelector("input.pac-target-input").value = "";
       this.$el.querySelector("input.pac-target-input").select();
     }
   },
@@ -96,16 +98,19 @@ export default {
       return this.$store.getters.partys;
     }
   },
-  async created() {
-    // const partys = await this.$store.dispatch({
-    //   type: "loadPartys"
-    // });
-    // console.log("this.party:", this.party);
-    // this.partys = partys;
-    this.party = this.partys[0];
-  },
+  async created() {},
   mounted() {
-    this.geoLocation();
+    // Set place to current location
+    if (this.partyProp) {
+      const location = this.partyProp.location;
+      this.place.name = location.name;
+      this.place.pos.lat = location.lat;
+      this.place.pos.lng = location.lng;
+      this.party = this.partyProp;
+    } else {
+      this.geoLocation();
+      this.party = this.partys[0];
+    }
   }
 };
 </script>

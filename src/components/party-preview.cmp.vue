@@ -59,18 +59,15 @@ export default {
   },
   methods: {
     signalDelete(partyId) {
-      // console.log(partyId);
       this.$emit("deleteParty", partyId);
     },
     signalAddLike(party) {
-      // console.log(partyId);
       this.$emit("addLike", party);
     },
     routeToEdit(id) {
       this.$router.replace("party-app/edit/" + id);
     },
     routeToDetails(id) {
-      console.log("id:", id);
       this.$router.push("party-app/details/" + id);
     },
     remove(id) {

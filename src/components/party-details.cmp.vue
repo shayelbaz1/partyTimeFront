@@ -116,9 +116,10 @@
       </div>
 
       <div class="map-members-container flex column-layout">
-        <div class="map-container">
-          <img src="../assets/map.png" alt srcset />
-        </div>
+        <!-- <div class="map-container"> -->
+        <!-- <img src="../assets/map.png" alt srcset /> -->
+        <party-map :partyProp="party"></party-map>
+        <!-- </div> -->
         <div class="members">
           <p>Going</p>
           <div class="members-img-container">
@@ -134,7 +135,7 @@
     </div>
 
     <!-- <review-list v-if="party"></review-list> -->
-    <!-- <chat-page v-if="party" :party="party"></chat-page> -->
+    <chat-page v-if="party" :party="party"></chat-page>
   </section>
 </template>
 >
@@ -144,13 +145,15 @@ import PartyService from "@/services/PartyService.js";
 import reviewList from "@/components/review-list.vue";
 import ChatPage from "@/views/ChatPage.vue";
 import imgBlur from "./img-blur.cmp.vue";
+import partyMap from "./party-map.cmp.vue";
 
 export default {
   name: "party-details",
   components: {
     reviewList,
     ChatPage,
-    imgBlur
+    imgBlur,
+    partyMap
   },
   data() {
     return {
@@ -159,7 +162,7 @@ export default {
   },
   computed: {
     fee() {
-      if (this.party.fee === "0") {
+      if (this.party.fee === 0) {
         return "FREE";
       } else {
         return this.party.fee + "$";
