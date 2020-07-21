@@ -93,8 +93,9 @@ export default {
   },
   async created() {
     const partys = await this.$store.dispatch({
-      type: "getPartyByLocation"
+      type: "loadPartys"
     });
+    console.log("this.party:", this.party);
     this.partys = partys;
     this.party = partys[0];
   },

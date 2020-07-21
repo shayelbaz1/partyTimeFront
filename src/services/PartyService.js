@@ -8,7 +8,6 @@ export default {
   save,
   getEmptyParty,
   addLike,
-  getPartyByLocation,
   getMusicPartyTypes,
   getPartyLocations
 }
@@ -138,6 +137,7 @@ function getMusicPartyTypes() {
       'House Party',
       'Jamming',
       'Karaoke',
+      'Sing',
       'Late Night',
       'Live Concert',
       'Open Mic',
@@ -147,9 +147,4 @@ function getMusicPartyTypes() {
     ],
   }
   return types
-}
-
-async function getPartyByLocation() {
-  const parties = await query()
-  return parties
 }
