@@ -16,15 +16,8 @@ export default {
 // CREATE READ UPDATE DELETE
 
 function query(filterBy) {
-  console.log(filterBy);
- 
   // With out 
   const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}&locations=${JSON.stringify(filterBy.selectedLocations)}&partyTypes=${JSON.stringify(filterBy.selectedTypes)}&startTime=${filterBy.startTime}`;
-<<<<<<< HEAD
-  // const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}&locations=${JSON.stringify(filterBy.selectedLocations)}&partyTypes=${JSON.stringify(filterBy.selectedTypes)}&startTime=${filterBy.startTime}`;
-=======
->>>>>>> 120a629b2e1da391098ba65f2367a51c09e16145
-  console.log(query);
   return HttpService.get(`party/${query}`)
 }
 
