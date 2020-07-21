@@ -1,5 +1,5 @@
 <template>
-  <section v-if="party">
+  <section v-if="party" class="party-details">
     <img-blur :imgUrl="party.imgUrl"></img-blur>
 
     <div class="event-buttons-container flex">
