@@ -14,21 +14,33 @@
         background-color: #97979749;
         padding: 48px;
         margin-top: 228px;
+        border-radius: 10px;
         h2 {
             
             color: white;
             font-size: 1.7rem;
             // margin: 30px;
 
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-family: sans-serif;
         }
-
+        .login-input-container{
+display: flex;
+            .login-icon{
+                border-radius: 10px 0 0 10px;
+                color: black;
+                font-size: 22px;
+                margin-left: 9.5px;
+                padding: 13px;
+                align-self: center;
+                background-color: #ffc312;
+            }
+        }
         input {
             font-family: "Actor", sans-serif;
             padding: 0.8rem;
             background-color: #303030;
-            border-radius: 22px;
-            margin-bottom: 20px;
+            // border-radius: 22px;
+            // margin-bottom: 20px;
             border: 0;
             color: white;
             &:focus{
@@ -42,12 +54,11 @@
 
             button {
                 border: 0;
-                background-color: #303030;
+                border-radius: 3px;
                 padding: 12px;
-                border-radius: 26px;
-                cursor: pointer;
-                color: white;
-                font-size: 1.1rem;
+                background-color: #ffc312;
+                color: black;
+                font-size: 1.2rem;
             }
         }
     }
