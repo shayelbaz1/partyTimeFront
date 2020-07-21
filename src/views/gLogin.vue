@@ -1,11 +1,12 @@
 <template>
   <section>
     <g-signin-button
+    
       :params="googleSignInParams"
       @success="onSignInSuccess"
       @error="onSignInError"
-    >Sign in with Google</g-signin-button>
-    <a href="#" @click="signOut">Sign out</a>
+    ><i class="fa fa-google" aria-hidden="true"></i></g-signin-button>
+    <a href="#" @click.stop="signOut">Sign out</a>
     <!-- <a href="#" @click.prevent="signOut">Sign out</a> -->
   </section>
 </template>
@@ -21,7 +22,7 @@ export default {
 
       googleSignInParams: {
         client_id:
-          "533525570890-dgaqicqmn6qajlpa1h7k8b1pjjd7fe2d.apps.googleusercontent.com"
+          "533525570890-ik134ku5d86nd70i76dsjfcd7is3uag4.apps.googleusercontent.com"
       },
       currRoute: this.$route.name
     };
@@ -79,10 +80,10 @@ export default {
 .g-signin-button {
   /* This is where you control how the button looks. Be creative! */
   display: inline-block;
-  padding: 4px 8px;
-  border-radius: 3px;
-  background-color: #3c82f7;
+  font-size: 1.7rem;
+  padding: 8px 15px;
+  border-radius: 50px;
+  background-color: #dd4b39;
   color: #fff;
-  box-shadow: 0 3px 0 #0f69ff;
 }
 </style> 
