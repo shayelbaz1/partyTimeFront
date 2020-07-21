@@ -134,7 +134,7 @@
     </el-select>
 
     <div class="filter-btns">
-      <button class="btn reset">RESET</button>
+      <button @click="resetFilter" class="btn reset">RESET</button>
     </div>
   </section>
 </template>
@@ -203,6 +203,12 @@ export default {
         filterBy: JSON.parse(JSON.stringify(this.filterBy))
       });
       this.$store.dispatch("loadPartys");
+    },
+
+    resetFilter(){
+      this.filterBy.partyDetails.fee = 100
+      this.filterBy.selectedLocations = []
+      this.filterBy.selectedTypes = []
     }
   },
   async created() {
