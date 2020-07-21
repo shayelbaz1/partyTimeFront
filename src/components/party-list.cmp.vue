@@ -1,7 +1,8 @@
 <template>
   <section class="party-list">
-    <button @click="routeToEdit" class="add">
-      <i class="fa fa-plus my-float"></i>
+    <button @click="toggleFilter" class="add filter">
+      <!-- <i class="fa fa-plus my-float"></i> -->
+      <i class="fas fa-search my-float"></i>
     </button>
 
     <div class="party-list-container flex column-layout">
@@ -18,6 +19,7 @@
 
 <script>
 import partyPreview from "../components/party-preview.cmp.vue";
+import EventBus from "../services/EventBus";
 
 export default {
   name: "party-list",
@@ -35,6 +37,10 @@ export default {
     },
     routeToEdit() {
       this.$router.replace("party-app/edit/");
+    },
+
+    toggleFilter() {
+      EventBus.$emit("toggleFilter");
     }
   },
   components: {

@@ -1,7 +1,7 @@
 <template>
   <section>
     <b-navbar toggleable="lg" type="dark" class="party-nav">
-      <b-navbar-brand class="nav-logo" href="#" @click="routeTo('/welcome')">
+      <b-navbar-brand class="nav-logo" href="#" @click="routeTo('/')">
         <img src="../assets/site-logo.jpeg" alt="Kitten" />
         PARTY TIME
       </b-navbar-brand>
@@ -13,12 +13,13 @@
           <b-nav-item @click="toggleFilter" class="filter">
             <i class="fas fa-search"></i>
           </b-nav-item>
-          <b-nav-item @click="routeTo('/')">Explore</b-nav-item>
-          <b-nav-item @click="routeTo('/map')">Map</b-nav-item>
+          <b-nav-item @click="routeTo('/party-app')">Explore</b-nav-item>
+          <!-- <b-nav-item @click="routeTo('/map')">Map</b-nav-item> -->
           <b-nav-item @click="routeTo('/login')">Login</b-nav-item>
           <b-nav-item @click="routeTo('/signup')">Signup</b-nav-item>
           <b-nav-item @click="routeTo('/reviews')">Reviews</b-nav-item>
           <b-nav-item @click="routeTo('/profile')">Profile</b-nav-item>
+          <b-nav-item @click="routeTo('/party-app/edit')">Create +</b-nav-item>
           <!-- <b-nav-item @click="routeTo('/chat')">Chat</b-nav-item> -->
         </b-navbar-nav>
 
@@ -48,12 +49,7 @@ export default {
   components: {
     mapSearch
   },
-  data() {
-    return {
-      activeIndex: "1",
-      activeIndex2: "1"
-    };
-  },
+  data() {},
   methods: {
     routeTo(page) {
       this.$router.push(page);
@@ -112,6 +108,15 @@ export default {
   img {
     width: 27px;
     padding-bottom: 4px;
+  }
+}
+.filter {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 900px) {
+  .filter {
+    visibility: visible;
   }
 }
 </style>
