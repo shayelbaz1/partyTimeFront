@@ -127,8 +127,8 @@ export default {
       height: 100%;
       .img-backround {
         border-radius: 7px;
-        opacity: 0.7;
-        filter: blur(8px);
+        opacity: 0.3;
+        filter: blur(15px);
         // z-index: 1;
         position: absolute;
       }
