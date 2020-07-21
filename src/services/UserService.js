@@ -27,12 +27,11 @@ async function login(creds) {
     //TODO: FIND SPECIFIC USER BY USERNAME AND Pssword
     //todo: if found return user
 
-    console.log(creds);
     const user = findUserByCreds(creds.username)
     return _handleLogin(user)
 }
+
 async function signup(creds) {
-    console.log(creds);
     const user = findUserByCreds(creds.username);
 
     if (user.length) return user;
@@ -43,7 +42,12 @@ async function signup(creds) {
 
 async function findUserByCreds(creds) {
     const user = await HttpService.get(`user?userName=${creds}`)
-    return user
+    try {
+        if (creds === user) return user
+
+    } catch (err) {
+        console.log(user, err);
+    }
 }
 
 async function logout() {
@@ -55,7 +59,6 @@ function getUsers() {
 }
 
 function _handleLogin(user) {
-    console.log('user:', user)
     sessionStorage.setItem('user', JSON.stringify(user))
     return user;
 }

@@ -5,6 +5,7 @@
       @success="onSignInSuccess"
       @error="onSignInError"
     >Sign in with Google</g-signin-button>
+    <a href="#" @click="signOut">Sign out</a>
     <!-- <a href="#" @click.prevent="signOut">Sign out</a> -->
   </section>
 </template>
@@ -26,6 +27,12 @@ export default {
     };
   },
   methods: {
+    signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  },
     onSignInSuccess(googleUser) {
       // `googleUser` is the GoogleUser object that represents the just-signed-in user.
       // See https://developers.google.com/identity/sign-in/web/reference#users
