@@ -49,7 +49,6 @@ export default {
   components: {
     mapSearch
   },
-  data() {},
   methods: {
     routeTo(page) {
       this.$router.push(page);
