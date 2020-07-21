@@ -3,7 +3,7 @@
     <div>
       <form>
         <h2>Login</h2>
-        <input type="text" v-model="creds.username" placeholder="Email" />
+        <input type="text" v-model="creds.email" placeholder="Enter Your Email" />
         <br />
         <input type="password" v-model="creds.password" placeholder="Password" />
         <br />
@@ -40,16 +40,14 @@ export default {
   },
   methods: {
     async doLogin(googleCreds) {
-      if (googleCreds.constructor.name !== 'yw') {
+      if (googleCreds.constructor.name !== "yw") {
         const currUser = await this.$store.dispatch({
           type: "login",
           creds: this.creds
         });
         if (currUser.length) this.$router.push("/");
         if (!currUser.length) return false;
-
-
-      } else if (googleCreds.constructor.name === 'yw') {
+      } else if (googleCreds.constructor.name === "yw") {
         this.creds.username = googleCreds.Bd;
         this.creds.email = googleCreds.Au;
         this.creds.imgURL = googleCreds.MK;

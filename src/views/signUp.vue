@@ -3,7 +3,9 @@
     <div>
       <form>
         <h2>Signup</h2>
-        <input type="text" v-model="creds.username" placeholder="Email" />
+        <input type="text" v-model="creds.email" placeholder="Enter Your Email" />
+        <br />
+        <input type="text" v-model="creds.username" placeholder="Enter Your Username" />
         <br />
         <input type="password" v-model="creds.password" placeholder="Password" />
         <br />
@@ -12,7 +14,7 @@
           <!-- <img src="../assets/login.jpg" alt srcset /> -->
         </div>
         <br />
-        <googleLogin @doLogin="doSignup"></googleLogin>
+        <googleLogin @doSignup="doSignup"></googleLogin>
       </form>
     </div>
   </div>
@@ -27,7 +29,10 @@ export default {
     return {
       creds: {
         username: "",
-        password: ""
+        password: "",
+        email: '',
+        imgURL: '',
+        isGoogle: false,
       }
     };
   },
@@ -37,6 +42,7 @@ export default {
   },
   methods: {
     async doSignup(googleCreds) {
+      console.log(googleCreds);
       if (googleCreds.constructor.name !== 'yw') {
         const currUser = await this.$store.dispatch({
           type: "signup",
@@ -48,6 +54,7 @@ export default {
         this.creds.username = googleCreds.Bd;
         this.creds.email = googleCreds.Au;
         this.creds.imgURL = googleCreds.MK;
+        this.creds.isGoogle = true
         const currUser = await this.$store.dispatch({
           type: "signup",
           creds: this.creds
