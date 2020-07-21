@@ -18,7 +18,7 @@
           <button @click.prevent="doLogin">Login</button>
         </div>
         <!-- <br />
-        <googleLogin @doLogin="doLogin"></googleLogin> -->
+        <googleLogin @doLogin="doLogin"></googleLogin>-->
         <!-- <img src="../assets/login.jpg" alt srcset /> -->
       </form>
     </div>
@@ -35,8 +35,7 @@ export default {
       creds: {
         username: "",
         password: "",
-        email: "",
-        imgURL: ""
+        email: ""
       }
     };
   },

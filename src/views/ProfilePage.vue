@@ -2,6 +2,7 @@
   <section>
     <h1>Profile Page</h1>
     <el-card class="box-card">
+      <img :src="user.imgURL" alt srcset />
       <h3 class="text item">{{user.username}}</h3>
       <div class="text item">email: {{user.email}}</div>
       <div class="text item">isAdmin: {{user.isAdmin}}</div>
@@ -40,7 +41,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss"scoped>
 section {
   align-items: center;
   display: flex;
@@ -60,5 +61,8 @@ section {
   align-items: center;
   display: flex;
   flex-direction: column;
+  img {
+    border-radius: 50%;
+  }
 }
 </style>

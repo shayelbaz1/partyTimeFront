@@ -30,9 +30,9 @@ export default {
       creds: {
         username: "",
         password: "",
-        email: '',
-        imgURL: '',
-        isGoogle: false,
+        email: "",
+        imgURL: "https://picsum.photos/200",
+        isGoogle: false
       }
     };
   },
@@ -43,18 +43,18 @@ export default {
   methods: {
     async doSignup(googleCreds) {
       console.log(googleCreds);
-      if (googleCreds.constructor.name !== 'yw') {
+      if (googleCreds.constructor.name !== "yw") {
         const currUser = await this.$store.dispatch({
           type: "signup",
           creds: this.creds
         });
         if (currUser) this.$router.push("/");
         if (!currUser) return false;
-      } else if (googleCreds.constructor.name === 'yw') {
+      } else if (googleCreds.constructor.name === "yw") {
         this.creds.username = googleCreds.Bd;
         this.creds.email = googleCreds.Au;
         this.creds.imgURL = googleCreds.MK;
-        this.creds.isGoogle = true
+        this.creds.isGoogle = true;
         const currUser = await this.$store.dispatch({
           type: "signup",
           creds: this.creds

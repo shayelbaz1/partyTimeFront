@@ -58,6 +58,7 @@ export default {
     },
     signOut() {
       this.$store.dispatch("logout");
+      this.routeTo("/party-app");
     }
   }
 };
