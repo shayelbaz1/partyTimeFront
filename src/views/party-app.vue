@@ -4,24 +4,14 @@
     <!-- <welcome-header></welcome-header> -->
     <hero-img></hero-img>
     <div class="flex">
-      <party-filter
-        v-if="partys"
-        :partys="partys"
-        :class="{ show: isShowFilter }"
-      ></party-filter>
+      <party-filter v-if="partys" :partys="partys" :class="{ show: isShowFilter }"></party-filter>
       <div class="flex column-layout">
         <div class="display-btns flex">
-          <button
-            @click="displayBy('list')"
-            :class="{ active: currPartiesDisplay === 'list' }"
-          >
+          <button @click="displayBy('list')" :class="{ active: currPartiesDisplay === 'list' }">
             <i class="fas fa-list"></i>
             List
           </button>
-          <button
-            @click="displayBy('map')"
-            :class="{ active: currPartiesDisplay === 'map' }"
-          >
+          <button @click="displayBy('map')" :class="{ active: currPartiesDisplay === 'map' }">
             <i class="fas fa-map-marker-alt"></i>
             Map
           </button>
@@ -54,60 +44,60 @@
 </template>
 
 <script>
-import partyList from '@/components/party-list.cmp.vue'
-import partyMap from '@/components/party-map.cmp.vue'
-import partyFilter from '../components/party-filter.vue'
-import heroImg from '../components/hero-img.cmp.vue'
-import EventBus from '../services/EventBus'
-import welcomeHeader from '../components/welcome-header.cmp.vue'
+import partyList from "@/components/party-list.cmp.vue";
+import partyMap from "@/components/party-map.cmp.vue";
+import partyFilter from "../components/party-filter.vue";
+import heroImg from "../components/hero-img.cmp.vue";
+import EventBus from "../services/EventBus";
+import welcomeHeader from "../components/welcome-header.cmp.vue";
 
 export default {
-  name: 'party-app',
+  name: "party-app",
 
   components: {
     partyList,
     partyMap,
     partyFilter,
     heroImg,
-    welcomeHeader,
+    welcomeHeader
   },
   data() {
     return {
-      currPartiesDisplay: 'list',
-      isShowFilter: false,
-    }
+      currPartiesDisplay: "list",
+      isShowFilter: false
+    };
   },
   methods: {
     displayBy(displayBy) {
-      this.currPartiesDisplay = displayBy
+      this.currPartiesDisplay = displayBy;
     },
     deleteParty(partyId) {
-      this.$store.dispatch({ type: 'deleteParty', partyId })
+      this.$store.dispatch({ type: "deleteParty", partyId });
     },
     addLike(party) {
-      this.$store.dispatch({ type: 'addLike', party })
+      this.$store.dispatch({ type: "addLike", party });
     },
     toggleFilter() {
-      this.isShowFilter = !this.isShowFilter
+      this.isShowFilter = !this.isShowFilter;
     },
     moveToDetails(id) {
-      this.$router.push('party-app/details/' + id)
-    },
+      this.$router.push("party-app/details/" + id);
+    }
   },
   computed: {
     isProcessing() {
-      return this.$store.getters.isProcessing
+      return this.$store.getters.isProcessing;
     },
     partys() {
-      let partys = this.$store.getters.partys
-      return partys
-    },
+      let partys = this.$store.getters.partys;
+      return partys;
+    }
   },
   created() {
-    this.$store.dispatch({ type: 'loadPartys' })
-    EventBus.$on('toggleFilter', this.toggleFilter)
-  },
-}
+    this.$store.dispatch({ type: "loadPartys" });
+    EventBus.$on("toggleFilter", this.toggleFilter);
+  }
+};
 </script>
 
 <style lang="scss" scoped>

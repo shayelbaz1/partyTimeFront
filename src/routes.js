@@ -19,11 +19,6 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: partyApp
-  },
-  {
-    path: "/welcome",
     name: "Welcome",
     component: welcomePage
   },
