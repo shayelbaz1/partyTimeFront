@@ -7,7 +7,7 @@ export default {
     filterBy: {
       selectedLocations: [],
       selectedTypes: [],
-      sortBy: '',
+      sortBy: 'startDate',
       partyDetails: {
         distance: 0,
         fee: 100,
