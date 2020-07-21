@@ -19,7 +19,7 @@
     &.fees {
       margin-top: 10px;
     }
-    &.locality {
+    &.time {
       margin-top: 10px;
     }
   }
@@ -69,7 +69,6 @@
   .nav-ranges-container {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
     .ranges-lable-container {
       display: flex;
       justify-content: space-around;
@@ -185,6 +184,14 @@
       background-color: $color-primary-red;
     }
   }
+}
+.el-select .el-input__inner {
+  color: white;
+}
+
+.el-select .el-input__inner:focus {
+  border-color: $clr1;
+  color: white;
 }
 
 @media screen and (max-width: 900px) {

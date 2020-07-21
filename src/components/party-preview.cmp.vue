@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     fee() {
-      if (this.party.fee === "0") {
+      if (this.party.fee === 0) {
         return "FREE";
       } else {
         return "$" + this.party.fee;
