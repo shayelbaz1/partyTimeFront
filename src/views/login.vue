@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     async doLogin(googleCreds) {
-      if (!googleCreds) {
+      if (googleCreds.constructor.name !== 'yw') {
         const currUser = await this.$store.dispatch({
           type: "login",
           creds: this.creds
@@ -49,7 +49,7 @@ export default {
         if (!currUser.length) return false;
 
 
-      } else if (googleCreds) {
+      } else if (googleCreds.constructor.name === 'yw') {
         this.creds.username = googleCreds.Bd;
         this.creds.email = googleCreds.Au;
         this.creds.imgURL = googleCreds.MK;

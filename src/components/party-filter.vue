@@ -3,11 +3,11 @@
     <div class="nav-sort-container">
       <div class="header justify-center">
         <p>Sort By</p>
-        <p>{{filterTitle}}</p>
+        <p>{{ filterTitle }}</p>
       </div>
       <div class="sort-buttons-container">
         <button
-          :class="{active: filterTitle==='Members'}"
+          :class="{ active: filterTitle === 'Members' }"
           title="Members"
           @click="setActiveSort('extraData.membersCnt')"
         >
@@ -23,21 +23,35 @@
         </button>
 
         <button
-          :class="{active: filterTitle==='Likes'}"
+          :class="{ active: filterTitle === 'Likes' }"
           title="sort by party likes"
           @click="setActiveSort('likes')"
         >
           <i class="fa fa-heart"></i>
-          <input hidden type="radio" name="sort" id="like" value="like" v-model="filterBy.sortBy" />
+          <input
+            hidden
+            type="radio"
+            name="sort"
+            id="like"
+            value="like"
+            v-model="filterBy.sortBy"
+          />
         </button>
 
         <button
-          :class="{active: filterTitle==='Price'}"
+          :class="{ active: filterTitle === 'Price' }"
           title="Price"
           @click="setActiveSort('fee')"
         >
           <i class="fa fa-dollar-sign"></i>
-          <input hidden type="radio" name="sort" id="price" value="price" v-model="filterBy.sortBy" />
+          <input
+            hidden
+            type="radio"
+            name="sort"
+            id="price"
+            value="price"
+            v-model="filterBy.sortBy"
+          />
         </button>
       </div>
     </div>
@@ -47,7 +61,7 @@
     <div class="nav-ranges-container">
       <div class="header">
         <p>Distance</p>
-        <p>Less then {{filterBy.partyDetails.distance}} km</p>
+        <p>Less then {{ filterBy.partyDetails.distance }} km</p>
       </div>
       <div class="slidecontainer">
         <el-slider v-model="filterBy.partyDetails.distance"></el-slider>
@@ -55,10 +69,13 @@
       <div class="hr"></div>
       <div class="header fees">
         <p>Entry Fees</p>
-        <p>Less then {{filterBy.partyDetails.fee}}$</p>
+        <p>Less then {{ filterBy.partyDetails.fee }}$</p>
       </div>
       <div class="slidecontainer">
-        <el-slider v-model="filterBy.partyDetails.fee" @change="setSortBy"></el-slider>
+        <el-slider
+          v-model="filterBy.partyDetails.fee"
+          @change="setSortBy"
+        ></el-slider>
       </div>
     </div>
 
@@ -66,7 +83,7 @@
     <!-- Locality -->
     <div class="header locality">
       <p>Locality</p>
-      <p>{{filterBy.selectedLocations.length}}/{{locationNames.length}}</p>
+      <p>{{ filterBy.selectedLocations.length }}/{{ locationNames.length }}</p>
     </div>
     <el-select
       v-model="filterBy.selectedLocations"
@@ -77,7 +94,12 @@
       placeholder="Filtar Locations"
       @change="setSortBy"
     >
-      <el-option v-for="(name,idx) in locaionNamesArray" :key="idx" :label="name" :value="name"></el-option>
+      <el-option
+        v-for="(name, idx) in locationNames"
+        :key="idx"
+        :label="name"
+        :value="name"
+      ></el-option>
     </el-select>
     <!-- hr  -->
     <div class="hr locality"></div>
@@ -85,7 +107,7 @@
 
     <div class="header types">
       <p>Party Types</p>
-      <p>{{filterBy.selectedTypes.length}}/{{partyTypes.length}}</p>
+      <p>{{ filterBy.selectedTypes.length }}/{{ partyTypes.length }}</p>
     </div>
     <el-select
       v-model="filterBy.selectedTypes"
@@ -96,7 +118,12 @@
       placeholder="Party Types"
       @change="setSortBy"
     >
-      <el-option v-for="(type,idx) in partyTypes" :key="idx" :label="type" :value="type"></el-option>
+      <el-option
+        v-for="(type, idx) in partyTypes"
+        :key="idx"
+        :label="type"
+        :value="type"
+      ></el-option>
     </el-select>
 
     <div class="filter-btns">
@@ -106,13 +133,13 @@
 </template>
 
 <script>
-import PartyService from "../services/PartyService.js";
+import PartyService from '../services/PartyService.js'
 export default {
-  name: "party-filter",
+  name: 'party-filter',
   props: {
     partys: {
-      type: Array
-    }
+      type: Array,
+    },
   },
   data() {
     return {
@@ -121,60 +148,55 @@ export default {
       filterBy: {
         selectedLocations: [],
         selectedTypes: [],
-        sortBy: "dist",
+        sortBy: 'dist',
         partyDetails: {
           distance: 50,
           fee: 50,
-          locality: "Israel",
-          musicType: "Rock",
-          partyType: "Rave"
+          locality: 'Israel',
+          musicType: 'Rock',
+          partyType: 'Rave',
         },
         date: {
-          startTime: 3232323
-        }
-      }
-    };
+          startTime: 3232323,
+        },
+      },
+    }
   },
   computed: {
     filterTitle() {
-      if (this.filterBy.sortBy === "likes") {
-        return "Likes";
+      if (this.filterBy.sortBy === 'likes') {
+        return 'Likes'
       }
-      if (this.filterBy.sortBy === "fee") {
-        return "Price";
+      if (this.filterBy.sortBy === 'fee') {
+        return 'Price'
       }
-      if (this.filterBy.sortBy === "extraData.membersCnt") {
-        return "Members";
+      if (this.filterBy.sortBy === 'extraData.membersCnt') {
+        return 'Members'
       }
     },
-    locaionNamesArray() {
-      let locations = this.partys.map(p => p.location.name);
-      let newSet = new Set(locations);
-      let uniqueLocations = Array.from(newSet);
-      this.locationNames = uniqueLocations;
-      return uniqueLocations;
-    }
   },
   methods: {
     setActiveSort(newSort) {
-      this.filterBy.sortBy = newSort;
+      this.filterBy.sortBy = newSort
       this.$store.commit({
-        type: "setFilter",
-        filterBy: JSON.parse(JSON.stringify(this.filterBy))
-      });
-      this.$store.dispatch("loadPartys");
+        type: 'setFilter',
+        filterBy: JSON.parse(JSON.stringify(this.filterBy)),
+      })
+      this.$store.dispatch('loadPartys')
     },
 
     setSortBy() {
       this.$store.commit({
-        type: "setFilter",
-        filterBy: JSON.parse(JSON.stringify(this.filterBy))
-      });
-      this.$store.dispatch("loadPartys");
-    }
+        type: 'setFilter',
+        filterBy: JSON.parse(JSON.stringify(this.filterBy)),
+      })
+      this.$store.dispatch('loadPartys')
+    },
   },
-  created() {
-    this.partyTypes = PartyService.getMusicPartyTypes().partyTypes;
-  }
-};
+  async created() {
+    let locations = await this.$store.dispatch({type: "getPartyLocations"})
+    this.locationNames = locations
+    this.partyTypes = PartyService.getMusicPartyTypes().partyTypes
+  },
+}
 </script>
