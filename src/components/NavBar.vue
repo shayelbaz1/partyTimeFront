@@ -110,11 +110,13 @@ export default {
   }
 }
 .filter {
+  width: 0;
   visibility: hidden;
 }
 
 @media screen and (max-width: 900px) {
   .filter {
+    width: 100%;
     visibility: visible;
   }
 }
