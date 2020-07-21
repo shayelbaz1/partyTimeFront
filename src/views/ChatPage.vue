@@ -223,6 +223,7 @@ export default {
       border: none;
       border-radius: 50px;
       outline: none;
+      width: 100%;
     }
     .btn {
       background-color: white;

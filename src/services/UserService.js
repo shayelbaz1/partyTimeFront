@@ -23,31 +23,15 @@ function update(user) {
 }
 
 async function login(creds) {
-    //TODO: GET ALL USERS
-    //TODO: FIND SPECIFIC USER BY USERNAME AND Pssword
-    //todo: if found return user
-
-    const user = findUserByCreds(creds.username)
+    console.log(creds);
+    const user = await HttpService.post('auth/login', creds)
     return _handleLogin(user)
 }
 
 async function signup(creds) {
-    const user = findUserByCreds(creds.username);
-
-    if (user.length) return user;
-    if (!user.length) return await HttpService.post('user/', creds);
-
+    console.log('user service', creds);
+    const user = await HttpService.post('auth/signup', creds)
     return _handleLogin(user)
-}
-
-async function findUserByCreds(creds) {
-    const user = await HttpService.get(`user?userName=${creds}`)
-    try {
-        if (creds === user) return user
-
-    } catch (err) {
-        console.log(user, err);
-    }
 }
 
 async function logout() {
