@@ -13,7 +13,7 @@
           <p>{{party.likes}}</p>
         </div>
 
-        <div>
+        <div class="preview-party-name">
           <h1>{{party.name}}</h1>
           <p>{{party.location.name}}</p>
         </div>
@@ -144,6 +144,9 @@ export default {
       width: 100%;
       padding-left: 10px;
       padding-bottom: 10px;
+      .preview-party-name {
+        padding-right: 53px;
+      }
       h1 {
         margin: 0px;
         margin-top: 20px;
