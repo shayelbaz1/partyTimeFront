@@ -95,6 +95,9 @@
         border: 1px solid #000000;
         background-color: $clr1;
       }
+      .el-slider__button-wrapper {
+        z-index: 0;
+      }
     }
   }
   select {
@@ -145,6 +148,22 @@
   border: 1px solid $clr1;
   border-radius: 7px;
   background-color: #000;
+  .el-select-dropdown__item {
+    color: white;
+    &:hover {
+      background-color: #8e0000 !important;
+    }
+    &.selected {
+      color: rgb(255, 255, 255) !important;
+      background-color: #8e0000 !important;
+    }
+  }
+}
+.el-select-dropdown__item.hover {
+  background-color: #8e0000;
+}
+.main-filter-container .el-tag.el-tag--info {
+  border: none;
 }
 
 .filter-btns {

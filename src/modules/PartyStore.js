@@ -37,7 +37,6 @@ export default {
   },
   mutations: {
     setPlace(state, {place}) {
-        console.log('place:', place)
         state.place = place
     },  
     setFilter(state, { filterBy }) {
@@ -106,6 +105,13 @@ export default {
 
     getPartyByLocation({ commit }) {
       return PartyService.getPartyByLocation().then((locations) => {
+        console.log(locations)
+        return locations
+      })
+    },
+
+    getPartyLocations({ commit }) {
+      return PartyService.getPartyLocations().then((locations) => {
         console.log(locations)
         return locations
       })

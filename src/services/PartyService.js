@@ -10,18 +10,23 @@ export default {
   addLike,
   getPartyByLocation,
   getMusicPartyTypes,
+  getPartyLocations
 }
 
 // CRUD
 // CREATE READ UPDATE DELETE
 
 function query(filterBy) {
-  //console.log(filterBy);
-  const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}`;
-  // const query = ''
+  console.log(filterBy);
+ 
+  const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}&locations=${JSON.stringify(filterBy.selectedLocations)}&partyTypes=${JSON.stringify(filterBy.selectedTypes)}`;
   console.log(query);
   return HttpService.get(`party/${query}`)
-  // return HttpService.get(`party/`)
+}
+
+function getPartyLocations(){
+  console.log('im here');
+  return HttpService.get(`party/locations`)
 }
 
 //TODO:REFACTOR CODE
