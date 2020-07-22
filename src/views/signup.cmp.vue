@@ -1,20 +1,29 @@
 <template>
-  <div class="signup-page">
+  <div class="login-page">
     <div>
       <form>
-        <h2>Signup</h2>
-        <input type="text" v-model="creds.email" placeholder="Enter Your Email" />
-        <br />
-        <input type="text" v-model="creds.username" placeholder="Enter Your Username" />
-        <br />
-        <input type="password" v-model="creds.password" placeholder="Password" />
-        <br />
-        <div class="signup-buttons-container">
-          <button @click.prevent="doSignup">Signup</button>
-          <!-- <img src="../assets/login.jpg" alt srcset /> -->
+        <h2>Sign up</h2>
+        <div class="login-input-container">
+          <i class="fas fa-envelope login-icon" aria-hidden="true"></i>
+          <input type="text" v-model="creds.email" placeholder="Email" />
         </div>
-        <!-- <br /> -->
-        <!-- <googleLogin @doSignup="doSignup"></googleLogin> -->
+        <br />
+        <div class="login-input-container">
+          <i class="fa fa-user login-icon" aria-hidden="true"></i>
+          <input type="text" v-model="creds.username" placeholder="Username" />
+        </div>
+        <br />
+        <div class="login-input-container">
+          <i class="fa fa-lock login-icon" aria-hidden="true"></i>
+          <input type="password" v-model="creds.password" placeholder="Password" />
+        </div>
+        <br />
+        <div class="login-buttons-container">
+          <button @click.prevent="doSignup">Login</button>
+        </div>
+        <!-- <br />
+        <googleLogin @doLogin="doLogin"></googleLogin>-->
+        <!-- <img src="../assets/login.jpg" alt srcset /> -->
       </form>
     </div>
   </div>
@@ -36,12 +45,14 @@ export default {
       }
     };
   },
-  computed: {},
-  created() {
-    // console.log("this.loggedinUser", this.loggedinUser);
-  },
   methods: {
-    async doSignup(googleCreds) {
+    doSignup() {
+      const cred = this.creds;
+      if (!cred.email || !cred.password || !cred.username) return;
+      this.$store.dispatch({ type: "signup", creds: cred });
+      this.$router.push("/");
+    },
+    async doSignupGoogle(googleCreds) {
       console.log(googleCreds);
       if (googleCreds.constructor.name !== "yw") {
         const currUser = await this.$store.dispatch({

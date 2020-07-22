@@ -46,9 +46,9 @@ export default {
       this.place.name = cityName;
       // this.$el.querySelector("input.pac-target-input").value = "";
       if (this.place.name) {
-        this.$el.querySelector(
-          "input.pac-target-input"
-        ).value = this.place.name;
+        // TODO Set timeout
+        var el = this.$el.querySelector("input.pac-target-input");
+        el.value = this.place.name;
       }
       this.$store.commit({
         type: "setPlace",

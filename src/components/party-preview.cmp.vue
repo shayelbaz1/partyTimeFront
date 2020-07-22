@@ -68,7 +68,7 @@ export default {
       this.$router.replace("party-app/edit/" + id);
     },
     routeToDetails(id) {
-      this.$router.push("party-app/details/" + id);
+      this.$router.replace("/party-app/details/" + id);
     },
     remove(id) {
       this.$store

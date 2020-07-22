@@ -7,7 +7,7 @@ import Dashboard from "@/views/Dashboard.vue";
 import ProfilePage from "@/views/ProfilePage.vue";
 import partyMap from "./components/party-map.cmp.vue";
 import LoginPage from "@/views/login.vue";
-import signUpPage from "@/views/signUp.vue";
+import signupPage from "@/views/signup.cmp.vue";
 import reviewList from "@/components/review-list.vue";
 import UserPreview from "@/views/UserPreview.vue";
 import ChatPage from "@/views/ChatPage.vue";
@@ -72,7 +72,7 @@ const routes = [
   {
     path: "/signup",
     name: "Signup",
-    component: signUpPage
+    component: signupPage
   },
   {
     path: "/reviews",

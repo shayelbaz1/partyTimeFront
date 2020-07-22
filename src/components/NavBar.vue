@@ -2,7 +2,8 @@
   <section>
     <b-navbar toggleable="lg" type="dark" class="party-nav">
       <b-navbar-brand class="nav-logo" href="#" @click="routeTo('/')">
-        <img src="../assets/site-logo.jpeg" alt="Kitten" />
+        <!-- <img src="../assets/site-logo.jpeg" alt="Kitten" /> -->
+        <img src="../assets/logo.png" alt="logo" style="border-radius:3px" />
         PARTY TIME
       </b-navbar-brand>
 
@@ -15,8 +16,8 @@
           </b-nav-item>
           <b-nav-item @click="routeTo('/party-app')">Explore</b-nav-item>
           <b-nav-item @click="routeTo('/login')">Login</b-nav-item>
-          <b-nav-item @click="routeTo('/signup')">Signup</b-nav-item>
-          <b-nav-item @click="routeTo('/reviews')">Reviews</b-nav-item>
+          <!-- <b-nav-item @click="routeTo('/signup')">Signup</b-nav-item> -->
+          <!-- <b-nav-item @click="routeTo('/reviews')">Reviews</b-nav-item> -->
           <!-- <b-nav-item @click="routeTo('/profile')">Profile</b-nav-item> -->
           <b-nav-item @click="routeTo('/party-app/edit')">Create +</b-nav-item>
           <!-- <b-nav-item @click="routeTo('/map')">Map</b-nav-item> -->
@@ -110,7 +111,8 @@ export default {
 
   img {
     width: 27px;
-    padding-bottom: 4px;
+    // padding-bottom: 4px;
+    margin-bottom: 4px;
   }
 }
 .filter {

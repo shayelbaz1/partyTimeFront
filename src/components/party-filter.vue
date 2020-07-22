@@ -141,6 +141,7 @@
 
 <script>
 import PartyService from "../services/PartyService.js";
+
 export default {
   name: "party-filter",
   props: {
