@@ -3,8 +3,8 @@ import PartyService from '../services/PartyService.js'
 export default {
   state: {
     place:{},
-    isProcessing: false,
     filterBy: {
+      userLocation: null,
       startTime: 'All',
       selectedLocations: [],
       selectedTypes: [],
@@ -37,6 +37,10 @@ export default {
     },
   },
   mutations: {
+    setFilterUserLocation(state, {place}){
+      state.filterBy.userLocation = place
+    }
+    ,
     setPlace(state, {place}) {
         state.place = place
     },  
@@ -104,16 +108,17 @@ export default {
       })
     },
 
-    // async getPartyByLocation({ commit }) {
-    //   const locations =  await PartyService.getPartyByLocation()
-    //     console.log(locations)
-    //     return locations
-    // },
-
     getPartyLocations({ commit }) {
       return PartyService.getPartyLocations().then((locations) => {
         console.log(locations)
         return locations
+      })
+    },
+
+    addPartysDistance({ commit }, { place }) {
+      return PartyService.addPartysDistance(place).then(() => {
+        commit({ type: 'updateParty', party })
+        return party
       })
     },
   },

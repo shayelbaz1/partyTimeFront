@@ -65,9 +65,9 @@
       <div class="header distance">
         <p>Distance</p>
         <p>Less then {{ filterBy.partyDetails.distance }} km</p>
-      </div>
+      </div> 
       <div class="slidecontainer">
-        <el-slider v-model="filterBy.partyDetails.distance"></el-slider>
+        <el-slider @change="setSortBy" v-model="filterBy.partyDetails.distance"></el-slider>
       </div>
       <div class="hr"></div>
       <div class="header fees">
@@ -154,6 +154,7 @@ export default {
       locationNames: [],
       partyTypes: [],
       filterBy: {
+        userLocation: this.$store.getters.place,
         startTime: "",
         selectedLocations: [],
         selectedTypes: [],
@@ -165,9 +166,6 @@ export default {
           musicType: "Rock",
           partyType: "Rave"
         }
-        // date: {
-        //   startTime: 3232323
-        // }
       }
     };
   },
@@ -185,7 +183,7 @@ export default {
       if (this.filterBy.sortBy === "startDate") {
         return "Time";
       }
-    }
+    },
   },
   methods: {
     setActiveSort(newSort) {
@@ -198,6 +196,7 @@ export default {
     },
 
     setSortBy() {
+      console.log(this.filterBy);
       this.$store.commit({
         type: "setFilter",
         filterBy: JSON.parse(JSON.stringify(this.filterBy))

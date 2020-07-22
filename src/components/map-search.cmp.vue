@@ -24,6 +24,7 @@ export default {
       }
     };
   },
+  name: 'map-search',
   components: {
     GoogleMap
   },
@@ -65,7 +66,6 @@ export default {
       });
     },
     selectTxt() {
-      // this.$el.querySelector("input.pac-target-input").value = "";
       this.$el.querySelector("input.pac-target-input").select();
     }
   }

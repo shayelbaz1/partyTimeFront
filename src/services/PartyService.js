@@ -9,15 +9,15 @@ export default {
   getEmptyParty,
   addLike,
   getMusicPartyTypes,
-  getPartyLocations
+  getPartyLocations,
 }
 
 // CRUD
 // CREATE READ UPDATE DELETE
 
-function query(filterBy) {
-  // With out 
-  const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}&locations=${JSON.stringify(filterBy.selectedLocations)}&partyTypes=${JSON.stringify(filterBy.selectedTypes)}&startTime=${filterBy.startTime}`;
+async function query(filterBy) {
+  const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}&locations=${JSON.stringify(filterBy.selectedLocations)}&partyTypes=${JSON.stringify(filterBy.selectedTypes)}&startTime=${filterBy.startTime}&distance=${filterBy.partyDetails.distance}&userLocation=${JSON.stringify(filterBy.userLocation)}`
+  console.log(query);
   return HttpService.get(`party/${query}`)
 }
 

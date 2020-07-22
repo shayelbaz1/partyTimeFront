@@ -10,17 +10,20 @@
       <div class="text-box">
         <div class="heart-box" @click.stop="signalAddLike(party)">
           <i class="fas fa-heart"></i>
-          <p>{{party.likes}}</p>
+          <p>{{ party.likes }}</p>
         </div>
 
         <div class="preview-party-name">
-          <h1>{{party.name}}</h1>
-          <p>{{party.location.name}}</p>
+          <h1>{{ party.name }}</h1>
+          <p>{{ party.location.name }}</p>
         </div>
-        <p>{{party.startDate | moment("from")}} | {{fee}}</p>
-        <p>{{party.startDate | moment("DD/MM/YYYY • HH:mm A")}}</p>
+        <p>{{ party.startDate | moment('from') }} | {{ fee }}</p>
+        <p>{{ party.startDate | moment('DD/MM/YYYY • HH:mm A') }}</p>
+        <p>{{ `${km()} km's away` }}</p>
         <div class="types flex">
-          <p v-for="(type,idx) in party.extraData.partyTypes" :key="idx">{{type}}</p>
+          <p v-for="(type, idx) in party.extraData.partyTypes" :key="idx">
+            {{ type }}
+          </p>
         </div>
 
         <div class="btns-actions-box">
@@ -38,52 +41,58 @@
 </template>
 
 <script>
+import DistanceService from "../../../general-services/Distance.service.js"
 export default {
-  name: "party-preview",
+  name: 'party-preview',
   props: {
     party: {
-      type: Object
-    }
-  },
-  data() {
-    return {};
+      type: Object,
+    },
   },
   computed: {
     fee() {
       if (this.party.fee === 0) {
-        return "FREE";
+        return 'FREE'
       } else {
-        return "$" + this.party.fee;
+        return '$' + this.party.fee
       }
-    }
+    },
   },
   methods: {
+    km(){
+      const userLocation = this.userPlace()
+      const { lat, lng } = userLocation.pos
+      return DistanceService.getDistanceFromLatLonInKm(lat, lng, this.party.location.lat, this.party.location.lng)
+    },
+    userPlace(){
+      return this.$store.getters.place
+    },
     signalDelete(partyId) {
-      this.$emit("deleteParty", partyId);
+      this.$emit('deleteParty', partyId)
     },
     signalAddLike(party) {
-      this.$emit("addLike", party);
+      this.$emit('addLike', party)
     },
     routeToEdit(id) {
-      this.$router.replace("party-app/edit/" + id);
+      this.$router.replace('party-app/edit/' + id)
     },
     routeToDetails(id) {
-      this.$router.push("party-app/details/" + id);
+      this.$router.push('party-app/details/' + id)
     },
     remove(id) {
       this.$store
-        .dispatch({ type: "removeParty", id: id })
+        .dispatch({ type: 'removeParty', id: id })
         .then(() => {
           // eventBus.$emit(SHOW_MSG, {txt: `Deleted`, type: 'success'})
-          console.log("deleted");
+          console.log('deleted')
         })
-        .catch(err => {
-          console.log("ERROR, cannot delete ", id, err);
+        .catch((err) => {
+          console.log('ERROR, cannot delete ', id, err)
           // eventBus.$emit(SHOW_MSG, {txt: `Cannot delete ${id}`, type: 'danger'})
-        });
-    }
-  }
-};
+        })
+    },
+  },
+}
 </script>
 
 <style lang="scss">
