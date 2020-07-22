@@ -77,11 +77,7 @@ export default {
       this.$router.replace('party-app/edit/' + id)
     },
     routeToDetails(id) {
-<<<<<<< HEAD
-      this.$router.push('party-app/details/' + id)
-=======
       this.$router.replace("/party-app/details/" + id);
->>>>>>> 1e4d48d9899ad6109b5e056a5b1d467041318512
     },
     remove(id) {
       this.$store
