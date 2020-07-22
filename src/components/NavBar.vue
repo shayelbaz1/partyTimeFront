@@ -30,7 +30,8 @@
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
-              <em>User</em>
+              <!-- <em>User</em> -->
+              <img class="user-img" :src="user.imgURL" alt="User logo" srcset />
             </template>
             <b-dropdown-item href="#" @click="routeTo('/profile')">Profile</b-dropdown-item>
             <b-dropdown-item href="#" @click="signOut">Sign Out</b-dropdown-item>
@@ -50,6 +51,15 @@ export default {
   components: {
     mapSearch
   },
+  data() {
+    return {
+      user: {}
+    };
+  },
+  created() {
+    this.user = this.$store.getters.loggedinUser;
+    console.log("this.user:", this.user);
+  },
   methods: {
     routeTo(page) {
       this.$router.push(page);
@@ -66,6 +76,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+img.user-img {
+  width: 27px;
+  border-radius: 50%;
+}
+
 .search-box {
   position: relative;
   z-index: 0;
