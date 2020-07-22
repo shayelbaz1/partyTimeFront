@@ -177,9 +177,9 @@ export default {
         }
         p {
           margin: 0;
-          position: absolute;
-          top: 3px;
-          left: 9px;
+          // position: absolute;
+          // top: 3px;
+          // left: 9px;
         }
       }
       .btns-actions-box {

@@ -124,6 +124,7 @@ export default {
 
 .display-btns {
   width: 90%;
+  margin-top: 7.5px;
   button {
     margin: 4px;
     border: 0;

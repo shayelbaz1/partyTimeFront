@@ -3,7 +3,7 @@
 }
 .event-buttons-container {
     background-color: #3b3b3b;
-    padding: 10px;
+    padding: 10px 13px;
     margin-bottom: 10px;
     // padding-left: 50px;
     display: flex;
@@ -76,6 +76,8 @@
     }
     .map-members-container {
         padding: 0px 10px;
+        padding-top: 17px;
+
         &.column-layout {
             width: 40%;
         }
@@ -89,7 +91,7 @@
             background-color: #3b3b3b;
             border-radius: 7px;
             color: white;
-            width: 100%;
+            width: 96%;
             p.title {
                 margin: 0;
                 text-align: left;
