@@ -58,6 +58,14 @@
                 p.title {
                     font-size: 1.5rem;
                 }
+                .party-desc {
+                    color: white;
+                    font-size: 1.2rem;
+                    white-space: pre-wrap;
+                    // font-family: Arial, Helvetica, sans-serif;
+                    // font-family: Mulish;
+                    font-family: "Actor", sans-serif;
+                }
             }
             td.icon {
                 border: none;
@@ -82,7 +90,7 @@
             border-radius: 7px;
             color: white;
             width: 100%;
-            p {
+            p.title {
                 margin: 0;
                 text-align: left;
                 padding-left: 10px;
@@ -92,14 +100,24 @@
                 box-shadow: 0px 0px 20px -10px rgb(5, 5, 5);
             }
             .members-img-container {
-                display: flex;
-                justify-content: space-evenly;
-                flex-wrap: wrap;
+                display: grid;
+                grid-template-columns: auto auto auto auto auto;
+                // display: flex;
+                // justify-content: space-evenly;
+                // flex-wrap: wrap;
                 padding: 5px;
-                img {
-                    border-radius: 25px;
-                    width: 50px;
-                    margin: 5px;
+                .member-con {
+                    // background-color: darkblue;
+                    text-align: center;
+                    img {
+                        border-radius: 25px;
+                        width: 50px;
+                        margin: 5px;
+                    }
+                    p {
+                        text-align: center;
+                        margin-bottom: 0;
+                    }
                 }
             }
         }

@@ -22,7 +22,6 @@ function query(filterBy) {
 }
 
 function getPartyLocations(){
-  console.log('im here');
   return HttpService.get(`party/locations`)
 }
 
@@ -62,12 +61,12 @@ function getEmptyParty() {
     desc: '',
     imgUrl:
       'https://res.cloudinary.com/partytime/image/upload/v1595150444/partyImgs/wniyqeybu0858ckaftlr.png',
-    fee: '',
+    fee: 0,
     likes: 0,
     startDate: '',
     endDate: '',
     durationHours: 0,
-    createdAt: 0,
+    createdAt: new Date(),
     location: {
       name: '',
       lat: 0,

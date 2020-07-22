@@ -226,8 +226,7 @@ export default {
       this.partyToSave.endDate = new Date(
         this.partyToSave.endDate
       ).toISOString();
-      console.log("this.partyToSave.startDate:", this.partyToSave.startDate);
-      console.log("this.partyToSave.endDate:", this.partyToSave.endDate);
+      this.partyToSave.fee = parseInt(this.partyToSave.fee);
       // Save Party on DB
       const party = await this.$store.dispatch({
         type: "saveParty",

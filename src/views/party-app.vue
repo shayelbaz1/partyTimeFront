@@ -90,6 +90,7 @@ export default {
     },
     partys() {
       let partys = this.$store.getters.partys;
+      console.log("partys:", partys);
       return partys;
     }
   },
