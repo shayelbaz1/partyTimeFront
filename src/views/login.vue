@@ -2,10 +2,10 @@
   <div class="login-page">
     <div>
       <form>
-        <h2>Login</h2>
+        <h2>Sign In</h2>
         <div class="login-input-container">
           <i class="fa fa-user login-icon" aria-hidden="true"></i>
-          <input type="text" v-model="creds.email" placeholder="Enter Your Email" />
+          <input type="text" v-model="creds.email" placeholder="Email" />
         </div>
         <br />
         <div class="login-input-container">
@@ -15,6 +15,7 @@
         </div>
         <br />
         <div class="login-buttons-container">
+          <button class="signup" @click.prevent="routeToSignup">Signup</button>
           <button @click.prevent="doLogin">Login</button>
         </div>
         <!-- <br />
@@ -45,13 +46,15 @@ export default {
     // console.log(route);
   },
   methods: {
+    routeToSignup() {
+      this.$router.push("/signup");
+    },
     async doLogin(googleCreds) {
       if (googleCreds.constructor.name !== "yw") {
         const currUser = await this.$store.dispatch({
           type: "login",
           creds: this.creds
         });
-        console.log(currUser);
         if (currUser) this.$router.push("/");
         if (!currUser.length) return false;
       } else if (googleCreds.constructor.name === "yw") {

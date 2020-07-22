@@ -115,6 +115,7 @@ export default {
 .posters {
   columns: 3;
   width: 100%;
+  column-gap: 0;
   img {
     width: 100%;
     cursor: pointer;
@@ -149,6 +150,12 @@ export default {
     img {
       width: 20%;
     }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .posters {
+    columns: 2;
   }
 }
 </style>
