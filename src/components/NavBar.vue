@@ -2,7 +2,8 @@
   <section>
     <b-navbar toggleable="lg" type="dark" class="party-nav">
       <b-navbar-brand class="nav-logo" href="#" @click="routeTo('/')">
-        <img src="../assets/site-logo.jpeg" alt="Kitten" />
+        <!-- <img src="../assets/site-logo.jpeg" alt="Kitten" /> -->
+        <img src="../assets/logo.png" alt="logo" style="border-radius:3px" />
         PARTY TIME
       </b-navbar-brand>
 
@@ -15,8 +16,8 @@
           </b-nav-item>
           <b-nav-item @click="routeTo('/party-app')">Explore</b-nav-item>
           <b-nav-item @click="routeTo('/login')">Login</b-nav-item>
-          <b-nav-item @click="routeTo('/signup')">Signup</b-nav-item>
-          <b-nav-item @click="routeTo('/reviews')">Reviews</b-nav-item>
+          <!-- <b-nav-item @click="routeTo('/signup')">Signup</b-nav-item> -->
+          <!-- <b-nav-item @click="routeTo('/reviews')">Reviews</b-nav-item> -->
           <!-- <b-nav-item @click="routeTo('/profile')">Profile</b-nav-item> -->
           <b-nav-item @click="routeTo('/party-app/edit')">Create +</b-nav-item>
           <!-- <b-nav-item @click="routeTo('/map')">Map</b-nav-item> -->
@@ -29,7 +30,8 @@
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
-              <em>User</em>
+              <!-- <em>User</em> -->
+              <img class="user-img" :src="user.imgURL" alt="User logo" srcset />
             </template>
             <b-dropdown-item href="#" @click="routeTo('/profile')">Profile</b-dropdown-item>
             <b-dropdown-item href="#" @click="signOut">Sign Out</b-dropdown-item>
@@ -49,6 +51,15 @@ export default {
   components: {
     mapSearch
   },
+  data() {
+    return {
+      user: {}
+    };
+  },
+  created() {
+    this.user = this.$store.getters.loggedinUser;
+    console.log("this.user:", this.user);
+  },
   methods: {
     routeTo(page) {
       this.$router.push(page);
@@ -58,12 +69,18 @@ export default {
     },
     signOut() {
       this.$store.dispatch("logout");
+      this.routeTo("/party-app");
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+img.user-img {
+  width: 27px;
+  border-radius: 50%;
+}
+
 .search-box {
   position: relative;
   z-index: 0;
@@ -109,7 +126,8 @@ export default {
 
   img {
     width: 27px;
-    padding-bottom: 4px;
+    // padding-bottom: 4px;
+    margin-bottom: 4px;
   }
 }
 .filter {

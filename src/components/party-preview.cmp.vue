@@ -77,7 +77,11 @@ export default {
       this.$router.replace('party-app/edit/' + id)
     },
     routeToDetails(id) {
+<<<<<<< HEAD
       this.$router.push('party-app/details/' + id)
+=======
+      this.$router.replace("/party-app/details/" + id);
+>>>>>>> 1e4d48d9899ad6109b5e056a5b1d467041318512
     },
     remove(id) {
       this.$store
@@ -181,11 +185,14 @@ export default {
         margin-top: 20px;
         margin-right: 20px;
         i {
-          font-size: 2rem;
+          font-size: 1.7rem;
           color: #c1272d;
         }
         p {
           margin: 0;
+          // position: absolute;
+          // top: 3px;
+          // left: 9px;
         }
       }
       .btns-actions-box {
@@ -222,9 +229,9 @@ export default {
 
 @media screen and (max-width: 400px) {
   .box-card {
-    height: 154px !important;
+    // height: 154px !important;
     .img-box {
-      min-width: 137px !important;
+      // min-width: 137px !important;
     }
     .text-box {
       font-size: 0.9rem;

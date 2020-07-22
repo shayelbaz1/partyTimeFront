@@ -90,6 +90,7 @@ export default {
     },
     partys() {
       let partys = this.$store.getters.partys;
+      console.log("partys:", partys);
       return partys;
     }
   },
@@ -114,13 +115,16 @@ export default {
 .posters {
   columns: 3;
   width: 100%;
+  column-gap: 0;
   img {
     width: 100%;
+    cursor: pointer;
   }
 }
 
 .display-btns {
   width: 90%;
+  margin-top: 7.5px;
   button {
     margin: 4px;
     border: 0;
@@ -147,6 +151,12 @@ export default {
     img {
       width: 20%;
     }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .posters {
+    columns: 2;
   }
 }
 </style>

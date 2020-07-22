@@ -107,7 +107,7 @@ export default {};
   background: rgb(53, 53, 53);
   .profile-pic {
     border-radius: 50%;
-    width: 150px;
+    width: 100px;
   }
 }
 </style>

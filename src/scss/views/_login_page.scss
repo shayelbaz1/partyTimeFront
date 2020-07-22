@@ -2,6 +2,7 @@
     display: flex;
     background-image: url("../assets/login.jpg");
     justify-content: center;
+    align-items: center;
     background-clip: white;
     height: 100vh;
     background-repeat: no-repeat;
@@ -11,54 +12,58 @@
 
     form {
         width: 385px;
-        background-color: #97979749;
-        padding: 48px;
-        margin-top: 228px;
-        border-radius: 10px;
+        background-color: #00000049;
+        padding: 15px;
+        border-radius: 7px;
         h2 {
-            
             color: white;
             font-size: 1.7rem;
-            // margin: 30px;
-
             font-family: sans-serif;
+            font-weight: 100;
+            margin: 0;
+            margin-bottom: 40px;
+
+            text-align: left;
         }
-        .login-input-container{
-display: flex;
-            .login-icon{
-                border-radius: 10px 0 0 10px;
+        .login-input-container {
+            display: flex;
+            height: 42px;
+            .login-icon {
+                border-radius: 7px 0 0 7px;
                 color: black;
-                font-size: 22px;
-                margin-left: 9.4px;
-                padding: 15px;
-                align-self: center;
+                font-size: 21px;
+                // margin-left: 9.4px;
+                padding: 11px 10px;
                 background-color: #c1272d;
             }
-        }
-        input {
-            font-family: "Actor", sans-serif;
-            padding: 0.8rem;
-            background-color: #303030;
-            // border-radius: 22px;
-            // margin-bottom: 20px;
-            border: 0;
-            color: white;
-            &:focus{
-                outline: none;
+            input {
+                font-family: "Actor", sans-serif;
+                padding: 0.7rem;
+                background-color: #c5c5c5;
+                width: 100%;
+                border: 0;
+                border-radius: 0px 7px 7px 0px;
+                color: rgb(0, 0, 0);
+                &:focus {
+                    outline: none;
+                }
             }
         }
 
         .login-buttons-container {
+            margin-top: 28px;
             display: flex;
             justify-content: space-evenly;
-
+            margin-bottom: 20px;
             button {
-                border: 0;
-                border-radius: 3px;
-                padding: 12px;
-                background-color: #c1272d;
+                background-color: $clr1;
                 color: white;
+                border: 0;
+                border-radius: 5px;
+                width: 120px;
+                padding: 10px;
                 font-size: 1.2rem;
+                text-align: center;
             }
         }
     }
