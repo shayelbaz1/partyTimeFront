@@ -13,6 +13,12 @@ export default {
   components: {
     NavBar,
     FooterCmp
+  },
+  created() {
+    // Init Setup of socket
+    SocketService.setup();
+    // Listening to fired events from the socket server
+    SocketService.on("show Typing", this.showTypeingAndUser);
   }
 };
 </script>
