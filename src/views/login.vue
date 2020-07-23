@@ -41,20 +41,20 @@ export default {
     };
   },
   computed: {},
-  created() {
-  },
+  created() {},
   methods: {
     routeToSignup() {
       this.$router.push("/signup");
     },
     async doLogin(googleCreds) {
-      if (googleCreds.constructor.name !== "yw") { // without google outh
+      if (googleCreds.constructor.name !== "yw") {
+        // without google outh
         const currUser = await this.$store.dispatch({
           type: "login",
           creds: this.creds
         });
-        console.log('user back from backend!', currUser);
-        if (currUser) this.$router.push("/");
+        console.log("user back from backend!", currUser);
+        if (currUser) this.$router.push("/party-app");
         if (!currUser.length) return;
       } else if (googleCreds.constructor.name === "yw") {
         this.creds.username = googleCreds.Bd;
@@ -64,7 +64,7 @@ export default {
           type: "login",
           creds: this.creds
         });
-        if (currUser.length) this.$router.push("/");
+        if (currUser.length) this.$router.push("/party-app");
         if (!currUser.length) return false;
       }
     }
