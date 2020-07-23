@@ -1,6 +1,7 @@
 finished join button<template>
-  <section class="member-pic">
-    <img v-bind:src="member.imgURL" />
+  <section class="member-pic-container">
+    <img class="members-pic" v-bind:src="member.imgURL" />
+    <h3>{{this.member.username}}</h3>
   </section>
 </template>
 
@@ -10,6 +11,6 @@ export default {
   props: ["member"]
 };
 </script>
-
-<style>
+  
+<style >
 </style>
