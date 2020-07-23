@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import DistanceService from "../../../general-services/Distance.service.js";
+import DistanceService from "../services/Distance.service.js";
 export default {
   name: "party-preview",
   props: {
