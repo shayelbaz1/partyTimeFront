@@ -4,7 +4,7 @@
     <!-- <welcome-header></welcome-header> -->
     <hero-img></hero-img>
     <div class="flex">
-      <party-filter v-if="partys" :partys="partys" :class="{ show: isShowFilter }"></party-filter>
+      <party-filter v-if="partys" :class="{ show: isShowFilter }"></party-filter>
       <div class="flex column-layout">
         <div class="display-btns flex">
           <button @click="displayBy('list')" :class="{ active: currPartiesDisplay === 'list' }">
@@ -95,7 +95,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch({ type: "loadPartys" });
+    // this.$store.dispatch({ type: "loadPartys" });
     EventBus.$on("toggleFilter", this.toggleFilter);
   }
 };

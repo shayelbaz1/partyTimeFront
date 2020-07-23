@@ -215,6 +215,7 @@ export default {
       this.$router.push("/party-app");
     },
     async saveParty() {
+      console.log("partyToSave");
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
       // Convert To ISO String : 2020-07-21T17:15:00.000Z
@@ -232,6 +233,7 @@ export default {
         type: "saveParty",
         party: this.partyToSave
       });
+      console.log("party:", party);
       this.$router.push("/party-app");
     },
     loadParty() {

@@ -24,11 +24,11 @@ export default {
       }
     };
   },
-  name: 'map-search',
+  name: "map-search",
   components: {
     GoogleMap
   },
-  mounted() {
+  created() {
     this.geoLocation();
   },
   methods: {
@@ -48,11 +48,19 @@ export default {
       // this.$el.querySelector("input.pac-target-input").value = "";
       if (this.place.name) {
         // TODO Set timeout
-        var el = this.$el.querySelector("input.pac-target-input");
-        el.value = this.place.name;
+        setTimeout(() => {
+          var el = this.$el.querySelector("input.pac-target-input");
+          el.value = this.place.name;
+        }, 2000);
       }
+      console.log("this.place:", this.place);
       this.$store.commit({
         type: "setPlace",
+        place: JSON.parse(JSON.stringify(this.place))
+      });
+
+      this.$store.commit({
+        type: "setUserLocation",
         place: JSON.parse(JSON.stringify(this.place))
       });
     },
