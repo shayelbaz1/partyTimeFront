@@ -29,7 +29,7 @@ async function login(creds) {
 }
 
 async function signup(creds) {
-    // console.log('user service', creds);
+    console.log('user service signup creds', creds);
     const user = await HttpService.post('auth/signup', creds)
     return _handleLogin(user)
 }
