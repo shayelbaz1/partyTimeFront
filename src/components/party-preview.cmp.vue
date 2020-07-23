@@ -14,11 +14,11 @@
         </div>
 
         <div class="preview-party-name">
-          <h1>{{ party.name }}</h1>
-          <p>{{ party.location.name }}</p>
+          <h1 class="name">{{ party.name }}</h1>
+          <p class="location">{{ party.location.name }}</p>
         </div>
-        <p>{{ party.startDate | moment('from') }} | {{ fee }}</p>
-        <p>{{ party.startDate | moment('DD/MM/YYYY • HH:mm A') }}</p>
+        <p class="from">{{ party.startDate | moment('from') }} | {{ fee }}</p>
+        <p class="time">{{ party.startDate | moment('DD/MM/YYYY • HH:mm A') }}</p>
         <p>{{ `${km()} km's away` }}</p>
         <div class="types flex">
           <p v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }}</p>
