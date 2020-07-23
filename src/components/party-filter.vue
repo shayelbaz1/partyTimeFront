@@ -67,7 +67,7 @@
         <p>Less then {{ filterBy.partyDetails.distance }} km</p>
       </div>
       <div class="slidecontainer">
-        <el-slider @change="setSortBy" v-model="filterBy.partyDetails.distance"></el-slider>
+        <el-slider @change="setSortBy" v-model="filterBy.partyDetails.distance" :max="15000"></el-slider>
       </div>
       <div class="hr"></div>
       <div class="header fees">
@@ -157,7 +157,7 @@ export default {
         selectedTypes: [],
         sortBy: "startDate",
         partyDetails: {
-          distance: 50,
+          distance: 15000,
           fee: 100,
           locality: "Israel",
           musicType: "Rock",
@@ -217,10 +217,11 @@ export default {
   mounted() {
     console.log("mounted");
     EventBus.$on("runFilter", () => {
+      this.filterBy.userLocation = this.$store.getters.place;
       this.setSortBy();
     });
+
     setTimeout(() => {
-      console.log("this.$store.getters.place:", this.$store.getters.place);
       this.filterBy.userLocation = this.$store.getters.place;
       this.setSortBy();
     }, 2000);

@@ -7,15 +7,15 @@
         <i class="fas fa-arrow-left"></i>
         Back
       </button>
-      <button>
+      <button @click="addLikeOrGoing('like')">
         <i class="fas fa-heart"></i>
-        {{party.likes}}
+        {{likesCom}}
       </button>
       <!-- <button>
         <i class="far fa-star"></i>
         Interested
       </button>-->
-      <button @click="toggleGoingToParty">
+      <button @click="addLikeOrGoing('going')">
         <i class="far fa-check-circle"></i>
         {{party.extraData.members.length}}
         Going
@@ -116,10 +116,7 @@
       </div>
 
       <div class="map-members-container flex column-layout">
-        <!-- <div class="map-container"> -->
-        <!-- <img src="../assets/map.png" alt srcset /> -->
         <party-map :partyProp="party"></party-map>
-        <!-- </div> -->
         <div class="members">
           <p class="title">Going</p>
           <div class="members-img-container">
@@ -128,11 +125,16 @@
               :key="member._id"
               :member="member"
             ></members-pics>
-            <!-- <div class="member-con" v-for="(n,idx) in 5" :key="idx">
-              <img :src="'http://lorempixel.com/100/100/people/'+idx" />
-              <p>Kester Chapman</p>
-            </div>-->
-            <!-- <pre style="color:white">{{party.extraData.members}}</pre> -->
+          </div>
+        </div>
+        <div class="members">
+          <p class="title">Likes</p>
+          <div class="members-img-container">
+            <members-pics
+              v-for="member in party.extraData.likes"
+              :key="member._id"
+              :member="member"
+            ></members-pics>
           </div>
         </div>
       </div>
@@ -151,6 +153,7 @@ import ChatPage from "@/views/ChatPage.vue";
 import imgBlur from "./img-blur.cmp.vue";
 import partyMap from "./party-map.cmp.vue";
 import membersPics from "./my-cmps/members-pics.cmp.vue";
+import SocketService from "../services/SocketService.js";
 
 export default {
   name: "party-details",
@@ -168,6 +171,13 @@ export default {
     };
   },
   computed: {
+    likesCom() {
+      if (this.party.extraData.likes) {
+        return this.party.extraData.likes.length;
+      } else {
+        return 0;
+      }
+    },
     fee() {
       if (this.party.fee === 0) {
         return "FREE";
@@ -177,30 +187,55 @@ export default {
     }
   },
   methods: {
-    toggleGoingToParty() {
+    addLikeOrGoing(type) {
       const currParty = this.party;
       const userToAdd = {
         _id: this.currUser._id,
         imgURL: this.currUser.imgURL,
         username: this.currUser.username
       };
+      if (type === "going") {
+        // const partyFound = this.currUser.goingPartys.find(
+        //   id => id === currParty._id
+        // );
+        const userFound = currParty.extraData.members.find(
+          user => user._id === userToAdd._id
+        );
 
-      const partyFound = this.currUser.goingPartys.find(
-        id => id === currParty._id
-      );
-      if (partyFound) return;
-      else if (!partyFound) {
-        console.log("you can join");
-        currParty.extraData.members.push(userToAdd);
+        if (userFound) return;
+        else if (!userFound) {
+          console.log("you can join");
+          // Update Party
+          currParty.extraData.members.push(userToAdd);
+          this.$store.dispatch({
+            type: "saveParty",
+            party: currParty
+          });
+          // Update User
+          this.currUser.goingPartys.push(currParty._id);
+
+          this.$store.dispatch({
+            type: "updateUser",
+            user: this.currUser
+          });
+        }
+        // If Likes By User ------------------------------------
+      } else if (type === "like") {
+        // const userFound = currParty.extraData.likes.find(
+        //   user => user._id === userToAdd._id
+        // );
+
+        // if (userFound) return;
+
+        currParty.extraData.likes.push(userToAdd);
         this.$store.dispatch({
           type: "saveParty",
           party: currParty
         });
-        this.currUser.goingPartys.push(currParty._id);
-
-        this.$store.dispatch({
-          type: "updateUser",
-          user: this.currUser
+        // EventBus of Socket
+        SocketService.emit("party liked", {
+          currUser: this.currUser,
+          currParty: this.party
         });
       }
     },
@@ -219,6 +254,8 @@ export default {
   },
   created() {
     this.loadParty();
+    // Init Setup of socket
+    SocketService.setup();
   }
 };
 </script>

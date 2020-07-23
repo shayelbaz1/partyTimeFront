@@ -125,6 +125,12 @@ export default {
 .display-btns {
   width: 90%;
   margin-top: 7.5px;
+  width: 100%;
+  padding: 0px 10px;
+  position: sticky;
+  top: 55px;
+  z-index: 2;
+  background-color: #272727;
   button {
     margin: 4px;
     border: 0;
