@@ -9,6 +9,8 @@
 <script>
 import NavBar from "./components/NavBar.vue";
 import FooterCmp from "./components/FooterCmp.vue";
+import SocketService from "./services/SocketService.js";
+
 export default {
   components: {
     NavBar,
@@ -18,7 +20,9 @@ export default {
     // Init Setup of socket
     SocketService.setup();
     // Listening to fired events from the socket server
-    SocketService.on("show Typing", this.showTypeingAndUser);
+    SocketService.on("notify liked", ({currUser, currParty}) => {
+      console.log("FrontEnd socket Liked:", currUser, currParty);
+    });
   }
 };
 </script>
