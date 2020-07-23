@@ -45,7 +45,6 @@ function remove(partyId) {
 
 async function save(party) {
   const location = await GeocodeService.getLatLng(party.location.name)
-  console.log(location);
   party.location.lat = location.lat
   party.location.lng = location.lng
   return party._id ? _update(party) : _add(party)

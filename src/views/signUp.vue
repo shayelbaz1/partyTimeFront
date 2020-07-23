@@ -33,6 +33,7 @@ export default {
         email: '',
         imgURL: '',
         isGoogle: false,
+        goingPartys: [],
       }
     };
   },
@@ -42,7 +43,7 @@ export default {
   },
   methods: {
     async doSignup(googleCreds) {
-      console.log(googleCreds);
+      console.log(this.creds);
       if (googleCreds.constructor.name !== 'yw') {
         const currUser = await this.$store.dispatch({
           type: "signup",

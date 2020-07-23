@@ -18,12 +18,12 @@ function remove(userId) {
     return HttpService.delete(`user/${userId}`)
 }
 
-function update(user) {
-    return HttpService.put(`user/${user._id}`, user)
+async function update(user) {
+    const updatedUser = await HttpService.put(`user/${user._id}`, user)
+    return _handleLogin(updatedUser)
 }
 
 async function login(creds) {
-    console.log(creds);
     const user = await HttpService.post('auth/login', creds)
     return _handleLogin(user)
 }
@@ -31,7 +31,6 @@ async function login(creds) {
 async function signup(creds) {
     // console.log('user service', creds);
     const user = await HttpService.post('auth/signup', creds)
-    console.log(user);
     return _handleLogin(user)
 }
 
@@ -44,6 +43,7 @@ function getUsers() {
 }
 
 function _handleLogin(user) {
+    console.log('handleLogin', user);
     sessionStorage.setItem('user', JSON.stringify(user))
     return user;
 }

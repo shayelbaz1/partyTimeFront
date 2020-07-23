@@ -25,7 +25,6 @@ export default {
             state.loggedinUser = user;
         },
         setCurrUser(state, {user}) {
-            console.log('user setted in set curr user:', user)
             state.currUser = user;
         },
         setUsers(state, {users}) {
@@ -61,14 +60,13 @@ export default {
             context.commit({type: 'removeUser', userId})
         },
         async getById(context, {userId}) {
-            console.log('userId in userStore:', userId)
             const user = await UserService.getById(userId);
-            console.log('user founded in store:', user)
             context.commit({type: 'setCurrUser', user})
             return user
         },
         async updateUser(context, {user}) {
             user = await UserService.update(user);
+            console.log(user);
             context.commit({type: 'setUser', user})
         }
     }

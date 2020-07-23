@@ -15,7 +15,7 @@
         <i class="far fa-star"></i>
         Interested
       </button>-->
-      <button>
+      <button @click="toggleGoingToParty">
         <i class="far fa-check-circle"></i>
         {{party.extraData.members.length}}
         Going
@@ -123,12 +123,11 @@
         <div class="members">
           <p>Going</p>
           <div class="members-img-container">
-            <img src="../assets/profile/profile1.jpeg" />
-            <img src="../assets/profile/profile2.jpeg" />
-            <img src="../assets/profile/profile3.jpeg" />
-            <img src="../assets/profile/profile4.jpeg" />
-            <img src="../assets/profile/profile5.jpeg" />
-            <img src="../assets/profile/profile6.jpeg" />
+            <members-pics
+              v-for="member in party.extraData.members"
+              :key="member._id"
+              :member="member"
+            ></members-pics>
           </div>
         </div>
       </div>
@@ -146,6 +145,7 @@ import reviewList from "@/components/review-list.vue";
 import ChatPage from "@/views/ChatPage.vue";
 import imgBlur from "./img-blur.cmp.vue";
 import partyMap from "./party-map.cmp.vue";
+import membersPics from "./my-cmps/members-pics.cmp.vue";
 
 export default {
   name: "party-details",
@@ -153,11 +153,13 @@ export default {
     reviewList,
     ChatPage,
     imgBlur,
-    partyMap
+    partyMap,
+    membersPics
   },
   data() {
     return {
-      party: null
+      party: null,
+      currUser: this.getCurrUserObj()
     };
   },
   computed: {
@@ -170,6 +172,38 @@ export default {
     }
   },
   methods: {
+    toggleGoingToParty() {
+      const currParty = this.party;
+      const userToAdd = {
+        _id: this.currUser._id,
+        imgURL: this.currUser.imgURL,
+        username: this.currUser.username
+      };
+
+      const partyFound = this.currUser.goingPartys.find(
+        id => id === currParty._id
+      );
+      if (partyFound) return;
+      else if (!partyFound) {
+        console.log("you can join");
+        currParty.extraData.members.push(userToAdd);
+        this.$store.dispatch({
+          type: "saveParty",
+          party: currParty
+        });
+        this.currUser.goingPartys.push(currParty._id);
+
+        this.$store.dispatch({
+          type: "updateUser",
+          user: this.currUser
+        });
+      }
+    },
+    getCurrUserObj() {
+      const loggedInUser = sessionStorage.getItem("user");
+
+      return JSON.parse(loggedInUser);
+    },
     back() {
       this.$router.push("/party-app");
     },
