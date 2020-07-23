@@ -3,11 +3,18 @@
     <welcome-header></welcome-header>
     <party-filter v-show="false" :class="{ show: isShowFilter }"></party-filter>
     <div class="body">
-      <h1 class="popular-title">Most Poplar Parties</h1>
+      <div class="btn-header">
+        <h1 class="popular-title">Most popular parties around you</h1>
+        <button class="btn" @click.stop="$router.push('party-app')">Explore all</button>
+      </div>
       <party-list :partys="partys"></party-list>
-      <hr />
-      <h1 class="popular-title">Most Close To You</h1>
-      <party-list :partys="partys"></party-list>
+    </div>
+    <div class="body">
+      <div class="btn-header">
+        <h1 class="popular-title">Most close to you</h1>
+        <button class="btn" @click.stop="$router.push('party-app')">Explore all</button>
+      </div>
+      <party-list :partys="partysClose"></party-list>
     </div>
   </section>
 </template>
@@ -37,7 +44,12 @@ export default {
   computed: {
     partys() {
       let partys = this.$store.getters.partys;
-      partys = partys.slice(0, 6);
+      partys = partys.slice(0, 4);
+      return partys;
+    },
+    partysClose() {
+      let partys = this.$store.getters.partys;
+      partys = partys.slice(0, 4);
       return partys;
     }
   },
