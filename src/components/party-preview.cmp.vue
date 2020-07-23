@@ -42,11 +42,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-// import DistanceService from "../../../general-services/Distance.service.js";
-=======
 import DistanceService from "../services/Distance.service.js";
->>>>>>> 14d6c3a5cb79d0084b21c08998b72375e2c60b5e
 export default {
   name: "party-preview",
   props: {
