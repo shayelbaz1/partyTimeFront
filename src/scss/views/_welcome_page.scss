@@ -1,31 +1,179 @@
 .welcome-page {
     .body {
-        .popular-title {
-            font-size: 2rem;
-            padding: 0;
-            margin: 15px auto;
-            margin-bottom: 24px;
+        padding: 40px;
+        background-color: black;
+        .btn {
+            cursor: pointer;
+            color: white;
+            border: 1px solid white;
+            border-radius: 8px;
+            height: 40px;
+            width: 150px;
+        }
+        .btn-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            .popular-title {
+                font-size: 2rem;
+                padding: 0;
+                margin: 0px;
+                text-align: left;
+            }
         }
         .party-list-container {
-            flex-direction: row;
-            flex-wrap: wrap;
-            margin-top: 20px;
-            max-width: 1040px;
-            margin: 0px auto;
+            // flex-direction: row;
+            // flex-wrap: wrap;
+            // margin-top: 20px;
+            // max-width: 1040px;
+            // margin: 0px auto;
+            display: grid;
+            grid-template-columns: 6fr 2fr 2fr;
+            grid-template-rows: 1fr 1fr;
+            height: 73vh;
+            grid-gap: 15px;
             .party-preview {
-                width: fit-content;
-                margin: auto;
-                margin-bottom: 30px;
+                // width: fit-content;
+                // margin: auto;
+                // margin-bottom: 30px;
+                height: 100%;
+                margin: 0;
+                &:first-of-type {
+                    grid-column: 1 / span 1;
+                    grid-row: 1 / span 2;
+                    height: 100%;
+                }
+                &:nth-of-type(2) {
+                    grid-column: 2 / span 1;
+                    grid-row: 1 / span 1;
+                    height: 100%;
+                }
+                &:nth-of-type(4) {
+                    grid-column: 2 / span 2;
+                    grid-row: 2 / span 1;
+                    height: 100%;
+                }
                 .box-card {
                     flex-direction: column;
-                    width: 300px;
-                    height: 420px;
+                    width: 100%;
+                    height: 100%;
+                    margin-bottom: 0;
+                    border: 1px solid white;
+                    border-radius: 15px;
+                    // width: 300px;
+                    // height: 420px;
                     .img-box {
                         width: 100%;
-                        height: 300px;
+                        border-radius: 15px 15px 0px 0px;
+                        // height: 300px;
+                        img.img-front {
+                            border-radius: 15px;
+                        }
                     }
                     .btns-actions-box {
                         display: none;
+                    }
+                    .text-box {
+                        .location,
+                        .from {
+                            color: #b1b1b1;
+                        }
+                        .time,
+                        .types {
+                            visibility: hidden;
+                            height: 0;
+                        }
+                    }
+                }
+            }
+        }
+        @media screen and (max-width: 1200px) {
+            .party-list-container {
+                grid-template-columns: 7fr 3fr;
+                .party-preview {
+                    &:first-of-type {
+                        grid-column: 1 / span 1;
+                        grid-row: 1 / span 2;
+                        height: 100%;
+                    }
+                    &:nth-of-type(2) {
+                        grid-column: 2 / span 1;
+                        grid-row: 1 / span 1;
+                        height: 100%;
+                    }
+                    &:nth-of-type(3) {
+                        grid-column: 2 / span 1;
+                        grid-row: 2 / span 1;
+                        height: 100%;
+                    }
+                    &:nth-of-type(4) {
+                        visibility: hidden;
+                        grid-column: 2;
+                        grid-row: 1;
+                    }
+                }
+            }
+        }
+        @media screen and (max-width: 800px) {
+            .party-list-container {
+                grid-template-columns: 1fr 1fr;
+                .party-preview {
+                    &:first-of-type {
+                        grid-column: 1;
+                        grid-row: 1 / span 2;
+                        height: 100%;
+                    }
+                    &:nth-of-type(2) {
+                        grid-column: 2;
+                        grid-row: 1 / span 2;
+                        height: 100%;
+                    }
+                    &:nth-of-type(3) {
+                        visibility: hidden;
+                        grid-column: 1;
+                        grid-row: 2;
+                        height: 100%;
+                    }
+                    &:nth-of-type(4) {
+                        // visibility: hidden;
+                        // width: 0;
+                        // height: 0;
+                    }
+                }
+            }
+        }
+        @media screen and (max-width: 620px) {
+            .party-list-container {
+                // grid-template-columns: 1fr;
+                display: flex;
+                flex-direction: row;
+                overflow-y: hidden;
+                .party-preview {
+                    // &:first-of-type {
+                    //     grid-column: 1 / span 1;
+                    //     grid-row: 1 / span 1;
+                    //     height: 100%;
+                    // }
+                    // &:nth-of-type(2) {
+                    //     grid-column: 1 / span 1;
+                    //     grid-row: 2 / span 1;
+                    //     height: 100%;
+                    // }
+                    &:nth-of-type(3) {
+                        visibility: visible;
+                        // grid-column: 2 / span 1;
+                        // grid-row: 1 / span 1;
+                        // height: 100%;
+                    }
+                    &:nth-of-type(4) {
+                        visibility: visible;
+                        // grid-column: 2 / span 1;
+                        // grid-row: 2 / span 1;
+                        // height: 100%;
+                    }
+                    .box-card {
+                        width: 300px;
+                        height: 400px;
                     }
                 }
             }
