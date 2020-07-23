@@ -8,6 +8,9 @@
     // padding-left: 50px;
     display: flex;
     justify-content: flex-end;
+    position: sticky;
+    top: 56px;
+    z-index: 2;
     button {
         background-color: #111111;
         color: #e6e6e6;
