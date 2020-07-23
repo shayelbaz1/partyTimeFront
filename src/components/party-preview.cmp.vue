@@ -62,7 +62,7 @@ export default {
     km(){
       const userLocation = this.userPlace()
       const { lat, lng } = userLocation.pos
-      return DistanceService.getDistanceFromLatLonInKm(lat, lng, this.party.location.lat, this.party.location.lng)
+      return DistanceService.getDistanceFromLatLonInKm(lat, lng, this.party.location.coordinates[0], this.party.location.coordinates[1])
     },
     userPlace(){
       return this.$store.getters.place
