@@ -41,7 +41,8 @@ export default {
         password: "",
         email: "",
         imgURL: "https://picsum.photos/200",
-        isGoogle: false
+        isGoogle: false,
+        goingPartys: []
       }
     };
   },
