@@ -24,6 +24,10 @@
         <i class="fas fa-directions"></i>
         Navigate
       </button>
+      <button>
+        <i class="fa fa-google"></i>
+        Calender
+      </button>
       <button @click="shareToWhatsapp">
         <i class="fab fa-whatsapp"></i>
         Whatsapp

@@ -49,7 +49,7 @@ export default {
     },
     partysClose() {
       let partys = this.$store.getters.partys;
-      partys = partys.slice(0, 4);
+      partys = partys.slice(1, 5);
       return partys;
     }
   },
