@@ -19,7 +19,7 @@
         </div>
         <p>{{ party.startDate | moment('from') }} | {{ fee }}</p>
         <p>{{ party.startDate | moment('DD/MM/YYYY • HH:mm A') }}</p>
-        <p>{{ `${km()} km's away` }}</p>
+        <!-- <p>{{ `${km()} km's away` }}</p> -->
         <div class="types flex">
           <p v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }}</p>
         </div>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import DistanceService from "../../../general-services/Distance.service.js";
+// import DistanceService from "../../../general-services/Distance.service.js";
 export default {
   name: "party-preview",
   props: {
@@ -57,16 +57,16 @@ export default {
     }
   },
   methods: {
-    km() {
-      const userLocation = this.userPlace();
-      const { lat, lng } = userLocation.pos;
-      return DistanceService.getDistanceFromLatLonInKm(
-        lat,
-        lng,
-        this.party.location.lat,
-        this.party.location.lng
-      );
-    },
+    // km() {
+    //   const userLocation = this.userPlace();
+    //   const { lat, lng } = userLocation.pos;
+    //   return DistanceService.getDistanceFromLatLonInKm(
+    //     lat,
+    //     lng,
+    //     this.party.location.lat,
+    //     this.party.location.lng
+    //   );
+    // },
     userPlace() {
       return this.$store.getters.place;
     },
