@@ -57,15 +57,6 @@ export default {
     }
   },
   methods: {
-<<<<<<< HEAD
-    km(){
-      const userLocation = this.userPlace()
-      const { lat, lng } = userLocation.pos
-      return DistanceService.getDistanceFromLatLonInKm(lat, lng, this.party.location.coordinates[0], this.party.location.coordinates[1])
-    },
-    userPlace(){
-      return this.$store.getters.place
-=======
     // km() {
     //   const userLocation = this.userPlace();
     //   const { lat, lng } = userLocation.pos;
@@ -78,7 +69,6 @@ export default {
     // },
     userPlace() {
       return this.$store.getters.place;
->>>>>>> 1cec8744f7210da9149de125c2539103572dd79a
     },
     signalDelete(partyId) {
       this.$emit("deleteParty", partyId);
