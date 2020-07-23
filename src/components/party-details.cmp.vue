@@ -131,7 +131,7 @@
             <!-- <div class="member-con" v-for="(n,idx) in 5" :key="idx">
               <img :src="'http://lorempixel.com/100/100/people/'+idx" />
               <p>Kester Chapman</p>
-            </div> -->
+            </div>-->
             <!-- <pre style="color:white">{{party.extraData.members}}</pre> -->
           </div>
         </div>
