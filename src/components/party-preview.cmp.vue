@@ -229,9 +229,7 @@ export default {
 @media screen and (max-width: 400px) {
   .box-card {
     // height: 154px !important;
-    .img-box {
-      // min-width: 137px !important;
-    }
+
     .text-box {
       font-size: 0.9rem;
       .btns-actions-box {
