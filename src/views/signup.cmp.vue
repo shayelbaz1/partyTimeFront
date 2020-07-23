@@ -42,7 +42,7 @@ export default {
         email: "",
         imgURL: "https://picsum.photos/200",
         isGoogle: false,
-        goingPartys: [],
+        goingPartys: []
       }
     };
   },
