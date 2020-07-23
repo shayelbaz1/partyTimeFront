@@ -1,7 +1,7 @@
 <template>
   <section class="welcome-page">
     <welcome-header></welcome-header>
-
+    <party-filter v-show="false" :class="{ show: isShowFilter }"></party-filter>
     <div class="body">
       <h1 class="popular-title">Most Poplar Parties</h1>
       <party-list :partys="partys"></party-list>
@@ -15,11 +15,24 @@
 <script>
 import partyList from "../components/party-list.cmp.vue";
 import welcomeHeader from "../components/welcome-header.cmp.vue";
+import EventBus from "../services/EventBus";
+import partyFilter from "../components/party-filter.vue";
 export default {
   name: "welcome-page",
+  data() {
+    return {
+      isShowFilter: false
+    };
+  },
+  methods: {
+    toggleFilter() {
+      this.isShowFilter = !this.isShowFilter;
+    }
+  },
   components: {
     partyList,
-    welcomeHeader
+    welcomeHeader,
+    partyFilter
   },
   computed: {
     partys() {
@@ -29,7 +42,8 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch({ type: "loadPartys" });
+    EventBus.$on("toggleFilter", this.toggleFilter);
+    // this.$store.dispatch({ type: "loadPartys" });
   }
 };
 </script>

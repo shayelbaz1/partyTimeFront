@@ -2,21 +2,24 @@
   <div class="login-page">
     <div>
       <form>
-        <h2>Sign In</h2>
+        <h2>Sign up</h2>
         <div class="login-input-container">
-          <i class="fa fa-user login-icon" aria-hidden="true"></i>
+          <i class="fas fa-envelope login-icon" aria-hidden="true"></i>
           <input type="text" v-model="creds.email" placeholder="Email" />
         </div>
         <br />
         <div class="login-input-container">
+          <i class="fa fa-user login-icon" aria-hidden="true"></i>
+          <input type="text" v-model="creds.username" placeholder="Username" />
+        </div>
+        <br />
+        <div class="login-input-container">
           <i class="fa fa-lock login-icon" aria-hidden="true"></i>
-
           <input type="password" v-model="creds.password" placeholder="Password" />
         </div>
         <br />
         <div class="login-buttons-container">
-          <button class="signup" @click.prevent="routeToSignup">Signup</button>
-          <button @click.prevent="doLogin">Login</button>
+          <button @click.prevent="doSignup">Login</button>
         </div>
         <!-- <br />
         <googleLogin @doLogin="doLogin"></googleLogin>-->
@@ -30,43 +33,45 @@
 <script>
 import googleLogin from "./gLogin.vue";
 export default {
-  name: "login-page",
+  name: "signup-page",
   data() {
     return {
       creds: {
         username: "",
         password: "",
-        email: ""
+        email: "",
+        imgURL: "https://picsum.photos/200",
+        isGoogle: false
       }
     };
   },
-  computed: {},
-  created() {
-    // const route = currentRouteName()
-    // console.log(route);
-  },
   methods: {
-    routeToSignup() {
-      this.$router.push("/signup");
+    doSignup() {
+      const cred = this.creds;
+      if (!cred.email || !cred.password || !cred.username) return;
+      this.$store.dispatch({ type: "signup", creds: cred });
+      this.$router.push("/");
     },
-    async doLogin(googleCreds) {
+    async doSignupGoogle(googleCreds) {
+      console.log(googleCreds);
       if (googleCreds.constructor.name !== "yw") {
         const currUser = await this.$store.dispatch({
-          type: "login",
+          type: "signup",
           creds: this.creds
         });
         if (currUser) this.$router.push("/");
-        if (!currUser.length) return false;
+        if (!currUser) return false;
       } else if (googleCreds.constructor.name === "yw") {
         this.creds.username = googleCreds.Bd;
         this.creds.email = googleCreds.Au;
         this.creds.imgURL = googleCreds.MK;
+        this.creds.isGoogle = true;
         const currUser = await this.$store.dispatch({
-          type: "login",
+          type: "signup",
           creds: this.creds
         });
-        if (currUser.length) this.$router.push("/");
-        if (!currUser.length) return false;
+        if (currUser) this.$router.push("/");
+        if (!currUser) return false;
       }
     }
   },

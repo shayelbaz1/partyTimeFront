@@ -26,23 +26,24 @@ button {
 }
 button {
     color: white;
-        border: 0;
-        background-color: rgb(0, 0, 0);
-        padding: 15px;
-        border-radius: 6px;
+    border: none;
+    background-color: rgb(0, 0, 0);
+    padding: 15px;
+    border-radius: 6px;
+    transition-duration: 0.3s;
+    font-size: 15px;
+    outline: none;
+    &.active {
+        background-color: $color-primary-red;
+    }
+    i {
+        color: white;
+    }
+    &:hover {
         transition-duration: 0.3s;
-        font-size: 15px;
-        &.active {
-          background-color: $color-primary-red;
-        }
-        i {
-          color: white;
-        }
-        &:hover {
-          transition-duration: 0.3s;
-          background-color: $color-primary-red;
-        }
-      }
+        background-color: $color-primary-red;
+    }
+}
 
 input {
     font-family: "Actor", sans-serif;
@@ -54,7 +55,10 @@ a {
     text-decoration: none;
 }
 
-h1,h2,h3,h4{
+h1,
+h2,
+h3,
+h4 {
     font-size: 1.17em;
     display: block;
     margin-block-start: 1.33em;

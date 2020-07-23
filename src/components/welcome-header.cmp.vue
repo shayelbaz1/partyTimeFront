@@ -36,6 +36,7 @@ export default {
   .title-input-container {
     position: relative;
     top: 200px;
+    text-shadow: 0px 0px 2px black;
     .welcome-title {
       padding: 0;
       padding: 0px 30px;
@@ -51,7 +52,7 @@ export default {
       padding: 0px 30px;
       width: 100%;
       margin: 0;
-      font-size: 2rem;
+      font-size: 2.8rem;
       letter-spacing: 1px;
       font-weight: 800;
       font-family: "Lato", sans-serif;
@@ -113,7 +114,7 @@ export default {
     .welcome-header {
       .title-input-container {
         h1 {
-          font-size: 2.8rem;
+          // font-size: 2.8rem;
         }
       }
     }

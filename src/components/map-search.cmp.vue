@@ -24,10 +24,11 @@ export default {
       }
     };
   },
+  name: "map-search",
   components: {
     GoogleMap
   },
-  mounted() {
+  created() {
     this.geoLocation();
   },
   methods: {
@@ -46,12 +47,20 @@ export default {
       this.place.name = cityName;
       // this.$el.querySelector("input.pac-target-input").value = "";
       if (this.place.name) {
-        this.$el.querySelector(
-          "input.pac-target-input"
-        ).value = this.place.name;
+        // TODO Set timeout
+        setTimeout(() => {
+          var el = this.$el.querySelector("input.pac-target-input");
+          el.value = this.place.name;
+        }, 2000);
       }
+      console.log("this.place:", this.place);
       this.$store.commit({
         type: "setPlace",
+        place: JSON.parse(JSON.stringify(this.place))
+      });
+
+      this.$store.commit({
+        type: "setUserLocation",
         place: JSON.parse(JSON.stringify(this.place))
       });
     },
@@ -65,7 +74,6 @@ export default {
       });
     },
     selectTxt() {
-      // this.$el.querySelector("input.pac-target-input").value = "";
       this.$el.querySelector("input.pac-target-input").select();
     }
   }

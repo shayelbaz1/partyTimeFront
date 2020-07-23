@@ -215,6 +215,7 @@ export default {
       this.$router.push("/party-app");
     },
     async saveParty() {
+      console.log("partyToSave");
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
       // Convert To ISO String : 2020-07-21T17:15:00.000Z
@@ -226,13 +227,13 @@ export default {
       this.partyToSave.endDate = new Date(
         this.partyToSave.endDate
       ).toISOString();
-      console.log("this.partyToSave.startDate:", this.partyToSave.startDate);
-      console.log("this.partyToSave.endDate:", this.partyToSave.endDate);
+      this.partyToSave.fee = parseInt(this.partyToSave.fee);
       // Save Party on DB
       const party = await this.$store.dispatch({
         type: "saveParty",
         party: this.partyToSave
       });
+      console.log("party:", party);
       this.$router.push("/party-app");
     },
     loadParty() {

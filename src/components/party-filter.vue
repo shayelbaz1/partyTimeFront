@@ -67,7 +67,7 @@
         <p>Less then {{ filterBy.partyDetails.distance }} km</p>
       </div>
       <div class="slidecontainer">
-        <el-slider v-model="filterBy.partyDetails.distance"></el-slider>
+        <el-slider @change="setSortBy" v-model="filterBy.partyDetails.distance"></el-slider>
       </div>
       <div class="hr"></div>
       <div class="header fees">
@@ -141,19 +141,17 @@
 
 <script>
 import PartyService from "../services/PartyService.js";
+import EventBus from "../services/EventBus";
+
 export default {
   name: "party-filter",
-  props: {
-    partys: {
-      type: Array
-    }
-  },
   data() {
     return {
       times: ["All", "Today", "Tomorrow", "Next 7 Days", "Old Events"],
       locationNames: [],
       partyTypes: [],
       filterBy: {
+        userLocation: {},
         startTime: "",
         selectedLocations: [],
         selectedTypes: [],
@@ -165,12 +163,10 @@ export default {
           musicType: "Rock",
           partyType: "Rave"
         }
-        // date: {
-        //   startTime: 3232323
-        // }
       }
     };
   },
+
   computed: {
     filterTitle() {
       if (this.filterBy.sortBy === "likes") {
@@ -198,6 +194,7 @@ export default {
     },
 
     setSortBy() {
+      console.log("set sort by sent:", this.filterBy);
       this.$store.commit({
         type: "setFilter",
         filterBy: JSON.parse(JSON.stringify(this.filterBy))
@@ -216,6 +213,17 @@ export default {
     let locations = await this.$store.dispatch({ type: "getPartyLocations" });
     this.locationNames = locations;
     this.partyTypes = PartyService.getMusicPartyTypes().partyTypes;
+  },
+  mounted() {
+    console.log("mounted");
+    EventBus.$on("runFilter", () => {
+      this.setSortBy();
+    });
+    setTimeout(() => {
+      console.log("this.$store.getters.place:", this.$store.getters.place);
+      this.filterBy.userLocation = this.$store.getters.place;
+      this.setSortBy();
+    }, 2000);
   }
 };
 </script>

@@ -5,7 +5,7 @@ import UserService from '@/services/UserService.js'
 
 export default {
     state: {
-        loggedinUser : {username:"Guest"},
+        loggedinUser : {username:"Guest", email:"guest@gmail.com" ,isAdmin: false, imgURL:"https://picsum.photos/200"},
         users: [],
         currUser: {}
     },

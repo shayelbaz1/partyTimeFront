@@ -108,7 +108,7 @@
               <i class="fas fa-info"></i>
             </td>
             <td class="txt">
-              <p>{{party.desc}}</p>
+              <pre class="party-desc">{{party.desc}}</pre>
               <p class="desc">Description</p>
             </td>
           </tr>
@@ -121,13 +121,18 @@
         <party-map :partyProp="party"></party-map>
         <!-- </div> -->
         <div class="members">
-          <p>Going</p>
+          <p class="title">Going</p>
           <div class="members-img-container">
             <members-pics
               v-for="member in party.extraData.members"
               :key="member._id"
               :member="member"
             ></members-pics>
+            <!-- <div class="member-con" v-for="(n,idx) in 5" :key="idx">
+              <img :src="'http://lorempixel.com/100/100/people/'+idx" />
+              <p>Kester Chapman</p>
+            </div> -->
+            <!-- <pre style="color:white">{{party.extraData.members}}</pre> -->
           </div>
         </div>
       </div>

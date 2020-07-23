@@ -2,10 +2,12 @@ import PartyService from '../services/PartyService.js'
 
 export default {
   state: {
-    place:{},
-    isProcessing: false,
+    place: {},
+    // place: {pos:{lat:32.068424,lng:34.824785}},
     filterBy: {
-      startTime: 'All',
+      // userLocation: {pos:{lat:32.068424,lng:34.824785}},
+      userLocation: {},
+      startTime: '',
       selectedLocations: [],
       selectedTypes: [],
       sortBy: 'startDate',
@@ -37,9 +39,14 @@ export default {
     },
   },
   mutations: {
+    setUserLocation(state, { place }) {
+      console.log('place:', place)
+      state.filterBy.userLocation = place
+    }
+    ,
     setPlace(state, {place}) {
         state.place = place
-    },  
+    },    
     setFilter(state, { filterBy }) {
         state.filterBy = filterBy
     },  
@@ -70,7 +77,7 @@ export default {
     // LOAD
     loadPartys({ commit, state }) {
       commit({ type: 'setIsProcessing', isProcessing: true })
-      console.log(state.filterBy);
+      console.log('state.filterBy in PartyStore before:', state.filterBy)
       return PartyService.query(state.filterBy).then((partys) => {
         commit({ type: 'setPartys', partys })
         commit({ type: 'setIsProcessing', isProcessing: false })
@@ -104,16 +111,16 @@ export default {
       })
     },
 
-    // async getPartyByLocation({ commit }) {
-    //   const locations =  await PartyService.getPartyByLocation()
-    //     console.log(locations)
-    //     return locations
-    // },
-
     getPartyLocations({ commit }) {
       return PartyService.getPartyLocations().then((locations) => {
-        console.log(locations)
         return locations
+      })
+    },
+
+    addPartysDistance({ commit }, { place }) {
+      return PartyService.addPartysDistance(place).then(() => {
+        commit({ type: 'updateParty', party })
+        return party
       })
     },
   },

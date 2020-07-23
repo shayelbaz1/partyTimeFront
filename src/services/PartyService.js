@@ -9,23 +9,22 @@ export default {
   getEmptyParty,
   addLike,
   getMusicPartyTypes,
-  getPartyLocations
+  getPartyLocations,
 }
 
 // CRUD
 // CREATE READ UPDATE DELETE
 
 function query(filterBy) {
-  console.log(filterBy);
- 
-  // With out 
-  const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}&locations=${JSON.stringify(filterBy.selectedLocations)}&partyTypes=${JSON.stringify(filterBy.selectedTypes)}&startTime=${filterBy.startTime}`;
-  console.log(query);
+  console.log('filterBy in PartyService fronend before:', filterBy)
+  console.log('filterBy in PartyService fronend before:', filterBy.userLocation)
+  const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}&locations=${JSON.stringify(filterBy.selectedLocations)}&partyTypes=${JSON.stringify(filterBy.selectedTypes)}&startTime=${filterBy.startTime}&distance=${filterBy.partyDetails.distance}&userLocation=${JSON.stringify(filterBy.userLocation)}`
+  // const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}&locations=${JSON.stringify(filterBy.selectedLocations)}&partyTypes=${JSON.stringify(filterBy.selectedTypes)}&startTime=${filterBy.startTime}`
+  console.log('query after:', query)
   return HttpService.get(`party/${query}`)
 }
 
 function getPartyLocations(){
-  console.log('im here');
   return HttpService.get(`party/locations`)
 }
 
@@ -44,9 +43,13 @@ function remove(partyId) {
 }
 
 async function save(party) {
+  console.log('save...')
   const location = await GeocodeService.getLatLng(party.location.name)
   party.location.lat = location.lat
   party.location.lng = location.lng
+  party.location.coordinates[0] = location.lat
+  party.location.coordinates[1] = location.lng
+  console.log('party:', party)
   return party._id ? _update(party) : _add(party)
 }
 
@@ -64,16 +67,21 @@ function getEmptyParty() {
     desc: '',
     imgUrl:
       'https://res.cloudinary.com/partytime/image/upload/v1595150444/partyImgs/wniyqeybu0858ckaftlr.png',
-    fee: '',
+    fee: 0,
     likes: 0,
     startDate: '',
     endDate: '',
     durationHours: 0,
-    createdAt: 0,
+    createdAt: new Date(),
     location: {
       name: '',
       lat: 0,
       lng: 0,
+      type : "Point",
+        coordinates : [ 
+            40.7127753, 
+            -74.0059728
+        ]
     },
     extraData: {
       musicTypes: [],

@@ -4,7 +4,7 @@
     <!-- <welcome-header></welcome-header> -->
     <hero-img></hero-img>
     <div class="flex">
-      <party-filter v-if="partys" :partys="partys" :class="{ show: isShowFilter }"></party-filter>
+      <party-filter v-if="partys" :class="{ show: isShowFilter }"></party-filter>
       <div class="flex column-layout">
         <div class="display-btns flex">
           <button @click="displayBy('list')" :class="{ active: currPartiesDisplay === 'list' }">
@@ -90,11 +90,12 @@ export default {
     },
     partys() {
       let partys = this.$store.getters.partys;
+      console.log("partys:", partys);
       return partys;
     }
   },
   created() {
-    this.$store.dispatch({ type: "loadPartys" });
+    // this.$store.dispatch({ type: "loadPartys" });
     EventBus.$on("toggleFilter", this.toggleFilter);
   }
 };
@@ -114,13 +115,16 @@ export default {
 .posters {
   columns: 3;
   width: 100%;
+  column-gap: 0;
   img {
     width: 100%;
+    cursor: pointer;
   }
 }
 
 .display-btns {
   width: 90%;
+  margin-top: 7.5px;
   button {
     margin: 4px;
     border: 0;
@@ -147,6 +151,12 @@ export default {
     img {
       width: 20%;
     }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .posters {
+    columns: 2;
   }
 }
 </style>

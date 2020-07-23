@@ -10,17 +10,18 @@
       <div class="text-box">
         <div class="heart-box" @click.stop="signalAddLike(party)">
           <i class="fas fa-heart"></i>
-          <p>{{party.likes}}</p>
+          <p>{{ party.likes }}</p>
         </div>
 
         <div class="preview-party-name">
-          <h1>{{party.name}}</h1>
-          <p>{{party.location.name}}</p>
+          <h1>{{ party.name }}</h1>
+          <p>{{ party.location.name }}</p>
         </div>
-        <p>{{party.startDate | moment("from")}} | {{fee}}</p>
-        <p>{{party.startDate | moment("DD/MM/YYYY • HH:mm A")}}</p>
+        <p>{{ party.startDate | moment('from') }} | {{ fee }}</p>
+        <p>{{ party.startDate | moment('DD/MM/YYYY • HH:mm A') }}</p>
+        <!-- <p>{{ `${km()} km's away` }}</p> -->
         <div class="types flex">
-          <p v-for="(type,idx) in party.extraData.partyTypes" :key="idx">{{type}}</p>
+          <p v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }}</p>
         </div>
 
         <div class="btns-actions-box">
@@ -38,15 +39,13 @@
 </template>
 
 <script>
+// import DistanceService from "../../../general-services/Distance.service.js";
 export default {
   name: "party-preview",
   props: {
     party: {
       type: Object
     }
-  },
-  data() {
-    return {};
   },
   computed: {
     fee() {
@@ -58,6 +57,19 @@ export default {
     }
   },
   methods: {
+    // km() {
+    //   const userLocation = this.userPlace();
+    //   const { lat, lng } = userLocation.pos;
+    //   return DistanceService.getDistanceFromLatLonInKm(
+    //     lat,
+    //     lng,
+    //     this.party.location.lat,
+    //     this.party.location.lng
+    //   );
+    // },
+    userPlace() {
+      return this.$store.getters.place;
+    },
     signalDelete(partyId) {
       this.$emit("deleteParty", partyId);
     },
@@ -68,7 +80,7 @@ export default {
       this.$router.replace("party-app/edit/" + id);
     },
     routeToDetails(id) {
-      this.$router.push("party-app/details/" + id);
+      this.$router.replace("/party-app/details/" + id);
     },
     remove(id) {
       this.$store
@@ -172,11 +184,14 @@ export default {
         margin-top: 20px;
         margin-right: 20px;
         i {
-          font-size: 2rem;
+          font-size: 1.7rem;
           color: #c1272d;
         }
         p {
           margin: 0;
+          // position: absolute;
+          // top: 3px;
+          // left: 9px;
         }
       }
       .btns-actions-box {
@@ -213,9 +228,9 @@ export default {
 
 @media screen and (max-width: 400px) {
   .box-card {
-    height: 154px !important;
+    // height: 154px !important;
     .img-box {
-      min-width: 137px !important;
+      // min-width: 137px !important;
     }
     .text-box {
       font-size: 0.9rem;
