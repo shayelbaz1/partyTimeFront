@@ -41,13 +41,15 @@ export default {
         password: "",
         email: "",
         imgURL: "https://picsum.photos/200",
-        isGoogle: false
+        isGoogle: false,
+        goingPartys: []
       }
     };
   },
   methods: {
     doSignup() {
       const cred = this.creds;
+      console.log('creds on components ',cred);
       if (!cred.email || !cred.password || !cred.username) return;
       this.$store.dispatch({ type: "signup", creds: cred });
       this.$router.push("/");

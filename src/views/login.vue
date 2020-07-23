@@ -42,21 +42,20 @@ export default {
   },
   computed: {},
   created() {
-    // const route = currentRouteName()
-    // console.log(route);
   },
   methods: {
     routeToSignup() {
       this.$router.push("/signup");
     },
     async doLogin(googleCreds) {
-      if (googleCreds.constructor.name !== "yw") {
+      if (googleCreds.constructor.name !== "yw") { // without google outh
         const currUser = await this.$store.dispatch({
           type: "login",
           creds: this.creds
         });
+        console.log('user back from backend!', currUser);
         if (currUser) this.$router.push("/");
-        if (!currUser.length) return false;
+        if (!currUser.length) return;
       } else if (googleCreds.constructor.name === "yw") {
         this.creds.username = googleCreds.Bd;
         this.creds.email = googleCreds.Au;
