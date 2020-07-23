@@ -2,10 +2,12 @@ import PartyService from '../services/PartyService.js'
 
 export default {
   state: {
-    place:{},
+    place: {},
+    // place: {pos:{lat:32.068424,lng:34.824785}},
     filterBy: {
-      userLocation: null,
-      startTime: 'All',
+      // userLocation: {pos:{lat:32.068424,lng:34.824785}},
+      userLocation: {},
+      startTime: '',
       selectedLocations: [],
       selectedTypes: [],
       sortBy: 'startDate',
@@ -37,13 +39,14 @@ export default {
     },
   },
   mutations: {
-    setFilterUserLocation(state, {place}){
+    setUserLocation(state, { place }) {
+      console.log('place:', place)
       state.filterBy.userLocation = place
     }
     ,
     setPlace(state, {place}) {
         state.place = place
-    },  
+    },    
     setFilter(state, { filterBy }) {
         state.filterBy = filterBy
     },  
@@ -74,6 +77,7 @@ export default {
     // LOAD
     loadPartys({ commit, state }) {
       commit({ type: 'setIsProcessing', isProcessing: true })
+      console.log('state.filterBy in PartyStore before:', state.filterBy)
       return PartyService.query(state.filterBy).then((partys) => {
         commit({ type: 'setPartys', partys })
         commit({ type: 'setIsProcessing', isProcessing: false })

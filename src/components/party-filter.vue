@@ -65,7 +65,7 @@
       <div class="header distance">
         <p>Distance</p>
         <p>Less then {{ filterBy.partyDetails.distance }} km</p>
-      </div> 
+      </div>
       <div class="slidecontainer">
         <el-slider @change="setSortBy" v-model="filterBy.partyDetails.distance"></el-slider>
       </div>
@@ -141,21 +141,17 @@
 
 <script>
 import PartyService from "../services/PartyService.js";
+import EventBus from "../services/EventBus";
 
 export default {
   name: "party-filter",
-  props: {
-    partys: {
-      type: Array
-    }
-  },
   data() {
     return {
       times: ["All", "Today", "Tomorrow", "Next 7 Days", "Old Events"],
       locationNames: [],
       partyTypes: [],
       filterBy: {
-        userLocation: this.$store.getters.place,
+        userLocation: {},
         startTime: "",
         selectedLocations: [],
         selectedTypes: [],
@@ -170,6 +166,7 @@ export default {
       }
     };
   },
+
   computed: {
     filterTitle() {
       if (this.filterBy.sortBy === "likes") {
@@ -184,7 +181,7 @@ export default {
       if (this.filterBy.sortBy === "startDate") {
         return "Time";
       }
-    },
+    }
   },
   methods: {
     setActiveSort(newSort) {
@@ -197,7 +194,7 @@ export default {
     },
 
     setSortBy() {
-      console.log(this.filterBy);
+      console.log("set sort by sent:", this.filterBy);
       this.$store.commit({
         type: "setFilter",
         filterBy: JSON.parse(JSON.stringify(this.filterBy))
@@ -216,6 +213,17 @@ export default {
     let locations = await this.$store.dispatch({ type: "getPartyLocations" });
     this.locationNames = locations;
     this.partyTypes = PartyService.getMusicPartyTypes().partyTypes;
+  },
+  mounted() {
+    console.log("mounted");
+    EventBus.$on("runFilter", () => {
+      this.setSortBy();
+    });
+    setTimeout(() => {
+      console.log("this.$store.getters.place:", this.$store.getters.place);
+      this.filterBy.userLocation = this.$store.getters.place;
+      this.setSortBy();
+    }, 2000);
   }
 };
 </script>
