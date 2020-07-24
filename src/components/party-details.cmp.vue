@@ -195,7 +195,7 @@ export default {
       const userLocation = this.$store.getters.place
       const { lat, lng } = userLocation.pos
       console.log("for navigation:",this.party);
-      window.open(`https://www.google.co.il/maps/dir/${lng},${lat}/${this.party.location.lat},${this.party.location.lat}/`)
+      window.open(`https://www.google.co.il/maps/dir/${lng},${lat}/${this.party.location.lng},${this.party.location.lat}/`)
     },
     addLikeOrGoing(type) {
       const currParty = this.party
