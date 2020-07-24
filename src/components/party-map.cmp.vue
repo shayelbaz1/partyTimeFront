@@ -159,11 +159,11 @@ export default {
     async getCityNameByLatLng(currentLocation) {
       const cityName = await GeocodeService.getCityByLatLng(currentLocation);
       this.place.name = cityName;
-      if (this.place.name) {
+
+      
         this.$el.querySelector(
           "input.pac-target-input"
         ).value = this.place.name;
-      }
     },
     togglePreview(party) {
       this.isOpenPrev = true;

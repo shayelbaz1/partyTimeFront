@@ -5,7 +5,7 @@
       <i class="fas fa-search"></i>
     </button>
 
-    <button class="geolocation" @click.stop="geoLocation()">
+    <button class="geolocation" @click.stop="geoLocation">
       <i class="far fa-compass"></i>
     </button>
   </div>
@@ -29,7 +29,7 @@ export default {
   components: {
     GoogleMap
   },
-  created() {
+  mounted(){
     this.geoLocation();
   },
   methods: {
@@ -46,14 +46,14 @@ export default {
     async getCityNameByLatLng(currentLocation) {
       const cityName = await GeocodeService.getCityByLatLng(currentLocation);
       this.place.name = cityName;
-      // this.$el.querySelector("input.pac-target-input").value = "";
-      if (this.place.name) {
-        // TODO Set timeout
-        setTimeout(() => {
-          var el = this.$el.querySelector("input.pac-target-input");
-          el.value = this.place.name;
-        }, 2000);
-      }
+
+
+console.log('No time out now... check...');
+      // setTimeout(() => {
+        var el = this.$el.querySelector("input.pac-target-input");
+        el.value = this.place.name;
+      // }, 2000);
+
       this.$store.commit({
         type: "setPlace",
         place: JSON.parse(JSON.stringify(this.place))

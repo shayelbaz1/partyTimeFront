@@ -193,7 +193,6 @@ export default {
   },
   methods: {
     shareToWhatsapp() {
-      // TODO ADD PARTY LINK
       window.open(
         "https://api.whatsapp.com/send?text=Hi%20Let%27s%20go%20to%20this%20crazy%20party!%20tell%20my%20what%20you%20think?"
       );
@@ -207,60 +206,48 @@ export default {
     },
     addLikeOrGoing(type) {
       const currParty = this.party;
-      const userToAdd = {
-        _id: this.currUser._id,
-        imgURL: this.currUser.imgURL,
-        username: this.currUser.username
-      };
-      if (type === "going") {
-        // const partyFound = this.currUser.goingPartys.find(
-        //   id => id === currParty._id
-        // );
-        const userFound = currParty.extraData.members.find(
-          user => user._id === userToAdd._id
-        );
+      const { _id, imgURL, username } = this.currUser;
+      const userToAdd = { _id, imgURL, username };
+      // console.log('userToAdd:', userToAdd)
+      // console.log('currParty:', currParty)
 
-        if (userFound) return;
-        else if (!userFound) {
-          // Update Party
+      if (type === "going") {
+        // found user in party members
+        const userFoundIdx = currParty.extraData.members.findIndex(user => user._id === userToAdd._id);
+        if (userFoundIdx>=0) {
+          // pop current user
+          currParty.extraData.members.splice(userFoundIdx,1)
+          // find party in user goingPartys
+          const partyIdx = this.currUser.goingPartys.findIndex(id=>id===currParty._id)
+          if(partyIdx<=0){
+            // pop party from array
+            this.currUser.goingPartys.splice(partyIdx,1)
+          }
+        }else{
+          // push current user
           currParty.extraData.members.push(userToAdd);
-          this.$store.dispatch({
-            type: "saveParty",
-            party: currParty
-          });
           // Update User
           this.currUser.goingPartys.push(currParty._id);
-
-          this.$store.dispatch({
-            type: "updateUser",
-            user: this.currUser
-          });
-
-          // EventBus of Socket
-          SocketService.emit("party joined", {
-            currUser: this.currUser,
-            currParty: this.party
-          });
         }
-        // If Likes By User ------------------------------------
+        // Save party and user
+          this.$store.dispatch({type: "updateUser",user: this.currUser});
+          // EventBus of Socket
+          SocketService.emit("party joined", {currUser: this.currUser,currParty: this.party});
+        
+        // If Likes By User
       } else if (type === "like") {
-        const userFound = currParty.extraData.likes.find(
-          user => user._id === userToAdd._id
-        );
-
-        if (userFound) return;
-
-        currParty.extraData.likes.push(userToAdd);
-        this.$store.dispatch({
-          type: "saveParty",
-          party: currParty
-        });
+        // found user idx in party likes
+        const userFoundIdx = currParty.extraData.likes.findIndex(user => user._id === userToAdd._id);
+        if (userFoundIdx>=0){
+          // Pop member from likes
+          currParty.extraData.likes.splice(userFoundIdx,1)
+        }else{
+          currParty.extraData.likes.push(userToAdd);
+        } 
         // EventBus of Socket
-        SocketService.emit("party liked", {
-          currUser: this.currUser,
-          currParty: this.party
-        });
+        SocketService.emit("party liked", {currUser: this.currUser,currParty: this.party});
       }
+        this.$store.dispatch({type: "saveParty",party: currParty});
     },
     getCurrUserObj() {
       const loggedInUser = sessionStorage.getItem("user");

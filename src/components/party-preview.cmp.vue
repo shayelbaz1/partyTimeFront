@@ -10,7 +10,7 @@
       <div class="text-box">
         <div class="heart-box" @click.stop="signalAddLike(party)">
           <i class="fas fa-heart"></i>
-          <p>{{ party.likes }}</p>
+          <p>{{ party.extraData.likes.length }}</p>
         </div>
 
         <div class="preview-party-name">
@@ -47,12 +47,10 @@ export default {
       type: Object
     }
   },
-  data() {
-    return {
-      currUser: this.getCurrUser()
-    };
-  },
   computed: {
+    loggedInUser(){
+      return this.$store.getters.loggedInUser
+    },
     fee() {
       if (this.party.fee === 0) {
         return "FREE";
@@ -60,16 +58,14 @@ export default {
         return "$" + this.party.fee;
       }
     },
+    loggedInUser() {
+      return this.$store.getters.loggedInUser;
+    },
     isCurrUserCreator() {
-      if (this.currUser) {
-        return this.currUser.createdPartys.find(id => id === this.party._id);
-      }
+      return this.party.extraData.createdBy._id === this.loggedInUser._id;
     }
   },
   methods: {
-    getCurrUser() {
-      return this.$store.getters.loggedInUser;
-    },
     km() {
       const userLocation = this.userPlace();
       const { lat, lng } = userLocation.pos;
@@ -87,7 +83,23 @@ export default {
       this.$emit("deleteParty", partyId);
     },
     signalAddLike(party) {
-      this.$emit("addLike", party);
+      // Deep copy
+      let currParty = JSON.parse(JSON.stringify(party))
+        const { _id, imgURL, username } = {...this.loggedInUser};
+      const userToAdd = { _id, imgURL, username };
+        // found user idx in party likes
+        const userFoundIdx = currParty.extraData.likes.findIndex(user => user._id === userToAdd._id);
+        if (userFoundIdx>=0){
+          // Pop member from likes
+          currParty.extraData.likes.splice(userFoundIdx,1)
+        }else{
+          currParty.extraData.likes.push(userToAdd);
+        } 
+        this.$store.dispatch({type: "saveParty",party: currParty});
+        // EventBus of Socket
+        // SocketService.emit("party liked", {currUser: userToAdd,party: party});
+      
+      // this.$emit("addLike", party);
     },
     routeToEdit(id) {
       this.$router.replace("party-app/edit/" + id);
