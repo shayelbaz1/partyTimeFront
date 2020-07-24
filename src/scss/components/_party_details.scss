@@ -129,3 +129,23 @@
         }
     }
 }
+
+@media screen and (max-width: 900px) {
+    .details-and-map-container {
+        flex-direction: column;
+        .table-container {
+            width: 100%;
+            padding-right: 25px;
+            margin-bottom: 15px;
+        }
+        .map-members-container.column-layout {
+            width: 100%;
+            .party-map {
+                margin-bottom: 20px;
+            }
+            .members {
+                margin-bottom: 25px;
+            }
+        }
+    }
+}

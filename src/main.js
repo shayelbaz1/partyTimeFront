@@ -14,6 +14,14 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './scss/global.scss';
 import GSignInButton from 'vue-google-signin-button'
+// import VCalendar from 'v-calendar';
+
+// // Use v-calendar & v-date-picker components
+// Vue.use(VCalendar, {
+//   componentPrefix: 'vc',  // Use <vc-calendar /> instead of <v-calendar />
+//   // ...other defaults
+// });
+
 Vue.use(GSignInButton)
 
 // Install BootstrapVue
@@ -27,7 +35,7 @@ Vue.use(Cloudinary, {
   }
 });
 
- 
+
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyAIRUoau4daansiuIk9xffRyjL8yJYv8SI',
@@ -42,7 +50,7 @@ extend('required', {
   ...required,
   message: 'This field is required'
 });
- 
+
 // Add the email rule
 extend('email', {
   ...email,
@@ -56,18 +64,18 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false;
 
 // Filters
-Vue.filter('to-lowercase', function(value) {
+Vue.filter('to-lowercase', function (value) {
   return value.toLowerCase();
 });
 
-Vue.filter('formatNum', (val)=> {
-return Number(val).toLocaleString();
+Vue.filter('formatNum', (val) => {
+  return Number(val).toLocaleString();
 });
 
 Vue.filter('capitalize', (value) => {
-    if (!value) return ''
-    value = value.toString()
-    return value.charAt(0).toUpperCase() + value.slice(1)
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
 })
 // ------
 

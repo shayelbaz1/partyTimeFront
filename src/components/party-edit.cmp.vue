@@ -192,6 +192,10 @@ export default {
     }
   },
   methods: {
+    getCurrUser() {
+      const loggedInUser = sessionStorage.getItem("user");
+      return JSON.parse(loggedInUser);
+    },
     setPlace(place) {
       this.partyToSave.location.name = place.formatted_address;
       this.partyToSave.location.lat = place.geometry.location.lat();
@@ -218,9 +222,6 @@ export default {
       console.log("partyToSave");
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
-      // Convert To ISO String : 2020-07-21T17:15:00.000Z
-      // this.partyToSave.startDate = `ISODate(${this.partyToSave.startDate})`;
-      // this.partyToSave.endDate = `ISODate(${this.partyToSave.endDate})`;
       this.partyToSave.startDate = new Date(
         this.partyToSave.startDate
       ).toISOString();
@@ -229,11 +230,19 @@ export default {
       ).toISOString();
       this.partyToSave.fee = parseInt(this.partyToSave.fee);
       // Save Party on DB
+
       const party = await this.$store.dispatch({
         type: "saveParty",
         party: this.partyToSave
       });
-      console.log("party:", party);
+      const currUser = this.getCurrUser();
+      currUser.createdPartys.push(party._id);
+      this.$store.dispatch({
+        type: "updateUser",
+        user: currUser
+      });
+      sessionStorage.setItem("user", currUser);
+      console.log("party test with aizen:", party);
       this.$router.push("/party-app");
     },
     loadParty() {
@@ -247,8 +256,7 @@ export default {
         this.isEdit = false;
         let emptyParty = PartyService.getEmptyParty();
         this.partyToSave = emptyParty;
-        // let emptyParty = this.$store.getters.emptyParty;
-        // this.partyToSave = JSON.parse(JSON.stringify(emptyParty));
+        // this.partyToSave._id
       }
     },
     loadTypes() {

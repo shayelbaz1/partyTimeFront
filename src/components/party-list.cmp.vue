@@ -1,10 +1,5 @@
 <template>
   <section class="party-list">
-    <button @click="toggleFilter" class="add filter">
-      <!-- <i class="fa fa-plus my-float"></i> -->
-      <i class="fas fa-search my-float"></i>
-    </button>
-
     <div class="party-list-container flex column-layout">
       <party-preview
         @deleteParty="signalDelete"

@@ -1,6 +1,11 @@
 <template>
   <div class="party-app">
     <div class="hidden-screen" v-if="isShowFilter" @click="toggleFilter"></div>
+    <button @click="toggleFilter" class="add filter">
+      <!-- <i class="fa fa-plus my-float"></i> -->
+      <!-- <i class="fas fa-search my-float"></i> -->
+      <img style="width: 66%;" src="../assets/filter.png" alt />
+    </button>
     <!-- <welcome-header></welcome-header> -->
     <hero-img></hero-img>
     <div class="flex">
@@ -124,9 +129,9 @@ export default {
 
 .display-btns {
   width: 90%;
-  margin-top: 7.5px;
+  // margin-top: 7.5px;
   width: 100%;
-  padding: 0px 10px;
+  padding: 7.5px 10px;
   position: sticky;
   top: 55px;
   z-index: 2;
@@ -156,6 +161,35 @@ export default {
   .hero-box {
     img {
       width: 20%;
+    }
+  }
+  button.add {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 5px;
+    left: 5px;
+    background-color: #850000;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px rgb(0, 0, 0);
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    z-index: 1;
+    &:active {
+      box-shadow: none;
+    }
+  }
+  .filter {
+    visibility: hidden;
+  }
+
+  @media screen and (max-width: 900px) {
+    .filter {
+      visibility: visible;
     }
   }
 }

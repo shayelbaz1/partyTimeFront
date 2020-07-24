@@ -23,7 +23,7 @@
           <p v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }}</p>
         </div>
 
-        <div class="btns-actions-box">
+        <div v-if="isCurrUserCreator" class="btns-actions-box">
           <el-button @click.stop="routeToEdit(party._id)" type="text">
             <i class="far fa-edit"></i>
           </el-button>
@@ -46,6 +46,11 @@ export default {
       type: Object
     }
   },
+  data() {
+    return {
+      currUser: this.getCurrUser()
+    };
+  },
   computed: {
     fee() {
       if (this.party.fee === 0) {
@@ -53,9 +58,19 @@ export default {
       } else {
         return "$" + this.party.fee;
       }
+    },
+    isCurrUserCreator() {
+      return this.currUser.createdPartys.find(id => id === this.party._id);
     }
   },
+  created() {
+    this.getCurrUser();
+  },
   methods: {
+    getCurrUser() {
+      const loggedInUser = sessionStorage.getItem("user");
+      return JSON.parse(loggedInUser);
+    },
     km() {
       const userLocation = this.userPlace();
       const { lat, lng } = userLocation.pos;
