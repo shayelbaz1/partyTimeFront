@@ -2,13 +2,8 @@
   <section class="review-list">
     <h1>Reviews</h1>
     <!-- Add Review -->
-    <form @submit.prevent="addReview()">
-      <el-select v-model="reviewToEdit.aboutUserId" placeholder="Choose party">
-        <el-option v-for="party in partys" :key="party._id" :value="party.name">{{party.name}}</el-option>
-      </el-select>
-
+    <form @submit.prevent="addReview()" v-if="loggedInUser">
       <el-input type="textarea" placeholder="Your Opinion Matters..." v-model="reviewToEdit.txt"></el-input>
-
       <el-button @click="addReview()">Save</el-button>
     </form>
     <hr />
@@ -44,6 +39,9 @@ export default {
     },
     partys() {
       return this.$store.getters.partys;
+    },
+    loggedInUser(){
+      return this.$store.getters.loggedInUser;
     }
   },
   methods: {
