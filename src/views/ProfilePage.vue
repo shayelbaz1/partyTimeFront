@@ -25,13 +25,10 @@ import colorPicker from "../components/my-cmps/color-picker.cmp.vue";
 import timePicker from "../components/my-cmps/time-picker.cmp.vue";
 
 export default {
-  data() {
-    return {
-      user: {}
-    };
-  },
-  created() {
-    this.user = this.$store.getters.loggedinUser;
+  computed: {
+    user() {
+      return this.$store.getters.loggedInUser;
+    }
   },
   components: {
     genderPicker,

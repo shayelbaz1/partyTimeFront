@@ -88,22 +88,12 @@ function getEmptyParty() {
       partyTypes: [],
       createdBy: {
         _id: '',
-        fullName: '',
-        imgUrl: '',
+        username: '',
+        imgURL: '',
       },
-      members: [
-        {
-          _id: '',
-          fullName: '',
-          imgUrl: '',
-        },
-        {
-          _id: '',
-          fullName: '',
-          imgUrl: '',
-        },
-      ],
+      members: [],
       reviews: [],
+      likes:[],
       membersCnt: 0
     },
   }

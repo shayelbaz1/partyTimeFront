@@ -5,7 +5,7 @@ import UserService from '@/services/UserService.js'
 
 export default {
     state: {
-        loggedInUser: null,
+        loggedInUser:{_id:'u101',username:"Guest", email:"guest@gmail.com" ,isAdmin: false, imgURL:"https://picsum.photos/200"},
         users: [],
         currUser: {}
     },
@@ -23,6 +23,7 @@ export default {
     mutations: {
         setUser(state, { user }) {
             state.loggedInUser = user;
+            // console.log('logged in user in UserStore:', state.loggedInUser)
         },
         setCurrUser(state, { user }) {
             state.currUser = user;
@@ -40,7 +41,7 @@ export default {
             context.commit({ type: 'setUser', user })
             return user;
         },
-        async signup(context, { creds }) {
+        async signup(context, {creds}) {
             const user = await UserService.signup(creds)
             context.commit({ type: 'setUser', user })
             return user;
@@ -66,7 +67,7 @@ export default {
         },
         async updateUser(context, { user }) {
             user = await UserService.update(user);
-            context.commit({ type: 'setUser', user })
+            context.commit({type: 'setUser', user})
         }
     }
 }

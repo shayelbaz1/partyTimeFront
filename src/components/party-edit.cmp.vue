@@ -189,12 +189,14 @@ export default {
       } else {
         return "Create Party";
       }
+    },
+    loggedInUser() {
+      return this.$store.getters.loggedInUser;
     }
   },
   methods: {
     getCurrUser() {
-      const loggedInUser = sessionStorage.getItem("user");
-      return JSON.parse(loggedInUser);
+      return this.$store.getters.loggedInUser;
     },
     setPlace(place) {
       this.partyToSave.location.name = place.formatted_address;
@@ -219,31 +221,38 @@ export default {
       this.$router.push("/party-app");
     },
     async saveParty() {
+      console.log("this.partyToSave in saveParty in edit:",this.partyToSave.extraData);
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
-      this.partyToSave.startDate = new Date(
-        this.partyToSave.startDate
-      ).toISOString();
-      this.partyToSave.endDate = new Date(
-        this.partyToSave.endDate
-      ).toISOString();
+      if (this.partyToSave._id &&this.partyToSave.extraData.createdBy._id !== this.loggedInUser._id)return;
+      // this.partyToSave.startDate = new Date(this.partyToSave.startDate).toISOString();
+      // this.partyToSave.endDate = new Date(this.partyToSave.endDate).toISOString();
       this.partyToSave.fee = parseInt(this.partyToSave.fee);
-      // Save Party on DB
 
+      this.setCreatedBy();
+      // Save Party on DB
       const party = await this.$store.dispatch({
         type: "saveParty",
         party: this.partyToSave
       });
-      const currUser = this.getCurrUser();
-      currUser.createdPartys.push(party._id);
-      this.$store.dispatch({
-        type: "updateUser",
-        user: currUser
-      });
-      sessionStorage.setItem("user", currUser);
+      this.$router.push("/party-app/details/" + party._id);
+
+      // const currUser = this.loggedInUser;
+      // console.log('currUser:', currUser)
+      // currUser.createdPartys.push(party._id);
+      // this.$store.dispatch({
+      //   type: "updateUser",
+      //   user: currUser
+      // });
+      // sessionStorage.setItem("user", currUser);
       this.$router.push("/party-app");
     },
+    setCreatedBy() {
+      const {_id,username,imgURL} = this.loggedInUser
+      this.partyToSave.extraData.createdBy = {_id,username,imgURL}
+    },
     loadParty() {
+      console.log("load");
       let partyId = this.$route.params.id;
       if (partyId) {
         this.isEdit = true;
@@ -252,9 +261,7 @@ export default {
         });
       } else {
         this.isEdit = false;
-        let emptyParty = PartyService.getEmptyParty();
-        this.partyToSave = emptyParty;
-        // this.partyToSave._id
+        this.partyToSave = PartyService.getEmptyParty();
       }
     },
     loadTypes() {
@@ -264,6 +271,7 @@ export default {
   created() {
     this.loadParty();
     this.loadTypes();
+    console.log("this.loggedInUser:", this.loggedInUser);
   }
 };
 </script>

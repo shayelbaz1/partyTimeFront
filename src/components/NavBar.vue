@@ -52,16 +52,12 @@ export default {
   components: {
     mapSearch
   },
-  data() {
-    return {
-      // user: null
-    };
-  },
   computed: {
     loggedInUser() {
       return this.$store.getters.loggedInUser;
     }
   },
+
   methods: {
     routeTo(page) {
       this.$router.push(page);
