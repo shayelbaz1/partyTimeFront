@@ -65,6 +65,12 @@ export default {
       )
       state.partys.splice(idx, 1, party)
     },
+    addReview(state, { review }) {
+      const party = state.partys.find(
+        (currParty) => currParty._id === review.currPartyId,
+      )
+      party.extraData.reviews.unshift(review)
+    },
   },
   actions: {
     // LOAD
@@ -111,6 +117,14 @@ export default {
     addPartysDistance({ commit }, { place }) {
       return PartyService.addPartysDistance(place).then(() => {
         commit({ type: 'updateParty', party })
+        return party
+      })
+    },
+
+    addPartyReview({ commit }, { review }) {
+      console.log("got review in service:", review);
+      return PartyService.addPartyReview(review).then((party) => {
+        commit({ type: 'addReview', review })
         return party
       })
     },

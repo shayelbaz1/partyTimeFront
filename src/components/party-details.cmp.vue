@@ -117,7 +117,7 @@
             </td>
           </tr>
         </table>
-        <review-list></review-list>
+        <review-list :reviews="party.extraData.reviews"></review-list>
       </div>
 
       <div class="map-members-container flex column-layout">

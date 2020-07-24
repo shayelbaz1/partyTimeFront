@@ -10,6 +10,7 @@ export default {
   addLike,
   getMusicPartyTypes,
   getPartyLocations,
+  addPartyReview
 }
 
 // CRUD
@@ -46,6 +47,10 @@ async function save(party) {
   party.location.coordinates[0] = location.lat
   party.location.coordinates[1] = location.lng
   return party._id ? _update(party) : _add(party)
+}
+
+function addPartyReview(review){
+  return HttpService.put('party/addReview', review)
 }
 
 function _add(party) {
