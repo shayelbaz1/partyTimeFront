@@ -26,16 +26,17 @@
 
         <b-navbar-nav class="ml-auto">
           <map-search></map-search>
-
-          <b-nav-item-dropdown right>
-            <!-- Using 'button-content' slot -->
-            <template v-slot:button-content>
-              <!-- <em>User</em> -->
-              <img class="user-img" :src="loggedInUser.imgURL" alt="User logo" srcset />
-            </template>
-            <b-dropdown-item href="#" @click="routeTo('/profile')">Profile</b-dropdown-item>
-            <b-dropdown-item href="#" @click="signOut">Sign Out</b-dropdown-item>
-          </b-nav-item-dropdown>
+          <div v-if="loggedInUser">
+            <b-nav-item-dropdown right>
+              <!-- Using 'button-content' slot -->
+              <template v-slot:button-content>
+                <!-- <em>User</em> -->
+                <img class="user-img"  :src="loggedInUser.imgURL" alt="User logo" srcset />
+              </template>
+              <b-dropdown-item href="#" @click="routeTo('/profile')">Profile</b-dropdown-item>
+              <b-dropdown-item href="#" @click="signOut">Sign Out</b-dropdown-item>
+            </b-nav-item-dropdown>
+          </div>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -53,18 +54,13 @@ export default {
   },
   data() {
     return {
-      user: {}
+      // user: null
     };
   },
   computed: {
     loggedInUser() {
-      this.user = this.$store.getters.loggedInUser;
-      return this.user
+      return this.$store.getters.loggedInUser;
     }
-  },
-  created() {
-    this.user = this.$store.getters.loggedInUser;
-    console.log('navbar', this.user);
   },
   methods: {
     routeTo(page) {
@@ -74,6 +70,7 @@ export default {
       EventBus.$emit("toggleFilter");
     },
     signOut() {
+      sessionStorage.clear();
       this.$store.dispatch("logout");
       this.routeTo("/");
     }

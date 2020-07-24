@@ -43,7 +43,6 @@ function getUsers() {
 }
 
 function _handleLogin(user) {
-    console.log('handleLogin', user);
     sessionStorage.setItem('user', JSON.stringify(user))
     return user;
 }
