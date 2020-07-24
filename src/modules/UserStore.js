@@ -5,7 +5,7 @@ import UserService from '@/services/UserService.js'
 
 export default {
     state: {
-        loggedInUser: sessionStorage.getItem("user"),
+        loggedInUser: null,
         users: [],
         currUser: {}
     },
@@ -17,8 +17,7 @@ export default {
             return state.users;
         },
         loggedInUser(state) {
-            return JSON.parse(state.loggedInUser)
-
+            return state.loggedInUser
         }
     },
     mutations: {
