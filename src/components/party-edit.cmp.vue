@@ -195,6 +195,10 @@ export default {
     }
   },
   methods: {
+    getCurrUser() {
+      const loggedInUser = sessionStorage.getItem("user");
+      return JSON.parse(loggedInUser);
+    },
     setPlace(place) {
       this.partyToSave.location.name = place.formatted_address;
       this.partyToSave.location.lat = place.geometry.location.lat();
@@ -225,6 +229,7 @@ export default {
       this.partyToSave.fee = parseInt(this.partyToSave.fee);
 
       // Save Party on DB
+
       const party = await this.$store.dispatch({
         type: "saveParty",
         party: this.partyToSave
