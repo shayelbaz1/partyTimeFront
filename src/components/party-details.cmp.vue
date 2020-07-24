@@ -117,6 +117,7 @@
             </td>
           </tr>
         </table>
+        <review-list></review-list>
       </div>
 
       <div class="map-members-container flex column-layout">
