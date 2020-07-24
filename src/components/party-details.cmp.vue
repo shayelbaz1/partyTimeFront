@@ -208,8 +208,8 @@ export default {
       const currParty = this.party;
       const { _id, imgURL, username } = this.currUser;
       const userToAdd = { _id, imgURL, username };
-      console.log('userToAdd:', userToAdd)
-      console.log('currParty:', currParty)
+      // console.log('userToAdd:', userToAdd)
+      // console.log('currParty:', currParty)
 
       if (type === "going") {
         // found user in party members

@@ -23,7 +23,7 @@ export default {
     mutations: {
         setUser(state, { user }) {
             state.loggedInUser = user;
-            console.log('logged in user in UserStore:', state.loggedInUser)
+            // console.log('logged in user in UserStore:', state.loggedInUser)
         },
         setCurrUser(state, { user }) {
             state.currUser = user;
