@@ -86,19 +86,9 @@ function getEmptyParty() {
         username: '',
         imgURL: '',
       },
-      members: [
-        {
-          _id: '',
-          username: '',
-          imgUrl: '',
-        },
-        {
-          _id: '',
-          fullName: '',
-          imgUrl: '',
-        },
-      ],
+      members: [],
       reviews: [],
+      likes:[],
       membersCnt: 0
     },
   }

@@ -15,8 +15,8 @@
         </div>
         <br />
         <div class="login-buttons-container">
-          <button class="signup" @click.prevent="routeToSignup">Signup</button>
           <button @click.prevent="doLogin">Login</button>
+          <button class="signup" @click.prevent="routeToSignup">Signup</button>
         </div>
         <!-- <br />
         <googleLogin @doLogin="doLogin"></googleLogin>-->
