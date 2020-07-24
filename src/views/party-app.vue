@@ -28,7 +28,6 @@
             Posters
           </button>
         </div>
-
         <party-list
           v-if="currPartiesDisplay === 'list'"
           :partys="partys"
@@ -55,16 +54,14 @@ import partyFilter from "../components/party-filter.vue";
 import heroImg from "../components/hero-img.cmp.vue";
 import EventBus from "../services/EventBus";
 import welcomeHeader from "../components/welcome-header.cmp.vue";
-
 export default {
   name: "party-app",
-
   components: {
     partyList,
     partyMap,
     partyFilter,
     heroImg,
-    welcomeHeader
+    welcomeHeader,
   },
   data() {
     return {

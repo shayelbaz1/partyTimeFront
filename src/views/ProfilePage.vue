@@ -2,7 +2,10 @@
   <section>
     <h1>Profile Page</h1>
     <el-card class="box-card">
-      <img :src="user.imgURL" alt srcset />
+      <div class="img-box" @click="openWidget" title="Upload Image">
+        <!-- <img class="img-backround" :src="user.imgURL" title="Upload Image" /> -->
+        <img class="img-front" :src="user.imgURL" title="Upload Image" />
+      </div>
       <h3 class="text item">{{user.username}}</h3>
       <div class="text item">email: {{user.email}}</div>
       <div class="text item">isAdmin: {{user.isAdmin}}</div>
@@ -25,9 +28,35 @@ import colorPicker from "../components/my-cmps/color-picker.cmp.vue";
 import timePicker from "../components/my-cmps/time-picker.cmp.vue";
 
 export default {
+  data() {
+    return {
+      userToSave: {}
+    };
+  },
   computed: {
     user() {
-      return this.$store.getters.loggedInUser;
+      this.userToSave = JSON.parse(
+        JSON.stringify(this.$store.getters.loggedInUser)
+      );
+      console.log(this.userToSave);
+      return this.userToSave;
+    }
+  },
+  methods: {
+    openWidget() {
+      const uploadWidget = cloudinary.createUploadWidget(
+        {
+          cloudName: "partytime",
+          uploadPreset: "partyTime"
+        },
+        (error, result) => {
+          if (!error && result && result.event === "success") {
+            this.userToSave.imgURL = result.info.url;
+            this.$store.dispatch({ type: "updateUser", user: this.userToSave });
+          }
+        }
+      );
+      uploadWidget.open();
     }
   },
   components: {
