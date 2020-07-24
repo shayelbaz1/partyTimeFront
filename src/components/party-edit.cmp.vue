@@ -219,7 +219,6 @@ export default {
       this.$router.push("/party-app");
     },
     async saveParty() {
-      console.log("partyToSave");
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
       this.partyToSave.startDate = new Date(
@@ -242,7 +241,6 @@ export default {
         user: currUser
       });
       sessionStorage.setItem("user", currUser);
-      console.log("party test with aizen:", party);
       this.$router.push("/party-app");
     },
     loadParty() {

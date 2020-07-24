@@ -53,7 +53,6 @@ export default {
           type: "login",
           creds: this.creds
         });
-        console.log("user back from backend!", currUser);
         if (currUser) this.$router.push("/party-app");
         if (!currUser.length) return;
       } else if (googleCreds.constructor.name === "yw") {

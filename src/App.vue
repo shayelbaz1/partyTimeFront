@@ -21,7 +21,6 @@ export default {
     SocketService.setup();
     // Listening to fired events from the socket server
     // SocketService.on("notify liked", ({currUser, currParty}) => {
-    //   console.log("FrontEnd socket Liked:", currUser, currParty);
     // });
   }
 };

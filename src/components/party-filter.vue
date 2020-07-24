@@ -194,7 +194,6 @@ export default {
     },
 
     setSortBy() {
-      console.log("set sort by sent:", this.filterBy);
       this.$store.commit({
         type: "setFilter",
         filterBy: JSON.parse(JSON.stringify(this.filterBy))
@@ -215,7 +214,6 @@ export default {
     this.partyTypes = PartyService.getMusicPartyTypes().partyTypes;
   },
   mounted() {
-    console.log("mounted");
     EventBus.$on("runFilter", () => {
       this.filterBy.userLocation = this.$store.getters.place;
       this.setSortBy();

@@ -31,7 +31,6 @@ export default {
     signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-      console.log('User signed out.');
     });
   },
     onSignInSuccess(googleUser) {
@@ -52,24 +51,15 @@ export default {
       // this.onSignIn(this.profile);
     },
     // onSignIn(googleUser) {
-    //   console.log("hello2");
     //   var profile = auth2.currentUser.get().getBasicProfile();
-    //   console.log("ID: " + profile.getId());
-    //   console.log("Full Name: " + profile.getName());
-    //   console.log("Given Name: " + profile.getGivenName());
-    //   console.log("Family Name: " + profile.getFamilyName());
-    //   console.log("Image URL: " + profile.getImageUrl());
-    //   console.log("Email: " + profile.getEmail());
     // },
 
     onSignInError(error) {
       // `error` contains any error occurred.
-      console.log("OH NOES", error);
     },
     signOut() {
       var auth2 = gapi.auth2.getAuthInstance();
       auth2.signOut().then(function() {
-        console.log("User signed out.");
       });
     }
   }

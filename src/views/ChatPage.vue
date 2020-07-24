@@ -59,7 +59,6 @@ export default {
   },
   methods: {
     showTypeingAndUser(userName, txt) {
-      console.log("userName and txt in frontend in Chat Page:", userName, txt);
       if (txt) {
         this.isTyping = true;
         this.whoType = userName;
@@ -73,7 +72,6 @@ export default {
     },
     sendMsg() {
       if (this.msg.txt !== "") {
-        console.log("Sending", this.msg);
         // EventBus of Socket
         SocketService.emit("chat newMsg", this.msg);
         this.msg = { from: "Me", txt: "" };
@@ -85,7 +83,6 @@ export default {
   },
   watch: {
     topic() {
-      // console.log('Topic Changed', this.topic);
     },
     "msg.txt"() {
       SocketService.emit("typing user", {
@@ -95,7 +92,6 @@ export default {
     },
     msgs: {
       handler() {
-        // console.log('New msg arrival!');
       }
     }
   },

@@ -200,7 +200,6 @@ export default {
     navigateToParty() {
       const userLocation = this.$store.getters.place;
       const { lat, lng } = userLocation.pos;
-      console.log("for navigation:", this.party);
       window.open(
         `https://www.google.co.il/maps/dir/${lat},${lng}/${this.party.location.lat},${this.party.location.lng}/`
       );
@@ -222,7 +221,6 @@ export default {
 
         if (userFound) return;
         else if (!userFound) {
-          console.log("you can join");
           // Update Party
           currParty.extraData.members.push(userToAdd);
           this.$store.dispatch({
@@ -281,11 +279,9 @@ export default {
     // Init Setup of socket
     SocketService.setup();
     SocketService.on("notify liked", ({ currUser, currParty }) => {
-      // console.log("FrontEnd socket Liked:", currUser, currParty);
       this.party = currParty;
     });
     SocketService.on("notify joined", ({ currUser, currParty }) => {
-      // console.log("FrontEnd socket Liked:", currUser, currParty);
       this.party = currParty;
     });
   }

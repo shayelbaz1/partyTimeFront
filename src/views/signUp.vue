@@ -39,17 +39,14 @@ export default {
   },
   computed: {},
   created() {
-    // console.log("this.loggedinUser", this.loggedinUser);
   },
   methods: {
     async doSignup(googleCreds) {
-      // console.log(''this.creds);
       if (googleCreds.constructor.name !== 'yw') { // not google
         const currUser = await this.$store.dispatch({
           type: "signup",
           creds: this.creds
         });
-        // console.log('User from signup: ', currUser);
         if (currUser) this.$router.push("/");
         if (!currUser) return false;
       } else if (googleCreds.constructor.name === 'yw') {

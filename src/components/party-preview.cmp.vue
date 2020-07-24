@@ -101,10 +101,8 @@ export default {
         .dispatch({ type: "removeParty", id: id })
         .then(() => {
           // eventBus.$emit(SHOW_MSG, {txt: `Deleted`, type: 'success'})
-          console.log("deleted");
         })
         .catch(err => {
-          console.log("ERROR, cannot delete ", id, err);
           // eventBus.$emit(SHOW_MSG, {txt: `Cannot delete ${id}`, type: 'danger'})
         });
     }
