@@ -3,60 +3,61 @@
     <h1>Reviews</h1>
     <!-- Add Review -->
     <form @submit.prevent="addReview()" v-if="loggedInUser">
-      <el-input type="textarea" placeholder="Your Opinion Matters..." v-model="reviewToEdit.txt"></el-input>
+      <el-input
+        type="textarea"
+        placeholder="Your Opinion Matters..."
+        v-model="reviewToEdit.txt"
+      ></el-input>
       <el-button @click="addReview()">Save</el-button>
     </form>
     <hr />
     <!-- Review List -->
-    <ul v-for="review in reviews" :key="review._id">
+    <ul v-for="review in partyReviews" :key="review._id">
       <review-preview :review="review"></review-preview>
     </ul>
   </section>
 </template>
 
 <script>
-import reviewPreview from "./review-preview.cmp.vue";
+import reviewPreview from './review-preview.cmp.vue'
 export default {
-  name: "Review-Cmp",
+  props: ["reviews"],
+  name: 'Review-Cmp',
   components: {
-    reviewPreview
+    reviewPreview,
   },
   data() {
     return {
-      currPartyId: this.$route.params.id,
+      partyReviews: this.reviews,
       reviewToEdit: {
-        txt: "",
-        aboutUserId: this.$route.params.id
-      }
-    };
+        currPartyId: this.$route.params.id,
+        txt: '',
+        createdAt: Date.now(),
+        username: this.$store.getters.loggedInUser.username,
+        avatar: this.$store.getters.loggedInUser.imgURL
+      },
+    }
   },
   computed: {
-    reviews() {
-      return this.$store.getters.reviews;
+    loggedInUser() {
+      return this.$store.getters.loggedInUser
     },
-    users() {
-      return this.$store.getters.users;
-    },
-    partys() {
-      return this.$store.getters.partys;
-    },
-    loggedInUser(){
-      return this.$store.getters.loggedInUser;
-    }
   },
   methods: {
-    addReview() {
-      if (!this.reviewToEdit.txt) return;
-      this.$store.dispatch({ type: "addReview", review: this.reviewToEdit });
-      this.reviewToEdit = { txt: "" };
-    }
+    async addReview() {
+      if (!this.reviewToEdit.txt) return
+      const { username, imgURL } = this.loggedInUser
+      const party = await this.$store.dispatch({
+        type: 'addPartyReview',
+        review: JSON.parse(JSON.stringify(this.reviewToEdit))
+      })
+      if(party._id) {
+        this.partyReviews = party.extraData.reviews
+        this.reviewToEdit.txt = ''
+      }
+    },
   },
-  created() {
-    this.$store.dispatch({ type: "loadPartys" });
-    this.$store.dispatch({ type: "loadUsers" });
-    this.$store.dispatch({ type: "loadReviews", id: this.currPartyId });
-  }
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -82,5 +83,6 @@ ul {
   list-style: none;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 </style>

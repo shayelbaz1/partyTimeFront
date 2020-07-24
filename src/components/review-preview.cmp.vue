@@ -1,49 +1,62 @@
 <template>
-  <section>
-    <li>
-      <el-card class="box-card" body-style="{ padding: '0px' }" shadow="hover">
-        <!-- HEADER -->
-        <div slot="header" class="clearfix">
-          <router-link :to="`user/${review.byUser._id}`">
-            <el-button @click="routeToDetails(toy._id)" type="text">
-              <i class="fas fa-info-circle"></i>
-              {{review.byUser.username}}
-            </el-button>
-          </router-link>
-        </div>
-        <!-- TEXT -->
-        <div class="text item">
-          <div class="text item">
-            <span>{{review.txt | capitalize}}</span>
+  <section class="review-container">
+      <li>
+        <el-card
+          class="box-card"
+          body-style="{ padding: '0px' }"
+          shadow="hover"
+        >
+          <!-- HEADER -->
+          <div class="clearfix header">
+            <img :src="this.review.avatar" alt="" srcset="" />
+            <div class="review-details">
+                <span>{{ this.review.username }}</span>
+                <p>{{ this.review.createdAt | moment("MMM Do YY")  }}</p>
+            </div>
           </div>
-        </div>
-      </el-card>
-    </li>
+          <!-- TEXT -->
+          <div class="">
+            <div class="">
+              <p>{{ this.review.txt }}</p>
+            </div>
+          </div>
+        </el-card>
+      </li>
   </section>
 </template>
 
 <script>
 export default {
-  name: "review-preview",
+  name: 'review-preview',
   props: {
     review: {
-      type: Object
-    }
-  }
-};
+      type: Object,
+    },
+  },
+}
 </script>
 <style lang="scss">
-li {
-  .text {
-    font-size: 14px;
-    .item {
-      margin-bottom: 18px;
+.review-container {
+  width: 100%;
+}
+.box-card {
+  background-color: #272727;
+  color: white;
+
+  .header {
+    display: flex;
+    img {
+      border-radius: 50%;
+      width: 73px;
     }
-  }
-  i {
-    font-size: 1.3rem;
-    position: relative;
-    top: 3px;
+
+    .review-details {
+      display: flex;
+      flex-direction: column;
+      margin-left: 13px;
+      justify-content: center;
+      align-items: flex-start;
+    }
   }
 }
 </style>
