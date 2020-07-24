@@ -2,6 +2,7 @@ import PartyService from '../services/PartyService.js'
 
 export default {
   state: {
+    isProcessing: true,
     place: {},
     filterBy: {
       userLocation: {},
@@ -73,6 +74,7 @@ export default {
       return PartyService.query(state.filterBy).then((partys) => {
         commit({ type: 'setPartys', partys })
         commit({ type: 'setIsProcessing', isProcessing: false })
+        
         return partys
       })
     },

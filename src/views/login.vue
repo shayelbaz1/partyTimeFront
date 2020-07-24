@@ -3,6 +3,7 @@
     <div>
       <form>
         <h2>Sign In</h2>
+        
         <div class="login-input-container">
           <i class="fa fa-user login-icon" aria-hidden="true"></i>
           <input type="text" v-model="creds.email" placeholder="Email" />
@@ -28,6 +29,7 @@
 </template>
 
 <script>
+
 import googleLogin from "./gLogin.vue";
 export default {
   name: "login-page",
@@ -69,7 +71,8 @@ export default {
     }
   },
   components: {
-    googleLogin
+    googleLogin,
   }
 };
+
 </script>

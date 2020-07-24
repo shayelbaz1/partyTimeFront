@@ -38,6 +38,7 @@
 </template>
 
 <script>
+
 import DistanceService from "../services/Distance.service.js";
 export default {
   name: "party-preview",
@@ -104,7 +105,7 @@ export default {
           // eventBus.$emit(SHOW_MSG, {txt: `Cannot delete ${id}`, type: 'danger'})
         });
     }
-  }
+  },
 };
 </script>
 

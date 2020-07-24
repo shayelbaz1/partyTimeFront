@@ -14,6 +14,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './scss/global.scss';
 import GSignInButton from 'vue-google-signin-button'
+
+// Vue.use(cubeSpin)
 // import VCalendar from 'v-calendar';
 
 // // Use v-calendar & v-date-picker components
@@ -21,7 +23,6 @@ import GSignInButton from 'vue-google-signin-button'
 //   componentPrefix: 'vc',  // Use <vc-calendar /> instead of <v-calendar />
 //   // ...other defaults
 // });
-
 Vue.use(GSignInButton)
 
 // Install BootstrapVue

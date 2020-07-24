@@ -1,6 +1,6 @@
 <template>
   <section class="party-list">
-    <div class="party-list-container flex column-layout">
+    <div v-if="!partysLoaded" class="party-list-container flex column-layout">
       <party-preview
         @deleteParty="signalDelete"
         @addLike="signalAddLike"
@@ -9,10 +9,15 @@
         :party="party"
       ></party-preview>
     </div>
+    <div class="flex justify-center spinner" v-else>
+      <cube-spin>
+      </cube-spin>
+    </div>
   </section>
 </template>
 
 <script>
+import cubeSpin from "vue-loading-spinner/src/components/Circle2";
 import partyPreview from "../components/party-preview.cmp.vue";
 import EventBus from "../services/EventBus";
 
@@ -21,6 +26,11 @@ export default {
   props: {
     partys: {
       type: Array
+    }
+  },
+  computed: {
+    partysLoaded() {
+      return this.$store.getters.isProcessing;
     }
   },
   methods: {
@@ -39,7 +49,15 @@ export default {
     }
   },
   components: {
-    partyPreview
+    partyPreview,
+    cubeSpin
   }
 };
 </script>
+<style lang="scss">
+.spinner{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+</style>
