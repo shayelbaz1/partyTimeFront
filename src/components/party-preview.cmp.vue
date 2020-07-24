@@ -60,16 +60,14 @@ export default {
       }
     },
     isCurrUserCreator() {
-      return this.currUser.createdPartys.find(id => id === this.party._id);
+      if (this.currUser) {
+        return this.currUser.createdPartys.find(id => id === this.party._id);
+      }
     }
-  },
-  created() {
-    this.getCurrUser();
   },
   methods: {
     getCurrUser() {
-      const loggedInUser = sessionStorage.getItem("user");
-      return JSON.parse(loggedInUser);
+      return this.$store.getters.loggedInUser;
     },
     km() {
       const userLocation = this.userPlace();
