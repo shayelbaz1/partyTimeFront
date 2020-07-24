@@ -42,11 +42,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-// import DistanceService from "../../../general-services/Distance.service.js";
-=======
 import DistanceService from "../services/Distance.service.js";
->>>>>>> 14d6c3a5cb79d0084b21c08998b72375e2c60b5e
 export default {
   name: "party-preview",
   props: {
@@ -64,16 +60,16 @@ export default {
     }
   },
   methods: {
-    // km() {
-    //   const userLocation = this.userPlace();
-    //   const { lat, lng } = userLocation.pos;
-    //   return DistanceService.getDistanceFromLatLonInKm(
-    //     lat,
-    //     lng,
-    //     this.party.location.lat,
-    //     this.party.location.lng
-    //   );
-    // },
+    km() {
+      const userLocation = this.userPlace();
+      const { lat, lng } = userLocation.pos;
+      return DistanceService.getDistanceFromLatLonInKm(
+        lat,
+        lng,
+        this.party.location.lat,
+        this.party.location.lng
+      );
+    },
     userPlace() {
       return this.$store.getters.place;
     },
