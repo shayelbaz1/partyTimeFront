@@ -14,6 +14,7 @@
 <script>
 import { GoogleMap } from "vue-maps";
 import GeocodeService from "../services/GeocodeService";
+import EventBus from "../services/EventBus";
 export default {
   data() {
     return {
@@ -58,11 +59,6 @@ export default {
         type: "setPlace",
         place: JSON.parse(JSON.stringify(this.place))
       });
-
-      this.$store.commit({
-        type: "setUserLocation",
-        place: JSON.parse(JSON.stringify(this.place))
-      });
     },
     setPlace(place) {
       this.place.name = place.formatted_address;
@@ -72,6 +68,7 @@ export default {
         type: "setPlace",
         place: JSON.parse(JSON.stringify(this.place))
       });
+      EventBus.$emit("runFilter");
     },
     selectTxt() {
       this.$el.querySelector("input.pac-target-input").select();

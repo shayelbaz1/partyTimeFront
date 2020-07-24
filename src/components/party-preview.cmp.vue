@@ -15,14 +15,10 @@
 
         <div class="preview-party-name">
           <h1 class="name">{{ party.name }}</h1>
-          <p class="location">{{ party.location.name }}</p>
+          <p class="location">{{ party.location.name }} {{ `${km()}km away` }}</p>
         </div>
-        <p>{{ party.startDate | moment('from') }} | {{ fee }}</p>
-        <p>{{ party.startDate | moment('DD/MM/YYYY • HH:mm A') }}</p>
-        <!-- <p>{{ `${km()} km's away` }}</p> -->
         <p class="from">{{ party.startDate | moment('from') }} | {{ fee }}</p>
         <p class="time">{{ party.startDate | moment('DD/MM/YYYY • HH:mm A') }}</p>
-        <p>{{ `${km()} km's away` }}</p>
         <div class="types flex">
           <p v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }}</p>
         </div>
@@ -232,9 +228,7 @@ export default {
 @media screen and (max-width: 400px) {
   .box-card {
     // height: 154px !important;
-    .img-box {
-      // min-width: 137px !important;
-    }
+
     .text-box {
       font-size: 0.9rem;
       .btns-actions-box {

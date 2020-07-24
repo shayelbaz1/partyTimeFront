@@ -1,32 +1,3 @@
 .party-list {
     width: 100%;
-    button.add {
-        position: fixed;
-        width: 50px;
-        height: 50px;
-        bottom: 5px;
-        left: 5px;
-        background-color: #850000;
-        color: #fff;
-        border-radius: 50px;
-        text-align: center;
-        box-shadow: 2px 2px 3px rgb(0, 0, 0);
-        padding: 0;
-        margin: 0;
-        border: none;
-        outline: none;
-        z-index: 1;
-        &:active {
-            box-shadow: none;
-        }
-    }
-    .filter {
-        visibility: hidden;
-    }
-
-    @media screen and (max-width: 900px) {
-        .filter {
-            visibility: visible;
-        }
-    }
 }

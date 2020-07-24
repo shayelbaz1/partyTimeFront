@@ -74,6 +74,7 @@ export default {
     sendMsg() {
       if (this.msg.txt !== "") {
         console.log("Sending", this.msg);
+        // EventBus of Socket
         SocketService.emit("chat newMsg", this.msg);
         this.msg = { from: "Me", txt: "" };
       }
@@ -102,6 +103,7 @@ export default {
     this.msgs = localStorage.getItem(`msgs-${this.party._id}`)
       ? JSON.parse(localStorage.getItem(`msgs-${this.party._id}`))
       : [];
+    // Init Setup of socket
     SocketService.setup();
     if (this.party) {
       SocketService.emit("chat joinTopic", this.party._id);
@@ -109,6 +111,7 @@ export default {
       SocketService.emit("chat joinTopic", this.topic);
     }
 
+    // Listening to fired events from the socket server
     SocketService.on("show Typing", this.showTypeingAndUser);
     SocketService.on("chat addMsg", this.addMsg);
     this.msg.from = this.$store.getters.loggedinUser.username;

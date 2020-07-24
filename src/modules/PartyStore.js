@@ -3,9 +3,7 @@ import PartyService from '../services/PartyService.js'
 export default {
   state: {
     place: {},
-    // place: {pos:{lat:32.068424,lng:34.824785}},
     filterBy: {
-      // userLocation: {pos:{lat:32.068424,lng:34.824785}},
       userLocation: {},
       startTime: '',
       selectedLocations: [],
@@ -39,11 +37,6 @@ export default {
     },
   },
   mutations: {
-    setUserLocation(state, { place }) {
-      console.log('place:', place)
-      state.filterBy.userLocation = place
-    }
-    ,
     setPlace(state, {place}) {
         state.place = place
     },    

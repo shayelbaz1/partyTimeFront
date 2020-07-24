@@ -109,15 +109,4 @@ export default {
     }
   }
 }
-@media screen and (max-width: 1000px) {
-  .welcome-page {
-    .welcome-header {
-      .title-input-container {
-        h1 {
-          // font-size: 2.8rem;
-        }
-      }
-    }
-  }
-}
 </style>
