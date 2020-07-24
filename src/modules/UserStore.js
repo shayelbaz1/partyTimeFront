@@ -5,7 +5,7 @@ import UserService from '@/services/UserService.js'
 
 export default {
     state: {
-        loggedinUser :{_id:'u101',username:"Guest", email:"guest@gmail.com" ,isAdmin: false, imgURL:"https://picsum.photos/200"},
+        loggedInUser:{_id:'u101',username:"Guest", email:"guest@gmail.com" ,isAdmin: false, imgURL:"https://picsum.photos/200"},
         users: [],
         currUser: {}
     },
@@ -17,13 +17,14 @@ export default {
             return state.users;
         },
         loggedInUser(state) {
-            return JSON.parse(state.loggedInUser)
+            return state.loggedInUser
 
         }
     },
     mutations: {
         setUser(state, { user }) {
             state.loggedInUser = user;
+            console.log('logged in user in UserStore:', state.loggedInUser)
         },
         setCurrUser(state, { user }) {
             state.currUser = user;

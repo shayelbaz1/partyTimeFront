@@ -54,6 +54,8 @@ export default {
           creds: this.creds
         });
         console.log("user back from backend!", currUser);
+        // Update user in store after log in
+
         if (currUser) this.$router.push("/party-app");
         if (!currUser.length) return;
       } else if (googleCreds.constructor.name === "yw") {

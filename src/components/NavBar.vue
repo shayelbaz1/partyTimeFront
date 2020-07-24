@@ -51,21 +51,16 @@ export default {
   components: {
     mapSearch
   },
-  data() {
-    return {
-      user: {}
-    };
-  },
   computed: {
     loggedInUser() {
-      this.user = this.$store.getters.loggedInUser;
-      return this.user;
+      console.log(
+        "this.$store.getters.loggedInUser:",
+        this.$store.getters.loggedInUser
+      );
+      return this.$store.getters.loggedInUser;
     }
   },
-  created() {
-    this.user = this.$store.getters.loggedInUser;
-    console.log("navbar", this.user);
-  },
+
   methods: {
     routeTo(page) {
       this.$router.push(page);

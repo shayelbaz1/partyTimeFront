@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      currUser: this.getCurrUser()
+      // currUser: this.getCurrUser()
     };
   },
   computed: {
@@ -59,18 +59,22 @@ export default {
         return "$" + this.party.fee;
       }
     },
+    loggedInUser() {
+      return this.$store.getters.loggedInUser;
+    },
     isCurrUserCreator() {
-      return this.currUser.createdPartys.find(id => id === this.party._id);
+      return this.party.extraData.createdBy._id === this.loggedInUser._id;
+      // return this.currUser.createdPartys.find(id => id === this.party._id);
     }
   },
   created() {
-    this.getCurrUser();
+    // this.getCurrUser();
   },
   methods: {
-    getCurrUser() {
-      const loggedInUser = sessionStorage.getItem("user");
-      return JSON.parse(loggedInUser);
-    },
+    // getCurrUser() {
+    //   const loggedInUser = sessionStorage.getItem("user");
+    //   return JSON.parse(loggedInUser);
+    // },
     km() {
       const userLocation = this.userPlace();
       const { lat, lng } = userLocation.pos;

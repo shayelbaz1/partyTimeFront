@@ -190,14 +190,13 @@ export default {
         return "Create Party";
       }
     },
-    loggedinUser() {
-      return this.$store.getters.loggedinUser;
+    loggedInUser() {
+      return this.$store.getters.loggedInUser;
     }
   },
   methods: {
     getCurrUser() {
-      const loggedInUser = sessionStorage.getItem("user");
-      return JSON.parse(loggedInUser);
+      return this.$store.getters.loggedInUser;
     },
     setPlace(place) {
       this.partyToSave.location.name = place.formatted_address;
@@ -222,27 +221,29 @@ export default {
       this.$router.push("/party-app");
     },
     async saveParty() {
+      console.log("this.partyToSave in saveParty in edit:",this.partyToSave.extraData);
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
+      // if (this.partyToSave._id &&this.partyToSave.extraData.createdBy._id !== this.loggedInUser._id)return;
       // this.partyToSave.startDate = new Date(this.partyToSave.startDate).toISOString();
       // this.partyToSave.endDate = new Date(this.partyToSave.endDate).toISOString();
       this.partyToSave.fee = parseInt(this.partyToSave.fee);
 
+      this.setCreatedBy();
       // Save Party on DB
-
       const party = await this.$store.dispatch({
         type: "saveParty",
         party: this.partyToSave
       });
-      this.$router.push("/party-app");
+      this.$router.push("/party-app/details/" + party._id);
     },
     setCreatedBy() {
-      console.log("this.loggedInUser:", this.loggedinUser);
-      this.partyToSave.extraData.createdBy._id = this.loggedinUser._id;
-      this.partyToSave.extraData.createdBy.username = this.loggedinUser.username;
-      this.partyToSave.extraData.createdBy.imgURL = this.loggedinUser.imgURL;
+      console.log("this.loggedInUser:", this.loggedInUser);
+      const {_id,username,imgURL} = this.loggedInUser
+      this.partyToSave.extraData.createdBy = {_id,username,imgURL}
     },
     loadParty() {
+      console.log("load");
       let partyId = this.$route.params.id;
       if (partyId) {
         this.isEdit = true;
@@ -252,7 +253,6 @@ export default {
       } else {
         this.isEdit = false;
         this.partyToSave = PartyService.getEmptyParty();
-        this.setCreatedBy();
       }
     },
     loadTypes() {
@@ -262,6 +262,7 @@ export default {
   created() {
     this.loadParty();
     this.loadTypes();
+    console.log("this.loggedInUser:", this.loggedInUser);
   }
 };
 </script>

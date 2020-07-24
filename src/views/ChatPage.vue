@@ -53,8 +53,8 @@ export default {
   updated() {
     var ul = this.$el.querySelector("ul");
     ul.scrollTop = ul.scrollHeight;
-    this.msg.from = this.$store.getters.loggedinUser.username
-      ? this.$store.getters.loggedinUser.username
+    this.msg.from = this.$store.getters.loggedInUser.username
+      ? this.$store.getters.loggedInUser.username
       : "Guest";
   },
   methods: {
@@ -110,7 +110,7 @@ export default {
     // Listening to fired events from the socket server
     SocketService.on("show Typing", this.showTypeingAndUser);
     SocketService.on("chat addMsg", this.addMsg);
-    this.msg.from = this.$store.getters.loggedinUser.username;
+    this.msg.from = this.$store.getters.loggedInUser.username;
   }
 };
 </script>
