@@ -46,11 +46,6 @@ export default {
       type: Object
     }
   },
-  data() {
-    return {
-      // currUser: this.getCurrUser()
-    };
-  },
   computed: {
     fee() {
       if (this.party.fee === 0) {
@@ -64,17 +59,9 @@ export default {
     },
     isCurrUserCreator() {
       return this.party.extraData.createdBy._id === this.loggedInUser._id;
-      // return this.currUser.createdPartys.find(id => id === this.party._id);
     }
   },
-  created() {
-    // this.getCurrUser();
-  },
   methods: {
-    // getCurrUser() {
-    //   const loggedInUser = sessionStorage.getItem("user");
-    //   return JSON.parse(loggedInUser);
-    // },
     km() {
       const userLocation = this.userPlace();
       const { lat, lng } = userLocation.pos;
@@ -107,7 +94,6 @@ export default {
           // eventBus.$emit(SHOW_MSG, {txt: `Deleted`, type: 'success'})
         })
         .catch(err => {
-          console.log("ERROR, cannot delete ", id, err);
           // eventBus.$emit(SHOW_MSG, {txt: `Cannot delete ${id}`, type: 'danger'})
         });
     }

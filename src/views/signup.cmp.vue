@@ -50,13 +50,11 @@ export default {
   methods: {
     doSignup() {
       const cred = this.creds;
-      console.log("creds on components ", cred);
       if (!cred.email || !cred.password || !cred.username) return;
       this.$store.dispatch({ type: "signup", creds: cred });
       this.$router.push("/");
     },
     async doSignupGoogle(googleCreds) {
-      console.log(googleCreds);
       if (googleCreds.constructor.name !== "yw") {
         const currUser = await this.$store.dispatch({
           type: "signup",

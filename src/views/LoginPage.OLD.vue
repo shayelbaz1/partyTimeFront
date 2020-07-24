@@ -71,9 +71,6 @@ export default {
       return this.$store.getters.loggedinUser;
     }
   },
-  created() {
-    console.log("this.loggedinUser", this.loggedinUser);
-  },
   methods: {
     async doLogin() {
       const cred = this.loginCred;

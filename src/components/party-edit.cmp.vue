@@ -224,7 +224,7 @@ export default {
       console.log("this.partyToSave in saveParty in edit:",this.partyToSave.extraData);
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
-      // if (this.partyToSave._id &&this.partyToSave.extraData.createdBy._id !== this.loggedInUser._id)return;
+      if (this.partyToSave._id &&this.partyToSave.extraData.createdBy._id !== this.loggedInUser._id)return;
       // this.partyToSave.startDate = new Date(this.partyToSave.startDate).toISOString();
       // this.partyToSave.endDate = new Date(this.partyToSave.endDate).toISOString();
       this.partyToSave.fee = parseInt(this.partyToSave.fee);
@@ -236,9 +236,18 @@ export default {
         party: this.partyToSave
       });
       this.$router.push("/party-app/details/" + party._id);
+
+      // const currUser = this.loggedInUser;
+      // console.log('currUser:', currUser)
+      // currUser.createdPartys.push(party._id);
+      // this.$store.dispatch({
+      //   type: "updateUser",
+      //   user: currUser
+      // });
+      // sessionStorage.setItem("user", currUser);
+      this.$router.push("/party-app");
     },
     setCreatedBy() {
-      console.log("this.loggedInUser:", this.loggedInUser);
       const {_id,username,imgURL} = this.loggedInUser
       this.partyToSave.extraData.createdBy = {_id,username,imgURL}
     },

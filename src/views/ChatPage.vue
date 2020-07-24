@@ -91,7 +91,6 @@ export default {
     },
     msgs: {
       handler() {
-        // console.log('New msg arrival!');
       }
     }
   },
