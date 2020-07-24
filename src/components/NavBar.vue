@@ -56,9 +56,9 @@ export default {
   //     user: {}
   //   };
   // },
-  computed:{
-    loggedUser(){
-      return this.$store.getters.loggedinUser
+  computed: {
+    loggedUser() {
+      return this.$store.getters.loggedinUser;
     }
   },
   created() {

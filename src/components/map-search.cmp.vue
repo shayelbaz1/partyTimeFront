@@ -54,7 +54,6 @@ export default {
           el.value = this.place.name;
         }, 2000);
       }
-      console.log("this.place:", this.place);
       this.$store.commit({
         type: "setPlace",
         place: JSON.parse(JSON.stringify(this.place))

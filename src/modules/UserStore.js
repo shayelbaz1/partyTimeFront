@@ -5,7 +5,7 @@ import UserService from '@/services/UserService.js'
 
 export default {
     state: {
-        loggedinUser : null,//{username:"Guest", email:"guest@gmail.com" ,isAdmin: false, imgURL:"https://picsum.photos/200"},
+        loggedinUser :{_id:'u101',username:"Guest", email:"guest@gmail.com" ,isAdmin: false, imgURL:"https://picsum.photos/200"},
         users: [],
         currUser: {}
     },
@@ -41,7 +41,6 @@ export default {
             return user;
         },
         async signup(context, {creds}) {
-            console.log('store signup creds', creds);
             const user = await UserService.signup(creds)
             context.commit({type: 'setUser', user})
             return user;
@@ -67,7 +66,6 @@ export default {
         },
         async updateUser(context, {user}) {
             user = await UserService.update(user);
-            console.log(user);
             context.commit({type: 'setUser', user})
         }
     }

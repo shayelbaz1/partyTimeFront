@@ -189,6 +189,9 @@ export default {
       } else {
         return "Create Party";
       }
+    },
+    loggedinUser() {
+      return this.$store.getters.loggedinUser;
     }
   },
   methods: {
@@ -215,26 +218,24 @@ export default {
       this.$router.push("/party-app");
     },
     async saveParty() {
-      console.log("partyToSave");
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
-      // Convert To ISO String : 2020-07-21T17:15:00.000Z
-      // this.partyToSave.startDate = `ISODate(${this.partyToSave.startDate})`;
-      // this.partyToSave.endDate = `ISODate(${this.partyToSave.endDate})`;
-      this.partyToSave.startDate = new Date(
-        this.partyToSave.startDate
-      ).toISOString();
-      this.partyToSave.endDate = new Date(
-        this.partyToSave.endDate
-      ).toISOString();
+      // this.partyToSave.startDate = new Date(this.partyToSave.startDate).toISOString();
+      // this.partyToSave.endDate = new Date(this.partyToSave.endDate).toISOString();
       this.partyToSave.fee = parseInt(this.partyToSave.fee);
+
       // Save Party on DB
       const party = await this.$store.dispatch({
         type: "saveParty",
         party: this.partyToSave
       });
-      console.log("party:", party);
       this.$router.push("/party-app");
+    },
+    setCreatedBy() {
+      console.log("this.loggedInUser:", this.loggedinUser);
+      this.partyToSave.extraData.createdBy._id = this.loggedinUser._id;
+      this.partyToSave.extraData.createdBy.username = this.loggedinUser.username;
+      this.partyToSave.extraData.createdBy.imgURL = this.loggedinUser.imgURL;
     },
     loadParty() {
       let partyId = this.$route.params.id;
@@ -245,10 +246,8 @@ export default {
         });
       } else {
         this.isEdit = false;
-        let emptyParty = PartyService.getEmptyParty();
-        this.partyToSave = emptyParty;
-        // let emptyParty = this.$store.getters.emptyParty;
-        // this.partyToSave = JSON.parse(JSON.stringify(emptyParty));
+        this.partyToSave = PartyService.getEmptyParty();
+        this.setCreatedBy();
       }
     },
     loadTypes() {

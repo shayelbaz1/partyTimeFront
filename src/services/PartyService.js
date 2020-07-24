@@ -16,11 +16,8 @@ export default {
 // CREATE READ UPDATE DELETE
 
 function query(filterBy) {
-  console.log('filterBy in PartyService fronend before:', filterBy)
-  console.log('filterBy in PartyService fronend before:', filterBy.userLocation)
   const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}&locations=${JSON.stringify(filterBy.selectedLocations)}&partyTypes=${JSON.stringify(filterBy.selectedTypes)}&startTime=${filterBy.startTime}&distance=${filterBy.partyDetails.distance}&userLocation=${JSON.stringify(filterBy.userLocation)}`
   // const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}&locations=${JSON.stringify(filterBy.selectedLocations)}&partyTypes=${JSON.stringify(filterBy.selectedTypes)}&startTime=${filterBy.startTime}`
-  console.log('query after:', query)
   return HttpService.get(`party/${query}`)
 }
 
@@ -43,13 +40,11 @@ function remove(partyId) {
 }
 
 async function save(party) {
-  console.log('save...')
   const location = await GeocodeService.getLatLng(party.location.name)
   party.location.lat = location.lat
   party.location.lng = location.lng
   party.location.coordinates[0] = location.lat
   party.location.coordinates[1] = location.lng
-  console.log('party:', party)
   return party._id ? _update(party) : _add(party)
 }
 
@@ -88,13 +83,13 @@ function getEmptyParty() {
       partyTypes: [],
       createdBy: {
         _id: '',
-        fullName: '',
-        imgUrl: '',
+        username: '',
+        imgURL: '',
       },
       members: [
         {
           _id: '',
-          fullName: '',
+          username: '',
           imgUrl: '',
         },
         {

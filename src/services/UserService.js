@@ -29,7 +29,6 @@ async function login(creds) {
 }
 
 async function signup(creds) {
-    console.log('user service signup creds', creds);
     const user = await HttpService.post('auth/signup', creds)
     return _handleLogin(user)
 }
@@ -43,7 +42,6 @@ function getUsers() {
 }
 
 function _handleLogin(user) {
-    console.log('handleLogin', user);
     sessionStorage.setItem('user', JSON.stringify(user))
     return user;
 }

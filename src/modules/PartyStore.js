@@ -70,7 +70,6 @@ export default {
     // LOAD
     loadPartys({ commit, state }) {
       commit({ type: 'setIsProcessing', isProcessing: true })
-      console.log('state.filterBy in PartyStore before:', state.filterBy)
       return PartyService.query(state.filterBy).then((partys) => {
         commit({ type: 'setPartys', partys })
         commit({ type: 'setIsProcessing', isProcessing: false })
@@ -80,7 +79,6 @@ export default {
 
     // DELETE
     deleteParty({ commit }, { partyId }) {
-      console.log(partyId)
       return PartyService.remove(partyId).then(() => {
         commit({ type: 'removeParty', partyId })
         return
