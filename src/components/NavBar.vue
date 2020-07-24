@@ -31,7 +31,7 @@
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
               <!-- <em>User</em> -->
-              <img class="user-img" :src="loggedUser.imgURL" alt="User logo" srcset />
+              <img class="user-img" :src="loggedInUser.imgURL" alt="User logo" srcset />
             </template>
             <b-dropdown-item href="#" @click="routeTo('/profile')">Profile</b-dropdown-item>
             <b-dropdown-item href="#" @click="signOut">Sign Out</b-dropdown-item>
@@ -51,18 +51,20 @@ export default {
   components: {
     mapSearch
   },
-  // data() {
-  //   return {
-  //     user: {}
-  //   };
-  // },
-  computed:{
-    loggedUser(){
-      return this.$store.getters.loggedinUser
+  data() {
+    return {
+      user: {}
+    };
+  },
+  computed: {
+    loggedInUser() {
+      this.user = this.$store.getters.loggedInUser;
+      return this.user
     }
   },
   created() {
-    this.user = this.$store.getters.loggedinUser;
+    this.user = this.$store.getters.loggedInUser;
+    console.log('navbar', this.user);
   },
   methods: {
     routeTo(page) {

@@ -21,6 +21,7 @@
     "node-sass": "^4.14.1",
     "sass-loader": "^9.0.2",
     "socket.io-client": "^2.2.0",
+    "v-calendar": "^1.0.0-beta.23",
     "vee-validate": "^3.3.7",
     "vue": "^2.6.11",
     "vue-add-to-calendar": "^1.0.6",
