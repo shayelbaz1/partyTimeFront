@@ -2,7 +2,7 @@
   <section class="review-container">
       <li>
         <el-card
-          class="box-card"
+          class="review-card"
           body-style="{ padding: '0px' }"
           shadow="hover"
         >
@@ -15,8 +15,8 @@
             </div>
           </div>
           <!-- TEXT -->
-          <div class="">
-            <div class="">
+          <div>
+            <div class="text-container">
               <p>{{ this.review.txt }}</p>
             </div>
           </div>
@@ -39,9 +39,11 @@ export default {
 .review-container {
   width: 100%;
 }
-.box-card {
+.review-card {
   background-color: #272727;
   color: white;
+  border: 0;
+  
 
   .header {
     display: flex;
@@ -56,6 +58,12 @@ export default {
       margin-left: 13px;
       justify-content: center;
       align-items: flex-start;
+    }
+
+    .text-container {
+      p {
+            margin-top: 7px;
+      }
     }
   }
 }
