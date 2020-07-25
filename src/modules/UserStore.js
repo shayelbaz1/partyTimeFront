@@ -36,6 +36,12 @@ export default {
         },
     },
     actions: {
+        async loginGoogle(context, { id_token }) {
+            id_token = {id_token:id_token}
+            const user = await UserService.loginGoogle(id_token);
+            context.commit({ type: 'setUser', user })
+            return user;
+        },
         async login(context, { creds }) {
             console.log('creds go to store', creds);
             const user = await UserService.login(creds);
@@ -51,7 +57,7 @@ export default {
         async logout(context) {
             await UserService.logout()
             context.commit({ type: 'setUsers', users: [] })
-            context.commit({ type: 'setUser', user: null })
+            context.commit({ type: 'setUser', user: {_id:'u101',username:"Guest", email:"guest@gmail.com" ,isAdmin: false, imgURL:"https://picsum.photos/200"} })
         },
         async loadUsers(context) {
             const users = await UserService.getUsers();

@@ -7,7 +7,8 @@ export default {
     getUsers,
     getById,
     remove,
-    update
+    update,
+    loginGoogle
 }
 
 
@@ -25,6 +26,10 @@ async function update(user) {
 
 async function login(creds) {
     const user = await HttpService.post('auth/login', creds)
+    return _handleLogin(user)
+}
+async function loginGoogle(id_token) {
+    const user = await HttpService.post('auth/logingoogle', id_token)
     return _handleLogin(user)
 }
 

@@ -68,7 +68,7 @@ export default {
     signOut() {
       sessionStorage.clear();
       this.$store.dispatch("logout");
-      this.routeTo("/");
+      this.routeTo("/party-app");
     }
   }
 };

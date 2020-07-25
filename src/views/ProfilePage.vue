@@ -9,6 +9,7 @@
       <h3 class="text item">{{user.username}}</h3>
       <div class="text item">email: {{user.email}}</div>
       <div class="text item">isAdmin: {{user.isAdmin}}</div>
+      <button @click="signOut">Sign out</button>
     </el-card>
     <el-card class="box-card">
       <genderPicker />
@@ -43,6 +44,10 @@ export default {
     }
   },
   methods: {
+    signOut() {
+      sessionStorage.clear();
+      this.$store.dispatch("logout");
+    },
     openWidget() {
       const uploadWidget = cloudinary.createUploadWidget(
         {
@@ -89,6 +94,9 @@ section {
   flex-direction: column;
   img {
     border-radius: 50%;
+  }
+  .img-box {
+    background-color: transparent;
   }
 }
 </style>

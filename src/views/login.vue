@@ -21,34 +21,28 @@
         </div>
         <!-- <br /> -->
         <!-- <googleLogin @doGoogleLogin="doGoogleLogin"></googleLogin> -->
-        <GoogleLogin
-          :params="params"
-          :renderParams="renderParams"
-          :onSuccess="onSuccess"
-          :onFailure="onFailure"
-        ></GoogleLogin>
+        <GoogleLogin class="btn-google" :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
       </form>
     </div>
   </div>
-  <!-- end of v-else -->
 </template>
 
 <script>
 // import googleLogin from "./gLogin.vue";
-import {GoogleLogin} from "vue-google-login";
+import { GoogleLogin } from "vue-google-login";
 
 export default {
   name: "login-page",
   data() {
     return {
-      // client_id is the only required property but you can add several more params, full list down bellow on the Auth api section
       params: {
         // client_id: "295314922853-kgqrkuvadpeeu7q6098cml7k5jte1spu.apps.googleusercontent.com"
-        client_id: "533525570890-ik134ku5d86nd70i76dsjfcd7is3uag4.apps.googleusercontent.com"
+        client_id:
+          "533525570890-ik134ku5d86nd70i76dsjfcd7is3uag4.apps.googleusercontent.com"
       },
-      // only needed if you want to render the button with the google ui
+      // Btn styles with google ui
       renderParams: {
-        width: 250,
+        width: 277,
         height: 50,
         longtitle: true
       },
@@ -59,53 +53,28 @@ export default {
       }
     };
   },
-  computed: {},
-  created() {},
   methods: {
-    onSuccess(googleUser) {
-      console.log('googleUser:', googleUser)
-      // This only gets the user information: id, name, imageUrl and email
-            console.log(googleUser.getBasicProfile());
+    async onSuccess(googleUser) {
+      var id_token = googleUser.getAuthResponse().id_token;
+      const user = await this.$store.dispatch({ type: "loginGoogle", id_token: id_token });
+      this.$router.push("/profile");
     },
     onFailure() {
-      console.log("Failed");
+      console.log("Failed to log in");
     },
     routeToSignup() {
       this.$router.push("/signup");
     },
     async doLogin(googleCreds) {
-      if (googleCreds.constructor.name !== "yw") {
-        // without google outh
-        const currUser = await this.$store.dispatch({
-          type: "login",
-          creds: this.creds
-        });
-        // console.log("user back from backend!", currUser);
-        // Update user in store after log in
-        if (currUser) this.$router.push("/party-app");
-        if (!currUser.length) return;
-      } else if (googleCreds.constructor.name === "yw") {
-        this.creds.username = googleCreds.Bd;
-        this.creds.email = googleCreds.Au;
-        this.creds.imgURL = googleCreds.MK;
-        const currUser = await this.$store.dispatch({
-          type: "login",
-          creds: this.creds
-        });
-        if (currUser.length) this.$router.push("/party-app");
-        if (!currUser.length) return false;
-      }
-    },
-    async doGoogleLogin(idToken) {
-      console.log("lol");
       const currUser = await this.$store.dispatch({
         type: "login",
-        creds: idToken
+        creds: this.creds
       });
+      if (currUser.length) this.$router.push("/party-app");
+      if (!currUser.length) return false;
     }
   },
   components: {
-    // googleLogin,
     GoogleLogin
   }
 };
