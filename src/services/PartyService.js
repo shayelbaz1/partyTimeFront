@@ -17,8 +17,8 @@ export default {
 // CREATE READ UPDATE DELETE
 
 function query(filterBy) {
+  console.log('filterBy in PartyService frontend:', filterBy)
   const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}&locations=${JSON.stringify(filterBy.selectedLocations)}&partyTypes=${JSON.stringify(filterBy.selectedTypes)}&startTime=${filterBy.startTime}&distance=${filterBy.partyDetails.distance}&userLocation=${JSON.stringify(filterBy.userLocation)}`
-  // const query = `?sortBy=${filterBy.sortBy}&fee=${filterBy.partyDetails.fee}&locations=${JSON.stringify(filterBy.selectedLocations)}&partyTypes=${JSON.stringify(filterBy.selectedTypes)}&startTime=${filterBy.startTime}`
   return HttpService.get(`party/${query}`)
 }
 

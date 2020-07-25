@@ -51,7 +51,7 @@ input {
 }
 
 a {
-    color: black;
+    color: rgb(255, 255, 255);
     text-decoration: none;
 }
 
@@ -66,4 +66,8 @@ h4 {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
+}
+
+p{
+    color: white
 }

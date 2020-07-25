@@ -1,7 +1,9 @@
 <template>
   <section class="welcome-page">
     <welcome-header></welcome-header>
+
     <party-filter v-show="false" :class="{ show: isShowFilter }"></party-filter>
+    
     <div class="body">
       <div class="btn-header">
         <h1 class="popular-title">Most popular parties around you</h1>

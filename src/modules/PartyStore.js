@@ -3,9 +3,21 @@ import PartyService from '../services/PartyService.js'
 export default {
   state: {
     isProcessing: true,
-    place: {},
+    place: {
+          name: "Tel Aviv-Yafo, Israel",
+          pos: {
+            lat: 32.0852999,
+            lng: 34.78176759999999
+          }
+        },
     filterBy: {
-      userLocation: {},
+      userLocation: {
+        name: "Tel Aviv-Yafo, Israel",
+        pos: {
+          lat: 32.0852999,
+          lng: 34.78176759999999
+        }
+      },
       startTime: '',
       selectedLocations: [],
       selectedTypes: [],
