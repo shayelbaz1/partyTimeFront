@@ -1,6 +1,6 @@
 <template>
   <div class="modal-review-container">
-
+     
   </div>
 </template>
 
@@ -11,40 +11,13 @@ export default {
   name: 'Review-Cmp',
   components: {
     reviewPreview,
+    reviewList
   },
-  data() {
-    return {
-      partyReviews: this.reviews,
-      reviewToEdit: {
-        currPartyId: this.$route.params.id,
-        txt: '',
-        createdAt: Date.now(),
-        username: this.$store.getters.loggedInUser.username,
-        avatar: this.$store.getters.loggedInUser.imgURL
-      },
-    }
+  data() {   
   },
   computed: {
-    loggedInUser() {
-      return this.$store.getters.loggedInUser
-    },
-    reviewsLen(){
-      return this.partyReviews.length
-    }
   },
   methods: {
-    async addReview() {
-      if (!this.reviewToEdit.txt) return
-      const { username, imgURL } = this.loggedInUser
-      const party = await this.$store.dispatch({
-        type: 'addPartyReview',
-        review: JSON.parse(JSON.stringify(this.reviewToEdit))
-      })
-      if(party._id) {
-        this.partyReviews = party.extraData.reviews
-        this.reviewToEdit.txt = ''
-      }
-    },
   },
 }
 </script>

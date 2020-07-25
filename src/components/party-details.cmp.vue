@@ -176,7 +176,6 @@ export default {
   data() {
     return {
       party: null,
-      partyURL,
       currUser: this.getCurrUserObj()
     };
   },
