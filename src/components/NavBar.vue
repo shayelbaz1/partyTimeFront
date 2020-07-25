@@ -19,7 +19,7 @@
           <!-- <b-nav-item @click="routeTo('/signup')">Signup</b-nav-item> -->
           <!-- <b-nav-item @click="routeTo('/reviews')">Reviews</b-nav-item> -->
           <!-- <b-nav-item @click="routeTo('/profile')">Profile</b-nav-item> -->
-          <b-nav-item @click="routeTo('/party-app/edit')">Create +</b-nav-item>
+          <b-nav-item @click="routeTo('/party-app/edit')">Create Event +</b-nav-item>
           <!-- <b-nav-item @click="routeTo('/map')">Map</b-nav-item> -->
           <!-- <b-nav-item @click="routeTo('/chat')">Chat</b-nav-item> -->
         </b-navbar-nav>
