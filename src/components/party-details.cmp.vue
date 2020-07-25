@@ -32,6 +32,7 @@
         <i class="fab fa-whatsapp"></i>
         Whatsapp
       </button>
+      <!-- GET THE URL INTO THE COMPONENT -->
       <share-network :partyURL="this.partyURL"></share-network>
     </div>
 
