@@ -14,6 +14,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './scss/global.scss';
 import GSignInButton from 'vue-google-signin-button'
+import VueSocialSharing from 'vue-social-sharing'
+
+Vue.use(VueSocialSharing);
 
 // // Use v-calendar & v-date-picker components
 // Vue.use(VCalendar, {
