@@ -3,7 +3,7 @@
     <div>
       <form>
         <h2>Sign In</h2>
-        
+
         <div class="login-input-container">
           <i class="fa fa-user login-icon" aria-hidden="true"></i>
           <input type="text" v-model="creds.email" placeholder="Email" />
@@ -19,9 +19,8 @@
           <button @click.prevent="doLogin">Login</button>
           <button class="signup" @click.prevent="routeToSignup">Signup</button>
         </div>
-        <!-- <br />
-        <googleLogin @doLogin="doLogin"></googleLogin>-->
-        <!-- <img src="../assets/login.jpg" alt srcset /> -->
+        <!-- <br /> -->
+        <googleLogin @doGoogleLogin="doGoogleLogin"></googleLogin>
       </form>
     </div>
   </div>
@@ -29,7 +28,6 @@
 </template>
 
 <script>
-
 import googleLogin from "./gLogin.vue";
 export default {
   name: "login-page",
@@ -70,11 +68,17 @@ export default {
         if (currUser.length) this.$router.push("/party-app");
         if (!currUser.length) return false;
       }
+    },
+    async doGoogleLogin(idToken) {
+      console.log('lol');
+      const currUser = await this.$store.dispatch({
+        type: "login",
+        creds: idToken
+      });
     }
   },
   components: {
-    googleLogin,
+    googleLogin
   }
 };
-
 </script>

@@ -37,6 +37,7 @@ export default {
     },
     actions: {
         async login(context, { creds }) {
+            console.log('creds go to store', creds);
             const user = await UserService.login(creds);
             context.commit({ type: 'setUser', user })
             return user;
