@@ -28,6 +28,7 @@
             Posters
           </button>
         </div>
+        <h1>{{placeName}}</h1>
         <party-list
           v-if="currPartiesDisplay === 'list'"
           :partys="partys"
@@ -93,6 +94,9 @@ export default {
     partys() {
       let partys = this.$store.getters.partys;
       return partys;
+    },
+    placeName(){
+      return this.$store.getters.place.name
     }
   },
   created() {
