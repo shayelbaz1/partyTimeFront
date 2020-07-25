@@ -20,7 +20,13 @@
           <button class="signup" @click.prevent="routeToSignup">Signup</button>
         </div>
         <!-- <br /> -->
-        <googleLogin @doGoogleLogin="doGoogleLogin"></googleLogin>
+        <!-- <googleLogin @doGoogleLogin="doGoogleLogin"></googleLogin> -->
+        <GoogleLogin
+          :params="params"
+          :renderParams="renderParams"
+          :onSuccess="onSuccess"
+          :onFailure="onFailure"
+        ></GoogleLogin>
       </form>
     </div>
   </div>
@@ -28,11 +34,24 @@
 </template>
 
 <script>
-import googleLogin from "./gLogin.vue";
+// import googleLogin from "./gLogin.vue";
+import {GoogleLogin} from "vue-google-login";
+
 export default {
   name: "login-page",
   data() {
     return {
+      // client_id is the only required property but you can add several more params, full list down bellow on the Auth api section
+      params: {
+        // client_id: "295314922853-kgqrkuvadpeeu7q6098cml7k5jte1spu.apps.googleusercontent.com"
+        client_id: "533525570890-ik134ku5d86nd70i76dsjfcd7is3uag4.apps.googleusercontent.com"
+      },
+      // only needed if you want to render the button with the google ui
+      renderParams: {
+        width: 250,
+        height: 50,
+        longtitle: true
+      },
       creds: {
         username: "",
         password: "",
@@ -43,6 +62,14 @@ export default {
   computed: {},
   created() {},
   methods: {
+    onSuccess(googleUser) {
+      console.log('googleUser:', googleUser)
+      // This only gets the user information: id, name, imageUrl and email
+            console.log(googleUser.getBasicProfile());
+    },
+    onFailure() {
+      console.log("Failed");
+    },
     routeToSignup() {
       this.$router.push("/signup");
     },
@@ -70,7 +97,7 @@ export default {
       }
     },
     async doGoogleLogin(idToken) {
-      console.log('lol');
+      console.log("lol");
       const currUser = await this.$store.dispatch({
         type: "login",
         creds: idToken
@@ -78,7 +105,8 @@ export default {
     }
   },
   components: {
-    googleLogin
+    // googleLogin,
+    GoogleLogin
   }
 };
 </script>

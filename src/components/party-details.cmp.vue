@@ -24,14 +24,16 @@
         <i class="fas fa-directions"></i>
         Navigate
       </button>
-      <button>
+      <!-- <button>
         <i class="fa fa-google"></i>
         Calender
-      </button>
+      </button>-->
       <button @click="shareToWhatsapp">
         <i class="fab fa-whatsapp"></i>
         Whatsapp
       </button>
+      <!-- GET THE URL INTO THE COMPONENT -->
+      <share-network :partyURL="this.partyURL"></share-network>
     </div>
 
     <div class="details-and-map-container flex">
@@ -158,6 +160,7 @@ import ChatPage from "@/views/ChatPage.vue";
 import imgBlur from "./img-blur.cmp.vue";
 import partyMap from "./party-map.cmp.vue";
 import membersPics from "./my-cmps/members-pics.cmp.vue";
+import shareNetwork from "./my-cmps/shareNetwork.cmp";
 import SocketService from "../services/SocketService.js";
 
 export default {
@@ -167,11 +170,13 @@ export default {
     ChatPage,
     imgBlur,
     partyMap,
-    membersPics
+    membersPics,
+    shareNetwork
   },
   data() {
     return {
       party: null,
+      partyURL,
       currUser: this.getCurrUserObj()
     };
   },
@@ -183,6 +188,9 @@ export default {
         return 0;
       }
     },
+    partyURL() {
+      this.partyURL = `https://partytimes.herokuapp.com/#/party-app/details/${this.party._id}`;
+    },
     fee() {
       if (this.party.fee === 0) {
         return "FREE";
@@ -193,9 +201,8 @@ export default {
   },
   methods: {
     shareToWhatsapp() {
-      window.open(
-        "https://api.whatsapp.com/send?text=Hi%20Let%27s%20go%20to%20this%20crazy%20party!%20tell%20my%20what%20you%20think?"
-      );
+      const thisPartysURL = `https://partytimes.herokuapp.com/#/party-app/details/${this.party._id}`;
+      window.open(`https://api.whatsapp.com/send?text=${thisPartysURL}`);
     },
     navigateToParty() {
       const userLocation = this.$store.getters.place;
@@ -213,46 +220,58 @@ export default {
 
       if (type === "going") {
         // found user in party members
-        const userFoundIdx = currParty.extraData.members.findIndex(user => user._id === userToAdd._id);
-        if (userFoundIdx>=0) {
+        const userFoundIdx = currParty.extraData.members.findIndex(
+          user => user._id === userToAdd._id
+        );
+        if (userFoundIdx >= 0) {
           // pop current user
-          currParty.extraData.members.splice(userFoundIdx,1)
+          currParty.extraData.members.splice(userFoundIdx, 1);
           // find party in user goingPartys
-          const partyIdx = this.currUser.goingPartys.findIndex(id=>id===currParty._id)
-          if(partyIdx<=0){
+          const partyIdx = this.currUser.goingPartys.findIndex(
+            id => id === currParty._id
+          );
+          if (partyIdx <= 0) {
             // pop party from array
-            this.currUser.goingPartys.splice(partyIdx,1)
+            this.currUser.goingPartys.splice(partyIdx, 1);
           }
-        }else{
+        } else {
           // push current user
           currParty.extraData.members.push(userToAdd);
           // Update User
           this.currUser.goingPartys.push(currParty._id);
         }
         // Save party and user
-          this.$store.dispatch({type: "updateUser",user: this.currUser});
-          // EventBus of Socket
-          SocketService.emit("party joined", {currUser: this.currUser,currParty: this.party});
-        
+        this.$store.dispatch({ type: "updateUser", user: this.currUser });
+        // EventBus of Socket
+        SocketService.emit("party joined", {
+          currUser: this.currUser,
+          currParty: this.party
+        });
+
         // If Likes By User
       } else if (type === "like") {
         // found user idx in party likes
-        const userFoundIdx = currParty.extraData.likes.findIndex(user => user._id === userToAdd._id);
-        if (userFoundIdx>=0){
+        const userFoundIdx = currParty.extraData.likes.findIndex(
+          user => user._id === userToAdd._id
+        );
+        if (userFoundIdx >= 0) {
           // Pop member from likes
-          currParty.extraData.likes.splice(userFoundIdx,1)
-        }else{
+          currParty.extraData.likes.splice(userFoundIdx, 1);
+        } else {
           currParty.extraData.likes.push(userToAdd);
-        } 
+        }
         // EventBus of Socket
-        SocketService.emit("party liked", {currUser: this.currUser,currParty: this.party});
+        SocketService.emit("party liked", {
+          currUser: this.currUser,
+          currParty: this.party
+        });
       }
-        this.$store.dispatch({type: "saveParty",party: currParty});
+      this.$store.dispatch({ type: "saveParty", party: currParty });
     },
     getCurrUserObj() {
       // const loggedInUser = sessionStorage.getItem("user");
 
-      return  this.$store.getters.loggedInUser
+      return this.$store.getters.loggedInUser;
     },
     back() {
       this.$router.push("/party-app");
