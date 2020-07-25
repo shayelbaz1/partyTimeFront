@@ -16,8 +16,10 @@
     </form>
     <hr />
     <!-- Review List -->
-    <ul v-for="review in partyReviews" :key="review._id">
-      <review-preview :review="review"></review-preview>
+    <button v-if="reviewsLen >= 6">{{`Show All ${reviewsLen}`}}</button>
+    <ul>
+      <!-- always get the 6 last reviews -->
+      <review-preview v-for="review in partyReviews.slice(partyReviews.length-6,partyReviews.length)" :key="review._id" :review="review"></review-preview>
     </ul>
   </section>
 </template>
@@ -46,6 +48,9 @@ export default {
     loggedInUser() {
       return this.$store.getters.loggedInUser
     },
+    reviewsLen(){
+      return this.partyReviews.length
+    }
   },
   methods: {
     async addReview() {
@@ -75,7 +80,7 @@ form {
     margin-bottom: 10px;
   }
   textarea {
-        margin-bottom: 6px;
+    margin-bottom: 6px;
     background-color: #303030;
     border-radius: 4px;
     border: 1px solid #dcdfe6;
@@ -105,5 +110,6 @@ ul {
   list-style: none;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 </style>
