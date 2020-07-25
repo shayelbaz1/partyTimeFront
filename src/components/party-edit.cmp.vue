@@ -221,12 +221,11 @@ export default {
       this.$router.push("/party-app");
     },
     async saveParty() {
-      console.log("this.partyToSave in saveParty in edit:",this.partyToSave.extraData);
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
-      if (this.partyToSave._id &&this.partyToSave.extraData.createdBy._id !== this.loggedInUser._id)return;
-      // this.partyToSave.startDate = new Date(this.partyToSave.startDate).toISOString();
-      // this.partyToSave.endDate = new Date(this.partyToSave.endDate).toISOString();
+      if (this.partyToSave._id){
+        if(this.partyToSave.extraData.createdBy._id !== this.loggedInUser._id)return;
+      }
       this.partyToSave.fee = parseInt(this.partyToSave.fee);
 
       this.setCreatedBy();
