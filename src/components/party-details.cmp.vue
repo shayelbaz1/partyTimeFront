@@ -250,9 +250,9 @@ export default {
         this.$store.dispatch({type: "saveParty",party: currParty});
     },
     getCurrUserObj() {
-      const loggedInUser = sessionStorage.getItem("user");
+      // const loggedInUser = sessionStorage.getItem("user");
 
-      return JSON.parse(loggedInUser);
+      return  this.$store.getters.loggedInUser
     },
     back() {
       this.$router.push("/party-app");
