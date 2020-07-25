@@ -2,7 +2,7 @@
   <li>
     <!-- HEADER -->
     <div class="review-header">
-      <img :src="this.review.avatar" alt="" srcset="" />
+      <img :src="this.review.avatar" @click="routeTo('/profile')"/>
       <div class="review-details">
         <span>{{ this.review.username }}</span>
         <p>{{ this.review.createdAt | moment('MMM Do YY') }}</p>
@@ -10,7 +10,7 @@
     </div>
     <!-- TEXT -->
     <div>
-      <div class="text-container">
+      <div class="review-text-container">
         <p>{{ this.review.txt }}</p>
       </div>
     </div>
@@ -25,6 +25,11 @@ export default {
       type: Object,
     },
   },
+  methods: {
+    routeTo(page) {
+      this.$router.push(page);
+    },
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -32,22 +37,29 @@ li {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 24px;
+  margin-bottom: 40px;
   
-  .text-container {
+  .review-text-container {
     margin-top: 14px;
   }
 
   .review-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+
+    .review-details {
+      margin-left: 10px;
+      p{
+        color: rgba(255, 255, 255, 0.384);
+      }
+    }
 
     img {
       border-radius: 50%;
-      width: 70px;
+      width: 48px;
     }
 
-    .review-details {
+    .review-text-container {
       display: flex;
       flex-direction: column;
       margin-left: 14px;
@@ -55,6 +67,11 @@ li {
 
       span {
         font-weight: bold;
+      }
+
+      p {
+        color: white; // #ffffffa8
+        font-family: bold;
       }
     }
   }

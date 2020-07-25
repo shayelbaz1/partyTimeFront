@@ -2,13 +2,16 @@
   <section class="review-list">
     <h1>Reviews</h1>
     <!-- Add Review -->
-    <form @submit.prevent="addReview()" v-if="loggedInUser">
-      <textarea
-        type="textarea"
-        placeholder="Your Opinion Matters..."
-        v-model="reviewToEdit.txt"
-        class="review-input"
-      ></textarea>
+    <form @submit.prevent="addReview()">
+      <div class="input-container">
+        <img :src="loggedInUser.imgURL" alt="" srcset="" />
+        <textarea
+          type="textarea"
+          placeholder="Your Opinion Matters..."
+          v-model="reviewToEdit.txt"
+          class="review-input"
+        ></textarea>
+      </div>
       <el-button @click="addReview()" class="review-save-btn">
         <i class="fa fa-floppy-o" aria-hidden="true"></i>
         Save
@@ -16,10 +19,16 @@
     </form>
     <hr />
     <!-- Review List -->
-    <button v-if="reviewsLen >= 6">{{`Show All ${reviewsLen}`}}</button>
     <ul>
       <!-- always get the 6 last reviews -->
-      <review-preview v-for="review in partyReviews.slice(partyReviews.length-6,partyReviews.length)" :key="review._id" :review="review"></review-preview>
+      <review-preview
+        v-for="review in partyReviews.slice(0, max)"
+        :key="review._id"
+        :review="review"
+      ></review-preview>
+      <button v-if="partyReviews.length >= 6" @click="showMore">
+        Load More
+      </button>
     </ul>
   </section>
 </template>
@@ -27,20 +36,21 @@
 <script>
 import reviewPreview from './review-preview.cmp.vue'
 export default {
-  props: ["reviews"],
+  props: ['reviews'],
   name: 'Review-Cmp',
   components: {
     reviewPreview,
   },
   data() {
     return {
+      max: 6,
       partyReviews: this.reviews,
       reviewToEdit: {
         currPartyId: this.$route.params.id,
         txt: '',
         createdAt: Date.now(),
         username: this.$store.getters.loggedInUser.username,
-        avatar: this.$store.getters.loggedInUser.imgURL
+        avatar: this.$store.getters.loggedInUser.imgURL,
       },
     }
   },
@@ -48,19 +58,22 @@ export default {
     loggedInUser() {
       return this.$store.getters.loggedInUser
     },
-    reviewsLen(){
+    reviewsLen() {
       return this.partyReviews.length
-    }
+    },
   },
   methods: {
+    showMore() {
+      this.max += 6
+    },
     async addReview() {
       if (!this.reviewToEdit.txt) return
       const { username, imgURL } = this.loggedInUser
       const party = await this.$store.dispatch({
         type: 'addPartyReview',
-        review: JSON.parse(JSON.stringify(this.reviewToEdit))
+        review: JSON.parse(JSON.stringify(this.reviewToEdit)),
       })
-      if(party._id) {
+      if (party._id) {
         this.partyReviews = party.extraData.reviews
         this.reviewToEdit.txt = ''
       }
@@ -75,24 +88,44 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   .el-select {
     width: 20%;
     margin-bottom: 10px;
   }
-  textarea {
-    margin-bottom: 6px;
-    background-color: #303030;
-    border-radius: 4px;
-    border: 1px solid #dcdfe6;
-    box-sizing: border-box;
-    color: white;
-    display: inline-block;
-    font-size: inherit;
-    line-height: 40px;
-    outline: 0;
-    padding: 0 15px;
-    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-    width: 82%;
+  .input-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+
+    img {
+      width: 48;
+      border-radius: 50%;
+    }
+
+    textarea {
+      border: none;
+      overflow: auto;
+      outline: none;
+
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+
+      resize: none; /*remove the resize handle on the bottom right*/
+      margin-bottom: 6px;
+      background-color: #272727;
+      border-bottom: 1px solid #dddddd;
+      box-sizing: border-box;
+      color: white;
+      display: inline-block;
+      font-size: inherit;
+      outline: 0;
+      padding: 0 15px;
+      transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+      width: 82%;
+      line-height: 1;
+    }
   }
   .el-button {
     display: inline-block;
@@ -111,5 +144,22 @@ ul {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding: 58px;
+
+  button {
+    width: 20%;
+    background-color: #111111;
+    color: #e6e6e6;
+    border-width: 0px;
+    font-size: 0.8rem;
+    margin: 5px;
+    border-radius: 7px;
+    transition-duration: 0.3s;
+    padding: 10px;
+  }
+
+  button:hover {
+    background-color: #c1272d;
+  }
 }
 </style>
