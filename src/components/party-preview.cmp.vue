@@ -38,7 +38,6 @@
 </template>
 
 <script>
-
 import DistanceService from "../services/Distance.service.js";
 export default {
   name: "party-preview",
@@ -48,8 +47,8 @@ export default {
     }
   },
   computed: {
-    loggedInUser(){
-      return this.$store.getters.loggedInUser
+    loggedInUser() {
+      return this.$store.getters.loggedInUser;
     },
     fee() {
       if (this.party.fee === 0) {
@@ -68,6 +67,7 @@ export default {
   methods: {
     km() {
       const userLocation = this.userPlace();
+      console.log("preview test", userLocation);
       const { lat, lng } = userLocation.pos;
       return DistanceService.getDistanceFromLatLonInKm(
         lat,
@@ -84,21 +84,23 @@ export default {
     },
     signalAddLike(party) {
       // Deep copy
-      let currParty = JSON.parse(JSON.stringify(party))
-        const { _id, imgURL, username } = {...this.loggedInUser};
+      let currParty = JSON.parse(JSON.stringify(party));
+      const { _id, imgURL, username } = { ...this.loggedInUser };
       const userToAdd = { _id, imgURL, username };
-        // found user idx in party likes
-        const userFoundIdx = currParty.extraData.likes.findIndex(user => user._id === userToAdd._id);
-        if (userFoundIdx>=0){
-          // Pop member from likes
-          currParty.extraData.likes.splice(userFoundIdx,1)
-        }else{
-          currParty.extraData.likes.push(userToAdd);
-        } 
-        this.$store.dispatch({type: "saveParty",party: currParty});
-        // EventBus of Socket
-        // SocketService.emit("party liked", {currUser: userToAdd,party: party});
-      
+      // found user idx in party likes
+      const userFoundIdx = currParty.extraData.likes.findIndex(
+        user => user._id === userToAdd._id
+      );
+      if (userFoundIdx >= 0) {
+        // Pop member from likes
+        currParty.extraData.likes.splice(userFoundIdx, 1);
+      } else {
+        currParty.extraData.likes.push(userToAdd);
+      }
+      this.$store.dispatch({ type: "saveParty", party: currParty });
+      // EventBus of Socket
+      // SocketService.emit("party liked", {currUser: userToAdd,party: party});
+
       // this.$emit("addLike", party);
     },
     routeToEdit(id) {
@@ -117,7 +119,7 @@ export default {
           // eventBus.$emit(SHOW_MSG, {txt: `Cannot delete ${id}`, type: 'danger'})
         });
     }
-  },
+  }
 };
 </script>
 

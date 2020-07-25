@@ -6,7 +6,7 @@
       @success="onSignInSuccess"
       @error="onSignInError"
     ><i class="fa fa-google" aria-hidden="true"></i></g-signin-button>
-    <!-- <a href="#" @click.stop="signOut">Sign out</a> -->
+    <a href="#" @click.stop="signOut">Sign out</a>
     <!-- <a href="#" @click.prevent="signOut">Sign out</a> -->
   </section>
 </template>
@@ -38,8 +38,8 @@ export default {
       // See https://developers.google.com/identity/sign-in/web/reference#users
       const profile = googleUser.getBasicProfile(); // etc etc
       var id_token = googleUser.getAuthResponse().id_token;
-      this.$emit("doGoogleLogin", id_token);
-      // if (this.currRoute === 'Signup') this.$emit("doSignup", id_token);
+      if (this.currRoute === 'Login') this.$emit("doLogin", profile);
+      if (this.currRoute === 'Signup') this.$emit("doSignup", profile);
 
       // user cheat sheet:
       // Au - Email
