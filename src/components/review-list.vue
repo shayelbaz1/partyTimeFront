@@ -3,17 +3,23 @@
     <h1>Reviews</h1>
     <!-- Add Review -->
     <form @submit.prevent="addReview()" v-if="loggedInUser">
-      <el-input
+      <textarea
         type="textarea"
         placeholder="Your Opinion Matters..."
         v-model="reviewToEdit.txt"
-      ></el-input>
-      <el-button @click="addReview()">Save</el-button>
+        class="review-input"
+      ></textarea>
+      <el-button @click="addReview()" class="review-save-btn">
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        Save
+      </el-button>
     </form>
     <hr />
     <!-- Review List -->
-    <ul v-for="review in partyReviews" :key="review._id">
-      <review-preview :review="review"></review-preview>
+    <button v-if="reviewsLen >= 6">{{`Show All ${reviewsLen}`}}</button>
+    <ul>
+      <!-- always get the 6 last reviews -->
+      <review-preview v-for="review in partyReviews.slice(partyReviews.length-6,partyReviews.length)" :key="review._id" :review="review"></review-preview>
     </ul>
   </section>
 </template>
@@ -42,6 +48,9 @@ export default {
     loggedInUser() {
       return this.$store.getters.loggedInUser
     },
+    reviewsLen(){
+      return this.partyReviews.length
+    }
   },
   methods: {
     async addReview() {
@@ -70,19 +79,37 @@ form {
     width: 20%;
     margin-bottom: 10px;
   }
-  .el-textarea {
-    width: 80%;
-    margin: auto;
-    margin-bottom: 10px;
+  textarea {
+    margin-bottom: 6px;
+    background-color: #303030;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    color: white;
+    display: inline-block;
+    font-size: inherit;
+    line-height: 40px;
+    outline: 0;
+    padding: 0 15px;
+    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    width: 82%;
   }
   .el-button {
     display: inline-block;
+    background-color: #111111;
+    color: #e6e6e6;
+    border-width: 0px;
+    font-size: 0.8rem;
+    margin: 5px;
+    border-radius: 7px;
+    transition-duration: 0.3s;
+    padding: 15px;
   }
 }
 ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  width: 100%;
+  flex-direction: column;
 }
 </style>
