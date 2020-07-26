@@ -48,7 +48,7 @@ export default {
       this.place.name = cityName;
 
 
-      console.log('No time out now... check...');
+      // console.log('No time out now... check...');
       setTimeout(() => {
         var el = this.$el.querySelector("input.pac-target-input");
         el.value = this.place.name;

@@ -1,7 +1,8 @@
 <template>
   <section>
-    <button @click="isChat=!isChat" class="chat-btn">
+    <button @click="openChat" class="chat-btn">
       <img src="../assets/chat.png" />
+      <div v-if="isNewMsg" class="red-dot"></div>
     </button>
 
     <div v-if="party" v-show="isChat" class="chat">
@@ -43,7 +44,8 @@ export default {
       topic: "Love",
       isChat: false,
       isTyping: false,
-      whoType: ""
+      whoType: "",
+      isNewMsg: false
     };
   },
   destroyed() {
@@ -58,6 +60,10 @@ export default {
       : "Guest";
   },
   methods: {
+    openChat() {
+      this.isChat = !this.isChat
+      if (this.isNewMsg) this.isNewMsg = false
+    },
     showTypeingAndUser(userName, txt) {
       if (txt) {
         this.isTyping = true;
@@ -69,6 +75,11 @@ export default {
     addMsg(msg) {
       this.msgs.push(msg);
       localStorage.setItem(`msgs-${this.party._id}`, JSON.stringify(this.msgs));
+      if (!this.isChat) {
+        this.isNewMsg = true
+      }
+      console.log('this.isNewMsg:', this.isNewMsg)
+
     },
     sendMsg() {
       if (this.msg.txt !== "") {
@@ -120,7 +131,6 @@ export default {
   bottom: 0;
   left: 0;
   background-color: white;
-
   width: 50px;
   height: 50px;
   border: none;
@@ -141,6 +151,15 @@ export default {
     position: relative;
     bottom: 4px;
     right: 5px;
+  }
+  .red-dot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
   }
 }
 .chat {
