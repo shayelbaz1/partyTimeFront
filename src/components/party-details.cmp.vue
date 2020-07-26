@@ -28,10 +28,8 @@
         <i class="fa fa-google"></i>
         Calender
       </button>-->
-      <!-- GET THE URL INTO THE COMPONENT What is it?!......!?....-->
       <button>
         <share-network :partyID="this.party._id"></share-network>
-        <i class="fab fa-whatsapp"></i>
       </button>
     </div>
 
@@ -159,7 +157,7 @@ import ChatPage from "@/views/ChatPage.vue";
 import imgBlur from "./img-blur.cmp.vue";
 import partyMap from "./party-map.cmp.vue";
 import membersPics from "./my-cmps/members-pics.cmp.vue";
-import shareNetwork from "./my-cmps/shareNetwork.cmp";
+import shareNetwork from "./my-cmps/shareNetwork.cmp.vue";
 import SocketService from "../services/SocketService.js";
 
 export default {
