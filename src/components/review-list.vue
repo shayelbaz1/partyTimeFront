@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import SocketService from "../services/SocketService.js";
 import reviewPreview from './review-preview.cmp.vue'
 export default {
   props: ['reviews'],
@@ -65,11 +66,21 @@ export default {
         review: JSON.parse(JSON.stringify(this.reviewToEdit)),
       })
       if (party._id) {
-        this.partyReviews = party.extraData.reviews
+        SocketService.emit("review added", {
+          reviews: party.extraData.reviews
+        });
+        // this.partyReviews = party.extraData.reviews
         this.reviewToEdit.txt = ''
       }
     },
   },
+  created(){
+    // Init Setup of socket
+    SocketService.setup();
+    SocketService.on("notify reviewAdded", ({ reviews }) => {
+      this.partyReviews = reviews
+    });
+  }
 }
 </script>
 
