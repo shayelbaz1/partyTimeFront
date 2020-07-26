@@ -115,7 +115,7 @@
       </div>
 
       <div class="map-members-container flex column-layout">
-        <party-map :partyProp="party"></party-map>
+
         <div class="members">
           <p class="title">Going</p>
           <div class="members-img-container">
@@ -128,6 +128,7 @@
             <members-pics v-for="member in party.extraData.likes" :key="member._id" :member="member"></members-pics>
           </div>
         </div>
+        <party-map :partyProp="party"></party-map>
       </div>
     </div>
 
@@ -188,7 +189,7 @@ export default {
       );
     },
     addLikeOrGoing(type) {
-      const currParty = this.party;
+      let currParty = this.party;
       const { _id, imgURL, username } = this.currUser;
       const userToAdd = { _id, imgURL, username };
       // console.log('userToAdd:', userToAdd)
@@ -217,6 +218,8 @@ export default {
           this.currUser.goingPartys.push(currParty._id);
         }
         // Save party and user
+        console.log('save party');
+        // this.$store.dispatch({ type: "saveParty", party: currParty });
         this.$store.dispatch({ type: "updateUser", user: this.currUser });
         // EventBus of Socket
         SocketService.emit("party joined", {
