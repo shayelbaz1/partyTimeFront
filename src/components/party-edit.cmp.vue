@@ -11,55 +11,25 @@
         <div>
           <div>
             <p class="border-title">Party Title</p>
-            <input
-              class="outline-box"
-              type="text"
-              v-model="partyToSave.name"
-              placeholder="Party Title"
-            />
+            <input class="outline-box" type="text" v-model="partyToSave.name" placeholder="Party Title" />
           </div>
           <br />
           <div>
             <p class="border-title">Party Location</p>
 
-            <GmapAutocomplete
-              :value="partyToSave.location.name"
-              class="outline-box"
-              @place_changed="setPlace"
-            ></GmapAutocomplete>
+            <GmapAutocomplete :value="partyToSave.location.name" class="outline-box" @place_changed="setPlace"></GmapAutocomplete>
           </div>
           <br />
 
           <div class="flex wrap date-btns-box">
             <div class="date-box outline-box">
               <p class="border-title date">Party Start Time</p>
-              <datetime
-                input-class="date-time"
-                class="start-date-time"
-                type="datetime"
-                v-model="partyToSave.startDate"
-                format="dd/MM/yyyy HH:mm"
-                use24-hour
-                :minute-step="15"
-                :phrases="{ok: 'Continue', cancel: 'Exit'}"
-                value-zone="Israel"
-                placeholder="Start time"
-              ></datetime>
+              <datetime input-class="date-time" class="start-date-time" type="datetime" v-model="partyToSave.startDate" format="dd/MM/yyyy HH:mm" use24-hour :minute-step="15" :phrases="{ok: 'Continue', cancel: 'Exit'}" value-zone="Israel" placeholder="Start time"></datetime>
             </div>
             <div class="space-box"></div>
             <div class="date-box outline-box">
               <p class="border-title date">Party End Time</p>
-              <datetime
-                class="end-date-time"
-                type="datetime"
-                v-model="partyToSave.endDate"
-                format="dd/MM/yyyy HH:mm"
-                use24-hour
-                :minute-step="15"
-                :phrases="{ok: 'Continue', cancel: 'Exit'}"
-                value-zone="Israel"
-                placeholder="End time"
-              ></datetime>
+              <datetime class="end-date-time" type="datetime" v-model="partyToSave.endDate" format="dd/MM/yyyy HH:mm" use24-hour :minute-step="15" :phrases="{ok: 'Continue', cancel: 'Exit'}" value-zone="Israel" placeholder="End time"></datetime>
             </div>
           </div>
           <br />
@@ -67,45 +37,26 @@
           <div class="outline-box types-container">
             <p class="border-title types-title">Music Types</p>
             <el-checkbox-group v-if="types" v-model="partyToSave.extraData.musicTypes">
-              <el-checkbox-button
-                class="type-btn"
-                v-for="type in types.musicTypes"
-                :label="type"
-                :key="type"
-              >{{type}}</el-checkbox-button>
+              <el-checkbox-button class="type-btn" v-for="type in types.musicTypes" :label="type" :key="type">{{type}}</el-checkbox-button>
             </el-checkbox-group>
           </div>
           <br />
           <div class="outline-box types-container">
             <p class="border-title types-title">Party Types</p>
             <el-checkbox-group v-if="types" v-model="partyToSave.extraData.partyTypes">
-              <el-checkbox-button
-                v-for="type in types.partyTypes"
-                :label="type"
-                :key="type"
-              >{{type}}</el-checkbox-button>
+              <el-checkbox-button v-for="type in types.partyTypes" :label="type" :key="type">{{type}}</el-checkbox-button>
             </el-checkbox-group>
           </div>
           <br />
           <div>
             <p class="border-title">Party Fee</p>
-            <input
-              class="outline-box"
-              type="number"
-              placeholder="Enter Fee"
-              v-model="partyToSave.fee"
-            />
+            <input class="outline-box" type="number" placeholder="Enter Fee" v-model="partyToSave.fee" />
           </div>
           <br />
           <div>
             <p class="border-title">Party Description</p>
-            <textarea
-              class="outline-box text-desc"
-              placeholder="Description"
-              rows="10"
-              v-model="partyToSave.desc"
-            />
-          </div>
+            <textarea class="outline-box text-desc" placeholder="Description" rows="10" v-model="partyToSave.desc" />
+            </div>
 
           <div class="btns-box">
             <button class="btn cancel" @click.prevent="back">
@@ -223,8 +174,8 @@ export default {
     async saveParty() {
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
-      if (this.partyToSave._id){
-        if(this.partyToSave.extraData.createdBy._id !== this.loggedInUser._id)return;
+      if (this.partyToSave._id) {
+        if (this.partyToSave.extraData.createdBy._id !== this.loggedInUser._id) return;
       }
       this.partyToSave.fee = parseInt(this.partyToSave.fee);
 
@@ -247,8 +198,8 @@ export default {
       this.$router.push("/party-app");
     },
     setCreatedBy() {
-      const {_id,username,imgURL} = this.loggedInUser
-      this.partyToSave.extraData.createdBy = {_id,username,imgURL}
+      const { _id, username, imgURL } = this.loggedInUser
+      this.partyToSave.extraData.createdBy = { _id, username, imgURL }
     },
     loadParty() {
       console.log("load");
@@ -278,6 +229,7 @@ export default {
 <style lang="scss">
 .event-add-container {
   // height: 100vh;
+  margin-top: 56px;
   background-color: #303030;
   // color: white;
   .edit-party {
