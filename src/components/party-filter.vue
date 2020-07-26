@@ -99,7 +99,7 @@ export default {
       partyTypes: [],
       filterBy: {
         userLocation: {},
-        startTime: "",
+        startTime: "All",
         selectedLocations: [],
         selectedTypes: [],
         sortBy: "startDate",
