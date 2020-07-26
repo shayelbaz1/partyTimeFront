@@ -81,8 +81,8 @@
               <i class="fas fa-tag"></i>
             </td>
             <td class="txt">
-              <div class="flex">
-                <p class="type" v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }} |</p>
+              <div>
+                <p class="type" v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }}</p>
               </div>
               <p class="desc">Party Types</p>
             </td>

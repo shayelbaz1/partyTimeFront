@@ -23,7 +23,7 @@
           <p v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }}</p>
         </div>
 
-        <div v-if="isCurrUserCreator" class="btns-actions-box">
+        <div v-if="isCurrUserCreator || loggedInUser.isAdmin" class="btns-actions-box">
           <el-button @click.stop="routeToEdit(party._id)" type="text">
             <i class="far fa-edit"></i>
           </el-button>

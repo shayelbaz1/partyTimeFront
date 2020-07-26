@@ -65,13 +65,13 @@ export default {
     routeToSignup() {
       this.$router.push("/signup");
     },
-    async doLogin(googleCreds) {
+    async doLogin() {
       const currUser = await this.$store.dispatch({
         type: "login",
         creds: this.creds
       });
-      if (currUser.length) this.$router.push("/party-app");
-      if (!currUser.length) return false;
+      this.$router.push("/party-app");
+
     }
   },
   components: {

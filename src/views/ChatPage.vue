@@ -154,6 +154,7 @@ export default {
   border-radius: 10px;
   padding: 10px 20px;
   color: black;
+  z-index: 2;
   .chat-header {
     // background-color: khaki;
     border-bottom: 1px solid rgb(238, 238, 238);
@@ -187,6 +188,7 @@ export default {
     }
     p {
       margin: 0;
+      color: #5e5e5e;
     }
   }
   ul {

@@ -39,7 +39,7 @@ export default {
     text-shadow: 0px 0px 2px black;
     .welcome-title {
       padding: 0;
-      padding: 0px 30px;
+      padding: 0px 13px;
       width: 100%;
       margin: 0;
       font-size: 3.6rem;

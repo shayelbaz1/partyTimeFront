@@ -174,7 +174,7 @@ export default {
     async saveParty() {
       if (this.partyToSave.name === "") return;
       if (this.partyToSave.price === "") return;
-      if (this.partyToSave._id) {
+      if (this.partyToSave._id && !this.loggedInUser.isAdmin) {
         if (this.partyToSave.extraData.createdBy._id !== this.loggedInUser._id) return;
       }
       this.partyToSave.fee = parseInt(this.partyToSave.fee);
