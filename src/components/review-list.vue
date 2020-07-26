@@ -17,7 +17,7 @@
     <ul>
       <!-- always get the 6 last reviews -->
       <review-preview v-for="review in partyReviews.slice(0, max)" :key="review._id" :review="review"></review-preview>
-      <button v-if="partyReviews.length >= 6" @click="showMore">
+      <button class="btn load" v-if="partyReviews.length >= 6" @click="showMore">
         Load More
       </button>
     </ul>
@@ -74,7 +74,7 @@ export default {
       }
     },
   },
-  created(){
+  created() {
     // Init Setup of socket
     SocketService.setup();
     SocketService.on("notify reviewAdded", ({ reviews }) => {
@@ -159,15 +159,15 @@ ul {
   }
 
   button {
-    width: 20%;
+    // width: 20%; */
     background-color: #111111;
     color: #e6e6e6;
     border-width: 0px;
-    font-size: 0.8rem;
-    margin: 5px;
+    font-size: 1rem;
+    margin: 5px auto;
     border-radius: 7px;
     transition-duration: 0.3s;
-    padding: 10px;
+    padding: 16px 50px;
   }
 
   button:hover {
