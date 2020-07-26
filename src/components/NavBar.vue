@@ -36,6 +36,8 @@
                 <!-- <em>User</em> -->
                 <img class="user-img" :src="loggedInUser.imgURL" alt="User logo" srcset />
               </template>
+              <b-dropdown-item>{{loggedInUser.username}}</b-dropdown-item>
+              <b-dropdown-item>{{loggedInUser.email}}</b-dropdown-item>
               <b-dropdown-item href="#" @click="routeTo('/profile')">Profile</b-dropdown-item>
               <b-dropdown-item href="#" @click="signOut">Sign Out</b-dropdown-item>
             </b-nav-item-dropdown>
