@@ -37,7 +37,7 @@
         <p>Less then {{ filterBy.partyDetails.distance }} km</p>
       </div>
       <div class="slidecontainer">
-        <el-slider @change="setSortBy" v-model="filterBy.partyDetails.distance" :max="100"></el-slider>
+        <el-slider @change="setSortBy" v-model="filterBy.partyDetails.distance" :max="200"></el-slider>
       </div>
       <div class="hr"></div>
       <div class="header fees">
@@ -45,7 +45,7 @@
         <p>Less then {{ filterBy.partyDetails.fee }}$</p>
       </div>
       <div class="slidecontainer">
-        <el-slider v-model="filterBy.partyDetails.fee" @change="setSortBy"></el-slider>
+        <el-slider v-model="filterBy.partyDetails.fee" @change="setSortBy" :max="200"></el-slider>
       </div>
     </div>
 
@@ -104,7 +104,7 @@ export default {
         selectedTypes: [],
         sortBy: "startDate",
         partyDetails: {
-          distance: 15000,
+          distance: 100,
           fee: 100,
           locality: "Israel",
           musicType: "Rock",
