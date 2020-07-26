@@ -1,9 +1,6 @@
 <template>
-  <section>
-    <ShareNetwork network="WhatsApp" 
-    title="Check out this party!"
-    :url="fullURL"></ShareNetwork>
-  </section>
+  <ShareNetwork network="WhatsApp" title="Check out this party!" :url="fullURL">
+     <i class="fab fa-whatsapp"></i></ShareNetwork>
 </template>
 
 <script>
@@ -11,11 +8,8 @@ export default {
   props: ["partyID"],
   data() {
     return {
-      baseURL: "https://partytimes.herokuapp.com/#/party-app/details"
+      baseURL: "https://partytimes.herokuapp.com/#/party-app/details/"
     };
-  },
-  mounted() {
-    console.log("testesteset", this.partyID);
   },
   computed: {
     fullURL() {
@@ -27,4 +21,5 @@ export default {
 </script>
 
 <style>
+
 </style>
