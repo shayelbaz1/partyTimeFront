@@ -82,7 +82,7 @@ export default {
     }
   },
   watch: {
-    topic() {},
+    topic() { },
     "msg.txt"() {
       SocketService.emit("typing user", {
         userName: this.msg.from,
@@ -153,6 +153,7 @@ export default {
   margin: auto;
   border-radius: 10px;
   padding: 10px 20px;
+  color: black;
   .chat-header {
     // background-color: khaki;
     border-bottom: 1px solid rgb(238, 238, 238);
