@@ -29,7 +29,7 @@ export default {
   components: {
     GoogleMap
   },
-  mounted(){
+  mounted() {
     this.geoLocation();
   },
   methods: {
@@ -48,11 +48,11 @@ export default {
       this.place.name = cityName;
 
 
-console.log('No time out now... check...');
-      // setTimeout(() => {
+      console.log('No time out now... check...');
+      setTimeout(() => {
         var el = this.$el.querySelector("input.pac-target-input");
         el.value = this.place.name;
-      // }, 2000);
+      }, 2000);
 
       this.$store.commit({
         type: "setPlace",
