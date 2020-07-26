@@ -2,7 +2,7 @@
   <li>
     <!-- HEADER -->
     <div class="review-header">
-      <img :src="this.review.avatar" @click="routeTo('/profile')"/>
+      <img :src="this.review.avatar" @click="routeTo('/profile')" />
       <div class="review-details">
         <span>{{ this.review.username }}</span>
         <p>{{ this.review.createdAt | moment('MMM Do YY') }}</p>
@@ -38,7 +38,7 @@ li {
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 40px;
-  
+
   .review-text-container {
     margin-top: 14px;
   }
@@ -49,7 +49,8 @@ li {
 
     .review-details {
       margin-left: 10px;
-      p{
+      text-align: left;
+      p {
         color: rgba(255, 255, 255, 0.384);
       }
     }

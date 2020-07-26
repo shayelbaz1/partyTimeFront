@@ -153,10 +153,6 @@ ul {
   column-gap: 30px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  .review-details {
-    span {
-    }
-  }
 
   button {
     // width: 20%; */
