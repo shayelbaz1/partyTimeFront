@@ -1,6 +1,9 @@
 <template>
   <section>
     <b-navbar toggleable="lg" type="dark" class="party-nav">
+      <b-nav-item @click="toggleFilter" class="">
+        <i class="fas fa-search"></i>
+      </b-nav-item>
       <b-navbar-brand class="nav-logo" href="#" @click="routeTo('/')">
         <!-- <img src="../assets/site-logo.jpeg" alt="Kitten" /> -->
         <img src="../assets/logo.png" alt="logo" style="border-radius:3px" />
@@ -31,7 +34,7 @@
               <!-- Using 'button-content' slot -->
               <template v-slot:button-content>
                 <!-- <em>User</em> -->
-                <img class="user-img"  :src="loggedInUser.imgURL" alt="User logo" srcset />
+                <img class="user-img" :src="loggedInUser.imgURL" alt="User logo" srcset />
               </template>
               <b-dropdown-item href="#" @click="routeTo('/profile')">Profile</b-dropdown-item>
               <b-dropdown-item href="#" @click="signOut">Sign Out</b-dropdown-item>

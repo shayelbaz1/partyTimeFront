@@ -67,7 +67,6 @@ export default {
   methods: {
     km() {
       const userLocation = this.userPlace();
-      console.log("preview test", userLocation);
       const { lat, lng } = userLocation.pos;
       return DistanceService.getDistanceFromLatLonInKm(
         lat,

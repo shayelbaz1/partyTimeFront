@@ -5,27 +5,18 @@
     <form @submit.prevent="addReview()">
       <div class="input-container">
         <img :src="loggedInUser.imgURL" alt="" srcset="" />
-        <textarea
-          type="textarea"
-          placeholder="Your Opinion Matters..."
-          v-model="reviewToEdit.txt"
-          class="review-input"
-        ></textarea>
+        <textarea type="textarea" placeholder="Your Opinion Matters..." v-model="reviewToEdit.txt" class="review-input"></textarea>
       </div>
       <el-button @click="addReview()" class="review-save-btn">
-        <i class="fa fa-floppy-o" aria-hidden="true"></i>
-        Save
+        <i class="far fa-comment"></i>
+        Comment
       </el-button>
     </form>
     <hr />
     <!-- Review List -->
     <ul>
       <!-- always get the 6 last reviews -->
-      <review-preview
-        v-for="review in partyReviews.slice(0, max)"
-        :key="review._id"
-        :review="review"
-      ></review-preview>
+      <review-preview v-for="review in partyReviews.slice(0, max)" :key="review._id" :review="review"></review-preview>
       <button v-if="partyReviews.length >= 6" @click="showMore">
         Load More
       </button>
@@ -96,7 +87,8 @@ form {
   .input-container {
     display: flex;
     justify-content: space-between;
-    width: 80%;
+    width: 100%;
+    padding-left: 60px;
 
     img {
       width: 48;
@@ -104,6 +96,8 @@ form {
     }
 
     textarea {
+      margin-left: 16px;
+      width: 100%;
       border: none;
       overflow: auto;
       outline: none;
@@ -121,9 +115,8 @@ form {
       display: inline-block;
       font-size: inherit;
       outline: 0;
-      padding: 0 15px;
+      padding: 0;
       transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-      width: 82%;
       line-height: 1;
     }
   }
@@ -133,18 +126,22 @@ form {
     color: #e6e6e6;
     border-width: 0px;
     font-size: 0.8rem;
-    margin: 5px;
     border-radius: 7px;
     transition-duration: 0.3s;
-    padding: 15px;
+    margin: 5px 0px;
+    align-self: flex-end;
   }
 }
 ul {
   list-style: none;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 58px;
+  // display: flex;
+  // justify-content: center;
+  // flex-direction: column;
+  // padding: 58px;
+  padding: 10px 58px;
+  column-gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 
   button {
     width: 20%;
