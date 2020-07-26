@@ -1,21 +1,27 @@
 <template>
   <section>
-    <ShareNetwork
-      network="WhatsApp"
-      :url="this.partyURL"
-      title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
-      description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
-      quote="The hot reload is so fast it\'s near instant. - Evan You"
-      hashtags="vuejs,vite"
-    >Share on Facebook</ShareNetwork>
+    <ShareNetwork network="WhatsApp" 
+    title="Check out this party!"
+    :url="fullURL"></ShareNetwork>
   </section>
 </template>
 
 <script>
 export default {
-  props: ["partyURL"],
-  created() {
-    console.log("testesteset", this.partyURL);
+  props: ["partyID"],
+  data() {
+    return {
+      baseURL: "https://partytimes.herokuapp.com/#/party-app/details"
+    };
+  },
+  mounted() {
+    console.log("testesteset", this.partyID);
+  },
+  computed: {
+    fullURL() {
+      const FullURL = this.baseURL + this.partyID;
+      return FullURL;
+    }
   }
 };
 </script>

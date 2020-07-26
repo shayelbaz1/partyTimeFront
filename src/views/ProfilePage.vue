@@ -47,6 +47,7 @@ export default {
     signOut() {
       sessionStorage.clear();
       this.$store.dispatch("logout");
+      this.$router.push("/party-app");
     },
     openWidget() {
       const uploadWidget = cloudinary.createUploadWidget(

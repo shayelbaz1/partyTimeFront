@@ -28,12 +28,11 @@
         <i class="fa fa-google"></i>
         Calender
       </button>-->
-      <button @click="shareToWhatsapp">
-        <i class="fab fa-whatsapp"></i>
-        Whatsapp
-      </button>
       <!-- GET THE URL INTO THE COMPONENT What is it?!......!?....-->
-      <!-- <share-network :partyURL="this.partyURL"></share-network> -->
+      <button>
+        <share-network :partyID="this.party._id"></share-network>
+        <i class="fab fa-whatsapp"></i>
+      </button>
     </div>
 
     <div class="details-and-map-container flex">
@@ -85,7 +84,11 @@
             </td>
             <td class="txt">
               <div class="flex">
-                <p class="type" v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }} |</p>
+                <p
+                  class="type"
+                  v-for="(type, idx) in party.extraData.partyTypes"
+                  :key="idx"
+                >{{ type }} |</p>
               </div>
               <p class="desc">Party Types</p>
             </td>
@@ -96,7 +99,11 @@
             </td>
             <td class="txt">
               <div class="flex">
-                <p class="type" v-for="(type, idx) in party.extraData.musicTypes" :key="idx">{{ type }} |</p>
+                <p
+                  class="type"
+                  v-for="(type, idx) in party.extraData.musicTypes"
+                  :key="idx"
+                >{{ type }} |</p>
               </div>
               <p class="desc">Music Types</p>
             </td>
@@ -119,13 +126,21 @@
         <div class="members">
           <p class="title">Going</p>
           <div class="members-img-container">
-            <members-pics v-for="member in party.extraData.members" :key="member._id" :member="member"></members-pics>
+            <members-pics
+              v-for="member in party.extraData.members"
+              :key="member._id"
+              :member="member"
+            ></members-pics>
           </div>
         </div>
         <div class="members">
           <p class="title">Likes</p>
           <div class="members-img-container">
-            <members-pics v-for="member in party.extraData.likes" :key="member._id" :member="member"></members-pics>
+            <members-pics
+              v-for="member in party.extraData.likes"
+              :key="member._id"
+              :member="member"
+            ></members-pics>
           </div>
         </div>
       </div>
@@ -171,9 +186,6 @@ export default {
         return 0;
       }
     },
-    partyURL() {
-      this.partyURL = `https://partytimes.herokuapp.com/#/party-app/details/${this.party._id}`;
-    },
     fee() {
       if (this.party.fee === 0) {
         return "FREE";
@@ -183,10 +195,6 @@ export default {
     }
   },
   methods: {
-    shareToWhatsapp() {
-      const thisPartysURL = `https://partytimes.herokuapp.com/#/party-app/details/${this.party._id}`;
-      window.open(`https://api.whatsapp.com/send?text=${thisPartysURL}`);
-    },
     navigateToParty() {
       const userLocation = this.$store.getters.place;
       const { lat, lng } = userLocation.pos;
