@@ -7,52 +7,22 @@
       </div>
       <div class="sort-buttons-container">
         <!-- Time Button -->
-        <button
-          :class="{ active: filterTitle === 'Time' }"
-          title="Time"
-          @click="setActiveSort('startDate')"
-        >
+        <button :class="{ active: filterTitle === 'Time' }" title="Time" @click="setActiveSort('startDate')">
           <i class="far fa-clock"></i>
-          <input
-            hidden
-            type="radio"
-            name="sort"
-            id="date"
-            value="startDate"
-            v-model="filterBy.sortBy"
-          />
+          <input hidden type="radio" name="sort" id="date" value="startDate" v-model="filterBy.sortBy" />
         </button>
         <!-- Members -->
-        <button
-          :class="{ active: filterTitle === 'Members' }"
-          title="Members"
-          @click="setActiveSort('extraData.membersCnt')"
-        >
+        <button :class="{ active: filterTitle === 'Members' }" title="Members" @click="setActiveSort('extraData.membersCnt')">
           <i class="fa fa-user"></i>
-          <input
-            hidden
-            type="radio"
-            name="sort"
-            id="members"
-            value="members"
-            v-model="filterBy.sortBy"
-          />
+          <input hidden type="radio" name="sort" id="members" value="members" v-model="filterBy.sortBy" />
         </button>
 
-        <button
-          :class="{ active: filterTitle === 'Likes' }"
-          title="sort by party likes"
-          @click="setActiveSort('likes')"
-        >
+        <button :class="{ active: filterTitle === 'Likes' }" title="sort by party likes" @click="setActiveSort('likes')">
           <i class="fa fa-heart"></i>
           <input hidden type="radio" name="sort" id="like" value="like" v-model="filterBy.sortBy" />
         </button>
 
-        <button
-          :class="{ active: filterTitle === 'Price' }"
-          title="Price"
-          @click="setActiveSort('fee')"
-        >
+        <button :class="{ active: filterTitle === 'Price' }" title="Price" @click="setActiveSort('fee')">
           <i class="fa fa-dollar-sign"></i>
           <input hidden type="radio" name="sort" id="price" value="price" v-model="filterBy.sortBy" />
         </button>
@@ -67,7 +37,7 @@
         <p>Less then {{ filterBy.partyDetails.distance }} km</p>
       </div>
       <div class="slidecontainer">
-        <el-slider @change="setSortBy" v-model="filterBy.partyDetails.distance" :max="15000"></el-slider>
+        <el-slider @change="setSortBy" v-model="filterBy.partyDetails.distance" :max="100"></el-slider>
       </div>
       <div class="hr"></div>
       <div class="header fees">
@@ -85,14 +55,7 @@
       <p>Time</p>
       <p>{{filterBy.startTime}}</p>
     </div>
-    <el-select
-      v-model="filterBy.startTime"
-      filterable
-      allow-create
-      default-first-option
-      placeholder="All"
-      @change="setSortBy"
-    >
+    <el-select v-model="filterBy.startTime" filterable allow-create default-first-option placeholder="All" @change="setSortBy">
       <el-option v-for="(time, idx) in times" :key="idx" :label="time" :value="time"></el-option>
     </el-select>
     <!-- hr  -->
@@ -102,15 +65,7 @@
       <p>Locality</p>
       <p>{{ filterBy.selectedLocations.length }}/{{ locationNames.length }}</p>
     </div>
-    <el-select
-      v-model="filterBy.selectedLocations"
-      multiple
-      filterable
-      allow-create
-      default-first-option
-      placeholder="Filtar Locations"
-      @change="setSortBy"
-    >
+    <el-select v-model="filterBy.selectedLocations" multiple filterable allow-create default-first-option placeholder="Filtar Locations" @change="setSortBy">
       <el-option v-for="(name, idx) in locationNames" :key="idx" :label="name" :value="name"></el-option>
     </el-select>
     <!-- hr  -->
@@ -121,15 +76,7 @@
       <p>Party Types</p>
       <p>{{ filterBy.selectedTypes.length }}/{{ partyTypes.length }}</p>
     </div>
-    <el-select
-      v-model="filterBy.selectedTypes"
-      multiple
-      filterable
-      allow-create
-      default-first-option
-      placeholder="Party Types"
-      @change="setSortBy"
-    >
+    <el-select v-model="filterBy.selectedTypes" multiple filterable allow-create default-first-option placeholder="Party Types" @change="setSortBy">
       <el-option v-for="(type, idx) in partyTypes" :key="idx" :label="type" :value="type"></el-option>
     </el-select>
 
