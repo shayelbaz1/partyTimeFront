@@ -5,18 +5,14 @@
     <div class="event-buttons-container flex">
       <button @click="back" class="btn-back">
         <i class="fas fa-arrow-left"></i>
-        Back
+
       </button>
-      <button @click="addLikeOrGoing('like')">
+      <button class="flex flex-column align-items-center" @click="addLikeOrGoing('like')">
         <i class="fas fa-heart"></i>
         {{ likesCom }}
       </button>
-      <!-- <button>
-        <i class="far fa-star"></i>
-        Interested
-      </button>-->
-      <button @click="addLikeOrGoing('going')">
-        <i class="far fa-check-circle"></i>
+      <button class="flex flex-column align-items-center" @click="addLikeOrGoing('going')">
+        <i class="far fa-check-circle"> </i>
         {{ party.extraData.members.length }}
         Going
       </button>
@@ -295,6 +291,10 @@ export default {
     SocketService.on("notify joined", ({ currUser, currParty }) => {
       this.party = currParty;
     });
-  }
+  },
+  mounted() {
+    console.log('here');
+    window.scrollTo(0, 0)
+  },
 };
 </script>

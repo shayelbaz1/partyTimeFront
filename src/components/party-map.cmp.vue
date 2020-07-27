@@ -14,25 +14,9 @@
     </div>
 
     <!-- :options="{disableDefaultUI:true}" -->
-    <GmapMap
-      v-if="place.pos"
-      :options="{mapTypeControl: false,streetViewControl:false,styles:mapStyle.styles}"
-      backgroundColor="black"
-      :center="place.pos"
-      :zoom="zoom"
-      map-type-id="roadmap"
-      style="width: 96%; height: 300px;"
-    >
+    <GmapMap v-if="place.pos" :options="{mapTypeControl: false,streetViewControl:false,styles:mapStyle.styles}" backgroundColor="black" :center="place.pos" :zoom="zoom" map-type-id="roadmap" style="width: 96%; height: 300px;">
       <GmapMarker :position="place.pos" :draggable="false" title="Your Location" />
-      <GmapMarker
-        :key="index"
-        v-for="(party, index) in partys"
-        :position="party.location"
-        :clickable="true"
-        :draggable="false"
-        @click="togglePreview(party)"
-        title="hello world"
-      />
+      <GmapMarker :key="index" v-for="(party, index) in partys" :position="party.location" :clickable="true" :draggable="false" @click="togglePreview(party)" title="hello world" />
     </GmapMap>
     <party-preview v-if="party" :party="party"></party-preview>
   </div>
@@ -160,10 +144,10 @@ export default {
       const cityName = await GeocodeService.getCityByLatLng(currentLocation);
       this.place.name = cityName;
 
-      
-        this.$el.querySelector(
-          "input.pac-target-input"
-        ).value = this.place.name;
+
+      this.$el.querySelector(
+        "input.pac-target-input"
+      ).value = this.place.name;
     },
     togglePreview(party) {
       this.isOpenPrev = true;
@@ -183,9 +167,10 @@ export default {
       return this.$store.getters.partys;
     }
   },
-  async created() {},
+  async created() { },
   mounted() {
-    // Set place to current location
+    console.log('here');
+    // Set place of current party
     if (this.partyProp) {
       const location = this.partyProp.location;
       this.place.name = location.name;
@@ -194,7 +179,12 @@ export default {
       this.party = this.partyProp;
       this.zoom = 18;
     } else {
-      this.geoLocation();
+      this.place = this.$store.getters.place
+      setTimeout(() => {
+        var el = this.$el.querySelector("input.pac-target-input");
+        el.value = this.place.name;
+      }, 1000);
+      // this.geoLocation();
       this.party = this.partys[0];
     }
   }
