@@ -8,7 +8,8 @@
             border: 1px solid white;
             border-radius: 8px;
             height: 40px;
-            width: 150px;
+            width: 154px;
+            margin-left: 15px;
         }
         .btn-header {
             display: flex;
@@ -27,7 +28,7 @@
             display: flex;
             justify-content: space-evenly;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
             margin-bottom: 40px;
             img {
@@ -201,7 +202,7 @@
                         // height: 100%;
                     }
                     .box-card {
-                        width: 300px;
+                        width: 256px;
                         height: 400px;
                     }
                 }

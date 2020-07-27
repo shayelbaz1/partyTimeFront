@@ -1,7 +1,7 @@
 <template>
   <ShareNetwork network="WhatsApp" title="Check out this party!" :url="fullURL">
     <i class="fab fa-whatsapp"></i>
-    Share
+    <!-- Share -->
   </ShareNetwork>
 </template>
 

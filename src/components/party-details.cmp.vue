@@ -5,29 +5,25 @@
     <div class="event-buttons-container flex">
       <button @click="back" class="btn-back">
         <i class="fas fa-arrow-left"></i>
-        Back
+
       </button>
-      <button @click="addLikeOrGoing('like')">
+      <button class="flex flex-column align-items-center" @click="addLikeOrGoing('like')">
         <i class="fas fa-heart"></i>
         {{ likesCom }}
       </button>
-      <!-- <button>
-        <i class="far fa-star"></i>
-        Interested
-      </button>-->
-      <button @click="addLikeOrGoing('going')">
-        <i class="far fa-check-circle"></i>
+      <button class="flex flex-column align-items-center" @click="addLikeOrGoing('going')">
+        <i class="far fa-check-circle"> </i>
         {{ party.extraData.members.length }}
         Going
       </button>
       <button @click="navigateToParty">
         <i class="fas fa-directions"></i>
-        Navigate
+        <!-- Navigate -->
       </button>
-      <!-- <button>
-        <i class="fa fa-google"></i>
-        Calender
-      </button>-->
+      <button @click="addToGoogle">
+        <i class="fas fa-calendar-week"></i>
+      </button>
+
       <button>
         <share-network :partyID="this.party._id"></share-network>
       </button>
@@ -81,8 +77,8 @@
               <i class="fas fa-tag"></i>
             </td>
             <td class="txt">
-              <div class="flex">
-                <p class="type" v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }} |</p>
+              <div>
+                <p class="type" v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }}</p>
               </div>
               <p class="desc">Party Types</p>
             </td>
@@ -153,7 +149,7 @@ export default {
     imgBlur,
     partyMap,
     membersPics,
-    shareNetwork
+    shareNetwork,
   },
   data() {
     return {
@@ -178,6 +174,34 @@ export default {
     }
   },
   methods: {
+    formatDate(date) {
+      console.log('date before:', date)
+      date = date ? date.toISOString().replace(/-|:|\.\d+/g, '') : null;
+      console.log('date after:', date)
+      return date
+    },
+    addToGoogle() {
+      const party = this.party
+      let url = 'http://www.google.com/calendar/event?action=TEMPLATE&trp=false'
+      let start = this.formatDate(new Date(this.party.startDate))
+      let end = this.formatDate(new Date(this.party.endDate))
+      let parameters = {
+        text: party.name,
+        location: party.location.name,
+        details: party.desc,
+        dates: start + "/" + end
+      }
+      console.log('parameters:', parameters)
+
+      for (var key in parameters) {
+        if (parameters.hasOwnProperty(key) && parameters[key]) {
+          url += "&" + key + "=" + (parameters[key]);
+        }
+      }
+
+      console.log('url:', url)
+      window.open(url);
+    },
     navigateToParty() {
       const userLocation = this.$store.getters.place;
       const { lat, lng } = userLocation.pos;
@@ -267,6 +291,10 @@ export default {
     SocketService.on("notify joined", ({ currUser, currParty }) => {
       this.party = currParty;
     });
-  }
+  },
+  mounted() {
+    console.log('here');
+    window.scrollTo(0, 0)
+  },
 };
 </script>

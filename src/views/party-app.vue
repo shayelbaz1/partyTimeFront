@@ -65,6 +65,9 @@ export default {
   methods: {
     displayBy(displayBy) {
       this.currPartiesDisplay = displayBy;
+      console.log('here');
+      window.scrollTo(0, 350)
+
     },
     deleteParty(partyId) {
       this.$store.dispatch({ type: "deleteParty", partyId });

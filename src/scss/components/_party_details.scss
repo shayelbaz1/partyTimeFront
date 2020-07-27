@@ -7,26 +7,34 @@
     margin-bottom: 10px;
     // padding-left: 50px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     position: sticky;
     top: 56px;
     z-index: 2;
     button {
-        background-color: #111111;
+        background-color: #00000000;
         color: #e6e6e6;
         border-width: 0px;
         font-size: 0.8rem;
-        margin: 5px;
+        // margin: 5px;
         border-radius: 7px;
         transition-duration: 0.3s;
-        padding: 10px;
+        padding: 0px 10px;
+        // height: 60px;
+        // width: 60px;
         &:hover {
             background-color: #c1272d;
         }
-    }
-    .fa-heart {
-        color: #c1272d;
-        margin-right: 5px;
+        i {
+            font-size: 1.6rem;
+        }
+        .fa-heart {
+            color: #c1272d;
+            transition: 0.3s;
+        }
+        &:focus .fa-heart {
+            color: white;
+        }
     }
 }
 

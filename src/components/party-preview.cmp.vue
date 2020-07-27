@@ -23,7 +23,7 @@
           <p v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }}</p>
         </div>
 
-        <div v-if="isCurrUserCreator" class="btns-actions-box">
+        <div v-if="isCurrUserCreator || loggedInUser.isAdmin" class="btns-actions-box">
           <el-button @click.stop="routeToEdit(party._id)" type="text">
             <i class="far fa-edit"></i>
           </el-button>
@@ -191,13 +191,16 @@ export default {
       .types {
         flex-wrap: wrap;
         p {
-          padding: 0px 5px;
+          padding: 0px;
           color: #c5c5c5;
           &:not(:last-of-type) {
             border-right: 1px solid #c5c5c5;
-            &:first-of-type {
-              padding-left: 0;
-            }
+          }
+          &:not(:first-of-type) {
+            padding: 0px 5px;
+          }
+          &:first-of-type {
+            padding-right: 5px;
           }
         }
       }

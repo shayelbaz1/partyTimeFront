@@ -3,7 +3,7 @@
     <welcome-header></welcome-header>
 
     <party-filter v-show="false" :class="{ show: isShowFilter }"></party-filter>
-    
+
     <div class="body">
       <div class="btn-header">
         <h1 class="popular-title">Most popular parties around you</h1>
@@ -72,6 +72,10 @@ export default {
   created() {
     EventBus.$on("toggleFilter", this.toggleFilter);
     // this.$store.dispatch({ type: "loadPartys" });
+  },
+  mounted() {
+    console.log('here');
+    window.scrollTo(0, 0)
   }
 };
 </script>
