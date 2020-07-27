@@ -4,7 +4,7 @@
     <!-- Add Review -->
     <form @submit.prevent="addReview()">
       <div class="input-container">
-        <img :src="loggedInUser.imgURL" alt srcset />
+        <img :src="loggedInUser.imgURL" alt srcset class="img-user" />
         <textarea
           type="textarea"
           placeholder="Your Opinion Matters..."
@@ -98,17 +98,13 @@ form {
   justify-content: center;
   align-items: center;
 
-  .el-select {
-    width: 20%;
-    margin-bottom: 10px;
-  }
   .input-container {
     display: flex;
     justify-content: space-between;
     width: 100%;
     padding-left: 60px;
 
-    img {
+    .img-user {
       width: 48;
       border-radius: 50%;
     }
@@ -157,9 +153,6 @@ ul {
   // flex-direction: column;
   // padding: 58px;
   padding: 10px 58px;
-  column-gap: 30px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 
   button {
     // width: 20%; */
