@@ -26,7 +26,6 @@
       </button>
       <button @click="addToGoogle">
         <i class="fas fa-calendar-week"></i>
-        <!-- Calender -->
       </button>
 
       <button>
@@ -180,21 +179,21 @@ export default {
   },
   methods: {
     formatDate(date) {
-      console.log('date:', date)
+      console.log('date before:', date)
+      date = date ? date.toISOString().replace(/-|:|\.\d+/g, '') : null;
+      console.log('date after:', date)
       return date
     },
     addToGoogle() {
       const party = this.party
-      console.log('party:', party)
       let url = 'http://www.google.com/calendar/event?action=TEMPLATE&trp=false'
-      console.log('this.party.startDate:', this.party.startDate)
+      let start = this.formatDate(new Date(this.party.startDate))
+      let end = this.formatDate(new Date(this.party.endDate))
       let parameters = {
         text: party.name,
         location: party.location.name,
         details: party.desc,
-        startDate: this.formatDate(this.party.startDate),
-        endDate: this.formatDate(this.party.endDate),
-        dates: startDate + "/" + endDate
+        dates: start + "/" + end
       }
       console.log('parameters:', parameters)
 
