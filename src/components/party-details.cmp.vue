@@ -175,9 +175,7 @@ export default {
   },
   methods: {
     formatDate(date) {
-      console.log('date before:', date)
       date = date ? date.toISOString().replace(/-|:|\.\d+/g, '') : null;
-      console.log('date after:', date)
       return date
     },
     addToGoogle() {
@@ -191,7 +189,6 @@ export default {
         details: party.desc,
         dates: start + "/" + end
       }
-      console.log('parameters:', parameters)
 
       for (var key in parameters) {
         if (parameters.hasOwnProperty(key) && parameters[key]) {
@@ -199,7 +196,6 @@ export default {
         }
       }
 
-      console.log('url:', url)
       window.open(url);
     },
     navigateToParty() {
