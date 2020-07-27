@@ -5,27 +5,18 @@
     <form @submit.prevent="addReview()">
       <div class="input-container">
         <img :src="loggedInUser.imgURL" alt srcset class="img-user" />
-        <textarea
-          type="textarea"
-          placeholder="Your Opinion Matters..."
-          v-model="reviewToEdit.txt"
-          class="review-input"
-        ></textarea>
+        <!-- <textarea type="textarea" placeholder="Your Opinion Matters..." v-model="reviewToEdit.txt" class="review-input"></textarea> -->
+        <input type="text" name="" id="" placeholder="Your Opinion Matters..." v-model="reviewToEdit.txt" class="review-input">
       </div>
       <el-button @click="addReview()" class="review-save-btn">
         <i class="far fa-comment"></i>
         Comment
       </el-button>
     </form>
-    <hr />
     <!-- Review List -->
     <ul>
       <!-- always get the 6 last reviews -->
-      <review-preview
-        v-for="review in partyReviews.slice(0, max)"
-        :key="review._id"
-        :review="review"
-      ></review-preview>
+      <review-preview v-for="review in partyReviews.slice(0, max)" :key="review._id" :review="review"></review-preview>
       <button class="btn load" v-if="partyReviews.length >= 6" @click="showMore">Load More</button>
     </ul>
   </section>
@@ -97,62 +88,55 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-block-end: 0;
 
   .input-container {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding-left: 60px;
+    padding-left: 15px;
 
     .img-user {
       width: 48;
       border-radius: 50%;
     }
 
-    textarea {
-      margin-left: 16px;
+    .review-input {
       width: 100%;
+      margin-left: 15px;
+      background: transparent;
       border: none;
-      overflow: auto;
-      outline: none;
-
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
-      box-shadow: none;
-
-      resize: none; /*remove the resize handle on the bottom right*/
-      margin-bottom: 6px;
-      background-color: #272727;
-      border-bottom: 1px solid #dddddd;
-      box-sizing: border-box;
-      color: white;
-      display: inline-block;
-      font-size: inherit;
-      outline: 0;
+      border-bottom: 1px solid white;
       padding: 0;
-      transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-      line-height: 1;
+      /* line-height: 0; */
+      height: 42px;
+      /* background: wheat; */
+      /* align-content: unset; */
+      align-self: flex-end;
+      font-size: 1.2rem;
+      /* margin-bottom: 0px; */
     }
   }
-  .el-button {
-    display: inline-block;
-    background-color: #111111;
-    color: #e6e6e6;
-    border-width: 0px;
-    font-size: 0.8rem;
-    border-radius: 7px;
-    transition-duration: 0.3s;
-    margin: 5px 0px;
-    align-self: flex-end;
-  }
 }
+.el-button {
+  display: inline-block;
+  background-color: #111111;
+  color: #e6e6e6;
+  border-width: 0px;
+  font-size: 0.8rem;
+  border-radius: 7px;
+  transition-duration: 0.3s;
+  margin: 5px 0px;
+  align-self: flex-end;
+}
+
 ul {
   list-style: none;
   // display: flex;
   // justify-content: center;
   // flex-direction: column;
   // padding: 58px;
-  padding: 10px 58px;
+  padding: 10px 15px;
 
   button {
     // width: 20%; */

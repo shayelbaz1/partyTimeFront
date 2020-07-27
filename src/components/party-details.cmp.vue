@@ -77,11 +77,7 @@
             </td>
             <td class="txt">
               <div>
-                <p
-                  class="type"
-                  v-for="(type, idx) in party.extraData.partyTypes"
-                  :key="idx"
-                >{{ type }}</p>
+                <p class="type" v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }}</p>
               </div>
               <p class="desc">Party Types</p>
             </td>
@@ -92,11 +88,7 @@
             </td>
             <td class="txt">
               <div class="flex">
-                <p
-                  class="type"
-                  v-for="(type, idx) in party.extraData.musicTypes"
-                  :key="idx"
-                >{{ type }} |</p>
+                <p class="type" v-for="(type, idx) in party.extraData.musicTypes" :key="idx">{{ type }} |</p>
               </div>
               <p class="desc">Music Types</p>
             </td>
@@ -118,21 +110,13 @@
         <div class="members">
           <p class="title">Going</p>
           <div class="members-img-container">
-            <members-pics
-              v-for="member in party.extraData.members"
-              :key="member._id"
-              :member="member"
-            ></members-pics>
+            <members-pics v-for="member in party.extraData.members" :key="member._id" :member="member"></members-pics>
           </div>
         </div>
         <div class="members">
           <p class="title">Likes</p>
           <div class="members-img-container">
-            <members-pics
-              v-for="member in party.extraData.likes"
-              :key="member._id"
-              :member="member"
-            ></members-pics>
+            <members-pics v-for="member in party.extraData.likes" :key="member._id" :member="member"></members-pics>
           </div>
         </div>
         <party-map :partyProp="party"></party-map>
@@ -189,10 +173,8 @@ export default {
   },
   methods: {
     formatDate(date) {
-      console.log("date before:", date);
-      date = date ? date.toISOString().replace(/-|:|\.\d+/g, "") : null;
-      console.log("date after:", date);
-      return date;
+      date = date ? date.toISOString().replace(/-|:|\.\d+/g, '') : null;
+      return date
     },
     addToGoogle() {
       const party = this.party;
@@ -205,8 +187,7 @@ export default {
         location: party.location.name,
         details: party.desc,
         dates: start + "/" + end
-      };
-      console.log("parameters:", parameters);
+      }
 
       for (var key in parameters) {
         if (parameters.hasOwnProperty(key) && parameters[key]) {
@@ -214,7 +195,6 @@ export default {
         }
       }
 
-      console.log("url:", url);
       window.open(url);
     },
     navigateToParty() {
