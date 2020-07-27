@@ -1,11 +1,16 @@
 <template>
   <section class="party-list">
     <div v-if="!partysLoaded" class="party-list-container flex column-layout">
-      <party-preview @deleteParty="signalDelete" @addLike="signalAddLike" v-for="party in partys" :key="party._id" :party="party"></party-preview>
+      <party-preview
+        @deleteParty="signalDelete"
+        @addLike="signalAddLike"
+        v-for="party in partys"
+        :key="party._id"
+        :party="party"
+      ></party-preview>
     </div>
     <div class="flex justify-center spinner" v-else>
-      <cube-spin>
-      </cube-spin>
+      <cube-spin></cube-spin>
     </div>
   </section>
 </template>
@@ -45,8 +50,7 @@ export default {
   components: {
     partyPreview,
     cubeSpin
-  },
-
+  }
 };
 </script>
 <style lang="scss">

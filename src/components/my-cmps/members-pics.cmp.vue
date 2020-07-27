@@ -15,8 +15,7 @@ export default {
       let username = this.member.username;
       let arr = username.split(" ", 2);
       let firstWord = arr[0];
-      return firstWord
-
+      return firstWord;
     }
   }
 };

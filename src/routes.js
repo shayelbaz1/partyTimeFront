@@ -11,8 +11,8 @@ import signupPage from "@/views/signup.cmp.vue";
 import reviewList from "@/components/review-list.vue";
 import UserPreview from "@/views/UserPreview.vue";
 import ChatPage from "@/views/ChatPage.vue";
-import partyFilter from  "@/components/party-filter.vue"
-import welcomePage from  "@/views/WelcomePage.vue"
+import partyFilter from "@/components/party-filter.vue"
+import welcomePage from "@/views/WelcomePage.vue"
 
 Vue.use(VueRouter);
 
@@ -34,20 +34,20 @@ const routes = [
     component: partyFilter
   },
   {
-      path: '/party-app/details/:id',
-      component: partyDetails
+    path: '/party-app/details/:id',
+    component: partyDetails
   },
   {
-      path: '/party-app/details/user/:id',
-      component: UserPreview
+    path: '/party-app/details/user/:id',
+    component: UserPreview
   },
   {
-      path: '/user/:id',
-      component: UserPreview
+    path: '/user/:id',
+    component: UserPreview
   },
   {
-      path: '/party-app/edit/:id?',
-      component: partyEdit
+    path: '/party-app/edit/:id?',
+    component: partyEdit
   },
   {
     path: "/dashboard",

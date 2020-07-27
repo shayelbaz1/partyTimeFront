@@ -57,7 +57,10 @@ export default {
   methods: {
     async onSuccess(googleUser) {
       var id_token = googleUser.getAuthResponse().id_token;
-      const user = await this.$store.dispatch({ type: "loginGoogle", id_token: id_token });
+      const user = await this.$store.dispatch({
+        type: "loginGoogle",
+        id_token: id_token
+      });
       this.$router.push("/party-app");
     },
     onFailure() {
@@ -72,7 +75,6 @@ export default {
         creds: this.creds
       });
       this.$router.push("/party-app");
-
     }
   },
   components: {

@@ -61,8 +61,8 @@ export default {
   },
   methods: {
     openChat() {
-      this.isChat = !this.isChat
-      if (this.isNewMsg) this.isNewMsg = false
+      this.isChat = !this.isChat;
+      if (this.isNewMsg) this.isNewMsg = false;
     },
     showTypeingAndUser(userName, txt) {
       if (txt) {
@@ -76,10 +76,9 @@ export default {
       this.msgs.push(msg);
       localStorage.setItem(`msgs-${this.party._id}`, JSON.stringify(this.msgs));
       if (!this.isChat) {
-        this.isNewMsg = true
+        this.isNewMsg = true;
       }
-      console.log('this.isNewMsg:', this.isNewMsg)
-
+      console.log("this.isNewMsg:", this.isNewMsg);
     },
     sendMsg() {
       if (this.msg.txt !== "") {
@@ -93,7 +92,7 @@ export default {
     }
   },
   watch: {
-    topic() { },
+    topic() {},
     "msg.txt"() {
       SocketService.emit("typing user", {
         userName: this.msg.from,
@@ -101,8 +100,7 @@ export default {
       });
     },
     msgs: {
-      handler() {
-      }
+      handler() {}
     }
   },
   created() {

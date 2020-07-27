@@ -3,7 +3,7 @@ const axios = require('axios');
 export default {
     getLatLng,
     getCityByLatLng
-  }
+}
 
 async function getLatLng(address) {
     const response = await axios.get(

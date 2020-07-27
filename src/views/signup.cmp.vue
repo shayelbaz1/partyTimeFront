@@ -43,7 +43,7 @@ export default {
         imgURL: "https://picsum.photos/200",
         isGoogle: false,
         goingPartys: [],
-         createdPartys: [],
+        createdPartys: []
       }
     };
   },

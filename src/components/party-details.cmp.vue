@@ -5,14 +5,13 @@
     <div class="event-buttons-container flex">
       <button @click="back" class="btn-back">
         <i class="fas fa-arrow-left"></i>
-
       </button>
       <button class="flex flex-column align-items-center" @click="addLikeOrGoing('like')">
         <i class="fas fa-heart"></i>
         {{ likesCom }}
       </button>
       <button class="flex flex-column align-items-center" @click="addLikeOrGoing('going')">
-        <i class="far fa-check-circle"> </i>
+        <i class="far fa-check-circle"></i>
         {{ party.extraData.members.length }}
         Going
       </button>
@@ -108,7 +107,6 @@
       </div>
 
       <div class="map-members-container flex column-layout">
-
         <div class="members">
           <p class="title">Going</p>
           <div class="members-img-container">
@@ -149,7 +147,7 @@ export default {
     imgBlur,
     partyMap,
     membersPics,
-    shareNetwork,
+    shareNetwork
   },
   data() {
     return {
@@ -179,10 +177,11 @@ export default {
       return date
     },
     addToGoogle() {
-      const party = this.party
-      let url = 'http://www.google.com/calendar/event?action=TEMPLATE&trp=false'
-      let start = this.formatDate(new Date(this.party.startDate))
-      let end = this.formatDate(new Date(this.party.endDate))
+      const party = this.party;
+      let url =
+        "http://www.google.com/calendar/event?action=TEMPLATE&trp=false";
+      let start = this.formatDate(new Date(this.party.startDate));
+      let end = this.formatDate(new Date(this.party.endDate));
       let parameters = {
         text: party.name,
         location: party.location.name,
@@ -192,7 +191,7 @@ export default {
 
       for (var key in parameters) {
         if (parameters.hasOwnProperty(key) && parameters[key]) {
-          url += "&" + key + "=" + (parameters[key]);
+          url += "&" + key + "=" + parameters[key];
         }
       }
 
@@ -235,7 +234,7 @@ export default {
           this.currUser.goingPartys.push(currParty._id);
         }
         // Save party and user
-        console.log('save party');
+        console.log("save party");
         // this.$store.dispatch({ type: "saveParty", party: currParty });
         this.$store.dispatch({ type: "updateUser", user: this.currUser });
         // EventBus of Socket
@@ -289,8 +288,8 @@ export default {
     });
   },
   mounted() {
-    console.log('here');
-    window.scrollTo(0, 0)
-  },
+    console.log("here");
+    window.scrollTo(0, 0);
+  }
 };
 </script>

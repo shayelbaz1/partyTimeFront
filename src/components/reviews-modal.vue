@@ -1,25 +1,20 @@
 <template>
-  <div class="modal-review-container">
-     
-  </div>
+  <div class="modal-review-container"></div>
 </template>
 
 <script>
-import reviewPreview from './review-preview.cmp.vue'
+import reviewPreview from "./review-preview.cmp.vue";
 export default {
   props: ["reviews"],
-  name: 'Review-Cmp',
+  name: "Review-Cmp",
   components: {
     reviewPreview,
     reviewList
   },
-  data() {   
-  },
-  computed: {
-  },
-  methods: {
-  },
-}
+  data() {},
+  computed: {},
+  methods: {}
+};
 </script>
 
 <style lang="scss" scoped>

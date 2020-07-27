@@ -47,7 +47,6 @@ export default {
       const cityName = await GeocodeService.getCityByLatLng(currentLocation);
       this.place.name = cityName;
 
-
       // console.log('No time out now... check...');
       setTimeout(() => {
         var el = this.$el.querySelector("input.pac-target-input");

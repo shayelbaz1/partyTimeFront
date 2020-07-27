@@ -8,34 +8,34 @@ export default {
         reviews(state) {
             return state.reviews;
         },
-      
+
     },
     mutations: {
-        setReviews(state, {reviews}) {
+        setReviews(state, { reviews }) {
             state.reviews = reviews;
         },
-        addReview(state, {review}) {
+        addReview(state, { review }) {
             state.reviews.unshift(review)
         },
-        removeReview(state, {reviewId}) {
+        removeReview(state, { reviewId }) {
             state.reviews = state.reviews.filter(review => review._id !== reviewId)
         },
     },
     actions: {
-        async addReview(context, {review}) {
+        async addReview(context, { review }) {
             review = await ReviewService.add(review)
-            context.commit({type: 'addReview', review})
+            context.commit({ type: 'addReview', review })
             return review;
         },
-      
-        async loadReviews(context, {id=''}) {
+
+        async loadReviews(context, { id = '' }) {
             const reviews = await ReviewService.query(id);
-            context.commit({type: 'setReviews', reviews})
+            context.commit({ type: 'setReviews', reviews })
         },
-        async removeReview(context, {reviewId}) {
+        async removeReview(context, { reviewId }) {
             await ReviewService.remove(reviewId);
-            context.commit({type: 'removeReview', reviewId})
+            context.commit({ type: 'removeReview', reviewId })
         },
-       
+
     }
 }

@@ -30,30 +30,30 @@ export default {
       creds: {
         username: "",
         password: "",
-        email: '',
-        imgURL: '',
+        email: "",
+        imgURL: "",
         isGoogle: false,
-        goingPartys: [],
+        goingPartys: []
       }
     };
   },
   computed: {},
-  created() {
-  },
+  created() {},
   methods: {
     async doSignup(googleCreds) {
-      if (googleCreds.constructor.name !== 'yw') { // not google
+      if (googleCreds.constructor.name !== "yw") {
+        // not google
         const currUser = await this.$store.dispatch({
           type: "signup",
           creds: this.creds
         });
         if (currUser) this.$router.push("/");
         if (!currUser) return false;
-      } else if (googleCreds.constructor.name === 'yw') {
+      } else if (googleCreds.constructor.name === "yw") {
         this.creds.username = googleCreds.Bd;
         this.creds.email = googleCreds.Au;
         this.creds.imgURL = googleCreds.MK;
-        this.creds.isGoogle = true
+        this.creds.isGoogle = true;
         const currUser = await this.$store.dispatch({
           type: "signup",
           creds: this.creds

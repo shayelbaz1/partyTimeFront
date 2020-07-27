@@ -5,7 +5,7 @@ import UserService from '@/services/UserService.js'
 
 export default {
     state: {
-        loggedInUser:{_id:'u101',username:"Guest", email:"guest@gmail.com" ,isAdmin: false, imgURL:"https://picsum.photos/200"},
+        loggedInUser: { _id: 'u101', username: "Guest", email: "guest@gmail.com", isAdmin: false, imgURL: "https://picsum.photos/200" },
         users: [],
         currUser: {}
     },
@@ -37,7 +37,7 @@ export default {
     },
     actions: {
         async loginGoogle(context, { id_token }) {
-            id_token = {id_token:id_token}
+            id_token = { id_token: id_token }
             const user = await UserService.loginGoogle(id_token);
             context.commit({ type: 'setUser', user })
             return user;
@@ -48,7 +48,7 @@ export default {
             context.commit({ type: 'setUser', user })
             return user;
         },
-        async signup(context, {creds}) {
+        async signup(context, { creds }) {
             const user = await UserService.signup(creds)
             context.commit({ type: 'setUser', user })
             return user;
@@ -57,7 +57,7 @@ export default {
         async logout(context) {
             await UserService.logout()
             context.commit({ type: 'setUsers', users: [] })
-            context.commit({ type: 'setUser', user: {_id:'u101',username:"Guest", email:"guest@gmail.com" ,isAdmin: false, imgURL:"https://picsum.photos/200"} })
+            context.commit({ type: 'setUser', user: { _id: 'u101', username: "Guest", email: "guest@gmail.com", isAdmin: false, imgURL: "https://picsum.photos/200" } })
         },
         async loadUsers(context) {
             const users = await UserService.getUsers();
@@ -74,7 +74,7 @@ export default {
         },
         async updateUser(context, { user }) {
             user = await UserService.update(user);
-            context.commit({type: 'setUser', user})
+            context.commit({ type: 'setUser', user })
         }
     }
 }
