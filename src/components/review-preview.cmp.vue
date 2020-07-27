@@ -35,6 +35,7 @@ li {
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 20px;
+  font-size: 1.1rem;
 
   .review-container {
     display: flex;
@@ -43,7 +44,7 @@ li {
     .user-img {
       border-radius: 50%;
       width: 58px;
-      // margin-top:3px;
+      margin-top: 5px;
     }
 
     .review-details {
@@ -56,21 +57,6 @@ li {
           margin-left: 7px;
           margin-bottom: 0px;
           color: rgba(255, 255, 255, 0.384);
-        }
-      }
-
-      .review-text-container {
-        display: flex;
-        flex-direction: column;
-        margin-left: 14px;
-        align-items: flex-start;
-
-        .review-username {
-        }
-
-        .review-content {
-          color: white; // #ffffffa8
-          font-family: bold;
         }
       }
     }
