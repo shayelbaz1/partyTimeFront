@@ -17,11 +17,8 @@
           <h1 class="name">{{ party.name }}</h1>
           <p class="location">{{ party.location.name }} {{ `${km()}km away` }}</p>
         </div>
-        <p class="from">{{ party.startDate | moment('from') }} | {{ fee }}</p>
+        <p class="from">{{ fee }}</p>
         <p class="time">{{ party.startDate | moment('DD/MM/YYYY • HH:mm A') }}</p>
-        <div class="types flex">
-          <p v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }}</p>
-        </div>
 
         <div v-if="isCurrUserCreator || loggedInUser.isAdmin" class="btns-actions-box">
           <el-button @click.stop="routeToEdit(party._id)" type="text">
