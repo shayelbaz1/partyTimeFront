@@ -22,12 +22,13 @@
       </button>
       <button @click="navigateToParty">
         <i class="fas fa-directions"></i>
-        Navigate
+        <!-- Navigate -->
       </button>
-      <!-- <button>
-        <i class="fa fa-google"></i>
-        Calender
-      </button>-->
+      <button @click="addToGoogle">
+        <i class="fas fa-calendar-week"></i>
+        <!-- Calender -->
+      </button>
+
       <button>
         <share-network :partyID="this.party._id"></share-network>
       </button>
@@ -153,7 +154,7 @@ export default {
     imgBlur,
     partyMap,
     membersPics,
-    shareNetwork
+    shareNetwork,
   },
   data() {
     return {
@@ -178,6 +179,34 @@ export default {
     }
   },
   methods: {
+    formatDate(date) {
+      console.log('date:', date)
+      return date
+    },
+    addToGoogle() {
+      const party = this.party
+      console.log('party:', party)
+      let url = 'http://www.google.com/calendar/event?action=TEMPLATE&trp=false'
+      console.log('this.party.startDate:', this.party.startDate)
+      let parameters = {
+        text: party.name,
+        location: party.location.name,
+        details: party.desc,
+        startDate: this.formatDate(this.party.startDate),
+        endDate: this.formatDate(this.party.endDate),
+        dates: startDate + "/" + endDate
+      }
+      console.log('parameters:', parameters)
+
+      for (var key in parameters) {
+        if (parameters.hasOwnProperty(key) && parameters[key]) {
+          url += "&" + key + "=" + (parameters[key]);
+        }
+      }
+
+      console.log('url:', url)
+      window.open(url);
+    },
     navigateToParty() {
       const userLocation = this.$store.getters.place;
       const { lat, lng } = userLocation.pos;
