@@ -1,7 +1,7 @@
-function stringifyObject(object){
+function stringifyObject(object) {
   return JSON.parse(object)
 }
 
-function parseObject(object){
-    
+function parseObject(object) {
+
 }

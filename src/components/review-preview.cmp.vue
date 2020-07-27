@@ -19,18 +19,18 @@
 
 <script>
 export default {
-  name: 'review-preview',
+  name: "review-preview",
   props: {
     review: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   methods: {
     routeTo(page) {
       this.$router.push(page);
-    },
+    }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 li {

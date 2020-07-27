@@ -21,7 +21,13 @@
         </div>
         <!-- <br /> -->
         <!-- <googleLogin @doGoogleLogin="doGoogleLogin"></googleLogin> -->
-        <GoogleLogin class="btn-google" :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
+        <GoogleLogin
+          class="btn-google"
+          :params="params"
+          :renderParams="renderParams"
+          :onSuccess="onSuccess"
+          :onFailure="onFailure"
+        ></GoogleLogin>
       </form>
     </div>
   </div>
@@ -39,7 +45,8 @@ export default {
         // client_id: "295314922853-kgqrkuvadpeeu7q6098cml7k5jte1spu.apps.googleusercontent.com"
         // client_id: "533525570890-ik134ku5d86nd70i76dsjfcd7is3uag4.apps.googleusercontent.com"
         // client_id: "533525570890-flse2grs8hijvj016chamr2vlklv9vbb.apps.googleusercontent.com"
-        client_id: "533525570890-vp3jb7kpae7rd3pjk943bhstsbp3gtgi.apps.googleusercontent.com"
+        client_id:
+          "533525570890-vp3jb7kpae7rd3pjk943bhstsbp3gtgi.apps.googleusercontent.com"
       },
       // Btn styles with google ui
       renderParams: {
@@ -57,7 +64,10 @@ export default {
   methods: {
     async onSuccess(googleUser) {
       var id_token = googleUser.getAuthResponse().id_token;
-      const user = await this.$store.dispatch({ type: "loginGoogle", id_token: id_token });
+      const user = await this.$store.dispatch({
+        type: "loginGoogle",
+        id_token: id_token
+      });
       this.$router.push("/party-app");
     },
     onFailure() {
@@ -72,7 +82,6 @@ export default {
         creds: this.creds
       });
       this.$router.push("/party-app");
-
     }
   },
   components: {

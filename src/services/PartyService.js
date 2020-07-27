@@ -21,7 +21,7 @@ function query(filterBy) {
   return HttpService.get(`party/${query}`)
 }
 
-function getPartyLocations(){
+function getPartyLocations() {
   return HttpService.get(`party/locations`)
 }
 
@@ -48,7 +48,7 @@ async function save(party) {
   return party._id ? _update(party) : _add(party)
 }
 
-function addPartyReview(review){
+function addPartyReview(review) {
   return HttpService.put('party/addReview', review)
 }
 
@@ -76,11 +76,11 @@ function getEmptyParty() {
       name: '',
       lat: 0,
       lng: 0,
-      type : "Point",
-        coordinates : [ 
-            40.7127753, 
-            -74.0059728
-        ]
+      type: "Point",
+      coordinates: [
+        40.7127753,
+        -74.0059728
+      ]
     },
     extraData: {
       musicTypes: [],
@@ -92,7 +92,7 @@ function getEmptyParty() {
       },
       members: [],
       reviews: [],
-      likes:[],
+      likes: [],
       membersCnt: 0
     },
   }

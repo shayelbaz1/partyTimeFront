@@ -4,12 +4,12 @@ export default {
   state: {
     isProcessing: true,
     place: {
-          name: "Tel Aviv-Yafo, Israel",
-          pos: {
-            lat: 32.0852999,
-            lng: 34.78176759999999
-          }
-        },
+      name: "Tel Aviv-Yafo, Israel",
+      pos: {
+        lat: 32.0852999,
+        lng: 34.78176759999999
+      }
+    },
     filterBy: {
       userLocation: {
         name: "Tel Aviv-Yafo, Israel",
@@ -50,12 +50,12 @@ export default {
     },
   },
   mutations: {
-    setPlace(state, {place}) {
-        state.place = place
-    },    
+    setPlace(state, { place }) {
+      state.place = place
+    },
     setFilter(state, { filterBy }) {
-        state.filterBy = filterBy
-    },  
+      state.filterBy = filterBy
+    },
     setIsProcessing(state, { isProcessing }) {
       state.isProcessing = isProcessing
     },
@@ -92,7 +92,7 @@ export default {
       return PartyService.query(state.filterBy).then((partys) => {
         commit({ type: 'setPartys', partys })
         commit({ type: 'setIsProcessing', isProcessing: false })
-        
+
         return partys
       })
     },

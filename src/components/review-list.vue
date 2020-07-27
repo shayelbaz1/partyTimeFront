@@ -4,8 +4,13 @@
     <!-- Add Review -->
     <form @submit.prevent="addReview()">
       <div class="input-container">
-        <img :src="loggedInUser.imgURL" alt="" srcset="" />
-        <textarea type="textarea" placeholder="Your Opinion Matters..." v-model="reviewToEdit.txt" class="review-input"></textarea>
+        <img :src="loggedInUser.imgURL" alt srcset />
+        <textarea
+          type="textarea"
+          placeholder="Your Opinion Matters..."
+          v-model="reviewToEdit.txt"
+          class="review-input"
+        ></textarea>
       </div>
       <el-button @click="addReview()" class="review-save-btn">
         <i class="far fa-comment"></i>
@@ -16,22 +21,24 @@
     <!-- Review List -->
     <ul>
       <!-- always get the 6 last reviews -->
-      <review-preview v-for="review in partyReviews.slice(0, max)" :key="review._id" :review="review"></review-preview>
-      <button class="btn load" v-if="partyReviews.length >= 6" @click="showMore">
-        Load More
-      </button>
+      <review-preview
+        v-for="review in partyReviews.slice(0, max)"
+        :key="review._id"
+        :review="review"
+      ></review-preview>
+      <button class="btn load" v-if="partyReviews.length >= 6" @click="showMore">Load More</button>
     </ul>
   </section>
 </template>
 
 <script>
 import SocketService from "../services/SocketService.js";
-import reviewPreview from './review-preview.cmp.vue'
+import reviewPreview from "./review-preview.cmp.vue";
 export default {
-  props: ['reviews'],
-  name: 'Review-Cmp',
+  props: ["reviews"],
+  name: "Review-Cmp",
   components: {
-    reviewPreview,
+    reviewPreview
   },
   data() {
     return {
@@ -39,49 +46,49 @@ export default {
       partyReviews: this.reviews,
       reviewToEdit: {
         currPartyId: this.$route.params.id,
-        txt: '',
+        txt: "",
         createdAt: Date.now(),
         username: this.$store.getters.loggedInUser.username,
-        avatar: this.$store.getters.loggedInUser.imgURL,
-      },
-    }
+        avatar: this.$store.getters.loggedInUser.imgURL
+      }
+    };
   },
   computed: {
     loggedInUser() {
-      return this.$store.getters.loggedInUser
+      return this.$store.getters.loggedInUser;
     },
     reviewsLen() {
-      return this.partyReviews.length
-    },
+      return this.partyReviews.length;
+    }
   },
   methods: {
     showMore() {
-      this.max += 6
+      this.max += 6;
     },
     async addReview() {
-      if (!this.reviewToEdit.txt) return
-      const { username, imgURL } = this.loggedInUser
+      if (!this.reviewToEdit.txt) return;
+      const { username, imgURL } = this.loggedInUser;
       const party = await this.$store.dispatch({
-        type: 'addPartyReview',
-        review: JSON.parse(JSON.stringify(this.reviewToEdit)),
-      })
+        type: "addPartyReview",
+        review: JSON.parse(JSON.stringify(this.reviewToEdit))
+      });
       if (party._id) {
         SocketService.emit("review added", {
           reviews: party.extraData.reviews
         });
         // this.partyReviews = party.extraData.reviews
-        this.reviewToEdit.txt = ''
+        this.reviewToEdit.txt = "";
       }
-    },
+    }
   },
   created() {
     // Init Setup of socket
     SocketService.setup();
     SocketService.on("notify reviewAdded", ({ reviews }) => {
-      this.partyReviews = reviews
+      this.partyReviews = reviews;
     });
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

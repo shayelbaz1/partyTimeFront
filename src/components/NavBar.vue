@@ -3,7 +3,7 @@
     <b-navbar toggleable="lg" type="dark" class="party-nav">
       <!-- <b-nav-item @click="toggleFilter" class="">
         <i class="fas fa-search"></i>
-      </b-nav-item> -->
+      </b-nav-item>-->
       <b-navbar-brand class="nav-logo" href="#" @click="routeTo('/')">
         <!-- <img src="../assets/site-logo.jpeg" alt="Kitten" /> -->
         <img src="../assets/logo.png" alt="logo" style="border-radius:3px" />
