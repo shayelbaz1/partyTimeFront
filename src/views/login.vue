@@ -37,9 +37,9 @@ export default {
     return {
       params: {
         // client_id: "295314922853-kgqrkuvadpeeu7q6098cml7k5jte1spu.apps.googleusercontent.com"
-        client_id: "533525570890-ik134ku5d86nd70i76dsjfcd7is3uag4.apps.googleusercontent.com"
+        // client_id: "533525570890-ik134ku5d86nd70i76dsjfcd7is3uag4.apps.googleusercontent.com"
         // client_id: "533525570890-flse2grs8hijvj016chamr2vlklv9vbb.apps.googleusercontent.com"
-        // client_id: "533525570890-vp3jb7kpae7rd3pjk943bhstsbp3gtgi.apps.googleusercontent.com"
+        client_id: "533525570890-vp3jb7kpae7rd3pjk943bhstsbp3gtgi.apps.googleusercontent.com"
       },
       // Btn styles with google ui
       renderParams: {
