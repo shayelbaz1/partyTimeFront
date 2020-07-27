@@ -1,16 +1,13 @@
 <template>
   <li>
     <!-- HEADER -->
-    <div class="review-header">
+    <div class="review-container">
       <img :src="this.review.avatar" @click="routeTo('/profile')" />
       <div class="review-details">
-        <span>{{ this.review.username }}</span>
-        <p>{{ this.review.createdAt | moment('MMM Do YY') }}</p>
-      </div>
-    </div>
-    <!-- TEXT -->
-    <div>
-      <div class="review-text-container">
+        <div>
+          <span>{{ this.review.username }}</span>
+          <p>{{ this.review.createdAt | moment('MMM Do YY') }}</p>
+        </div>
         <p>{{ this.review.txt }}</p>
       </div>
     </div>
@@ -19,18 +16,18 @@
 
 <script>
 export default {
-  name: "review-preview",
+  name: 'review-preview',
   props: {
     review: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   methods: {
     routeTo(page) {
-      this.$router.push(page);
-    }
-  }
-};
+      this.$router.push(page)
+    },
+  },
+}
 </script>
 <style lang="scss" scoped>
 li {
