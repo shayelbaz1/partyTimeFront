@@ -4,32 +4,47 @@
     <!-- Add Review -->
     <form @submit.prevent="addReview()">
       <div class="input-container">
-        <img :src="loggedInUser.imgURL" alt srcset class="img-user" />
-        <!-- <textarea type="textarea" placeholder="Your Opinion Matters..." v-model="reviewToEdit.txt" class="review-input"></textarea> -->
-        <input type="text" name="" id="" placeholder="Your Opinion Matters..." v-model="reviewToEdit.txt" class="review-input">
+        <img :src="loggedInUser.imgURL" alt="" srcset="" />
+        <textarea
+          type="textarea"
+          placeholder="Your Opinion Matters..."
+          v-model="reviewToEdit.txt"
+          class="review-input"
+        ></textarea>
       </div>
       <el-button @click="addReview()" class="review-save-btn">
         <i class="far fa-comment"></i>
         Comment
       </el-button>
     </form>
+    <hr />
     <!-- Review List -->
     <ul>
       <!-- always get the 6 last reviews -->
-      <review-preview v-for="review in partyReviews.slice(0, max)" :key="review._id" :review="review"></review-preview>
-      <button class="btn load" v-if="partyReviews.length >= 6" @click="showMore">Load More</button>
+      <review-preview
+        v-for="review in partyReviews.slice(0, max)"
+        :key="review._id"
+        :review="review"
+      ></review-preview>
+      <button
+        class="btn load"
+        v-if="partyReviews.length >= 6"
+        @click="showMore"
+      >
+        Load More
+      </button>
     </ul>
   </section>
 </template>
 
 <script>
-import SocketService from "../services/SocketService.js";
-import reviewPreview from "./review-preview.cmp.vue";
+import SocketService from '../services/SocketService.js'
+import reviewPreview from './review-preview.cmp.vue'
 export default {
-  props: ["reviews"],
-  name: "Review-Cmp",
+  props: ['reviews'],
+  name: 'Review-Cmp',
   components: {
-    reviewPreview
+    reviewPreview,
   },
   data() {
     return {
@@ -37,49 +52,49 @@ export default {
       partyReviews: this.reviews,
       reviewToEdit: {
         currPartyId: this.$route.params.id,
-        txt: "",
+        txt: '',
         createdAt: Date.now(),
         username: this.$store.getters.loggedInUser.username,
-        avatar: this.$store.getters.loggedInUser.imgURL
-      }
-    };
+        avatar: this.$store.getters.loggedInUser.imgURL,
+      },
+    }
   },
   computed: {
     loggedInUser() {
-      return this.$store.getters.loggedInUser;
+      return this.$store.getters.loggedInUser
     },
     reviewsLen() {
-      return this.partyReviews.length;
-    }
+      return this.partyReviews.length
+    },
   },
   methods: {
     showMore() {
-      this.max += 6;
+      this.max += 6
     },
     async addReview() {
-      if (!this.reviewToEdit.txt) return;
-      const { username, imgURL } = this.loggedInUser;
+      if (!this.reviewToEdit.txt) return
+      const { username, imgURL } = this.loggedInUser
       const party = await this.$store.dispatch({
-        type: "addPartyReview",
-        review: JSON.parse(JSON.stringify(this.reviewToEdit))
-      });
+        type: 'addPartyReview',
+        review: JSON.parse(JSON.stringify(this.reviewToEdit)),
+      })
       if (party._id) {
-        SocketService.emit("review added", {
-          reviews: party.extraData.reviews
-        });
+        SocketService.emit('review added', {
+          reviews: party.extraData.reviews,
+        })
         // this.partyReviews = party.extraData.reviews
-        this.reviewToEdit.txt = "";
+        this.reviewToEdit.txt = ''
       }
-    }
+    },
   },
   created() {
     // Init Setup of socket
-    SocketService.setup();
-    SocketService.on("notify reviewAdded", ({ reviews }) => {
-      this.partyReviews = reviews;
-    });
-  }
-};
+    SocketService.setup()
+    SocketService.on('notify reviewAdded', ({ reviews }) => {
+      this.partyReviews = reviews
+    })
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -88,55 +103,69 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-block-end: 0;
 
+  .el-select {
+    width: 20%;
+    margin-bottom: 10px;
+  }
   .input-container {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding-left: 15px;
+    padding-left: 60px;
 
-    .img-user {
+    img {
       width: 48;
       border-radius: 50%;
     }
 
-    .review-input {
+    textarea {
+      margin-left: 16px;
       width: 100%;
-      margin-left: 15px;
-      background: transparent;
       border: none;
-      border-bottom: 1px solid white;
+      overflow: auto;
+      outline: none;
+
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+
+      resize: none; /*remove the resize handle on the bottom right*/
+      margin-bottom: 6px;
+      background-color: #272727;
+      border-bottom: 1px solid #dddddd;
+      box-sizing: border-box;
+      color: white;
+      display: inline-block;
+      font-size: inherit;
+      outline: 0;
       padding: 0;
-      /* line-height: 0; */
-      height: 42px;
-      /* background: wheat; */
-      /* align-content: unset; */
-      align-self: flex-end;
-      font-size: 1.2rem;
-      /* margin-bottom: 0px; */
+      transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+      line-height: 1;
     }
   }
+  .el-button {
+    display: inline-block;
+    background-color: #111111;
+    color: #e6e6e6;
+    border-width: 0px;
+    font-size: 0.8rem;
+    border-radius: 7px;
+    transition-duration: 0.3s;
+    margin: 5px 0px;
+    align-self: flex-end;
+  }
 }
-.el-button {
-  display: inline-block;
-  background-color: #111111;
-  color: #e6e6e6;
-  border-width: 0px;
-  font-size: 0.8rem;
-  border-radius: 7px;
-  transition-duration: 0.3s;
-  margin: 5px 0px;
-  align-self: flex-end;
-}
-
 ul {
   list-style: none;
   // display: flex;
   // justify-content: center;
   // flex-direction: column;
   // padding: 58px;
-  padding: 10px 15px;
+  padding: 10px 58px;
+  column-gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 
   button {
     // width: 20%; */
