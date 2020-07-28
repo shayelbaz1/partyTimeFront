@@ -3,6 +3,7 @@
     <div>
       <form>
         <h2>Sign In</h2>
+        <button v-if="isShowCloseBtn" class="close-btn" @click.prevent="hideLogin">X</button>
 
         <div class="login-input-container">
           <i class="fa fa-user login-icon" aria-hidden="true"></i>
@@ -36,6 +37,7 @@ export default {
   props: ['party_id'],
   data() {
     return {
+      isShowCloseBtn: false,
       params: {
         // client_id: "295314922853-kgqrkuvadpeeu7q6098cml7k5jte1spu.apps.googleusercontent.com"
         // client_id: "533525570890-ik134ku5d86nd70i76dsjfcd7is3uag4.apps.googleusercontent.com"
@@ -71,6 +73,9 @@ export default {
     routeToSignup() {
       this.$router.push("/signup");
     },
+    hideLogin() {
+      this.$emit('hideLogin')
+    },
     async doLogin() {
       const currUser = await this.$store.dispatch({
         type: "login",
@@ -79,6 +84,9 @@ export default {
       if (!this.party_id) this.$router.push("/party-app");
       else { this.$emit('hideLogin') }
     }
+  },
+  created() {
+    if (this.party_id) this.isShowCloseBtn = true
   },
   components: {
     GoogleLogin
