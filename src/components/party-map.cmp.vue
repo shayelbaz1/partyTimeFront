@@ -14,25 +14,9 @@
     </div>
 
     <!-- :options="{disableDefaultUI:true}" -->
-    <GmapMap
-      v-if="place.pos"
-      :options="{mapTypeControl: false,streetViewControl:false,styles:mapStyle.styles}"
-      backgroundColor="black"
-      :center="place.pos"
-      :zoom="zoom"
-      map-type-id="roadmap"
-      style="width: 96%; height: 300px;"
-    >
+    <GmapMap v-if="place.pos" :options="{mapTypeControl: false,streetViewControl:false,styles:mapStyle.styles}" backgroundColor="black" :center="place.pos" :zoom="zoom" map-type-id="roadmap" style="width: 96%; height: 300px;">
       <GmapMarker :position="place.pos" :draggable="false" title="Your Location" />
-      <GmapMarker
-        :key="index"
-        v-for="(party, index) in partys"
-        :position="party.location"
-        :clickable="true"
-        :draggable="false"
-        @click="togglePreview(party)"
-        title="hello world"
-      />
+      <GmapMarker :key="index" v-for="(party, index) in partys" :position="party.location" :clickable="true" :draggable="false" @click="togglePreview(party)" title="hello world" />
     </GmapMap>
     <party-preview v-if="party" :party="party"></party-preview>
   </div>
@@ -180,9 +164,8 @@ export default {
       return this.$store.getters.partys;
     }
   },
-  async created() {},
+  async created() { },
   mounted() {
-    console.log("here");
     // Set place of current party
     if (this.partyProp) {
       const location = this.partyProp.location;

@@ -33,6 +33,7 @@ import { GoogleLogin } from "vue-google-login";
 
 export default {
   name: "login-page",
+  props: ['party_id'],
   data() {
     return {
       params: {
@@ -61,7 +62,8 @@ export default {
         type: "loginGoogle",
         id_token: id_token
       });
-      this.$router.push("/party-app");
+      if (!this.party_id) this.$router.push("/party-app");
+      else { this.$emit('hideLogin') }
     },
     onFailure() {
       console.log("Failed to log in");
@@ -74,7 +76,8 @@ export default {
         type: "login",
         creds: this.creds
       });
-      this.$router.push("/party-app");
+      if (!this.party_id) this.$router.push("/party-app");
+      else { this.$emit('hideLogin') }
     }
   },
   components: {
