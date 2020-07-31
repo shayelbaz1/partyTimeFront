@@ -18,12 +18,12 @@
               </a>
             </li>
             <li class="list-inline-item">
-              <a class="btn-floating btn-gplus mx-1">
+              <a class="btn-floating btn-gplus mx-1" href="https://www.github.com/shayelbaz1" target="_blank">
                 <i class="fa fa-github"></i>
               </a>
             </li>
             <li class="list-inline-item">
-              <a class="btn-floating btn-li mx-1">
+              <a class="btn-floating btn-li mx-1" href="https://www.linkedin.com/in/shay-elbaz/" target="_blank">
                 <i class="fab fa-linkedin-in"></i>
               </a>
             </li>
@@ -31,11 +31,7 @@
           <!-- Social buttons -->
         </div>
         <div class="col-md-4 mx-auto">
-          <img
-            class="profile-pic"
-            src="https://ca.slack-edge.com/TTSM5TLP5-U012AS4TMJN-b22dfc4e2197-512"
-            alt
-          />
+          <img class="profile-pic" src="https://ca.slack-edge.com/TTSM5TLP5-U012AS4TMJN-b22dfc4e2197-512" alt />
           <!-- Content -->
           <h5 class="font-weight-bold mt-3 mb-2">Shai Isenhower</h5>
           <!-- Social buttons -->
@@ -59,11 +55,7 @@
           <!-- Social buttons -->
         </div>
         <div class="col-md-4 mx-auto">
-          <img
-            class="profile-pic"
-            src="https://ca.slack-edge.com/TTSM5TLP5-U012PF4UV17-8408cebb03b1-512"
-            alt
-          />
+          <img class="profile-pic" src="https://ca.slack-edge.com/TTSM5TLP5-U012PF4UV17-8408cebb03b1-512" alt />
           <!-- Content -->
           <h5 class="font-weight-bold mt-3 mb-2">Dor Kuperman</h5>
           <!-- Social buttons -->

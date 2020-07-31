@@ -175,6 +175,9 @@ export default {
     &:active {
       box-shadow: none;
     }
+    img {
+      filter: invert(1);
+    }
   }
 
   .filter {
@@ -183,7 +186,7 @@ export default {
 
   @media screen and (max-width: 600px) {
     button.add {
-      bottom: 50px;
+      bottom: 60px;
     }
   }
   @media screen and (max-width: 900px) {
@@ -210,6 +213,12 @@ export default {
 @media screen and (max-width: 420px) {
   .posters {
     columns: 2;
+  }
+
+  .display-btns {
+    button {
+      padding: 15px;
+    }
   }
 }
 </style>

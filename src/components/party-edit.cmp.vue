@@ -172,11 +172,22 @@ export default {
       this.$router.push("/party-app");
     },
     async saveParty() {
-      if (this.partyToSave.name === "") return;
-      if (this.partyToSave.price === "") return;
+      if (!this.$store.getters.isLoggedIn) {
+        alert('You have to login first')
+        return
+      }
+      if (this.partyToSave.name === "") {
+        alert('Please Enter title')
+        return
+      };
+      if (this.partyToSave.price === "") {
+        alert('Please Enter price')
+        return
+      };
       if (this.partyToSave._id && !this.loggedInUser.isAdmin) {
         if (this.partyToSave.extraData.createdBy._id !== this.loggedInUser._id)
-          return;
+          alert('You are not the party creator')
+        return;
       }
       this.partyToSave.fee = parseInt(this.partyToSave.fee);
 
@@ -203,7 +214,6 @@ export default {
       this.partyToSave.extraData.createdBy = { _id, username, imgURL };
     },
     loadParty() {
-      console.log("load");
       let partyId = this.$route.params.id;
       if (partyId) {
         this.isEdit = true;
@@ -222,7 +232,6 @@ export default {
   created() {
     this.loadParty();
     this.loadTypes();
-    console.log("this.loggedInUser:", this.loggedInUser);
   }
 };
 </script>

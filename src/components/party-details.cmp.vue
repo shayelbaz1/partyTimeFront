@@ -225,16 +225,15 @@ export default {
       );
     },
     toggleLoggin() {
-      if (this.currUser.name === 'Guest') this.isShowLogin = true
-
+      // if (this.currUser.name === 'Guest') this.isShowLogin = true
+      if (!this.$store.getters.isLoggedIn) this.isShowLogin = true;
     },
     addLikeOrGoing(type) {
-      if (this.loggedInUser.username === 'Guest') { this.isShowLogin = true; return }
+      if (!this.$store.getters.isLoggedIn) { this.isShowLogin = true; return }
       let currParty = this.party;
+      let currUser = _.cloneDeep(this.currUser);
       const { _id, imgURL, username } = this.loggedInUser;
       const userToAdd = { _id, imgURL, username };
-      // console.log('userToAdd:', userToAdd)
-      // console.log('currParty:', currParty)
 
       if (type === "going") {
         // found user in party members
@@ -245,25 +244,25 @@ export default {
           // pop current user
           currParty.extraData.members.splice(userFoundIdx, 1);
           // find party in user goingPartys
-          const partyIdx = this.currUser.goingPartys.findIndex(
+          const partyIdx = currUser.goingPartys.findIndex(
             id => id === currParty._id
           );
           if (partyIdx <= 0) {
             // pop party from array
-            this.currUser.goingPartys.splice(partyIdx, 1);
+            currUser.goingPartys.splice(partyIdx, 1);
           }
         } else {
           // push current user
           currParty.extraData.members.push(userToAdd);
           // Update User
-          // this.currUser.goingPartys.push(currParty._id);
+          currUser.goingPartys.push(currParty._id);
         }
         // Save party and user
         // this.$store.dispatch({ type: "saveParty", party: currParty });
-        this.$store.dispatch({ type: "updateUser", user: this.currUser });
+        // this.$store.dispatch({ type: "updateUser", user: this.currUser });
         // EventBus of Socket
         SocketService.emit("party joined", {
-          currUser: this.currUser,
+          currUser: currUser,
           currParty: this.party
         });
 
@@ -281,11 +280,13 @@ export default {
         }
         // EventBus of Socket
         SocketService.emit("party liked", {
-          currUser: this.currUser,
+          currUser: currUser,
           currParty: this.party
         });
       }
+      // if (this.loggedInUser.username !== 'Guest') {
       this.$store.dispatch({ type: "saveParty", party: currParty });
+      // }
     },
     getCurrUserObj() {
       // const loggedInUser = sessionStorage.getItem("user");

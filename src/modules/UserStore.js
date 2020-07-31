@@ -5,11 +5,15 @@ import UserService from '@/services/UserService.js'
 
 export default {
     state: {
-        loggedInUser: { _id: 'u101', username: "Guest", email: "guest@gmail.com", isAdmin: false, imgURL: "https://picsum.photos/200" },
+        isLoggedIn: false,
+        loggedInUser: { _id: 'u101', username: "Guest", email: "guest@gmail.com", isAdmin: false, imgURL: "https://picsum.photos/200",goingPartys:[] },
         users: [],
         currUser: {}
     },
     getters: {
+        isLoggedIn(state) {
+            return state.isLoggedIn
+        },
         currUser(state) {
             return state.currUser
         },
@@ -24,6 +28,11 @@ export default {
         setUser(state, { user }) {
             state.loggedInUser = user;
             // console.log('logged in user in UserStore:', state.loggedInUser)
+        },
+        setIsLoggedIn(state, { bool }) {
+            console.log('bool:', bool)
+            state.isLoggedIn = bool;
+            console.log('state.isloggedIn:', state.isLoggedIn)
         },
         setCurrUser(state, { user }) {
             state.currUser = user;

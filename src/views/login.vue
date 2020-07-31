@@ -20,6 +20,9 @@
           <button @click.prevent="doLogin">Login</button>
           <button class="signup" @click.prevent="routeToSignup">Signup</button>
         </div>
+        <div class="login-buttons-container">
+          <button class="btn guest" @click.prevent="doGuestLogin">Guest Login</button>
+        </div>
         <!-- <br /> -->
         <!-- <googleLogin @doGoogleLogin="doGoogleLogin"></googleLogin> -->
         <GoogleLogin class="btn-google" :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
@@ -64,6 +67,7 @@ export default {
         type: "loginGoogle",
         id_token: id_token
       });
+      this.$store.commit({ type: "setIsLoggedIn", bool: true })
       if (!this.party_id) this.$router.push("/party-app");
       else { this.$emit('hideLogin') }
     },
@@ -77,10 +81,18 @@ export default {
       this.$emit('hideLogin')
     },
     async doLogin() {
+      if (!this.creds.password) return
+      if (!this.creds.email) return
       const currUser = await this.$store.dispatch({
         type: "login",
         creds: this.creds
       });
+      this.$store.commit({ type: "setIsLoggedIn", bool: true })
+      if (!this.party_id) this.$router.push("/party-app");
+      else { this.$emit('hideLogin') }
+    },
+    doGuestLogin() {
+      this.$store.commit({ type: "setIsLoggedIn", bool: true })
       if (!this.party_id) this.$router.push("/party-app");
       else { this.$emit('hideLogin') }
     }
