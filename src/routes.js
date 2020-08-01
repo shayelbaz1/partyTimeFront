@@ -3,14 +3,13 @@ import VueRouter from "vue-router";
 import partyApp from "@/views/party-app.vue";
 import partyDetails from "@/components/party-details.cmp.vue";
 import partyEdit from "@/components/party-edit.cmp.vue";
-import Dashboard from "@/views/Dashboard.vue";
+// import Dashboard from "@/views/Dashboard.vue";
 import ProfilePage from "@/views/ProfilePage.vue";
 import partyMap from "./components/party-map.cmp.vue";
 import LoginPage from "@/views/login.vue";
 import signupPage from "@/views/signup.cmp.vue";
 import reviewList from "@/components/review-list.vue";
-import UserPreview from "@/views/UserPreview.vue";
-import ChatPage from "@/views/ChatPage.vue";
+import ChatPage from "@/components/chat.cmp.vue";
 import partyFilter from "@/components/party-filter.vue"
 import welcomePage from "@/views/WelcomePage.vue"
 
@@ -37,23 +36,16 @@ const routes = [
     path: '/party-app/details/:id',
     component: partyDetails
   },
-  {
-    path: '/party-app/details/user/:id',
-    component: UserPreview
-  },
-  {
-    path: '/user/:id',
-    component: UserPreview
-  },
+
   {
     path: '/party-app/edit/:id?',
     component: partyEdit
   },
-  {
-    path: "/dashboard",
-    name: "Dashboard",
-    component: Dashboard
-  },
+  // {
+  //   path: "/dashboard",
+  //   name: "Dashboard",
+  //   component: Dashboard
+  // },
   {
     path: "/profile",
     name: "Profile",

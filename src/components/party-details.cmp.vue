@@ -132,11 +132,11 @@
 <script>
 import PartyService from "@/services/PartyService.js";
 import reviewList from "@/components/review-list.vue";
-import ChatPage from "@/views/ChatPage.vue";
+import ChatPage from "@/components/chat.cmp.vue";
 import imgBlur from "./img-blur.cmp.vue";
 import partyMap from "./party-map.cmp.vue";
-import membersPics from "./my-cmps/members-pics.cmp.vue";
-import shareNetwork from "./my-cmps/shareNetwork.cmp.vue";
+import membersPics from "./members-pics.cmp.vue";
+import shareNetwork from "./shareNetwork.cmp.vue";
 import SocketService from "../services/SocketService.js";
 
 export default {

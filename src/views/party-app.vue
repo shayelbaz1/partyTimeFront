@@ -30,7 +30,7 @@
         </div>
         <h1>Events around {{placeName}}</h1>
         <party-list
-          v-if="currPartiesDisplay === 'list'"
+          v-if="currPartiesDisplay === 'list' && partys.length"
           :partys="partys"
           @addLike="addLike"
           @deleteParty="deleteParty"
@@ -73,7 +73,6 @@ export default {
   methods: {
     displayBy(displayBy) {
       this.currPartiesDisplay = displayBy;
-      console.log("here");
       window.scrollTo(0, 350);
     },
     deleteParty(partyId) {
@@ -94,15 +93,13 @@ export default {
       return this.$store.getters.isProcessing;
     },
     partys() {
-      let partys = this.$store.getters.partys;
-      return partys;
+      return this.$store.getters.partys;
     },
     placeName() {
       return this.$store.getters.place.name;
     }
   },
   created() {
-    // this.$store.dispatch({ type: "loadPartys" });
     EventBus.$on("toggleFilter", this.toggleFilter);
   }
 };

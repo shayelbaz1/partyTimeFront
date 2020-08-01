@@ -3,7 +3,6 @@
     <div>
       <form>
         <h2>Sign In</h2>
-
         <div class="login-input-container">
           <i class="fa fa-user login-icon" aria-hidden="true"></i>
           <input type="text" v-model="creds.email" placeholder="Email" />
@@ -19,16 +18,19 @@
           <button @click.prevent="doLogin">Login</button>
           <button class="signup" @click.prevent="routeToSignup">Signup</button>
         </div>
-        <!-- <br /> -->
-        <!-- <googleLogin @doGoogleLogin="doGoogleLogin"></googleLogin> -->
-        <GoogleLogin class="btn-google" :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
+        <GoogleLogin
+          class="btn-google"
+          :params="params"
+          :renderParams="renderParams"
+          :onSuccess="onSuccess"
+          :onFailure="onFailure"
+        ></GoogleLogin>
       </form>
     </div>
   </div>
 </template>
 
 <script>
-// import googleLogin from "./gLogin.vue";
 import { GoogleLogin } from "vue-google-login";
 
 export default {
@@ -36,12 +38,9 @@ export default {
   data() {
     return {
       params: {
-        // client_id: "295314922853-kgqrkuvadpeeu7q6098cml7k5jte1spu.apps.googleusercontent.com"
-        // client_id: "533525570890-ik134ku5d86nd70i76dsjfcd7is3uag4.apps.googleusercontent.com"
-        // client_id: "533525570890-flse2grs8hijvj016chamr2vlklv9vbb.apps.googleusercontent.com"
-        client_id: "533525570890-vp3jb7kpae7rd3pjk943bhstsbp3gtgi.apps.googleusercontent.com"
+        client_id:
+          "533525570890-vp3jb7kpae7rd3pjk943bhstsbp3gtgi.apps.googleusercontent.com"
       },
-      // Btn styles with google ui
       renderParams: {
         width: 277,
         height: 50,
@@ -74,7 +73,11 @@ export default {
         type: "login",
         creds: this.creds
       });
-      this.$router.push("/party-app");
+      if (currUser) {
+        this.$router.push("/party-app");
+      } else {
+        this.$router.push("/login");
+      }
     }
   },
   components: {
