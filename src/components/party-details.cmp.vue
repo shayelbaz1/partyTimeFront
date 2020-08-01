@@ -5,27 +5,35 @@
     <div class="event-buttons-container flex">
       <button @click="back" class="btn-back">
         <i class="fas fa-arrow-left"></i>
+        Back
       </button>
-      <button class="flex flex-column align-items-center" @click="addLikeOrGoing('like')">
+      <button @click="addLikeOrGoing('like')">
         <i class="fas fa-heart"></i>
         {{ likesCom }}
       </button>
-      <button class="flex flex-column align-items-center" @click="addLikeOrGoing('going')">
+      <!-- <button>
+        <i class="far fa-star"></i>
+        Interested
+      </button>-->
+      <button @click="addLikeOrGoing('going')">
         <i class="far fa-check-circle"></i>
         {{ party.extraData.members.length }}
         Going
       </button>
       <button @click="navigateToParty">
         <i class="fas fa-directions"></i>
-        <!-- Navigate -->
+        Navigate
       </button>
-      <button @click="addToGoogle">
-        <i class="fas fa-calendar-week"></i>
+      <!-- <button>
+        <i class="fa fa-google"></i>
+        Calender
+      </button>-->
+      <button @click="shareToWhatsapp">
+        <i class="fab fa-whatsapp"></i>
+        Whatsapp
       </button>
-
-      <button>
-        <share-network :partyID="this.party._id"></share-network>
-      </button>
+      <!-- GET THE URL INTO THE COMPONENT What is it?!......!?....-->
+      <!-- <share-network :partyURL="this.partyURL"></share-network> -->
     </div>
     <login v-if="isShowLogin" :party_id="party._id" @hideLogin='hideLogin'></login>
     <div class="details-and-map-container flex">
@@ -76,8 +84,8 @@
               <i class="fas fa-tag"></i>
             </td>
             <td class="txt">
-              <div>
-                <p class="type" v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }}</p>
+              <div class="flex">
+                <p class="type" v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }} |</p>
               </div>
               <p class="desc">Party Types</p>
             </td>
@@ -107,6 +115,7 @@
       </div>
 
       <div class="map-members-container flex column-layout">
+        <party-map :partyProp="party"></party-map>
         <div class="members">
           <p class="title">Going</p>
           <div class="members-img-container">
@@ -119,7 +128,6 @@
             <members-pics v-for="member in party.extraData.likes" :key="member._id" :member="member"></members-pics>
           </div>
         </div>
-        <party-map :partyProp="party"></party-map>
       </div>
     </div>
 
@@ -135,8 +143,8 @@ import reviewList from "@/components/review-list.vue";
 import ChatPage from "@/components/chat.cmp.vue";
 import imgBlur from "./img-blur.cmp.vue";
 import partyMap from "./party-map.cmp.vue";
-import membersPics from "./members-pics.cmp.vue";
-import shareNetwork from "./shareNetwork.cmp.vue";
+import membersPics from "./my-cmps/members-pics.cmp.vue";
+import shareNetwork from "./my-cmps/shareNetwork.cmp";
 import SocketService from "../services/SocketService.js";
 import moment from 'moment';
 import login from '../views/login.vue'
@@ -168,6 +176,9 @@ export default {
         return 0;
       }
     },
+    partyURL() {
+      this.partyURL = `https://partytimes.herokuapp.com/#/party-app/details/${this.party._id}`;
+    },
     fee() {
       if (this.party.fee === 0) {
         return "FREE";
@@ -180,6 +191,11 @@ export default {
     }
   },
   methods: {
+<<<<<<< HEAD
+    shareToWhatsapp() {
+      const thisPartysURL = `https://partytimes.herokuapp.com/#/party-app/details/${this.party._id}`;
+      window.open(`https://api.whatsapp.com/send?text=${thisPartysURL}`);
+=======
     hideLogin() {
       this.isShowLogin = false
     },
@@ -216,6 +232,7 @@ export default {
       }
 
       window.open(url);
+>>>>>>> 7b48c7bd1d2baf0e64dfd6c86efcb8df34b680b4
     },
     navigateToParty() {
       const userLocation = this.$store.getters.place;
@@ -258,8 +275,12 @@ export default {
           currUser.goingPartys.push(currParty._id);
         }
         // Save party and user
+<<<<<<< HEAD
+        this.$store.dispatch({ type: "updateUser", user: this.currUser });
+=======
         // this.$store.dispatch({ type: "saveParty", party: currParty });
         // this.$store.dispatch({ type: "updateUser", user: this.currUser });
+>>>>>>> 7b48c7bd1d2baf0e64dfd6c86efcb8df34b680b4
         // EventBus of Socket
         SocketService.emit("party joined", {
           currUser: currUser,
@@ -312,9 +333,12 @@ export default {
     SocketService.on("notify joined", ({ currUser, currParty }) => {
       this.party = currParty;
     });
+<<<<<<< HEAD
+=======
   },
   mounted() {
 
+>>>>>>> 7b48c7bd1d2baf0e64dfd6c86efcb8df34b680b4
   }
 };
 </script>
