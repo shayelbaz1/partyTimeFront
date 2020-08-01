@@ -11,7 +11,7 @@
       <div class="text item">isAdmin: {{user.isAdmin}}</div>
       <button @click="signOut">Sign out</button>
     </el-card>
-    <el-card class="box-card">
+    <!-- <el-card class="box-card">
       <genderPicker />
     </el-card>
     <el-card class="box-card">
@@ -19,14 +19,14 @@
     </el-card>
     <el-card>
       <time-picker class="box-card" />
-    </el-card>
+    </el-card> -->
   </section>
 </template>
 
 <script>
-import genderPicker from "../components/my-cmps/gender-picker.cmp.vue";
-import colorPicker from "../components/my-cmps/color-picker.cmp.vue";
-import timePicker from "../components/my-cmps/time-picker.cmp.vue";
+// import genderPicker from "../components/my-cmps/gender-picker.cmp.vue";
+// import colorPicker from "../components/my-cmps/color-picker.cmp.vue";
+// import timePicker from "../components/my-cmps/time-picker.cmp.vue";
 
 export default {
   data() {
@@ -65,11 +65,11 @@ export default {
       uploadWidget.open();
     }
   },
-  components: {
-    genderPicker,
-    colorPicker,
-    timePicker
-  }
+  // components: {
+  //   genderPicker,
+  //   colorPicker,
+  //   timePicker
+  // }
 };
 </script>
 

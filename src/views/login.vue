@@ -25,29 +25,31 @@
         </div>
         <!-- <br /> -->
         <!-- <googleLogin @doGoogleLogin="doGoogleLogin"></googleLogin> -->
-        <GoogleLogin class="btn-google" :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
+        <GoogleLogin
+          class="btn-google"
+          :params="params"
+          :renderParams="renderParams"
+          :onSuccess="onSuccess"
+          :onFailure="onFailure"
+        ></GoogleLogin>
       </form>
     </div>
   </div>
 </template>
 
 <script>
-// import googleLogin from "./gLogin.vue";
 import { GoogleLogin } from "vue-google-login";
 
 export default {
   name: "login-page",
-  props: ['party_id'],
+  props: ["party_id"],
   data() {
     return {
       isShowCloseBtn: false,
       params: {
-        // client_id: "295314922853-kgqrkuvadpeeu7q6098cml7k5jte1spu.apps.googleusercontent.com"
-        // client_id: "533525570890-ik134ku5d86nd70i76dsjfcd7is3uag4.apps.googleusercontent.com"
-        // client_id: "533525570890-flse2grs8hijvj016chamr2vlklv9vbb.apps.googleusercontent.com"
-        client_id: "533525570890-vp3jb7kpae7rd3pjk943bhstsbp3gtgi.apps.googleusercontent.com"
+        client_id:
+          "533525570890-vp3jb7kpae7rd3pjk943bhstsbp3gtgi.apps.googleusercontent.com"
       },
-      // Btn styles with google ui
       renderParams: {
         width: 277,
         height: 50,
@@ -67,9 +69,11 @@ export default {
         type: "loginGoogle",
         id_token: id_token
       });
-      this.$store.commit({ type: "setIsLoggedIn", bool: true })
+      this.$store.commit({ type: "setIsLoggedIn", bool: true });
       if (!this.party_id) this.$router.push("/party-app");
-      else { this.$emit('hideLogin') }
+      else {
+        this.$emit("hideLogin");
+      }
     },
     onFailure() {
       console.log("Failed to log in");
@@ -78,27 +82,36 @@ export default {
       this.$router.push("/signup");
     },
     hideLogin() {
-      this.$emit('hideLogin')
+      this.$emit("hideLogin");
     },
     async doLogin() {
-      if (!this.creds.password) return
-      if (!this.creds.email) return
+      if (!this.creds.password) return;
+      if (!this.creds.email) return;
       const currUser = await this.$store.dispatch({
         type: "login",
         creds: this.creds
       });
-      this.$store.commit({ type: "setIsLoggedIn", bool: true })
+      // if (currUser) {
+      //   this.$router.push("/party-app");
+      // } else {
+      //   this.$router.push("/login");
+      // }
+      this.$store.commit({ type: "setIsLoggedIn", bool: true });
       if (!this.party_id) this.$router.push("/party-app");
-      else { this.$emit('hideLogin') }
+      else {
+        this.$emit("hideLogin");
+      }
     },
     doGuestLogin() {
-      this.$store.commit({ type: "setIsLoggedIn", bool: true })
+      this.$store.commit({ type: "setIsLoggedIn", bool: true });
       if (!this.party_id) this.$router.push("/party-app");
-      else { this.$emit('hideLogin') }
+      else {
+        this.$emit("hideLogin");
+      }
     }
   },
   created() {
-    if (this.party_id) this.isShowCloseBtn = true
+    if (this.party_id) this.isShowCloseBtn = true;
   },
   components: {
     GoogleLogin

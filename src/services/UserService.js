@@ -50,3 +50,15 @@ function _handleLogin(user) {
     sessionStorage.setItem('user', JSON.stringify(user))
     return user;
 }
+
+function getFormattedTime() {
+    var currDate = new Date();
+
+    var formatDate = '';
+    formatDate += currDate.getFullYear();
+    formatDate += ' 0' + currDate.getMonth();
+    formatDate += ' ' + currDate.getDate();
+    formatDate += ' ' + currDate.getHours();
+    formatDate += ':' + currDate.getMinutes();
+    return formatDate;
+}

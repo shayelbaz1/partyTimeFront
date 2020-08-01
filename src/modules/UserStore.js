@@ -8,7 +8,8 @@ export default {
         isLoggedIn: false,
         loggedInUser: { _id: 'u101', username: "Guest", email: "guest@gmail.com", isAdmin: false, imgURL: "https://picsum.photos/200",goingPartys:[] },
         users: [],
-        currUser: {}
+        currUser: {},
+        isLoginError: false
     },
     getters: {
         isLoggedIn(state) {
@@ -22,7 +23,10 @@ export default {
         },
         loggedInUser(state) {
             return state.loggedInUser
-        }
+        },
+        // isLoginError(state) {
+        //     return state.isLoginError
+        // }
     },
     mutations: {
         setUser(state, { user }) {
@@ -43,6 +47,9 @@ export default {
         removeUser(state, { userId }) {
             state.users = state.users.filter(user => user._id !== userId)
         },
+        // isLoginError(state, { isLoginError }) {
+        //     state.isLoginError = isLoginError
+        // },
     },
     actions: {
         async loginGoogle(context, { id_token }) {
@@ -54,8 +61,15 @@ export default {
         async login(context, { creds }) {
             console.log('creds go to store', creds);
             const user = await UserService.login(creds);
-            context.commit({ type: 'setUser', user })
-            return user;
+            if (user === undefined) {
+                // context.commit({ type: 'isLoginError', isLoginError: true });
+                return;
+            }
+            else {
+                // context.commit({ type: 'isLoginError', isLoginError: false });
+                context.commit({ type: 'setUser', user })
+                return user;
+            }
         },
         async signup(context, { creds }) {
             const user = await UserService.signup(creds)
