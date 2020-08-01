@@ -28,14 +28,11 @@
         <i class="fa fa-google"></i>
         Calender
       </button>-->
-      <button @click="shareToWhatsapp">
-        <i class="fab fa-whatsapp"></i>
-        Whatsapp
+      <button>
+        <share-network :partyURL="this.partyURL"></share-network>
       </button>
-      <!-- GET THE URL INTO THE COMPONENT What is it?!......!?....-->
-      <!-- <share-network :partyURL="this.partyURL"></share-network> -->
     </div>
-    <login v-if="isShowLogin" :party_id="party._id" @hideLogin='hideLogin'></login>
+    <login v-if="isShowLogin" :party_id="party._id" @hideLogin="hideLogin"></login>
     <div class="details-and-map-container flex">
       <div class="table-container">
         <table class="detail-table">
@@ -62,7 +59,9 @@
               <i class="far fa-clock"></i>
             </td>
             <td class="txt">
-              <p :class="{red:isToday}">{{formatDateToday(party.startDate)}}{{ party.startDate | moment('from') }}</p>
+              <p
+                :class="{red:isToday}"
+              >{{formatDateToday(party.startDate)}}{{ party.startDate | moment('from') }}</p>
               <p class="desc">When</p>
               <p>{{ party.startDate | moment('dddd, MMM DD • HH:mm A') }}</p>
               <p class="desc">Start Time</p>
@@ -85,7 +84,11 @@
             </td>
             <td class="txt">
               <div class="flex">
-                <p class="type" v-for="(type, idx) in party.extraData.partyTypes" :key="idx">{{ type }} |</p>
+                <p
+                  class="type"
+                  v-for="(type, idx) in party.extraData.partyTypes"
+                  :key="idx"
+                >{{ type }} |</p>
               </div>
               <p class="desc">Party Types</p>
             </td>
@@ -95,8 +98,12 @@
               <i class="fas fa-headphones-alt"></i>
             </td>
             <td class="txt">
-              <div class="">
-                <p class="type" v-for="(type, idx) in party.extraData.musicTypes" :key="idx">{{ type }}</p>
+              <div class>
+                <p
+                  class="type"
+                  v-for="(type, idx) in party.extraData.musicTypes"
+                  :key="idx"
+                >{{ type }}</p>
               </div>
               <p class="desc">Music Types</p>
             </td>
@@ -119,13 +126,21 @@
         <div class="members">
           <p class="title">Going</p>
           <div class="members-img-container">
-            <members-pics v-for="member in party.extraData.members" :key="member._id" :member="member"></members-pics>
+            <members-pics
+              v-for="member in party.extraData.members"
+              :key="member._id"
+              :member="member"
+            ></members-pics>
           </div>
         </div>
         <div class="members">
           <p class="title">Likes</p>
           <div class="members-img-container">
-            <members-pics v-for="member in party.extraData.likes" :key="member._id" :member="member"></members-pics>
+            <members-pics
+              v-for="member in party.extraData.likes"
+              :key="member._id"
+              :member="member"
+            ></members-pics>
           </div>
         </div>
       </div>
@@ -143,11 +158,11 @@ import reviewList from "@/components/review-list.vue";
 import ChatPage from "@/components/chat.cmp.vue";
 import imgBlur from "./img-blur.cmp.vue";
 import partyMap from "./party-map.cmp.vue";
-import membersPics from "./my-cmps/members-pics.cmp.vue";
-import shareNetwork from "./my-cmps/shareNetwork.cmp";
+import membersPics from "./members-pics.cmp.vue";
+import shareNetwork from "./shareNetwork.cmp.vue";
 import SocketService from "../services/SocketService.js";
-import moment from 'moment';
-import login from '../views/login.vue'
+import moment from "moment";
+import login from "../views/login.vue";
 
 export default {
   name: "party-details",
@@ -191,26 +206,26 @@ export default {
     }
   },
   methods: {
-<<<<<<< HEAD
-    shareToWhatsapp() {
-      const thisPartysURL = `https://partytimes.herokuapp.com/#/party-app/details/${this.party._id}`;
-      window.open(`https://api.whatsapp.com/send?text=${thisPartysURL}`);
-=======
     hideLogin() {
-      this.isShowLogin = false
+      this.isShowLogin = false;
     },
     formatDateToday(date) {
-      date = new Date(date)
-      const today = moment().endOf('day')
-      const tomorrow = moment().add(1, 'day').endOf('day')
-      let dateString = ''
-      if (date <= today) { this.isToday = true; return 'Today • ' }
+      date = new Date(date);
+      const today = moment().endOf("day");
+      const tomorrow = moment()
+        .add(1, "day")
+        .endOf("day");
+      let dateString = "";
+      if (date <= today) {
+        this.isToday = true;
+        return "Today • ";
+      }
       // else if (date < tomorrow) { this.isToday = false; dateString = 'Tomorrow' }
       // return dateString
     },
     formatDate(date) {
-      date = date ? date.toISOString().replace(/-|:|\.\d+/g, '') : null;
-      return date
+      date = date ? date.toISOString().replace(/-|:|\.\d+/g, "") : null;
+      return date;
     },
     addToGoogle() {
       const party = this.party;
@@ -223,7 +238,7 @@ export default {
         location: party.location.name,
         details: party.desc,
         dates: start + "/" + end
-      }
+      };
 
       for (var key in parameters) {
         if (parameters.hasOwnProperty(key) && parameters[key]) {
@@ -232,7 +247,6 @@ export default {
       }
 
       window.open(url);
->>>>>>> 7b48c7bd1d2baf0e64dfd6c86efcb8df34b680b4
     },
     navigateToParty() {
       const userLocation = this.$store.getters.place;
@@ -246,7 +260,10 @@ export default {
       if (!this.$store.getters.isLoggedIn) this.isShowLogin = true;
     },
     addLikeOrGoing(type) {
-      if (!this.$store.getters.isLoggedIn) { this.isShowLogin = true; return }
+      if (!this.$store.getters.isLoggedIn) {
+        this.isShowLogin = true;
+        return;
+      }
       let currParty = this.party;
       let currUser = _.cloneDeep(this.currUser);
       const { _id, imgURL, username } = this.loggedInUser;
@@ -275,12 +292,8 @@ export default {
           currUser.goingPartys.push(currParty._id);
         }
         // Save party and user
-<<<<<<< HEAD
-        this.$store.dispatch({ type: "updateUser", user: this.currUser });
-=======
         // this.$store.dispatch({ type: "saveParty", party: currParty });
         // this.$store.dispatch({ type: "updateUser", user: this.currUser });
->>>>>>> 7b48c7bd1d2baf0e64dfd6c86efcb8df34b680b4
         // EventBus of Socket
         SocketService.emit("party joined", {
           currUser: currUser,
@@ -333,12 +346,6 @@ export default {
     SocketService.on("notify joined", ({ currUser, currParty }) => {
       this.party = currParty;
     });
-<<<<<<< HEAD
-=======
-  },
-  mounted() {
-
->>>>>>> 7b48c7bd1d2baf0e64dfd6c86efcb8df34b680b4
   }
 };
 </script>
