@@ -191,11 +191,10 @@ export default {
     }
   },
   methods: {
-<<<<<<< HEAD
     shareToWhatsapp() {
       const thisPartysURL = `https://partytimes.herokuapp.com/#/party-app/details/${this.party._id}`;
       window.open(`https://api.whatsapp.com/send?text=${thisPartysURL}`);
-=======
+    },  
     hideLogin() {
       this.isShowLogin = false
     },
@@ -232,7 +231,6 @@ export default {
       }
 
       window.open(url);
->>>>>>> 7b48c7bd1d2baf0e64dfd6c86efcb8df34b680b4
     },
     navigateToParty() {
       const userLocation = this.$store.getters.place;
@@ -275,12 +273,8 @@ export default {
           currUser.goingPartys.push(currParty._id);
         }
         // Save party and user
-<<<<<<< HEAD
-        this.$store.dispatch({ type: "updateUser", user: this.currUser });
-=======
         // this.$store.dispatch({ type: "saveParty", party: currParty });
         // this.$store.dispatch({ type: "updateUser", user: this.currUser });
->>>>>>> 7b48c7bd1d2baf0e64dfd6c86efcb8df34b680b4
         // EventBus of Socket
         SocketService.emit("party joined", {
           currUser: currUser,
@@ -333,12 +327,6 @@ export default {
     SocketService.on("notify joined", ({ currUser, currParty }) => {
       this.party = currParty;
     });
-<<<<<<< HEAD
-=======
-  },
-  mounted() {
-
->>>>>>> 7b48c7bd1d2baf0e64dfd6c86efcb8df34b680b4
   }
 };
 </script>
