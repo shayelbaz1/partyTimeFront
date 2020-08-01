@@ -15,10 +15,11 @@
 
         <div class="preview-party-name">
           <h1 class="name">{{ party.name }}</h1>
-          <p class="location">{{ party.location.name }} {{ `${km()}km away` }}</p>
+          <p class="time" :class="{red: isToday}">{{ formatDateToday(party.startDate) }}</p>
         </div>
         <p class="from">{{ fee }}</p>
-        <p class="time">{{ party.startDate | moment('DD/MM/YYYY • HH:mm A') }}</p>
+        <!-- <p class="time">{{ party.startDate | moment('DD/MM/YYYY • HH:mm A') }}</p> -->
+        <p class="location">{{ party.location.name }} {{ `• ${km()}km away` }}</p>
 
         <div v-if="isCurrUserCreator || loggedInUser.isAdmin" class="btns-actions-box">
           <el-button @click.stop="routeToEdit(party._id)" type="text">
@@ -36,11 +37,18 @@
 
 <script>
 import DistanceService from "../services/Distance.service.js";
+import moment from 'moment';
+
 export default {
   name: "party-preview",
   props: {
     party: {
       type: Object
+    }
+  },
+  data() {
+    return {
+      isToday: false
     }
   },
   computed: {
@@ -62,6 +70,16 @@ export default {
     }
   },
   methods: {
+    formatDateToday(date) {
+      date = new Date(date)
+      const today = moment().endOf('day')
+      const tomorrow = moment().add(1, 'day').endOf('day')
+      let dateString = ''
+      if (date <= today) { this.isToday = true; dateString = 'Today • ' + moment(date).format('HH:mm A') }
+      else if (date < tomorrow) { this.isToday = false; dateString = 'Tomorrow • ' + moment(date).format('HH:mm A') }
+      else { this.isToday = false; dateString = moment(date).format('DD/MM/YYYY • HH:mm A') }
+      return dateString
+    },
     km() {
       const userLocation = this.userPlace();
       const { lat, lng } = userLocation.pos;
@@ -103,7 +121,9 @@ export default {
       this.$router.replace("party-app/edit/" + id);
     },
     routeToDetails(id) {
-      this.$router.replace("/party-app/details/" + id);
+      // this.$router.replace("/party-app/details/" + id);
+      // window.scrollTo(0, 0)
+      this.$router.push("/party-app/details/" + id);
     },
     remove(id) {
       this.$store
@@ -123,6 +143,8 @@ export default {
 .party-preview {
   width: 100%;
   color: black;
+  margin-bottom: 10px;
+
   p {
     margin: 0;
   }
@@ -149,7 +171,7 @@ export default {
     .img-box {
       background-color: rgb(0, 0, 0);
       width: 50%;
-      min-width: 180px;
+      // min-width: 180px;
       border-radius: 7px;
       display: flex;
       justify-content: center;
@@ -177,6 +199,9 @@ export default {
       width: 100%;
       padding-left: 10px;
       padding-bottom: 10px;
+      .location {
+        padding-right: 50px;
+      }
       .preview-party-name {
         padding-right: 53px;
       }

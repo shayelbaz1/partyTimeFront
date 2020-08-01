@@ -101,6 +101,12 @@ export default {
   button.search-loc {
     border-radius: 0px 7px 7px 0px;
     margin-right: 5px;
+    border: 1px solid;
+    height: 43px;
+  }
+  .geolocation {
+    border: 1px solid;
+    height: 43px;
   }
 }
 </style>

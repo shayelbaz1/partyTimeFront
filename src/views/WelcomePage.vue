@@ -74,7 +74,6 @@ export default {
     // this.$store.dispatch({ type: "loadPartys" });
   },
   mounted() {
-    console.log("here");
     window.scrollTo(0, 0);
   }
 };

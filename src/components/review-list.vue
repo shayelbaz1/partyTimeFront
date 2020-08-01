@@ -140,8 +140,15 @@ form {
       font-size: inherit;
       outline: 0;
       padding: 0;
-      transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-      line-height: 1;
+      /* line-height: 0; */
+      height: 42px;
+      /* background: wheat; */
+      /* align-content: unset; */
+      align-self: flex-end;
+      font-size: 1.2rem;
+      color: white;
+      outline: none;
+      /* margin-bottom: 0px; */
     }
   }
   .el-button {

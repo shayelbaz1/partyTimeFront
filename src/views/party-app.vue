@@ -20,21 +20,13 @@
             <i class="fas fa-map-marker-alt"></i>
             Map
           </button>
-          <button
-            @click="displayBy('posters')"
-            :class="{ active: currPartiesDisplay === 'posters' }"
-          >
+          <button @click="displayBy('posters')" :class="{ active: currPartiesDisplay === 'posters' }">
             <i class="fas fa-images"></i>
             Posters
           </button>
         </div>
         <h1>Events around {{placeName}}</h1>
-        <party-list
-          v-if="currPartiesDisplay === 'list'"
-          :partys="partys"
-          @addLike="addLike"
-          @deleteParty="deleteParty"
-        ></party-list>
+        <party-list v-if="currPartiesDisplay === 'list'" :partys="partys" @addLike="addLike" @deleteParty="deleteParty"></party-list>
 
         <div v-if="currPartiesDisplay === 'posters'" class="grid posters">
           <div :key="party._id" v-for="party in partys">
@@ -73,7 +65,6 @@ export default {
   methods: {
     displayBy(displayBy) {
       this.currPartiesDisplay = displayBy;
-      console.log("here");
       window.scrollTo(0, 350);
     },
     deleteParty(partyId) {
@@ -184,14 +175,37 @@ export default {
     &:active {
       box-shadow: none;
     }
+    img {
+      filter: invert(1);
+    }
   }
+
   .filter {
     visibility: hidden;
   }
 
+  @media screen and (max-width: 600px) {
+    button.add {
+      bottom: 60px;
+    }
+  }
   @media screen and (max-width: 900px) {
     .filter {
       visibility: visible;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .display-btns {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    margin-bottom: 0px;
+    padding: 0;
+    button {
+      margin: 0;
+      outline: none;
+      border-radius: 0;
     }
   }
 }
@@ -199,6 +213,12 @@ export default {
 @media screen and (max-width: 420px) {
   .posters {
     columns: 2;
+  }
+
+  .display-btns {
+    button {
+      padding: 15px;
+    }
   }
 }
 </style>

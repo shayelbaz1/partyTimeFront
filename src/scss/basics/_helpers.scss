@@ -103,9 +103,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    > *:not(:last-child) {
-        margin-bottom: 7.5px;
-    }
+    // > *:not(:last-child) {
+    //     margin-bottom: 7.5px;
+    // }
     width: 100%;
 }
 

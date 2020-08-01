@@ -3,6 +3,7 @@
     <div>
       <form>
         <h2>Sign In</h2>
+        <button v-if="isShowCloseBtn" class="close-btn" @click.prevent="hideLogin">X</button>
 
         <div class="login-input-container">
           <i class="fa fa-user login-icon" aria-hidden="true"></i>
@@ -19,6 +20,9 @@
           <button @click.prevent="doLogin">Login</button>
           <button class="signup" @click.prevent="routeToSignup">Signup</button>
         </div>
+        <div class="login-buttons-container">
+          <button class="btn guest" @click.prevent="doGuestLogin">Guest Login</button>
+        </div>
         <!-- <br /> -->
         <!-- <googleLogin @doGoogleLogin="doGoogleLogin"></googleLogin> -->
         <GoogleLogin class="btn-google" :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
@@ -33,8 +37,10 @@ import { GoogleLogin } from "vue-google-login";
 
 export default {
   name: "login-page",
+  props: ['party_id'],
   data() {
     return {
+      isShowCloseBtn: false,
       params: {
         // client_id: "295314922853-kgqrkuvadpeeu7q6098cml7k5jte1spu.apps.googleusercontent.com"
         // client_id: "533525570890-ik134ku5d86nd70i76dsjfcd7is3uag4.apps.googleusercontent.com"
@@ -61,7 +67,9 @@ export default {
         type: "loginGoogle",
         id_token: id_token
       });
-      this.$router.push("/party-app");
+      this.$store.commit({ type: "setIsLoggedIn", bool: true })
+      if (!this.party_id) this.$router.push("/party-app");
+      else { this.$emit('hideLogin') }
     },
     onFailure() {
       console.log("Failed to log in");
@@ -69,13 +77,28 @@ export default {
     routeToSignup() {
       this.$router.push("/signup");
     },
+    hideLogin() {
+      this.$emit('hideLogin')
+    },
     async doLogin() {
+      if (!this.creds.password) return
+      if (!this.creds.email) return
       const currUser = await this.$store.dispatch({
         type: "login",
         creds: this.creds
       });
-      this.$router.push("/party-app");
+      this.$store.commit({ type: "setIsLoggedIn", bool: true })
+      if (!this.party_id) this.$router.push("/party-app");
+      else { this.$emit('hideLogin') }
+    },
+    doGuestLogin() {
+      this.$store.commit({ type: "setIsLoggedIn", bool: true })
+      if (!this.party_id) this.$router.push("/party-app");
+      else { this.$emit('hideLogin') }
     }
+  },
+  created() {
+    if (this.party_id) this.isShowCloseBtn = true
   },
   components: {
     GoogleLogin
