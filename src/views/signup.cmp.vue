@@ -52,7 +52,8 @@ export default {
       const cred = this.creds;
       if (!cred.email || !cred.password || !cred.username) return;
       this.$store.dispatch({ type: "signup", creds: cred });
-      this.$router.push("/");
+      this.$store.commit({ type: "setIsLoggedIn", bool: true })
+      this.$router.push("/party-app");
     },
     async doSignupGoogle(googleCreds) {
       if (googleCreds.constructor.name !== "yw") {

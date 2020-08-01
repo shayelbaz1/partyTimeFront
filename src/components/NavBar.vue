@@ -14,11 +14,11 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="link-container">
-          <b-nav-item @click="toggleFilter" class="filter">
+          <!-- <b-nav-item @click="toggleFilter" class="filter">
             <i class="fas fa-search"></i>
-          </b-nav-item>
+          </b-nav-item> -->
           <b-nav-item @click="routeTo('/party-app')">Explore</b-nav-item>
-          <b-nav-item @click="routeTo('/login')">Login</b-nav-item>
+
           <!-- <b-nav-item @click="routeTo('/signup')">Signup</b-nav-item> -->
           <!-- <b-nav-item @click="routeTo('/reviews')">Reviews</b-nav-item> -->
           <!-- <b-nav-item @click="routeTo('/profile')">Profile</b-nav-item> -->
@@ -36,10 +36,11 @@
                 <!-- <em>User</em> -->
                 <img class="user-img" :src="loggedInUser.imgURL" alt="User logo" srcset />
               </template>
-              <b-dropdown-item>{{loggedInUser.username}}</b-dropdown-item>
-              <b-dropdown-item>{{loggedInUser.email}}</b-dropdown-item>
-              <b-dropdown-item href="#" @click="routeTo('/profile')">Profile</b-dropdown-item>
-              <b-dropdown-item href="#" @click="signOut">Sign Out</b-dropdown-item>
+              <b-dropdown-item v-if="loggedInUser.username==='Guest'" @click="routeTo('/login')">Login</b-dropdown-item>
+              <b-dropdown-item v-if="loggedInUser.username!=='Guest'">{{loggedInUser.username}}</b-dropdown-item>
+              <b-dropdown-item v-if="loggedInUser.username!=='Guest'">{{loggedInUser.email}}</b-dropdown-item>
+              <b-dropdown-item v-if="loggedInUser.username!=='Guest'" href="#" @click="routeTo('/profile')">Profile</b-dropdown-item>
+              <b-dropdown-item v-if="loggedInUser.username!=='Guest'" href="#" @click="signOut">Sign Out</b-dropdown-item>
             </b-nav-item-dropdown>
           </div>
         </b-navbar-nav>
@@ -65,6 +66,7 @@ export default {
 
   methods: {
     routeTo(page) {
+      window.scrollTo(0, 0)
       this.$router.push(page);
     },
     toggleFilter() {

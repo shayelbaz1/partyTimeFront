@@ -9,7 +9,14 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
+    .close-btn {
+        position: absolute;
+        bottom: -48px;
+        right: 10px;
+        height: 49px;
+        background: #000000c7;
+        border-radius: 0px 0px 7px 7px;
+    }
     form {
         width: 385px;
         background-color: #00000049;
@@ -64,6 +71,10 @@
                 padding: 10px;
                 font-size: 1.2rem;
                 text-align: center;
+            }
+            .guest {
+                width: 280px;
+                background: seagreen;
             }
         }
     }

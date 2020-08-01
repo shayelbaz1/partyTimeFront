@@ -181,14 +181,37 @@ export default {
     &:active {
       box-shadow: none;
     }
+    img {
+      filter: invert(1);
+    }
   }
+
   .filter {
     visibility: hidden;
   }
 
+  @media screen and (max-width: 600px) {
+    button.add {
+      bottom: 60px;
+    }
+  }
   @media screen and (max-width: 900px) {
     .filter {
       visibility: visible;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .display-btns {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    margin-bottom: 0px;
+    padding: 0;
+    button {
+      margin: 0;
+      outline: none;
+      border-radius: 0;
     }
   }
 }
@@ -196,6 +219,12 @@ export default {
 @media screen and (max-width: 420px) {
   .posters {
     columns: 2;
+  }
+
+  .display-btns {
+    button {
+      padding: 15px;
+    }
   }
 }
 </style>

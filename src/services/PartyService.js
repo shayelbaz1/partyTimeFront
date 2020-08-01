@@ -65,7 +65,7 @@ function getEmptyParty() {
     name: '',
     desc: '',
     imgUrl:
-      'https://res.cloudinary.com/partytime/image/upload/v1595150444/partyImgs/wniyqeybu0858ckaftlr.png',
+      'https://res.cloudinary.com/partytime/image/upload/v1596154782/partyImgs/xvu8pz4mrmntrqqqe6ko.png',
     fee: 0,
     likes: 0,
     startDate: '',

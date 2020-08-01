@@ -1,13 +1,7 @@
 <template>
   <section class="party-list">
-    <div v-if="!partysLoaded" class="party-list-container flex column-layout">
-      <party-preview
-        @deleteParty="signalDelete"
-        @addLike="signalAddLike"
-        v-for="party in partys"
-        :key="party._id"
-        :party="party"
-      ></party-preview>
+    <div v-if="!isProcessing" class="party-list-container flex column-layout">
+      <party-preview @deleteParty="signalDelete" @addLike="signalAddLike" v-for="party in partys" :key="party._id" :party="party"></party-preview>
     </div>
     <div class="flex justify-center spinner" v-else>
       <cube-spin></cube-spin>
@@ -28,7 +22,7 @@ export default {
     }
   },
   computed: {
-    partysLoaded() {
+    isProcessing() {
       return this.$store.getters.isProcessing;
     }
   },
@@ -56,6 +50,7 @@ export default {
 <style lang="scss">
 .party-list {
   width: 100%;
+  min-height: 500px;
 }
 .spinner {
   display: flex;

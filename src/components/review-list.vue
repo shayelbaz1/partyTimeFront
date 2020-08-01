@@ -114,6 +114,8 @@ form {
       /* align-content: unset; */
       align-self: flex-end;
       font-size: 1.2rem;
+      color: white;
+      outline: none;
       /* margin-bottom: 0px; */
     }
   }

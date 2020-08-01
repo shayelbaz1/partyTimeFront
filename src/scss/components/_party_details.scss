@@ -1,5 +1,19 @@
 .party-details {
     margin-top: 56px;
+    .login-page {
+        background-image: none;
+        height: fit-content;
+        form {
+            // width: 100vw;
+            background-color: #000000c2;
+            position: fixed;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            top: 53px;
+            margin: 0px auto;
+        }
+    }
 }
 .event-buttons-container {
     background-color: #3b3b3b;
@@ -143,6 +157,7 @@
 @media screen and (max-width: 900px) {
     .details-and-map-container {
         flex-direction: column;
+
         .table-container {
             width: 100%;
             padding-right: 25px;
@@ -152,6 +167,12 @@
             width: 100%;
             .party-map {
                 margin-bottom: 20px;
+                .box-card {
+                    height: 160px;
+                    .img-box {
+                        width: 60%;
+                    }
+                }
             }
             .members {
                 margin-bottom: 25px;

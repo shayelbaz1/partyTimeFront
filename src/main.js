@@ -15,7 +15,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './scss/global.scss';
 import GSignInButton from 'vue-google-signin-button'
 import VueSocialSharing from 'vue-social-sharing'
+// import moment from 'moment';
 
+// Vue.use(moment);
 Vue.use(VueSocialSharing);
 
 

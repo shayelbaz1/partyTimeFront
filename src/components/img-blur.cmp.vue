@@ -22,7 +22,7 @@ export default {
   background-color: black;
   width: 100%;
   height: 40vh;
-  min-width: 180px;
+  // min-width: 180px;
   border-radius: 7px;
   display: flex;
   justify-content: center;
