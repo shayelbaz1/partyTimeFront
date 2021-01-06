@@ -7,7 +7,7 @@
     "build": "vue-cli-service build --dest ../backend/public"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
     "build": "^0.1.4",
